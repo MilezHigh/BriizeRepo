@@ -40,26 +40,14 @@
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e2w-wi-cim">
                                                     <rect key="frame" x="255" y="127" width="50" height="50"/>
-                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="50" id="QxD-ee-AZC"/>
                                                         <constraint firstAttribute="width" constant="50" id="ssF-L7-Tri"/>
                                                     </constraints>
-                                                    <state key="normal" image="briizeInstaIcon"/>
+                                                    <state key="normal" image="briizeRequestIcon"/>
                                                     <connections>
                                                         <action selector="instagramButtonPressed:" destination="yc0-NQ-LeS" eventType="touchUpInside" id="SIm-dl-4EK"/>
-                                                    </connections>
-                                                </button>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kt9-Q3-5ze">
-                                                    <rect key="frame" x="162.66666666666666" y="127" width="50" height="50"/>
-                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="50" id="DvI-aV-whD"/>
-                                                        <constraint firstAttribute="width" constant="50" id="oNr-b1-QBz"/>
-                                                    </constraints>
-                                                    <state key="normal" image="briizeMessageIcon"/>
-                                                    <connections>
-                                                        <action selector="messageButtonPressed:" destination="yc0-NQ-LeS" eventType="touchUpInside" id="3Hi-b4-ciA"/>
                                                     </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="29E-JS-rvy">
@@ -70,7 +58,7 @@
                                                         <constraint firstAttribute="width" constant="50" id="qWk-ww-hZh"/>
                                                     </constraints>
                                                     <color key="tintColor" red="0.63931051370000003" green="0.59752338090000001" blue="0.47216198279999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    <state key="normal" image="briizeRequestIcon"/>
+                                                    <state key="normal" image="briizeInstaIcon"/>
                                                     <connections>
                                                         <action selector="requestButtonPressed:" destination="yc0-NQ-LeS" eventType="touchUpInside" id="iCP-Ms-475"/>
                                                     </connections>
@@ -88,22 +76,22 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="rUe-3L-XoA">
-                                                    <rect key="frame" x="15" y="54" width="73" height="13"/>
+                                                    <rect key="frame" x="15" y="54" width="73" height="18"/>
                                                     <subviews>
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ratingStar" translatesAutoresizingMaskIntoConstraints="NO" id="yAD-PD-AdH">
-                                                            <rect key="frame" x="0.0" y="0.0" width="13" height="13"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="13" height="18"/>
                                                         </imageView>
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ratingStar" translatesAutoresizingMaskIntoConstraints="NO" id="zNG-DE-j88">
-                                                            <rect key="frame" x="15" y="0.0" width="13" height="13"/>
+                                                            <rect key="frame" x="15" y="0.0" width="13" height="18"/>
                                                         </imageView>
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ratingStar" translatesAutoresizingMaskIntoConstraints="NO" id="KEY-ac-NQX">
-                                                            <rect key="frame" x="30" y="0.0" width="13" height="13"/>
+                                                            <rect key="frame" x="30" y="0.0" width="13" height="18"/>
                                                         </imageView>
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ratingStar" translatesAutoresizingMaskIntoConstraints="NO" id="79z-oi-yU2">
-                                                            <rect key="frame" x="45" y="0.0" width="13" height="13"/>
+                                                            <rect key="frame" x="45" y="0.0" width="13" height="18"/>
                                                         </imageView>
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ratingStar" translatesAutoresizingMaskIntoConstraints="NO" id="keD-UL-BhP">
-                                                            <rect key="frame" x="60" y="0.0" width="13" height="13"/>
+                                                            <rect key="frame" x="60" y="0.0" width="13" height="18"/>
                                                         </imageView>
                                                     </subviews>
                                                     <constraints>
@@ -129,6 +117,18 @@
                                                     <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kt9-Q3-5ze">
+                                                    <rect key="frame" x="162.66666666666666" y="127" width="50" height="50"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="50" id="DvI-aV-whD"/>
+                                                        <constraint firstAttribute="width" constant="50" id="oNr-b1-QBz"/>
+                                                    </constraints>
+                                                    <state key="normal" image="briizeMessageIcon"/>
+                                                    <connections>
+                                                        <action selector="messageButtonPressed:" destination="yc0-NQ-LeS" eventType="touchUpInside" id="3Hi-b4-ciA"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="9SU-cA-EfV" firstAttribute="top" secondItem="uN0-Zf-iCD" secondAttribute="bottom" constant="18" id="CS9-Gq-LVR"/>
@@ -918,13 +918,13 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Briizelogo" width="640" height="640"/>
-        <image name="briizeInstaIcon" width="30" height="30"/>
-        <image name="briizeMenuIcon" width="60" height="60"/>
-        <image name="briizeMessageIcon" width="30" height="30"/>
-        <image name="briizeProfileImagePlaceHolderIcon" width="256" height="256"/>
-        <image name="briizeRequestIcon" width="30" height="30"/>
-        <image name="hairImg" width="240" height="165.83999633789062"/>
-        <image name="ratingStar" width="13.5" height="13.5"/>
+        <image name="Briizelogo" width="320" height="320"/>
+        <image name="briizeInstaIcon" width="20" height="20"/>
+        <image name="briizeMenuIcon" width="30" height="30"/>
+        <image name="briizeMessageIcon" width="20" height="20"/>
+        <image name="briizeProfileImagePlaceHolderIcon" width="128" height="128"/>
+        <image name="briizeRequestIcon" width="25" height="25"/>
+        <image name="hairImg" width="500" height="345"/>
+        <image name="ratingStar" width="18" height="18"/>
     </resources>
 </document>

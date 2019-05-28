@@ -68,6 +68,14 @@ class ExpertTableViewCell: UITableViewCell {
     // MARK: Button Actions
     
     @IBAction func requestButtonPressed(_ sender: Any) {
+        
+    }
+    
+    @IBAction func messageButtonPressed(_ sender: Any) {
+        
+    }
+    
+    @IBAction func instagramButtonPressed(_ sender: Any) {
         guard var topController = UIApplication.shared.keyWindow?.rootViewController else {return}
         while let presentedViewController = topController.presentedViewController {
             topController = presentedViewController
@@ -111,16 +119,6 @@ class ExpertTableViewCell: UITableViewCell {
         actionSheet.addAction(action3)
         
         topController.present(actionSheet, animated: true)
-    }
-    
-    @IBAction func messageButtonPressed(_ sender: Any) {
-        
-        
-    }
-    
-    @IBAction func instagramButtonPressed(_ sender: Any) {
-        
-        
     }
 }
 

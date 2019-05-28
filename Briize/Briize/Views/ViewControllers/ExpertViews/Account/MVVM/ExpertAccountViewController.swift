@@ -34,8 +34,6 @@ class ExpertAccountViewController: UIViewController, UIScrollViewDelegate {
         self.setup()
         self.bind()
         self.bindTableConfig()
-        
-        bgExpertProfileImageView.isHidden = true
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -63,9 +61,7 @@ extension ExpertAccountViewController {
     
     func setup(){
         guard let user = BriizeManager.shared.user.model.value, let urlString = user.urlString?.url else {return}
-       
-        self.bgExpertProfileImageView.gradientOverlay()
-        
+               
         self.expertProfileImageView.layer.borderWidth = 3
         self.expertProfileImageView.layer.borderColor = UIColor.white.cgColor
         self.expertProfileImageView.layer.cornerRadius = self.expertProfileImageView.bounds.width/2
