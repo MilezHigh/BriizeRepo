@@ -1,0 +1,22 @@
+platform :ios, '11.0'
+use_frameworks!
+
+target 'Briize' do
+
+pod 'NVActivityIndicatorView'
+pod 'Parse'
+pod 'RxSwift',    '~> 4.0'
+pod 'RxCocoa',    '~> 4.0'
+pod 'RxDataSources', '~> 3.0'
+pod 'KMNavigationBarTransition'
+pod 'Hero'
+pod 'GooglePlaces'
+pod 'GooglePlacePicker'
+pod 'GoogleMaps'
+
+  target 'BriizeTests' do
+    inherit! :search_paths
+    # Pods for testing
+  end
+
+end

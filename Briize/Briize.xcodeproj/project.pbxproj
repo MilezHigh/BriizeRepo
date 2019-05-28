@@ -1,0 +1,1258 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 48;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		840028402195005B0005ADA9 /* AccountHomeCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8400283F2195005B0005ADA9 /* AccountHomeCollectionCell.swift */; };
+		840028442195F8260005ADA9 /* ClientAccountCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840028432195F8260005ADA9 /* ClientAccountCell.swift */; };
+		84002848219940280005ADA9 /* ClientDashboard+RxCollectionViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84002847219940280005ADA9 /* ClientDashboard+RxCollectionViewDataSource.swift */; };
+		8400284A219B7BB40005ADA9 /* AccountPriorCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84002849219B7BB40005ADA9 /* AccountPriorCollectionCell.swift */; };
+		8400284C219B7BCF0005ADA9 /* AccountSubmitRequestCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8400284B219B7BCF0005ADA9 /* AccountSubmitRequestCollectionCell.swift */; };
+		8400284E219B7BEC0005ADA9 /* AccountLiveRequestsCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8400284D219B7BEC0005ADA9 /* AccountLiveRequestsCollectionCell.swift */; };
+		84002854219BF7250005ADA9 /* AccountPriorCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84002853219BF7250005ADA9 /* AccountPriorCollectionCell.xib */; };
+		84002856219BF77C0005ADA9 /* AccountSubmitRequestCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84002855219BF77C0005ADA9 /* AccountSubmitRequestCollectionCell.xib */; };
+		84002858219BF7A60005ADA9 /* AccountLiveRequestsCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84002857219BF7A60005ADA9 /* AccountLiveRequestsCollectionCell.xib */; };
+		84002889219E7A460005ADA9 /* RequestOrderModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84002888219E7A460005ADA9 /* RequestOrderModel.swift */; };
+		84069ACE20E60E6C002C910B /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84069ACD20E60E6C002C910B /* LoginViewController.swift */; };
+		84069AD020E60EAB002C910B /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84069ACF20E60EAB002C910B /* LoginViewModel.swift */; };
+		84069AD420E65B9C002C910B /* RequestDatePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84069AD320E65B9C002C910B /* RequestDatePickerViewController.swift */; };
+		84069AD620EF4FCD002C910B /* Lobster-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 84069AD520EF4FCD002C910B /* Lobster-Regular.ttf */; };
+		84069ADF20FCA91F002C910B /* ChangeServiceLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84069ADE20FCA91F002C910B /* ChangeServiceLocationViewController.swift */; };
+		840A45B82147AF3B003EC054 /* ExpertAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840A45B72147AF3B003EC054 /* ExpertAccountViewController.swift */; };
+		841AC386227850CC00E65578 /* RequestOrder.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 841AC385227850CC00E65578 /* RequestOrder.storyboard */; };
+		841AC389227852B400E65578 /* RequestOrderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841AC388227852B400E65578 /* RequestOrderViewController.swift */; };
+		841E16F720DB519F007D212C /* ExpertIGViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841E16F620DB519F007D212C /* ExpertIGViewController.swift */; };
+		84208E8D2244515900458E61 /* CustomRequestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84208E8C2244515900458E61 /* CustomRequestViewController.swift */; };
+		84361D1820C37206003B2C17 /* Client.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84361D1720C37206003B2C17 /* Client.swift */; };
+		84361D1A20C37221003B2C17 /* Expert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84361D1920C37221003B2C17 /* Expert.swift */; };
+		84361D1D20C3732F003B2C17 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84361D1C20C3732F003B2C17 /* Extensions.swift */; };
+		84361D2420C384D9003B2C17 /* CategoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84361D2320C384D9003B2C17 /* CategoryTableViewCell.swift */; };
+		84361D2620C384FD003B2C17 /* ClientDashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84361D2520C384FD003B2C17 /* ClientDashboardViewController.swift */; };
+		84361D2820C385FC003B2C17 /* ClientDashboardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84361D2720C385FC003B2C17 /* ClientDashboardViewModel.swift */; };
+		84361D2A20C38836003B2C17 /* CategoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84361D2920C38836003B2C17 /* CategoryModel.swift */; };
+		84361D2F20C394CC003B2C17 /* ServiceSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84361D2E20C394CC003B2C17 /* ServiceSelectionViewController.swift */; };
+		84361D3120C39585003B2C17 /* ClientFlow.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84361D3020C39585003B2C17 /* ClientFlow.storyboard */; };
+		84361D3320C39720003B2C17 /* ServiceSelectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84361D3220C39720003B2C17 /* ServiceSelectionViewModel.swift */; };
+		84361D8220C77DE7003B2C17 /* ServiceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84361D8120C77DE7003B2C17 /* ServiceModel.swift */; };
+		848D876B2278712500F43C1E /* BriizeRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848D876A2278712500F43C1E /* BriizeRouter.swift */; };
+		848D876D2278796700F43C1E /* UserDefaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848D876C2278796700F43C1E /* UserDefaultsManager.swift */; };
+		848D876F22787E5300F43C1E /* RequestOrderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848D876E22787E5300F43C1E /* RequestOrderViewModel.swift */; };
+		84A85A712150EE820098E3F8 /* ExpertAccountOptionsCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A85A702150EE820098E3F8 /* ExpertAccountOptionsCollectionCell.swift */; };
+		84A85A73215109E90098E3F8 /* ExpertAccountOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A85A72215109E90098E3F8 /* ExpertAccountOption.swift */; };
+		84A85A7B2154AF120098E3F8 /* ExpertAccountViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A85A7A2154AF120098E3F8 /* ExpertAccountViewModel.swift */; };
+		84A85A7D2159DD9D0098E3F8 /* ExpertEditServicesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A85A7C2159DD9D0098E3F8 /* ExpertEditServicesViewController.swift */; };
+		84A85A9E215B4AEC0098E3F8 /* ServicesEditedCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A85A9D215B4AEC0098E3F8 /* ServicesEditedCollectionViewCell.swift */; };
+		84A85AA0215DB8180098E3F8 /* ExpertEditServicesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A85A9F215DB8180098E3F8 /* ExpertEditServicesViewModel.swift */; };
+		84A85AA2215E11830098E3F8 /* ServiceForCategoryCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A85AA1215E11830098E3F8 /* ServiceForCategoryCollectionCell.swift */; };
+		84A85AA4215E31140098E3F8 /* ServicesForCategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A85AA3215E31140098E3F8 /* ServicesForCategoryViewController.swift */; };
+		84BEF8E4212148AA00E27DC5 /* MyAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84BEF8E3212148AA00E27DC5 /* MyAccountViewController.swift */; };
+		84BEF8E62121496B00E27DC5 /* MyAccountViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84BEF8E52121496B00E27DC5 /* MyAccountViewModel.swift */; };
+		84BEF8E921218F7A00E27DC5 /* MyAccountCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84BEF8E821218F7A00E27DC5 /* MyAccountCollectionViewCell.swift */; };
+		84D662C720CE748700CCC91C /* ServiceCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D662C620CE748700CCC91C /* ServiceCollectionViewCell.swift */; };
+		84E10A4820B0132C00E287A0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E10A4720B0132C00E287A0 /* AppDelegate.swift */; };
+		84E10A4A20B0132C00E287A0 /* ClientMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E10A4920B0132C00E287A0 /* ClientMainViewController.swift */; };
+		84E10A4D20B0132C00E287A0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84E10A4B20B0132C00E287A0 /* Main.storyboard */; };
+		84E10A5020B0132C00E287A0 /* Briize.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 84E10A4E20B0132C00E287A0 /* Briize.xcdatamodeld */; };
+		84E10A5220B0132C00E287A0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 84E10A5120B0132C00E287A0 /* Assets.xcassets */; };
+		84E10A5520B0132C00E287A0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84E10A5320B0132C00E287A0 /* LaunchScreen.storyboard */; };
+		84E10A6020B0132D00E287A0 /* BriizeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E10A5F20B0132D00E287A0 /* BriizeTests.swift */; };
+		84E10A6B20B0261900E287A0 /* BriizeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E10A6A20B0261900E287A0 /* BriizeManager.swift */; };
+		84E10A6D20B029B000E287A0 /* ExpertTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E10A6C20B029B000E287A0 /* ExpertTableViewCell.swift */; };
+		84E10A7120B033FD00E287A0 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E10A7020B033FD00E287A0 /* NetworkManager.swift */; };
+		84E10A7320B036A100E287A0 /* ClientMainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E10A7220B036A100E287A0 /* ClientMainViewModel.swift */; };
+		84E10A7520B041E000E287A0 /* ClientDashBoardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84E10A7420B041E000E287A0 /* ClientDashBoardView.xib */; };
+		84E10A7720B046C600E287A0 /* ClientDashBoardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E10A7620B046C600E287A0 /* ClientDashBoardView.swift */; };
+		84FA7410210AA30100E261E4 /* ExpertFlow.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84FA740F210AA30100E261E4 /* ExpertFlow.storyboard */; };
+		84FA741B21154DD500E261E4 /* briizeBGV.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 84FA741A21154DD400E261E4 /* briizeBGV.mp4 */; };
+		84FA741C21154DD500E261E4 /* briizeBGV.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 84FA741A21154DD400E261E4 /* briizeBGV.mp4 */; };
+		84FF87B020B2B4B80054BA99 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FF87AF20B2B4B80054BA99 /* BaseViewController.swift */; };
+		84FF87B220B2BC340054BA99 /* ClientPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FF87B120B2BC340054BA99 /* ClientPresenter.swift */; };
+		84FF87B420B2C9A90054BA99 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FF87B320B2C9A90054BA99 /* UserModel.swift */; };
+		84FF87B720B3E1630054BA99 /* BaseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FF87B620B3E1630054BA99 /* BaseViewModel.swift */; };
+		9967234B7CB381778DB7D906 /* Pods_BriizeTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 021419F10C21C44EBF3AA813 /* Pods_BriizeTests.framework */; };
+		D527449B4C9155709D9659E7 /* Pods_Briize.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E044479F154C53D9DE1B1DA8 /* Pods_Briize.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		84E10A5C20B0132D00E287A0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 84E10A3C20B0132C00E287A0 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 84E10A4320B0132C00E287A0;
+			remoteInfo = Briize;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		021419F10C21C44EBF3AA813 /* Pods_BriizeTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BriizeTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4AEE492058D7913369F961C3 /* Pods-Briize.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Briize.release.xcconfig"; path = "Pods/Target Support Files/Pods-Briize/Pods-Briize.release.xcconfig"; sourceTree = "<group>"; };
+		52E4DF070B24AFE868026FAF /* Pods-BriizeTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BriizeTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BriizeTests/Pods-BriizeTests.debug.xcconfig"; sourceTree = "<group>"; };
+		724702364A09EB0FE9BEF2B6 /* Pods-BriizeTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BriizeTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-BriizeTests/Pods-BriizeTests.release.xcconfig"; sourceTree = "<group>"; };
+		8400283F2195005B0005ADA9 /* AccountHomeCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountHomeCollectionCell.swift; sourceTree = "<group>"; };
+		840028432195F8260005ADA9 /* ClientAccountCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientAccountCell.swift; sourceTree = "<group>"; };
+		84002847219940280005ADA9 /* ClientDashboard+RxCollectionViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ClientDashboard+RxCollectionViewDataSource.swift"; sourceTree = "<group>"; };
+		84002849219B7BB40005ADA9 /* AccountPriorCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountPriorCollectionCell.swift; sourceTree = "<group>"; };
+		8400284B219B7BCF0005ADA9 /* AccountSubmitRequestCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountSubmitRequestCollectionCell.swift; sourceTree = "<group>"; };
+		8400284D219B7BEC0005ADA9 /* AccountLiveRequestsCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountLiveRequestsCollectionCell.swift; sourceTree = "<group>"; };
+		84002853219BF7250005ADA9 /* AccountPriorCollectionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AccountPriorCollectionCell.xib; sourceTree = "<group>"; };
+		84002855219BF77C0005ADA9 /* AccountSubmitRequestCollectionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AccountSubmitRequestCollectionCell.xib; sourceTree = "<group>"; };
+		84002857219BF7A60005ADA9 /* AccountLiveRequestsCollectionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AccountLiveRequestsCollectionCell.xib; sourceTree = "<group>"; };
+		84002888219E7A460005ADA9 /* RequestOrderModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestOrderModel.swift; sourceTree = "<group>"; };
+		84069ACD20E60E6C002C910B /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		84069ACF20E60EAB002C910B /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		84069AD320E65B9C002C910B /* RequestDatePickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestDatePickerViewController.swift; sourceTree = "<group>"; };
+		84069AD520EF4FCD002C910B /* Lobster-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lobster-Regular.ttf"; sourceTree = "<group>"; };
+		84069ADE20FCA91F002C910B /* ChangeServiceLocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeServiceLocationViewController.swift; sourceTree = "<group>"; };
+		840A45B72147AF3B003EC054 /* ExpertAccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpertAccountViewController.swift; sourceTree = "<group>"; };
+		841AC385227850CC00E65578 /* RequestOrder.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = RequestOrder.storyboard; sourceTree = "<group>"; };
+		841AC388227852B400E65578 /* RequestOrderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestOrderViewController.swift; sourceTree = "<group>"; };
+		841E16F620DB519F007D212C /* ExpertIGViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpertIGViewController.swift; sourceTree = "<group>"; };
+		84208E8C2244515900458E61 /* CustomRequestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomRequestViewController.swift; sourceTree = "<group>"; };
+		84361D1720C37206003B2C17 /* Client.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Client.swift; sourceTree = "<group>"; };
+		84361D1920C37221003B2C17 /* Expert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Expert.swift; sourceTree = "<group>"; };
+		84361D1C20C3732F003B2C17 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		84361D2320C384D9003B2C17 /* CategoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryTableViewCell.swift; sourceTree = "<group>"; };
+		84361D2520C384FD003B2C17 /* ClientDashboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientDashboardViewController.swift; sourceTree = "<group>"; };
+		84361D2720C385FC003B2C17 /* ClientDashboardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientDashboardViewModel.swift; sourceTree = "<group>"; };
+		84361D2920C38836003B2C17 /* CategoryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryModel.swift; sourceTree = "<group>"; };
+		84361D2E20C394CC003B2C17 /* ServiceSelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceSelectionViewController.swift; sourceTree = "<group>"; };
+		84361D3020C39585003B2C17 /* ClientFlow.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ClientFlow.storyboard; sourceTree = "<group>"; };
+		84361D3220C39720003B2C17 /* ServiceSelectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceSelectionViewModel.swift; sourceTree = "<group>"; };
+		84361D8120C77DE7003B2C17 /* ServiceModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceModel.swift; sourceTree = "<group>"; };
+		848D876A2278712500F43C1E /* BriizeRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BriizeRouter.swift; sourceTree = "<group>"; };
+		848D876C2278796700F43C1E /* UserDefaultsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsManager.swift; sourceTree = "<group>"; };
+		848D876E22787E5300F43C1E /* RequestOrderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestOrderViewModel.swift; sourceTree = "<group>"; };
+		84A85A702150EE820098E3F8 /* ExpertAccountOptionsCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpertAccountOptionsCollectionCell.swift; sourceTree = "<group>"; };
+		84A85A72215109E90098E3F8 /* ExpertAccountOption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpertAccountOption.swift; sourceTree = "<group>"; };
+		84A85A7A2154AF120098E3F8 /* ExpertAccountViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpertAccountViewModel.swift; sourceTree = "<group>"; };
+		84A85A7C2159DD9D0098E3F8 /* ExpertEditServicesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpertEditServicesViewController.swift; sourceTree = "<group>"; };
+		84A85A9D215B4AEC0098E3F8 /* ServicesEditedCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServicesEditedCollectionViewCell.swift; sourceTree = "<group>"; };
+		84A85A9F215DB8180098E3F8 /* ExpertEditServicesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpertEditServicesViewModel.swift; sourceTree = "<group>"; };
+		84A85AA1215E11830098E3F8 /* ServiceForCategoryCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceForCategoryCollectionCell.swift; sourceTree = "<group>"; };
+		84A85AA3215E31140098E3F8 /* ServicesForCategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServicesForCategoryViewController.swift; sourceTree = "<group>"; };
+		84BEF8E3212148AA00E27DC5 /* MyAccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyAccountViewController.swift; sourceTree = "<group>"; };
+		84BEF8E52121496B00E27DC5 /* MyAccountViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyAccountViewModel.swift; sourceTree = "<group>"; };
+		84BEF8E821218F7A00E27DC5 /* MyAccountCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyAccountCollectionViewCell.swift; sourceTree = "<group>"; };
+		84D662C620CE748700CCC91C /* ServiceCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceCollectionViewCell.swift; sourceTree = "<group>"; };
+		84E10A4420B0132C00E287A0 /* Briize.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Briize.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		84E10A4720B0132C00E287A0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		84E10A4920B0132C00E287A0 /* ClientMainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientMainViewController.swift; sourceTree = "<group>"; };
+		84E10A4C20B0132C00E287A0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		84E10A4F20B0132C00E287A0 /* Briize.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Briize.xcdatamodel; sourceTree = "<group>"; };
+		84E10A5120B0132C00E287A0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		84E10A5420B0132C00E287A0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		84E10A5620B0132C00E287A0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		84E10A5B20B0132D00E287A0 /* BriizeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BriizeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		84E10A5F20B0132D00E287A0 /* BriizeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BriizeTests.swift; sourceTree = "<group>"; };
+		84E10A6120B0132D00E287A0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		84E10A6A20B0261900E287A0 /* BriizeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BriizeManager.swift; sourceTree = "<group>"; };
+		84E10A6C20B029B000E287A0 /* ExpertTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpertTableViewCell.swift; sourceTree = "<group>"; };
+		84E10A7020B033FD00E287A0 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		84E10A7220B036A100E287A0 /* ClientMainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientMainViewModel.swift; sourceTree = "<group>"; };
+		84E10A7420B041E000E287A0 /* ClientDashBoardView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ClientDashBoardView.xib; sourceTree = "<group>"; };
+		84E10A7620B046C600E287A0 /* ClientDashBoardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientDashBoardView.swift; sourceTree = "<group>"; };
+		84E276802210396F00DAC2A6 /* Briize.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Briize.entitlements; sourceTree = "<group>"; };
+		84FA740F210AA30100E261E4 /* ExpertFlow.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ExpertFlow.storyboard; sourceTree = "<group>"; };
+		84FA741A21154DD400E261E4 /* briizeBGV.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = briizeBGV.mp4; sourceTree = "<group>"; };
+		84FF87AF20B2B4B80054BA99 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		84FF87B120B2BC340054BA99 /* ClientPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientPresenter.swift; sourceTree = "<group>"; };
+		84FF87B320B2C9A90054BA99 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
+		84FF87B620B3E1630054BA99 /* BaseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewModel.swift; sourceTree = "<group>"; };
+		CF59CC435C8F58C800E5B4D6 /* Pods-Briize.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Briize.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Briize/Pods-Briize.debug.xcconfig"; sourceTree = "<group>"; };
+		E044479F154C53D9DE1B1DA8 /* Pods_Briize.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Briize.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		84E10A4120B0132C00E287A0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D527449B4C9155709D9659E7 /* Pods_Briize.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		84E10A5820B0132D00E287A0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9967234B7CB381778DB7D906 /* Pods_BriizeTests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		8400284121957C510005ADA9 /* CollectionCells */ = {
+			isa = PBXGroup;
+			children = (
+				840028432195F8260005ADA9 /* ClientAccountCell.swift */,
+				8400284221957C8B0005ADA9 /* Home */,
+				84002850219B7C0D0005ADA9 /* Prior */,
+				84002851219B7C150005ADA9 /* Submit */,
+				84002852219B7C1A0005ADA9 /* Live */,
+			);
+			path = CollectionCells;
+			sourceTree = "<group>";
+		};
+		8400284221957C8B0005ADA9 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				8400283F2195005B0005ADA9 /* AccountHomeCollectionCell.swift */,
+				84361D2B20C393CC003B2C17 /* TableCell */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		84002850219B7C0D0005ADA9 /* Prior */ = {
+			isa = PBXGroup;
+			children = (
+				84002849219B7BB40005ADA9 /* AccountPriorCollectionCell.swift */,
+				84002853219BF7250005ADA9 /* AccountPriorCollectionCell.xib */,
+			);
+			path = Prior;
+			sourceTree = "<group>";
+		};
+		84002851219B7C150005ADA9 /* Submit */ = {
+			isa = PBXGroup;
+			children = (
+				8400284B219B7BCF0005ADA9 /* AccountSubmitRequestCollectionCell.swift */,
+				84002855219BF77C0005ADA9 /* AccountSubmitRequestCollectionCell.xib */,
+			);
+			path = Submit;
+			sourceTree = "<group>";
+		};
+		84002852219B7C1A0005ADA9 /* Live */ = {
+			isa = PBXGroup;
+			children = (
+				8400284D219B7BEC0005ADA9 /* AccountLiveRequestsCollectionCell.swift */,
+				84002857219BF7A60005ADA9 /* AccountLiveRequestsCollectionCell.xib */,
+			);
+			path = Live;
+			sourceTree = "<group>";
+		};
+		84069AC820E60C2F002C910B /* MVVM */ = {
+			isa = PBXGroup;
+			children = (
+				84FF87AF20B2B4B80054BA99 /* BaseViewController.swift */,
+				84FF87B620B3E1630054BA99 /* BaseViewModel.swift */,
+			);
+			path = MVVM;
+			sourceTree = "<group>";
+		};
+		84069AC920E60C47002C910B /* MVVM */ = {
+			isa = PBXGroup;
+			children = (
+				84361D2E20C394CC003B2C17 /* ServiceSelectionViewController.swift */,
+				84361D3220C39720003B2C17 /* ServiceSelectionViewModel.swift */,
+			);
+			path = MVVM;
+			sourceTree = "<group>";
+		};
+		84069ACA20E60D0C002C910B /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				84069AD120E60F45002C910B /* MVVM */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		84069ACB20E60D4B002C910B /* CreateAccount */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = CreateAccount;
+			sourceTree = "<group>";
+		};
+		84069ACC20E60D5E002C910B /* OnBoardingViews */ = {
+			isa = PBXGroup;
+			children = (
+				84069ACA20E60D0C002C910B /* Login */,
+				84069ACB20E60D4B002C910B /* CreateAccount */,
+			);
+			path = OnBoardingViews;
+			sourceTree = "<group>";
+		};
+		84069AD120E60F45002C910B /* MVVM */ = {
+			isa = PBXGroup;
+			children = (
+				84069ACD20E60E6C002C910B /* LoginViewController.swift */,
+				84069ACF20E60EAB002C910B /* LoginViewModel.swift */,
+			);
+			path = MVVM;
+			sourceTree = "<group>";
+		};
+		84069AD220E65B52002C910B /* RequestViews */ = {
+			isa = PBXGroup;
+			children = (
+				84069AD320E65B9C002C910B /* RequestDatePickerViewController.swift */,
+			);
+			path = RequestViews;
+			sourceTree = "<group>";
+		};
+		84069ADD20FCA8E0002C910B /* ChangeServiceLocation */ = {
+			isa = PBXGroup;
+			children = (
+				84069ADE20FCA91F002C910B /* ChangeServiceLocationViewController.swift */,
+			);
+			path = ChangeServiceLocation;
+			sourceTree = "<group>";
+		};
+		840A45B52147AEF4003EC054 /* Account */ = {
+			isa = PBXGroup;
+			children = (
+				840A45B62147AF1D003EC054 /* MVVM */,
+			);
+			path = Account;
+			sourceTree = "<group>";
+		};
+		840A45B62147AF1D003EC054 /* MVVM */ = {
+			isa = PBXGroup;
+			children = (
+				840A45B72147AF3B003EC054 /* ExpertAccountViewController.swift */,
+				84A85A7A2154AF120098E3F8 /* ExpertAccountViewModel.swift */,
+				84A85A702150EE820098E3F8 /* ExpertAccountOptionsCollectionCell.swift */,
+			);
+			path = MVVM;
+			sourceTree = "<group>";
+		};
+		841AC3872278529000E65578 /* RequestOrderViews */ = {
+			isa = PBXGroup;
+			children = (
+				841AC388227852B400E65578 /* RequestOrderViewController.swift */,
+				848D876E22787E5300F43C1E /* RequestOrderViewModel.swift */,
+			);
+			path = RequestOrderViews;
+			sourceTree = "<group>";
+		};
+		841E16F420DB5149007D212C /* ExpertSearchResults */ = {
+			isa = PBXGroup;
+			children = (
+				84E10A4920B0132C00E287A0 /* ClientMainViewController.swift */,
+				84E10A7220B036A100E287A0 /* ClientMainViewModel.swift */,
+				8448740320B2306500BEE5C4 /* TableCell */,
+			);
+			path = ExpertSearchResults;
+			sourceTree = "<group>";
+		};
+		841E16F520DB517C007D212C /* ExpertInstagramPage */ = {
+			isa = PBXGroup;
+			children = (
+				841E16F620DB519F007D212C /* ExpertIGViewController.swift */,
+			);
+			path = ExpertInstagramPage;
+			sourceTree = "<group>";
+		};
+		84208E8B2244513700458E61 /* CustomRequest */ = {
+			isa = PBXGroup;
+			children = (
+				84208E8C2244515900458E61 /* CustomRequestViewController.swift */,
+			);
+			path = CustomRequest;
+			sourceTree = "<group>";
+		};
+		84361D2220C38020003B2C17 /* ClientDashBoard */ = {
+			isa = PBXGroup;
+			children = (
+				84069ADD20FCA8E0002C910B /* ChangeServiceLocation */,
+				84361D2C20C393DB003B2C17 /* MVVM */,
+				8400284121957C510005ADA9 /* CollectionCells */,
+			);
+			path = ClientDashBoard;
+			sourceTree = "<group>";
+		};
+		84361D2B20C393CC003B2C17 /* TableCell */ = {
+			isa = PBXGroup;
+			children = (
+				84361D2320C384D9003B2C17 /* CategoryTableViewCell.swift */,
+			);
+			path = TableCell;
+			sourceTree = "<group>";
+		};
+		84361D2C20C393DB003B2C17 /* MVVM */ = {
+			isa = PBXGroup;
+			children = (
+				84361D2520C384FD003B2C17 /* ClientDashboardViewController.swift */,
+				84361D2720C385FC003B2C17 /* ClientDashboardViewModel.swift */,
+				84002847219940280005ADA9 /* ClientDashboard+RxCollectionViewDataSource.swift */,
+			);
+			path = MVVM;
+			sourceTree = "<group>";
+		};
+		84361D2D20C394A2003B2C17 /* ServiceSelection */ = {
+			isa = PBXGroup;
+			children = (
+				84069AC920E60C47002C910B /* MVVM */,
+				84D662C820CE749400CCC91C /* CollectionViewCell */,
+			);
+			path = ServiceSelection;
+			sourceTree = "<group>";
+		};
+		8448740020B22FE600BEE5C4 /* Client Views */ = {
+			isa = PBXGroup;
+			children = (
+				84361D2220C38020003B2C17 /* ClientDashBoard */,
+				84BEF8E22121485200E27DC5 /* AccountOptions */,
+				84361D2D20C394A2003B2C17 /* ServiceSelection */,
+				84208E8B2244513700458E61 /* CustomRequest */,
+				8448740520B230A400BEE5C4 /* ExpertList */,
+			);
+			path = "Client Views";
+			sourceTree = "<group>";
+		};
+		8448740120B2301000BEE5C4 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				84FF87B520B3E03A0054BA99 /* Base */,
+				84069ACC20E60D5E002C910B /* OnBoardingViews */,
+				8448740020B22FE600BEE5C4 /* Client Views */,
+				8448740B20B232E600BEE5C4 /* ExpertViews */,
+				841AC3872278529000E65578 /* RequestOrderViews */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		8448740220B2303A00BEE5C4 /* MVVM */ = {
+			isa = PBXGroup;
+			children = (
+				841E16F420DB5149007D212C /* ExpertSearchResults */,
+				841E16F520DB517C007D212C /* ExpertInstagramPage */,
+			);
+			path = MVVM;
+			sourceTree = "<group>";
+		};
+		8448740320B2306500BEE5C4 /* TableCell */ = {
+			isa = PBXGroup;
+			children = (
+				84E10A6C20B029B000E287A0 /* ExpertTableViewCell.swift */,
+			);
+			path = TableCell;
+			sourceTree = "<group>";
+		};
+		8448740420B2308800BEE5C4 /* CRUFT */ = {
+			isa = PBXGroup;
+			children = (
+				84E10A7620B046C600E287A0 /* ClientDashBoardView.swift */,
+				84E10A7420B041E000E287A0 /* ClientDashBoardView.xib */,
+			);
+			path = CRUFT;
+			sourceTree = "<group>";
+		};
+		8448740520B230A400BEE5C4 /* ExpertList */ = {
+			isa = PBXGroup;
+			children = (
+				8448740220B2303A00BEE5C4 /* MVVM */,
+				8448740420B2308800BEE5C4 /* CRUFT */,
+				84069AD220E65B52002C910B /* RequestViews */,
+			);
+			path = ExpertList;
+			sourceTree = "<group>";
+		};
+		8448740620B2310600BEE5C4 /* Interactors */ = {
+			isa = PBXGroup;
+			children = (
+				84E10A6A20B0261900E287A0 /* BriizeManager.swift */,
+				84361D1720C37206003B2C17 /* Client.swift */,
+				84361D1920C37221003B2C17 /* Expert.swift */,
+				84D662C520CCF16500CCC91C /* Utility */,
+				8448740820B2316800BEE5C4 /* Network */,
+			);
+			path = Interactors;
+			sourceTree = "<group>";
+		};
+		8448740820B2316800BEE5C4 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				84E10A7020B033FD00E287A0 /* NetworkManager.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		8448740A20B232C500BEE5C4 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				8448740120B2301000BEE5C4 /* ViewControllers */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		8448740B20B232E600BEE5C4 /* ExpertViews */ = {
+			isa = PBXGroup;
+			children = (
+				840A45B52147AEF4003EC054 /* Account */,
+				84A85A9B215B4A760098E3F8 /* EditServices */,
+			);
+			path = ExpertViews;
+			sourceTree = "<group>";
+		};
+		8448740D20B2332A00BEE5C4 /* Presenters */ = {
+			isa = PBXGroup;
+			children = (
+				84FF87B120B2BC340054BA99 /* ClientPresenter.swift */,
+			);
+			path = Presenters;
+			sourceTree = "<group>";
+		};
+		8448740E20B2334200BEE5C4 /* Entities */ = {
+			isa = PBXGroup;
+			children = (
+				8448740F20B2334C00BEE5C4 /* Models */,
+			);
+			path = Entities;
+			sourceTree = "<group>";
+		};
+		8448740F20B2334C00BEE5C4 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				8448741020B2336000BEE5C4 /* UserModels */,
+				8448741120B2337300BEE5C4 /* RequestModels */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		8448741020B2336000BEE5C4 /* UserModels */ = {
+			isa = PBXGroup;
+			children = (
+				84FF87B320B2C9A90054BA99 /* UserModel.swift */,
+				84A85A72215109E90098E3F8 /* ExpertAccountOption.swift */,
+			);
+			path = UserModels;
+			sourceTree = "<group>";
+		};
+		8448741120B2337300BEE5C4 /* RequestModels */ = {
+			isa = PBXGroup;
+			children = (
+				84361D2920C38836003B2C17 /* CategoryModel.swift */,
+				84361D8120C77DE7003B2C17 /* ServiceModel.swift */,
+				84002888219E7A460005ADA9 /* RequestOrderModel.swift */,
+			);
+			path = RequestModels;
+			sourceTree = "<group>";
+		};
+		8448741220B2339900BEE5C4 /* Routing */ = {
+			isa = PBXGroup;
+			children = (
+				84E10A5320B0132C00E287A0 /* LaunchScreen.storyboard */,
+				84E10A4B20B0132C00E287A0 /* Main.storyboard */,
+				84361D3020C39585003B2C17 /* ClientFlow.storyboard */,
+				84FA740F210AA30100E261E4 /* ExpertFlow.storyboard */,
+				841AC385227850CC00E65578 /* RequestOrder.storyboard */,
+				848D876A2278712500F43C1E /* BriizeRouter.swift */,
+			);
+			path = Routing;
+			sourceTree = "<group>";
+		};
+		846D5A56216076CF009DB94A /* CollectionViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				84A85A9D215B4AEC0098E3F8 /* ServicesEditedCollectionViewCell.swift */,
+			);
+			path = CollectionViewCell;
+			sourceTree = "<group>";
+		};
+		846D5A57216076DB009DB94A /* CollectionViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				84A85AA1215E11830098E3F8 /* ServiceForCategoryCollectionCell.swift */,
+			);
+			path = CollectionViewCell;
+			sourceTree = "<group>";
+		};
+		846D5A5821607717009DB94A /* CategorySelection */ = {
+			isa = PBXGroup;
+			children = (
+				84A85A9C215B4A930098E3F8 /* MVVM */,
+			);
+			path = CategorySelection;
+			sourceTree = "<group>";
+		};
+		846D5A592160772E009DB94A /* ServiceSelection */ = {
+			isa = PBXGroup;
+			children = (
+				846D5A5A2160773A009DB94A /* MVVM */,
+				846D5A57216076DB009DB94A /* CollectionViewCell */,
+			);
+			path = ServiceSelection;
+			sourceTree = "<group>";
+		};
+		846D5A5A2160773A009DB94A /* MVVM */ = {
+			isa = PBXGroup;
+			children = (
+				84A85AA3215E31140098E3F8 /* ServicesForCategoryViewController.swift */,
+			);
+			path = MVVM;
+			sourceTree = "<group>";
+		};
+		84A85A9B215B4A760098E3F8 /* EditServices */ = {
+			isa = PBXGroup;
+			children = (
+				846D5A5821607717009DB94A /* CategorySelection */,
+				846D5A592160772E009DB94A /* ServiceSelection */,
+			);
+			path = EditServices;
+			sourceTree = "<group>";
+		};
+		84A85A9C215B4A930098E3F8 /* MVVM */ = {
+			isa = PBXGroup;
+			children = (
+				84A85A7C2159DD9D0098E3F8 /* ExpertEditServicesViewController.swift */,
+				84A85A9F215DB8180098E3F8 /* ExpertEditServicesViewModel.swift */,
+				846D5A56216076CF009DB94A /* CollectionViewCell */,
+			);
+			path = MVVM;
+			sourceTree = "<group>";
+		};
+		84BEF8E22121485200E27DC5 /* AccountOptions */ = {
+			isa = PBXGroup;
+			children = (
+				84BEF8E72121624900E27DC5 /* MVVM */,
+			);
+			path = AccountOptions;
+			sourceTree = "<group>";
+		};
+		84BEF8E72121624900E27DC5 /* MVVM */ = {
+			isa = PBXGroup;
+			children = (
+				84BEF8E3212148AA00E27DC5 /* MyAccountViewController.swift */,
+				84BEF8E52121496B00E27DC5 /* MyAccountViewModel.swift */,
+				84BEF8E821218F7A00E27DC5 /* MyAccountCollectionViewCell.swift */,
+			);
+			path = MVVM;
+			sourceTree = "<group>";
+		};
+		84D662C520CCF16500CCC91C /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+				84361D1C20C3732F003B2C17 /* Extensions.swift */,
+				848D876C2278796700F43C1E /* UserDefaultsManager.swift */,
+			);
+			path = Utility;
+			sourceTree = "<group>";
+		};
+		84D662C820CE749400CCC91C /* CollectionViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				84D662C620CE748700CCC91C /* ServiceCollectionViewCell.swift */,
+			);
+			path = CollectionViewCell;
+			sourceTree = "<group>";
+		};
+		84E10A3B20B0132C00E287A0 = {
+			isa = PBXGroup;
+			children = (
+				84E10A4620B0132C00E287A0 /* Briize */,
+				84E10A5E20B0132D00E287A0 /* BriizeTests */,
+				84E10A4520B0132C00E287A0 /* Products */,
+				A34065407223F6D4ECDAC887 /* Pods */,
+				E8AA5884F08DA342A2559FD6 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		84E10A4520B0132C00E287A0 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				84E10A4420B0132C00E287A0 /* Briize.app */,
+				84E10A5B20B0132D00E287A0 /* BriizeTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		84E10A4620B0132C00E287A0 /* Briize */ = {
+			isa = PBXGroup;
+			children = (
+				84E276802210396F00DAC2A6 /* Briize.entitlements */,
+				84069AD520EF4FCD002C910B /* Lobster-Regular.ttf */,
+				84FA741A21154DD400E261E4 /* briizeBGV.mp4 */,
+				8448740A20B232C500BEE5C4 /* Views */,
+				8448740620B2310600BEE5C4 /* Interactors */,
+				8448740D20B2332A00BEE5C4 /* Presenters */,
+				8448740E20B2334200BEE5C4 /* Entities */,
+				8448741220B2339900BEE5C4 /* Routing */,
+				84E10A4720B0132C00E287A0 /* AppDelegate.swift */,
+				84E10A5120B0132C00E287A0 /* Assets.xcassets */,
+				84E10A5620B0132C00E287A0 /* Info.plist */,
+				84E10A4E20B0132C00E287A0 /* Briize.xcdatamodeld */,
+			);
+			path = Briize;
+			sourceTree = "<group>";
+		};
+		84E10A5E20B0132D00E287A0 /* BriizeTests */ = {
+			isa = PBXGroup;
+			children = (
+				84E10A5F20B0132D00E287A0 /* BriizeTests.swift */,
+				84E10A6120B0132D00E287A0 /* Info.plist */,
+			);
+			path = BriizeTests;
+			sourceTree = "<group>";
+		};
+		84FF87B520B3E03A0054BA99 /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				84069AC820E60C2F002C910B /* MVVM */,
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
+		A34065407223F6D4ECDAC887 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				CF59CC435C8F58C800E5B4D6 /* Pods-Briize.debug.xcconfig */,
+				4AEE492058D7913369F961C3 /* Pods-Briize.release.xcconfig */,
+				52E4DF070B24AFE868026FAF /* Pods-BriizeTests.debug.xcconfig */,
+				724702364A09EB0FE9BEF2B6 /* Pods-BriizeTests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		E8AA5884F08DA342A2559FD6 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				E044479F154C53D9DE1B1DA8 /* Pods_Briize.framework */,
+				021419F10C21C44EBF3AA813 /* Pods_BriizeTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		84E10A4320B0132C00E287A0 /* Briize */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 84E10A6420B0132D00E287A0 /* Build configuration list for PBXNativeTarget "Briize" */;
+			buildPhases = (
+				5AF1FBEAA614ADAFA197DA22 /* [CP] Check Pods Manifest.lock */,
+				84E10A4020B0132C00E287A0 /* Sources */,
+				84E10A4120B0132C00E287A0 /* Frameworks */,
+				84E10A4220B0132C00E287A0 /* Resources */,
+				D9CDEC0E98D2C96EA7563F9C /* [CP] Embed Pods Frameworks */,
+				BC98C95C56678B1928B8C710 /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Briize;
+			productName = Briize;
+			productReference = 84E10A4420B0132C00E287A0 /* Briize.app */;
+			productType = "com.apple.product-type.application";
+		};
+		84E10A5A20B0132D00E287A0 /* BriizeTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 84E10A6720B0132D00E287A0 /* Build configuration list for PBXNativeTarget "BriizeTests" */;
+			buildPhases = (
+				5E0429073BF035130A68813F /* [CP] Check Pods Manifest.lock */,
+				84E10A5720B0132D00E287A0 /* Sources */,
+				84E10A5820B0132D00E287A0 /* Frameworks */,
+				84E10A5920B0132D00E287A0 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				84E10A5D20B0132D00E287A0 /* PBXTargetDependency */,
+			);
+			name = BriizeTests;
+			productName = BriizeTests;
+			productReference = 84E10A5B20B0132D00E287A0 /* BriizeTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		84E10A3C20B0132C00E287A0 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0920;
+				LastUpgradeCheck = 0930;
+				ORGANIZATIONNAME = "Miles Fishman";
+				TargetAttributes = {
+					84E10A4320B0132C00E287A0 = {
+						CreatedOnToolsVersion = 9.2;
+						LastSwiftMigration = 1010;
+						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
+					};
+					84E10A5A20B0132D00E287A0 = {
+						CreatedOnToolsVersion = 9.2;
+						LastSwiftMigration = 1010;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 84E10A4320B0132C00E287A0;
+					};
+				};
+			};
+			buildConfigurationList = 84E10A3F20B0132C00E287A0 /* Build configuration list for PBXProject "Briize" */;
+			compatibilityVersion = "Xcode 8.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 84E10A3B20B0132C00E287A0;
+			productRefGroup = 84E10A4520B0132C00E287A0 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				84E10A4320B0132C00E287A0 /* Briize */,
+				84E10A5A20B0132D00E287A0 /* BriizeTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		84E10A4220B0132C00E287A0 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				84FA741B21154DD500E261E4 /* briizeBGV.mp4 in Resources */,
+				84002854219BF7250005ADA9 /* AccountPriorCollectionCell.xib in Resources */,
+				84E10A5520B0132C00E287A0 /* LaunchScreen.storyboard in Resources */,
+				841AC386227850CC00E65578 /* RequestOrder.storyboard in Resources */,
+				84069AD620EF4FCD002C910B /* Lobster-Regular.ttf in Resources */,
+				84002858219BF7A60005ADA9 /* AccountLiveRequestsCollectionCell.xib in Resources */,
+				84E10A5220B0132C00E287A0 /* Assets.xcassets in Resources */,
+				84002856219BF77C0005ADA9 /* AccountSubmitRequestCollectionCell.xib in Resources */,
+				84FA7410210AA30100E261E4 /* ExpertFlow.storyboard in Resources */,
+				84361D3120C39585003B2C17 /* ClientFlow.storyboard in Resources */,
+				84E10A7520B041E000E287A0 /* ClientDashBoardView.xib in Resources */,
+				84E10A4D20B0132C00E287A0 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		84E10A5920B0132D00E287A0 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				84FA741C21154DD500E261E4 /* briizeBGV.mp4 in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		5AF1FBEAA614ADAFA197DA22 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Briize-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		5E0429073BF035130A68813F /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-BriizeTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		BC98C95C56678B1928B8C710 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Briize/Pods-Briize-resources.sh",
+				"${PODS_ROOT}/GoogleMaps/Maps/Frameworks/GoogleMaps.framework/Resources/GoogleMaps.bundle",
+				"${PODS_ROOT}/GooglePlacePicker/Frameworks/GooglePlacePicker.framework/Resources/GooglePlacePicker.bundle",
+				"${PODS_ROOT}/GooglePlaces/Frameworks/GooglePlaces.framework/Resources/GooglePlaces.bundle",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GoogleMaps.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GooglePlacePicker.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GooglePlaces.bundle",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Briize/Pods-Briize-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D9CDEC0E98D2C96EA7563F9C /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Briize/Pods-Briize-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Bolts/Bolts.framework",
+				"${BUILT_PRODUCTS_DIR}/Differentiator/Differentiator.framework",
+				"${BUILT_PRODUCTS_DIR}/Hero/Hero.framework",
+				"${BUILT_PRODUCTS_DIR}/KMNavigationBarTransition/KMNavigationBarTransition.framework",
+				"${BUILT_PRODUCTS_DIR}/NVActivityIndicatorView/NVActivityIndicatorView.framework",
+				"${BUILT_PRODUCTS_DIR}/Parse/Parse.framework",
+				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
+				"${BUILT_PRODUCTS_DIR}/RxDataSources/RxDataSources.framework",
+				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Bolts.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Differentiator.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Hero.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KMNavigationBarTransition.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/NVActivityIndicatorView.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Parse.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxDataSources.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Briize/Pods-Briize-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		84E10A4020B0132C00E287A0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				841E16F720DB519F007D212C /* ExpertIGViewController.swift in Sources */,
+				8400284C219B7BCF0005ADA9 /* AccountSubmitRequestCollectionCell.swift in Sources */,
+				848D876D2278796700F43C1E /* UserDefaultsManager.swift in Sources */,
+				84E10A4A20B0132C00E287A0 /* ClientMainViewController.swift in Sources */,
+				84BEF8E921218F7A00E27DC5 /* MyAccountCollectionViewCell.swift in Sources */,
+				8400284A219B7BB40005ADA9 /* AccountPriorCollectionCell.swift in Sources */,
+				840028442195F8260005ADA9 /* ClientAccountCell.swift in Sources */,
+				84BEF8E4212148AA00E27DC5 /* MyAccountViewController.swift in Sources */,
+				84FF87B220B2BC340054BA99 /* ClientPresenter.swift in Sources */,
+				84A85A73215109E90098E3F8 /* ExpertAccountOption.swift in Sources */,
+				84A85A7D2159DD9D0098E3F8 /* ExpertEditServicesViewController.swift in Sources */,
+				8400284E219B7BEC0005ADA9 /* AccountLiveRequestsCollectionCell.swift in Sources */,
+				84E10A5020B0132C00E287A0 /* Briize.xcdatamodeld in Sources */,
+				84069AD420E65B9C002C910B /* RequestDatePickerViewController.swift in Sources */,
+				848D876B2278712500F43C1E /* BriizeRouter.swift in Sources */,
+				84A85A9E215B4AEC0098E3F8 /* ServicesEditedCollectionViewCell.swift in Sources */,
+				84E10A4820B0132C00E287A0 /* AppDelegate.swift in Sources */,
+				84A85AA4215E31140098E3F8 /* ServicesForCategoryViewController.swift in Sources */,
+				84BEF8E62121496B00E27DC5 /* MyAccountViewModel.swift in Sources */,
+				84FF87B420B2C9A90054BA99 /* UserModel.swift in Sources */,
+				84361D1A20C37221003B2C17 /* Expert.swift in Sources */,
+				84A85A712150EE820098E3F8 /* ExpertAccountOptionsCollectionCell.swift in Sources */,
+				84069AD020E60EAB002C910B /* LoginViewModel.swift in Sources */,
+				84361D3320C39720003B2C17 /* ServiceSelectionViewModel.swift in Sources */,
+				84FF87B720B3E1630054BA99 /* BaseViewModel.swift in Sources */,
+				84A85AA2215E11830098E3F8 /* ServiceForCategoryCollectionCell.swift in Sources */,
+				84361D1820C37206003B2C17 /* Client.swift in Sources */,
+				84D662C720CE748700CCC91C /* ServiceCollectionViewCell.swift in Sources */,
+				84069ADF20FCA91F002C910B /* ChangeServiceLocationViewController.swift in Sources */,
+				84A85A7B2154AF120098E3F8 /* ExpertAccountViewModel.swift in Sources */,
+				84E10A7120B033FD00E287A0 /* NetworkManager.swift in Sources */,
+				84361D8220C77DE7003B2C17 /* ServiceModel.swift in Sources */,
+				84361D2820C385FC003B2C17 /* ClientDashboardViewModel.swift in Sources */,
+				841AC389227852B400E65578 /* RequestOrderViewController.swift in Sources */,
+				84E10A7720B046C600E287A0 /* ClientDashBoardView.swift in Sources */,
+				84002848219940280005ADA9 /* ClientDashboard+RxCollectionViewDataSource.swift in Sources */,
+				840A45B82147AF3B003EC054 /* ExpertAccountViewController.swift in Sources */,
+				84361D1D20C3732F003B2C17 /* Extensions.swift in Sources */,
+				84361D2A20C38836003B2C17 /* CategoryModel.swift in Sources */,
+				848D876F22787E5300F43C1E /* RequestOrderViewModel.swift in Sources */,
+				840028402195005B0005ADA9 /* AccountHomeCollectionCell.swift in Sources */,
+				84FF87B020B2B4B80054BA99 /* BaseViewController.swift in Sources */,
+				84E10A7320B036A100E287A0 /* ClientMainViewModel.swift in Sources */,
+				84002889219E7A460005ADA9 /* RequestOrderModel.swift in Sources */,
+				84208E8D2244515900458E61 /* CustomRequestViewController.swift in Sources */,
+				84E10A6D20B029B000E287A0 /* ExpertTableViewCell.swift in Sources */,
+				84A85AA0215DB8180098E3F8 /* ExpertEditServicesViewModel.swift in Sources */,
+				84361D2F20C394CC003B2C17 /* ServiceSelectionViewController.swift in Sources */,
+				84E10A6B20B0261900E287A0 /* BriizeManager.swift in Sources */,
+				84361D2620C384FD003B2C17 /* ClientDashboardViewController.swift in Sources */,
+				84069ACE20E60E6C002C910B /* LoginViewController.swift in Sources */,
+				84361D2420C384D9003B2C17 /* CategoryTableViewCell.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		84E10A5720B0132D00E287A0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				84E10A6020B0132D00E287A0 /* BriizeTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		84E10A5D20B0132D00E287A0 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 84E10A4320B0132C00E287A0 /* Briize */;
+			targetProxy = 84E10A5C20B0132D00E287A0 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		84E10A4B20B0132C00E287A0 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				84E10A4C20B0132C00E287A0 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		84E10A5320B0132C00E287A0 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				84E10A5420B0132C00E287A0 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		84E10A6220B0132D00E287A0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		84E10A6320B0132D00E287A0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		84E10A6520B0132D00E287A0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = CF59CC435C8F58C800E5B4D6 /* Pods-Briize.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Briize/Briize.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = WMVNZYDS86;
+				INFOPLIST_FILE = Briize/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.milesFishman.Briize;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		84E10A6620B0132D00E287A0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4AEE492058D7913369F961C3 /* Pods-Briize.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Briize/Briize.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = WMVNZYDS86;
+				INFOPLIST_FILE = Briize/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.milesFishman.Briize;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		84E10A6820B0132D00E287A0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 52E4DF070B24AFE868026FAF /* Pods-BriizeTests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = WMVNZYDS86;
+				INFOPLIST_FILE = BriizeTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.milesFishman.BriizeTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Briize.app/Briize";
+			};
+			name = Debug;
+		};
+		84E10A6920B0132D00E287A0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 724702364A09EB0FE9BEF2B6 /* Pods-BriizeTests.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = WMVNZYDS86;
+				INFOPLIST_FILE = BriizeTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.milesFishman.BriizeTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Briize.app/Briize";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		84E10A3F20B0132C00E287A0 /* Build configuration list for PBXProject "Briize" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				84E10A6220B0132D00E287A0 /* Debug */,
+				84E10A6320B0132D00E287A0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		84E10A6420B0132D00E287A0 /* Build configuration list for PBXNativeTarget "Briize" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				84E10A6520B0132D00E287A0 /* Debug */,
+				84E10A6620B0132D00E287A0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		84E10A6720B0132D00E287A0 /* Build configuration list for PBXNativeTarget "BriizeTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				84E10A6820B0132D00E287A0 /* Debug */,
+				84E10A6920B0132D00E287A0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		84E10A4E20B0132C00E287A0 /* Briize.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				84E10A4F20B0132C00E287A0 /* Briize.xcdatamodel */,
+			);
+			currentVersion = 84E10A4F20B0132C00E287A0 /* Briize.xcdatamodel */;
+			path = Briize.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = 84E10A3C20B0132C00E287A0 /* Project object */;
+}

@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_0" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="ClientDashBoardView" customModule="Briize" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="359" height="188"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="briizeProfileImagePlaceHolderIcon" translatesAutoresizingMaskIntoConstraints="NO" id="Gog-BW-SB3">
+                    <rect key="frame" x="16" y="11" width="90" height="90"/>
+                    <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="90" id="ReB-5I-aJY"/>
+                        <constraint firstAttribute="height" constant="90" id="Yhe-Hu-EP3"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Client Name" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wcd-kX-S0g">
+                    <rect key="frame" x="116" y="11" width="227" height="34"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="227" id="14U-vz-5H0"/>
+                        <constraint firstAttribute="height" constant="34" id="IFZ-Rm-jOG"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" weight="thin" pointSize="22"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sched. Requests: 0" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kaI-0m-Ccq">
+                    <rect key="frame" x="116" y="81" width="227" height="20"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="20" id="49T-L5-BgL"/>
+                        <constraint firstAttribute="width" constant="227" id="u2b-n0-hJv"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" weight="thin" pointSize="16"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Prior Requests: 0" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tCa-3g-nJB">
+                    <rect key="frame" x="116" y="53" width="227" height="20"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="20" id="MjX-9o-Vnb"/>
+                        <constraint firstAttribute="width" constant="227" id="ZCD-XJ-8tm"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" weight="thin" pointSize="16"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Hy-O2-3dE">
+                    <rect key="frame" x="273" y="127" width="50" height="50"/>
+                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="50" id="2LZ-dO-OLI"/>
+                        <constraint firstAttribute="height" constant="50" id="dmz-Oj-7WZ"/>
+                    </constraints>
+                    <state key="normal" image="briizeMapAnnotationIcon">
+                        <color key="titleColor" red="1" green="0.76470588240000004" blue="0.88235294119999996" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                    <connections>
+                        <action selector="chnageLocationButtonPressed:" destination="iN0-l3-epB" eventType="touchUpInside" id="zSh-pz-YBF"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fD7-DT-pca">
+                    <rect key="frame" x="36" y="127" width="50" height="50"/>
+                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="50" id="ZSe-W3-fsI"/>
+                        <constraint firstAttribute="width" constant="50" id="e6i-3Q-cg0"/>
+                    </constraints>
+                    <state key="normal" image="briizeSearchIcon"/>
+                    <connections>
+                        <action selector="findExpertsButtonPressed:" destination="iN0-l3-epB" eventType="touchUpInside" id="BER-cb-zmd"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cLe-Cg-lz6">
+                    <rect key="frame" x="154" y="127" width="50" height="50"/>
+                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="50" id="sxg-KH-uBH"/>
+                        <constraint firstAttribute="height" constant="50" id="uOX-Nj-RUI"/>
+                    </constraints>
+                    <state key="normal" image="briizeMenuIcon"/>
+                    <connections>
+                        <action selector="menuButtonPressed:" destination="iN0-l3-epB" eventType="touchUpInside" id="AZR-ZP-JwW"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="Wcd-kX-S0g" secondAttribute="trailing" constant="16" id="2fS-b5-Kyy"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="4Hy-O2-3dE" secondAttribute="bottom" constant="11" id="3ov-xQ-cWl"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="kaI-0m-Ccq" secondAttribute="trailing" constant="16" id="BvB-Bf-ROM"/>
+                <constraint firstItem="Gog-BW-SB3" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="16" id="FSr-8B-sBm"/>
+                <constraint firstItem="kaI-0m-Ccq" firstAttribute="top" secondItem="tCa-3g-nJB" secondAttribute="bottom" constant="8" id="JxK-DU-5T9"/>
+                <constraint firstItem="Wcd-kX-S0g" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="11" id="OL4-5T-HmX"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="cLe-Cg-lz6" secondAttribute="bottom" constant="11" id="TDM-RJ-WNL"/>
+                <constraint firstItem="tCa-3g-nJB" firstAttribute="top" secondItem="Wcd-kX-S0g" secondAttribute="bottom" constant="8" id="Y9t-Lr-bnH"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="fD7-DT-pca" secondAttribute="bottom" constant="11" id="d2s-8w-wdF"/>
+                <constraint firstItem="cLe-Cg-lz6" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="hRD-ln-qh7"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="tCa-3g-nJB" secondAttribute="trailing" constant="16" id="ikE-eb-Kpi"/>
+                <constraint firstItem="fD7-DT-pca" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="36" id="niL-DW-uX0"/>
+                <constraint firstItem="Gog-BW-SB3" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="11" id="xvy-vW-rqU"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="4Hy-O2-3dE" secondAttribute="trailing" constant="36" id="zfb-aH-mO4"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <connections>
+                <outlet property="changeLocationButtonOutlet" destination="4Hy-O2-3dE" id="hnn-Up-d9n"/>
+                <outlet property="clientImageView" destination="Gog-BW-SB3" id="il9-rd-0fg"/>
+                <outlet property="clientNameLabel" destination="Wcd-kX-S0g" id="S6A-0x-dER"/>
+                <outlet property="clientPriorOrders" destination="tCa-3g-nJB" id="zLo-uP-Vob"/>
+                <outlet property="clientSchedRequestsLabel" destination="kaI-0m-Ccq" id="J4R-au-HLG"/>
+                <outlet property="findExpertsButtonOutlet" destination="fD7-DT-pca" id="Mji-Ao-LhO"/>
+                <outlet property="menuButtonOutlet" destination="cLe-Cg-lz6" id="VXB-Uy-03U"/>
+            </connections>
+            <point key="canvasLocation" x="29.5" y="4"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="briizeMapAnnotationIcon" width="30" height="30"/>
+        <image name="briizeMenuIcon" width="30" height="30"/>
+        <image name="briizeProfileImagePlaceHolderIcon" width="128" height="128"/>
+        <image name="briizeSearchIcon" width="30" height="30"/>
+    </resources>
+</document>

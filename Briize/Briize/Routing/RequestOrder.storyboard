@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="H64-63-G4b">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Lobster-Regular.ttf">
+            <string>Lobster-Regular</string>
+        </array>
+    </customFonts>
+    <scenes>
+        <!--Request Order View Controller-->
+        <scene sceneID="JSi-th-1VB">
+            <objects>
+                <viewController id="H64-63-G4b" customClass="RequestOrderViewController" customModule="Briize" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="cXk-tg-dMZ">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bBD-zt-xcC">
+                                <rect key="frame" x="0.0" y="20" width="375" height="375"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your Expert/Client: " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="88c-TO-xqh">
+                                        <rect key="frame" x="8" y="8" width="359" height="49"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="49" id="xTQ-0G-zqb"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="Lobster-Regular" family="Lobster" pointSize="24"/>
+                                        <color key="textColor" red="0.63931051370000003" green="0.59752338090000001" blue="0.47216198279999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cph-mq-fh6">
+                                        <rect key="frame" x="8" y="197" width="359" height="21"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="21" id="kKV-Hk-acH"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="KohinoorTelugu-Medium" family="Kohinoor Telugu" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Price:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XdO-WC-Ex3">
+                                        <rect key="frame" x="20" y="247" width="335" height="21"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="21" id="YgT-9d-Zry"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="KohinoorTelugu-Medium" family="Kohinoor Telugu" pointSize="15"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Status:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o7j-VI-B2B">
+                                        <rect key="frame" x="20" y="276" width="335" height="21"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="21" id="n83-pu-u2S"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="KohinoorTelugu-Medium" family="Kohinoor Telugu" pointSize="15"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Services:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E5w-sj-iLn">
+                                        <rect key="frame" x="20" y="305" width="335" height="21"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="21" id="XhD-zR-6lE"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="KohinoorTelugu-Medium" family="Kohinoor Telugu" pointSize="15"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ETA:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kdN-gB-SHa">
+                                        <rect key="frame" x="20" y="334" width="335" height="21"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="21" id="jhu-sH-g0f"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="KohinoorTelugu-Medium" family="Kohinoor Telugu" pointSize="15"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MVW-10-2U2">
+                                        <rect key="frame" x="20" y="238" width="335" height="1"/>
+                                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="1" id="e6e-RW-VHz"/>
+                                        </constraints>
+                                    </view>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="briizeProfileImagePlaceHolderIcon" translatesAutoresizingMaskIntoConstraints="NO" id="6KQ-sL-Q8j">
+                                        <rect key="frame" x="137.5" y="77" width="100" height="100"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="100" id="3hj-O6-o2B"/>
+                                            <constraint firstAttribute="height" constant="100" id="7lo-1o-rmA"/>
+                                        </constraints>
+                                    </imageView>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0Sx-bl-Bgk">
+                                        <rect key="frame" x="20" y="363" width="335" height="1"/>
+                                        <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="1" id="QXM-mM-laK"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="6KQ-sL-Q8j" firstAttribute="top" secondItem="88c-TO-xqh" secondAttribute="bottom" constant="20" id="1ZH-OS-8f9"/>
+                                    <constraint firstItem="o7j-VI-B2B" firstAttribute="leading" secondItem="bBD-zt-xcC" secondAttribute="leading" constant="20" id="5ZD-OY-brT"/>
+                                    <constraint firstItem="88c-TO-xqh" firstAttribute="leading" secondItem="bBD-zt-xcC" secondAttribute="leading" constant="8" id="5iE-T2-VSx"/>
+                                    <constraint firstAttribute="trailing" secondItem="o7j-VI-B2B" secondAttribute="trailing" constant="20" id="65M-kc-idK"/>
+                                    <constraint firstAttribute="trailing" secondItem="MVW-10-2U2" secondAttribute="trailing" constant="20" id="6HB-IN-R41"/>
+                                    <constraint firstItem="kdN-gB-SHa" firstAttribute="leading" secondItem="bBD-zt-xcC" secondAttribute="leading" constant="20" id="AMt-zV-QfD"/>
+                                    <constraint firstItem="88c-TO-xqh" firstAttribute="top" secondItem="bBD-zt-xcC" secondAttribute="top" constant="8" id="B1y-ad-IMr"/>
+                                    <constraint firstItem="E5w-sj-iLn" firstAttribute="leading" secondItem="bBD-zt-xcC" secondAttribute="leading" constant="20" id="Ewy-Pm-ej2"/>
+                                    <constraint firstItem="XdO-WC-Ex3" firstAttribute="leading" secondItem="bBD-zt-xcC" secondAttribute="leading" constant="20" id="HFa-d9-uR0"/>
+                                    <constraint firstAttribute="trailing" secondItem="E5w-sj-iLn" secondAttribute="trailing" constant="20" id="JWJ-gs-Axs"/>
+                                    <constraint firstItem="MVW-10-2U2" firstAttribute="centerX" secondItem="bBD-zt-xcC" secondAttribute="centerX" id="L5s-4T-rIU"/>
+                                    <constraint firstItem="o7j-VI-B2B" firstAttribute="top" secondItem="XdO-WC-Ex3" secondAttribute="bottom" constant="8" id="Op2-Lo-X6B"/>
+                                    <constraint firstItem="88c-TO-xqh" firstAttribute="centerX" secondItem="bBD-zt-xcC" secondAttribute="centerX" id="PJG-jp-Afh"/>
+                                    <constraint firstItem="MVW-10-2U2" firstAttribute="top" secondItem="Cph-mq-fh6" secondAttribute="bottom" constant="20" id="ZTd-8s-1wu"/>
+                                    <constraint firstItem="0Sx-bl-Bgk" firstAttribute="top" secondItem="kdN-gB-SHa" secondAttribute="bottom" constant="8" id="ZVh-je-nR3"/>
+                                    <constraint firstAttribute="height" constant="375" id="aPg-H7-76J"/>
+                                    <constraint firstItem="kdN-gB-SHa" firstAttribute="top" secondItem="E5w-sj-iLn" secondAttribute="bottom" constant="8" id="bJm-da-ikb"/>
+                                    <constraint firstAttribute="trailing" secondItem="0Sx-bl-Bgk" secondAttribute="trailing" constant="20" id="eJb-hf-MGa"/>
+                                    <constraint firstItem="0Sx-bl-Bgk" firstAttribute="leading" secondItem="bBD-zt-xcC" secondAttribute="leading" constant="20" id="gC4-r6-AFV"/>
+                                    <constraint firstAttribute="trailing" secondItem="88c-TO-xqh" secondAttribute="trailing" constant="8" id="gjL-lR-SB5"/>
+                                    <constraint firstItem="MVW-10-2U2" firstAttribute="leading" secondItem="bBD-zt-xcC" secondAttribute="leading" constant="20" id="kTl-Wf-qBW"/>
+                                    <constraint firstItem="XdO-WC-Ex3" firstAttribute="top" secondItem="MVW-10-2U2" secondAttribute="bottom" constant="8" id="oGg-ML-h7E"/>
+                                    <constraint firstAttribute="trailing" secondItem="Cph-mq-fh6" secondAttribute="trailing" constant="8" id="rCk-hP-TTJ"/>
+                                    <constraint firstAttribute="trailing" secondItem="kdN-gB-SHa" secondAttribute="trailing" constant="20" id="tI0-mp-97J"/>
+                                    <constraint firstAttribute="trailing" secondItem="XdO-WC-Ex3" secondAttribute="trailing" constant="20" id="ty9-Sa-ONS"/>
+                                    <constraint firstItem="Cph-mq-fh6" firstAttribute="top" secondItem="6KQ-sL-Q8j" secondAttribute="bottom" constant="20" id="wBE-tv-tLz"/>
+                                    <constraint firstItem="E5w-sj-iLn" firstAttribute="top" secondItem="o7j-VI-B2B" secondAttribute="bottom" constant="8" id="wXr-rn-Uqo"/>
+                                    <constraint firstItem="Cph-mq-fh6" firstAttribute="leading" secondItem="bBD-zt-xcC" secondAttribute="leading" constant="8" id="wsX-oS-GL8"/>
+                                    <constraint firstItem="6KQ-sL-Q8j" firstAttribute="centerX" secondItem="bBD-zt-xcC" secondAttribute="centerX" id="xvO-VF-d5j"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8FE-Lh-xTb">
+                                <rect key="frame" x="0.0" y="395" width="375" height="272"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="UPR-0R-NeW">
+                                        <rect key="frame" x="20" y="8" width="335" height="52"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yJ2-ZY-GwW">
+                                                <rect key="frame" x="0.0" y="0.0" width="111.5" height="52"/>
+                                                <state key="normal" image="briizeInstaIcon"/>
+                                                <connections>
+                                                    <action selector="instagramPressed:" destination="H64-63-G4b" eventType="touchUpInside" id="lIV-Pw-Gt4"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fDd-sr-Snv">
+                                                <rect key="frame" x="111.5" y="0.0" width="112" height="52"/>
+                                                <state key="normal" image="briizeMessageIcon"/>
+                                                <connections>
+                                                    <action selector="messagesPressed:" destination="H64-63-G4b" eventType="touchUpInside" id="d5B-O0-9is"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4ca-4j-1Xr">
+                                                <rect key="frame" x="223.5" y="0.0" width="111.5" height="52"/>
+                                                <state key="normal" image="briizeRequestIcon"/>
+                                                <connections>
+                                                    <action selector="thirdOptionPressed:" destination="H64-63-G4b" eventType="touchUpInside" id="Gwb-uW-ZAL"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="52" id="OTu-hd-vUR"/>
+                                        </constraints>
+                                    </stackView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="V8x-1F-4Ti">
+                                        <rect key="frame" x="20" y="166" width="335" height="76"/>
+                                        <color key="backgroundColor" red="0.070906682772260254" green="0.43441611842105265" blue="0.17170550428837203" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="76" id="yAh-q2-CtY"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="KohinoorTelugu-Medium" family="Kohinoor Telugu" pointSize="33"/>
+                                        <state key="normal" title="Complete">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="completePressed:" destination="H64-63-G4b" eventType="touchUpInside" id="7HY-K8-5Tq"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kPK-hF-5qN">
+                                        <rect key="frame" x="20" y="90" width="147" height="56"/>
+                                        <color key="backgroundColor" red="0.63931051370000003" green="0.59752338090000001" blue="0.47216198279999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="56" id="uyW-5m-stk"/>
+                                            <constraint firstAttribute="width" constant="147" id="zrf-rH-4Re"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="KohinoorTelugu-Medium" family="Kohinoor Telugu" pointSize="21"/>
+                                        <state key="normal" title="Check ETA">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="checkEtaPressed:" destination="H64-63-G4b" eventType="touchUpInside" id="AdK-bX-hBX"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Xn-AG-Jgu">
+                                        <rect key="frame" x="208" y="90" width="147" height="56"/>
+                                        <color key="backgroundColor" red="0.5450980392" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="147" id="6ym-7A-Jez"/>
+                                            <constraint firstAttribute="height" constant="56" id="HHj-SN-rcm"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="KohinoorTelugu-Medium" family="Kohinoor Telugu" pointSize="21"/>
+                                        <state key="normal" title="Cancel">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="cancelPressed:" destination="H64-63-G4b" eventType="touchUpInside" id="ebE-Rd-x5e"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="9Xn-AG-Jgu" firstAttribute="top" secondItem="UPR-0R-NeW" secondAttribute="bottom" constant="30" id="4ZE-rf-iGu"/>
+                                    <constraint firstItem="V8x-1F-4Ti" firstAttribute="top" secondItem="9Xn-AG-Jgu" secondAttribute="bottom" constant="20" id="5MA-eT-hmm"/>
+                                    <constraint firstItem="UPR-0R-NeW" firstAttribute="leading" secondItem="8FE-Lh-xTb" secondAttribute="leading" constant="20" id="7LE-Yq-kZR"/>
+                                    <constraint firstAttribute="trailing" secondItem="UPR-0R-NeW" secondAttribute="trailing" constant="20" id="87w-0Z-mci"/>
+                                    <constraint firstItem="kPK-hF-5qN" firstAttribute="leading" secondItem="8FE-Lh-xTb" secondAttribute="leading" constant="20" id="KiD-vg-LG6"/>
+                                    <constraint firstItem="UPR-0R-NeW" firstAttribute="top" secondItem="8FE-Lh-xTb" secondAttribute="top" constant="8" id="QjL-1Z-nm3"/>
+                                    <constraint firstItem="V8x-1F-4Ti" firstAttribute="top" secondItem="kPK-hF-5qN" secondAttribute="bottom" constant="20" id="Scc-zQ-KnP"/>
+                                    <constraint firstAttribute="trailing" secondItem="V8x-1F-4Ti" secondAttribute="trailing" constant="20" id="UkX-Bb-2hD"/>
+                                    <constraint firstItem="kPK-hF-5qN" firstAttribute="top" secondItem="UPR-0R-NeW" secondAttribute="bottom" constant="30" id="f3o-PL-7Wb"/>
+                                    <constraint firstAttribute="trailing" secondItem="9Xn-AG-Jgu" secondAttribute="trailing" constant="20" id="u8h-Ja-wgZ"/>
+                                    <constraint firstItem="V8x-1F-4Ti" firstAttribute="leading" secondItem="8FE-Lh-xTb" secondAttribute="leading" constant="20" id="xIs-1a-xVq"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="bBD-zt-xcC" firstAttribute="leading" secondItem="NIs-pp-2id" secondAttribute="leading" id="AH5-ga-Hg8"/>
+                            <constraint firstItem="8FE-Lh-xTb" firstAttribute="trailing" secondItem="NIs-pp-2id" secondAttribute="trailing" id="MVJ-sv-ikz"/>
+                            <constraint firstItem="8FE-Lh-xTb" firstAttribute="bottom" secondItem="NIs-pp-2id" secondAttribute="bottom" id="S7W-K4-0Y1"/>
+                            <constraint firstItem="8FE-Lh-xTb" firstAttribute="top" secondItem="bBD-zt-xcC" secondAttribute="bottom" id="eno-dM-7aw"/>
+                            <constraint firstItem="bBD-zt-xcC" firstAttribute="top" secondItem="NIs-pp-2id" secondAttribute="top" id="g4h-GL-EYj"/>
+                            <constraint firstItem="bBD-zt-xcC" firstAttribute="trailing" secondItem="NIs-pp-2id" secondAttribute="trailing" id="iDs-Fg-wis"/>
+                            <constraint firstItem="8FE-Lh-xTb" firstAttribute="leading" secondItem="NIs-pp-2id" secondAttribute="leading" id="sdk-PD-PcQ"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="NIs-pp-2id"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="1JZ-6Z-jqO"/>
+                    <connections>
+                        <outlet property="cancelButton" destination="9Xn-AG-Jgu" id="ZEx-uw-BZA"/>
+                        <outlet property="cheackEtaButton" destination="kPK-hF-5qN" id="8LO-PT-MEI"/>
+                        <outlet property="completeButton" destination="V8x-1F-4Ti" id="c9b-z9-JdE"/>
+                        <outlet property="etaLabel" destination="kdN-gB-SHa" id="Tym-we-Xil"/>
+                        <outlet property="instaGramButton" destination="yJ2-ZY-GwW" id="ARZ-R9-nuR"/>
+                        <outlet property="nameLabel" destination="Cph-mq-fh6" id="hPF-Ww-tVh"/>
+                        <outlet property="priceLabel" destination="XdO-WC-Ex3" id="SQy-mx-gCa"/>
+                        <outlet property="servicesLabel" destination="E5w-sj-iLn" id="Pn1-Ww-FJ1"/>
+                        <outlet property="statusLabel" destination="o7j-VI-B2B" id="7Qb-a8-XAh"/>
+                        <outlet property="thirdOptionButton" destination="4ca-4j-1Xr" id="Y2B-8e-3bm"/>
+                        <outlet property="titleLabel" destination="88c-TO-xqh" id="Jld-bV-IT5"/>
+                        <outlet property="userImageView" destination="6KQ-sL-Q8j" id="ONk-Mf-NUk"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="XLh-5K-3fe" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="124" y="-34.632683658170919"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="briizeInstaIcon" width="30" height="30"/>
+        <image name="briizeMessageIcon" width="30" height="30"/>
+        <image name="briizeProfileImagePlaceHolderIcon" width="256" height="256"/>
+        <image name="briizeRequestIcon" width="30" height="30"/>
+    </resources>
+</document>
