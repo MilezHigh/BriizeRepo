@@ -218,7 +218,7 @@
                             </collectionView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="briizeProfileImagePlaceHolderIcon" translatesAutoresizingMaskIntoConstraints="NO" id="6bK-Wf-UiQ">
                                 <rect key="frame" x="132" y="12" width="111" height="150"/>
-                                <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="150" id="aWj-Cb-tBe"/>
                                 </constraints>
@@ -299,7 +299,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="140" id="oRg-pb-kQn"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="KohinoorTelugu-Regular" family="Kohinoor Telugu" pointSize="30"/>
+                                <fontDescription key="fontDescription" name="PingFangHK-Thin" family="PingFang HK" pointSize="30"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -510,7 +510,7 @@
                                         <constraints>
                                             <constraint firstAttribute="height" constant="100" id="ppR-do-QmJ"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" name="KohinoorTelugu-Regular" family="Kohinoor Telugu" pointSize="33"/>
+                                        <fontDescription key="fontDescription" name="PingFangHK-Thin" family="PingFang HK" pointSize="33"/>
                                         <state key="normal" title="Submit">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
@@ -686,7 +686,7 @@
                                     <constraint firstAttribute="width" constant="171" id="1Fj-97-7nF"/>
                                     <constraint firstAttribute="height" constant="81" id="KeO-sR-RmV"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="KohinoorTelugu-Regular" family="Kohinoor Telugu" pointSize="50"/>
+                                <fontDescription key="fontDescription" name="PingFangHK-Thin" family="PingFang HK" pointSize="50"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -694,7 +694,7 @@
                                 <rect key="frame" x="16" y="468.66666666666657" width="343" height="221.33333333333331"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </string>
-                                <fontDescription key="fontDescription" name="KohinoorTelugu-Regular" family="Kohinoor Telugu" pointSize="14"/>
+                                <fontDescription key="fontDescription" name="PingFangHK-Thin" family="PingFang HK" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Notes:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZNR-ST-IUH">
@@ -894,15 +894,15 @@
                         <rect key="frame" x="0.0" y="44" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <color key="tintColor" red="1" green="0.76470588240000004" blue="0.88235294119999996" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="tintColor" red="0.83921568629999999" green="0.64705882349999999" blue="0.55294117649999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <color key="barTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <textAttributes key="titleTextAttributes">
-                            <fontDescription key="fontDescription" name="Lobster-Regular" family="Lobster" pointSize="25"/>
-                            <color key="textColor" red="0.75294117650000003" green="0.69803921570000005" blue="0.51372549020000002" alpha="1" colorSpace="calibratedRGB"/>
+                            <fontDescription key="fontDescription" name="PingFangHK-Thin" family="PingFang HK" pointSize="25"/>
+                            <color key="textColor" red="0.83921568629999999" green="0.64705882349999999" blue="0.55294117649999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         </textAttributes>
                         <textAttributes key="largeTitleTextAttributes">
                             <fontDescription key="fontDescription" name="Lobster-Regular" family="Lobster" pointSize="25"/>
-                            <color key="textColor" red="1" green="0.76470588240000004" blue="0.88235294119999996" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="textColor" red="0.83921568629999999" green="0.64705882349999999" blue="0.55294117649999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                             <color key="textShadowColor" red="0.15686274510000001" green="0.15686274510000001" blue="0.15686274510000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <offsetWrapper key="textShadowOffset" horizontal="-1" vertical="1"/>
                         </textAttributes>
@@ -919,9 +919,9 @@
     </scenes>
     <resources>
         <image name="Briizelogo" width="320" height="320"/>
-        <image name="briizeInstaIcon" width="20" height="20"/>
+        <image name="briizeInstaIcon" width="25" height="25"/>
         <image name="briizeMenuIcon" width="30" height="30"/>
-        <image name="briizeMessageIcon" width="20" height="20"/>
+        <image name="briizeMessageIcon" width="25" height="25"/>
         <image name="briizeProfileImagePlaceHolderIcon" width="128" height="128"/>
         <image name="briizeRequestIcon" width="25" height="25"/>
         <image name="hairImg" width="500" height="345"/>
