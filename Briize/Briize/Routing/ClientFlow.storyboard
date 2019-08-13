@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="HKs-lD-e4K">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="HKs-lD-e4K">
     <device id="retina5_9" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -38,40 +38,15 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="187.66666666666666"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e2w-wi-cim">
-                                                    <rect key="frame" x="255" y="127" width="50" height="50"/>
-                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="50" id="QxD-ee-AZC"/>
-                                                        <constraint firstAttribute="width" constant="50" id="ssF-L7-Tri"/>
-                                                    </constraints>
-                                                    <state key="normal" image="briizeRequestIcon"/>
-                                                    <connections>
-                                                        <action selector="instagramButtonPressed:" destination="yc0-NQ-LeS" eventType="touchUpInside" id="SIm-dl-4EK"/>
-                                                    </connections>
-                                                </button>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="29E-JS-rvy">
-                                                    <rect key="frame" x="70" y="127" width="50" height="50"/>
-                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="50" id="nOE-3Q-qkQ"/>
-                                                        <constraint firstAttribute="width" constant="50" id="qWk-ww-hZh"/>
-                                                    </constraints>
-                                                    <color key="tintColor" red="0.63931051370000003" green="0.59752338090000001" blue="0.47216198279999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    <state key="normal" image="briizeInstaIcon"/>
-                                                    <connections>
-                                                        <action selector="requestButtonPressed:" destination="yc0-NQ-LeS" eventType="touchUpInside" id="iCP-Ms-475"/>
-                                                    </connections>
-                                                </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10 mi." textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lwN-pD-KQH">
-                                                    <rect key="frame" x="15.000000000000004" y="83.333333333333329" width="40.333333333333343" height="21"/>
-                                                    <fontDescription key="fontDescription" name="KohinoorTelugu-Medium" family="Kohinoor Telugu" pointSize="15"/>
+                                                    <rect key="frame" x="14.999999999999996" y="83.333333333333329" width="41.666666666666657" height="21"/>
+                                                    <fontDescription key="fontDescription" name="PingFangHK-Medium" family="PingFang HK" pointSize="15"/>
                                                     <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Michael Jordan" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xdY-Nd-oc6">
-                                                    <rect key="frame" x="15" y="11" width="150.66666666666666" height="31"/>
-                                                    <fontDescription key="fontDescription" name="PingFangHK-Thin" family="PingFang HK" pointSize="22"/>
+                                                    <rect key="frame" x="15" y="11" width="156.33333333333334" height="31"/>
+                                                    <fontDescription key="fontDescription" name="PingFangHK-Regular" family="PingFang HK" pointSize="22"/>
                                                     <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -113,10 +88,35 @@
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="50" id="40N-rB-4xx"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" name="PingFangHK-Thin" family="PingFang HK" pointSize="20"/>
+                                                    <fontDescription key="fontDescription" name="PingFangHK-Light" family="PingFang HK" pointSize="20"/>
                                                     <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e2w-wi-cim">
+                                                    <rect key="frame" x="255" y="127" width="50" height="50"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="50" id="QxD-ee-AZC"/>
+                                                        <constraint firstAttribute="width" constant="50" id="ssF-L7-Tri"/>
+                                                    </constraints>
+                                                    <state key="normal" image="briizeRequestIcon"/>
+                                                    <connections>
+                                                        <action selector="instagramButtonPressed:" destination="yc0-NQ-LeS" eventType="touchUpInside" id="SIm-dl-4EK"/>
+                                                    </connections>
+                                                </button>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="29E-JS-rvy">
+                                                    <rect key="frame" x="70" y="127" width="50" height="50"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="50" id="nOE-3Q-qkQ"/>
+                                                        <constraint firstAttribute="width" constant="50" id="qWk-ww-hZh"/>
+                                                    </constraints>
+                                                    <color key="tintColor" red="0.63931051370000003" green="0.59752338090000001" blue="0.47216198279999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <state key="normal" image="briizeInstaIcon"/>
+                                                    <connections>
+                                                        <action selector="requestButtonPressed:" destination="yc0-NQ-LeS" eventType="touchUpInside" id="iCP-Ms-475"/>
+                                                    </connections>
+                                                </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kt9-Q3-5ze">
                                                     <rect key="frame" x="162.66666666666666" y="127" width="50" height="50"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -186,7 +186,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-4999" y="-81"/>
+            <point key="canvasLocation" x="-7130" y="640"/>
         </scene>
         <!--Expert Instagram-->
         <scene sceneID="1Z3-WC-O1w">
@@ -248,7 +248,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MnT-hU-Go2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-4999" y="723"/>
+            <point key="canvasLocation" x="-7130" y="1442"/>
         </scene>
         <!--Change Location-->
         <scene sceneID="EqP-Oh-ifI">
@@ -278,7 +278,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Sll-s1-8EU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-3858" y="723"/>
+            <point key="canvasLocation" x="-6039" y="1442"/>
         </scene>
         <!--Schedule Request-->
         <scene sceneID="DWE-jz-Tb7">
@@ -321,7 +321,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RtH-xY-Hzr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-3858" y="-81"/>
+            <point key="canvasLocation" x="-4999" y="1442"/>
         </scene>
         <!--My Account-->
         <scene sceneID="5xr-xP-hpt">
@@ -357,7 +357,7 @@
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Account Option" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OYj-YE-w0h">
                                                     <rect key="frame" x="0.0" y="0.0" width="343" height="68"/>
-                                                    <fontDescription key="fontDescription" name="KohinoorTelugu-Regular" family="Kohinoor Telugu" pointSize="21"/>
+                                                    <fontDescription key="fontDescription" name="PingFangHK-Light" family="PingFang HK" pointSize="21"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -380,16 +380,18 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="barTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <textAttributes key="titleTextAttributes">
-                                    <fontDescription key="fontDescription" name="Lobster-Regular" family="Lobster" pointSize="21"/>
+                                    <fontDescription key="fontDescription" name="PingFangHK-Regular" family="PingFang HK" pointSize="25"/>
+                                    <color key="textColor" red="0.83921568629999999" green="0.64705882349999999" blue="0.55294117649999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 </textAttributes>
                                 <textAttributes key="largeTitleTextAttributes">
-                                    <fontDescription key="fontDescription" name="Lobster-Regular" family="Lobster" pointSize="17"/>
+                                    <fontDescription key="fontDescription" name="PingFangHK-Regular" family="PingFang HK" pointSize="17"/>
                                     <color key="textShadowColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </textAttributes>
                                 <items>
                                     <navigationItem title="My Account" id="5si-Uu-uLV">
+                                        <barButtonItem key="backBarButtonItem" title=" " id="shz-KN-TL0"/>
                                         <barButtonItem key="leftBarButtonItem" systemItem="stop" id="wrz-cd-4ts">
-                                            <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <color key="tintColor" red="0.83921568629999999" green="0.64705882349999999" blue="0.55294117649999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                             <connections>
                                                 <action selector="closeButtonPressed:" destination="LZq-h2-CCz" id="8DC-Wr-mqM"/>
                                             </connections>
@@ -420,7 +422,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fHh-FW-Ixj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-4999" y="-883"/>
+            <point key="canvasLocation" x="-4999" y="-126"/>
         </scene>
         <!--Select Service-->
         <scene sceneID="nZX-Dj-NBM">
@@ -479,10 +481,10 @@
                                                     <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
-                                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Service Title" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" minimumFontSize="8" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BxO-IX-8Ne">
+                                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Service Title" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="8" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BxO-IX-8Ne">
                                                             <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
                                                             <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                            <fontDescription key="fontDescription" name="PingFangHK-Thin" family="PingFang HK" pointSize="19"/>
+                                                            <fontDescription key="fontDescription" name="PingFangHK-Regular" family="PingFang HK" pointSize="16"/>
                                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <nil key="highlightedColor"/>
                                                             <color key="shadowColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -510,9 +512,9 @@
                                         <constraints>
                                             <constraint firstAttribute="height" constant="100" id="ppR-do-QmJ"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" name="PingFangHK-Thin" family="PingFang HK" pointSize="33"/>
+                                        <fontDescription key="fontDescription" name="PingFangHK-Regular" family="PingFang HK" pointSize="26"/>
                                         <state key="normal" title="Submit">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <color key="titleColor" red="0.83921568629999999" green="0.64705882349999999" blue="0.55294117649999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         </state>
                                         <connections>
                                             <action selector="submitButtonPressed:" destination="RIO-ow-FUV" eventType="touchUpInside" id="ROJ-h9-5WJ"/>
@@ -548,8 +550,9 @@
                         <viewLayoutGuide key="safeArea" id="cIR-Gg-YAX"/>
                     </view>
                     <navigationItem key="navigationItem" title="Services" id="0tC-Ol-87s">
+                        <barButtonItem key="backBarButtonItem" title=" " id="Hc5-vn-3OJ"/>
                         <barButtonItem key="leftBarButtonItem" systemItem="stop" id="VaX-0Q-x2M">
-                            <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <color key="tintColor" red="0.83921568629999999" green="0.64705882349999999" blue="0.55294117649999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                             <connections>
                                 <action selector="closeViewControllerPressed:" destination="RIO-ow-FUV" id="ZoJ-4i-1ih"/>
                             </connections>
@@ -567,7 +570,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="V8o-Mn-x1d" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-6039" y="-81"/>
+            <point key="canvasLocation" x="-6039" y="-126"/>
         </scene>
         <!--Custom Request-->
         <scene sceneID="eYV-5c-RhZ">
@@ -672,8 +675,8 @@
                                 <constraints>
                                     <constraint firstAttribute="width" constant="72" id="Ryo-28-72p"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="KohinoorTelugu-Medium" family="Kohinoor Telugu" pointSize="23"/>
-                                <color key="textColor" red="0.83921568629999999" green="0.64705882349999999" blue="0.55294117649999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <fontDescription key="fontDescription" name="PingFangHK-Light" family="PingFang HK" pointSize="23"/>
+                                <color key="textColor" red="0.83921568627450982" green="0.6470588235294118" blue="0.55294117647058827" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="B29-2z-lQT">
@@ -686,7 +689,7 @@
                                     <constraint firstAttribute="width" constant="171" id="1Fj-97-7nF"/>
                                     <constraint firstAttribute="height" constant="81" id="KeO-sR-RmV"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="PingFangHK-Thin" family="PingFang HK" pointSize="50"/>
+                                <fontDescription key="fontDescription" name="PingFangHK-Light" family="PingFang HK" pointSize="50"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -703,7 +706,7 @@
                                     <constraint firstAttribute="width" constant="72" id="irr-SV-6Pm"/>
                                     <constraint firstAttribute="height" constant="33" id="sD7-Fa-BcU"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="KohinoorTelugu-Medium" family="Kohinoor Telugu" pointSize="23"/>
+                                <fontDescription key="fontDescription" name="PingFangHK-Light" family="PingFang HK" pointSize="23"/>
                                 <color key="textColor" red="0.83921568629999999" green="0.64705882349999999" blue="0.55294117649999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -741,7 +744,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eiY-W5-YUA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-6039" y="723"/>
+            <point key="canvasLocation" x="-4999" y="640"/>
         </scene>
         <!--Client Dashboard View Controller-->
         <scene sceneID="B1P-Cp-1RY">
@@ -846,7 +849,7 @@
                                     <segment title="Home"/>
                                     <segment title="History"/>
                                 </segments>
-                                <color key="tintColor" red="1" green="0.76470588240000004" blue="0.88235294119999996" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="tintColor" red="0.83921568629999999" green="0.64705882349999999" blue="0.55294117649999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <connections>
                                     <action selector="segmentValueChanged:" destination="ap3-qm-hto" eventType="valueChanged" id="4sI-kZ-R5x"/>
                                 </connections>
@@ -868,7 +871,7 @@
                         <barButtonItem key="backBarButtonItem" title=" " id="CeV-9i-evB"/>
                         <barButtonItem key="leftBarButtonItem" title="Item" image="briizeMenuIcon" width="50" style="plain" id="GeV-iJ-xiD">
                             <inset key="largeContentSizeImageInsets" minX="50" minY="0.0" maxX="50" maxY="0.0"/>
-                            <color key="tintColor" red="1" green="0.76470588240000004" blue="0.88235294119999996" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="tintColor" red="0.83921568629999999" green="0.64705882349999999" blue="0.55294117649999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                             <connections>
                                 <segue destination="LZq-h2-CCz" kind="presentation" identifier="showUserMenu" id="0Gi-hJ-hrO"/>
                             </connections>
@@ -883,7 +886,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="P8p-U9-zaX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-6071" y="-883"/>
+            <point key="canvasLocation" x="-6039" y="-879"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="8qw-6a-CQ4">
@@ -897,7 +900,7 @@
                         <color key="tintColor" red="0.83921568629999999" green="0.64705882349999999" blue="0.55294117649999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <color key="barTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <textAttributes key="titleTextAttributes">
-                            <fontDescription key="fontDescription" name="PingFangHK-Thin" family="PingFang HK" pointSize="25"/>
+                            <fontDescription key="fontDescription" name="PingFangHK-Regular" family="PingFang HK" pointSize="25"/>
                             <color key="textColor" red="0.83921568629999999" green="0.64705882349999999" blue="0.55294117649999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         </textAttributes>
                         <textAttributes key="largeTitleTextAttributes">
@@ -914,17 +917,17 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1qt-oW-8Ib" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-7130" y="-883"/>
+            <point key="canvasLocation" x="-7130" y="-879"/>
         </scene>
     </scenes>
     <resources>
-        <image name="Briizelogo" width="320" height="320"/>
+        <image name="Briizelogo" width="1000" height="1000"/>
         <image name="briizeInstaIcon" width="25" height="25"/>
         <image name="briizeMenuIcon" width="30" height="30"/>
         <image name="briizeMessageIcon" width="25" height="25"/>
         <image name="briizeProfileImagePlaceHolderIcon" width="128" height="128"/>
         <image name="briizeRequestIcon" width="25" height="25"/>
-        <image name="hairImg" width="500" height="345"/>
+        <image name="hairImg" width="500" height="345.5"/>
         <image name="ratingStar" width="18" height="18"/>
     </resources>
 </document>

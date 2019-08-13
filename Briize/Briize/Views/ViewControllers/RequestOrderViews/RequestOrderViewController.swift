@@ -26,7 +26,8 @@ class RequestOrderViewController: UIViewController {
     @IBOutlet weak var etaLabel: UILabel!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var userImageView: UIImageView!
-    
+    @IBOutlet weak var masterView: UIView!
+
     //MARK:- Variables
     var viewModel: RequestOrderViewModel?
     
@@ -53,10 +54,11 @@ class RequestOrderViewController: UIViewController {
     }
     
     private func setupUI() {
+        masterView.layer.cornerRadius = 12
         userImageView.layer.cornerRadius = userImageView.bounds.width / 2
         cheackEtaButton.layer.cornerRadius = 26
         cancelButton.layer.cornerRadius = 26
-        completeButton.layer.cornerRadius = 35
+        completeButton.layer.cornerRadius = 30
         
         guard let userId = viewModel?.requestOrder.value?.expertID else { return }
         userImageView.downloadedFromAPI(with: userId)
@@ -94,7 +96,7 @@ class RequestOrderViewController: UIViewController {
     }
     
     private func updateUI(from requestOrder: RequestOrderModel) {
-        priceLabel.text = "Price:" + " $\(requestOrder.cost.description)"
+        priceLabel.text = " " + " $\(requestOrder.cost.description)"
         
         guard let userIsExpert = sessionManager.user.model.value?.isExpert else { return }
         nameLabel.text = userIsExpert ? requestOrder.clientFullName : requestOrder.expertFullname
@@ -102,14 +104,14 @@ class RequestOrderViewController: UIViewController {
         titleLabel.text = userIsExpert ? "Your Client:" : "Your Expert:"
         
         guard let status = RequestState.init(rawValue: requestOrder.requestStatus) else { return }
-        statusLabel.text = "Status: " + status.userFriendlyMessage
+        statusLabel.text = " " + status.userFriendlyMessage
         
         var services: String = ""
         _ = requestOrder.serviceIds.map {
             print("Service ID - " + $0.description)
             services += ServiceSubType.serviceNameFor(id: $0) + " | "
         }
-        servicesLabel.text = "Services: " + requestOrder.serviceType + " - " + services
+        servicesLabel.text = " " + requestOrder.serviceType + " - " + services
     }
     
     private func obtainExpertApproval() {

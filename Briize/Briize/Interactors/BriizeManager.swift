@@ -68,8 +68,8 @@ public enum RequestState: Int {
 }
 
 class BriizeManager {
-    let api    = NetworkManager.instance
-    let user   = User()
+    let api = NetworkManager.instance
+    let user = User()
     
     var userType: UserType = .Client
     var liveController = BehaviorRelay<UIViewController?>(value: nil)
@@ -79,7 +79,7 @@ class BriizeManager {
     
     private let disposeBag: DisposeBag = DisposeBag()
     
-    static let shared: BriizeManager = BriizeManager() //Singleton
+    static let shared: BriizeManager = BriizeManager() 
     
     private init() {
         self.requestState
@@ -146,13 +146,14 @@ extension BriizeManager {
     }
     
     public func showLoader(_ message: String = "") {
+        let color = UIColor(red: 214/255, green: 165/255, blue: 141/255, alpha: 1.0)
         let data = ActivityData(
             size: CGSize(width: 80, height: 80),
             message: message,
             messageFont: UIFont.init(name: "Lobster", size: 22.0),
             messageSpacing: 4.0,
             type: NVActivityIndicatorType.ballGridPulse,
-            color: .white,
+            color: color,
             padding: 0,
             displayTimeThreshold: nil,
             minimumDisplayTime: nil,
