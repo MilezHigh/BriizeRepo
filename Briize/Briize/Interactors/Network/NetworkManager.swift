@@ -51,6 +51,7 @@ extension NetworkManager {
             case false:
                 guard let objects = objects else { return }
                 print(objects)
+
                 completion(objects.map({obj -> RequestOrderModel? in
                     guard let request = RequestOrderModel.create(from: obj)
                         else {
@@ -100,9 +101,9 @@ extension NetworkManager {
                     completion(false, nil, error)
                     return
             }
+
             let predicate = NSPredicate(format: "clientName = '\(model.clientID)' AND requestStatus = \(status)")
             let query = PFQuery(className: "Requests", predicate: predicate)
-            
             query.findObjectsInBackground(block: { (objects, error) in
                 guard error == nil
                     else {

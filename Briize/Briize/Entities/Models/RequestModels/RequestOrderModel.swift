@@ -39,8 +39,6 @@ extension RequestOrderModel {
             let expertFullName: String = object["expertFullName"] as? String,
             let serviceType: String = object["serviceType"] as? String,
             let address: String = object["address"] as? String,
-            let startTime: Date = object["startTime"] as? Date,
-            let finishTime: Date = object["finishTime"] as? Date,
             let requestStatus: Int = object["requestStatus"] as? Int,
             let cost: Int = object["cost"] as? Int,
             let payToExpert: Int = object["payToExpert"] as? Int,
@@ -49,6 +47,10 @@ extension RequestOrderModel {
             else {
                 return  nil
         }
+
+        let startTime: Date? = object["startTime"] as? Date
+        let finishTime: Date? = object["finishTime"] as? Date
+
         return RequestOrderModel(
             id: id,
             clientID: clientID,

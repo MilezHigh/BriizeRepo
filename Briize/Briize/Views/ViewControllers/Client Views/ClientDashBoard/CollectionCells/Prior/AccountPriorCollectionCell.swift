@@ -22,7 +22,7 @@ class AccountPriorCollectionCell: UICollectionViewCell {
         didSet{
             guard let model = model else {return}
             self.priorRequests = model.priorRequests
-            
+
             self.priorRequestsTableView.delegate = self
             self.priorRequestsTableView.dataSource = self
         }
@@ -74,13 +74,13 @@ extension AccountPriorCollectionCell {
         let network = NetworkManager.instance
         network.pullPriorRequests(for: userID) { (models) in
             if models.count > 0 {
-                DispatchQueue.main.async {
-                    let nonNilModels = models.filter({$0 != nil})
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.3, execute: {
+                    let nonNilModels = models.filter({ $0 != nil })
                     print(nonNilModels)
                     
-                    self.priorRequests = nonNilModels.map({$0!})
+                    self.priorRequests = nonNilModels.compactMap({ $0 })
                     self.priorRequestsTableView.reloadData()
-                }
+                })
             }
         }
     }

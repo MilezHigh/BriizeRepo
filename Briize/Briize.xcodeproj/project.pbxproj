@@ -774,7 +774,7 @@
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.Push = {
-								enabled = 1;
+								enabled = 0;
 							};
 						};
 					};
@@ -1144,7 +1144,6 @@
 			baseConfigurationReference = CF59CC435C8F58C800E5B4D6 /* Pods-Briize.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = Briize/Briize.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = WMVNZYDS86;
 				INFOPLIST_FILE = Briize/Info.plist;
@@ -1161,7 +1160,6 @@
 			baseConfigurationReference = 4AEE492058D7913369F961C3 /* Pods-Briize.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = Briize/Briize.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = WMVNZYDS86;
 				INFOPLIST_FILE = Briize/Info.plist;
