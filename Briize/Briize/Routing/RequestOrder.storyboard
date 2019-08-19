@@ -26,7 +26,7 @@
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cph-mq-fh6">
                                         <rect key="frame" x="8" y="203" width="327" height="24"/>
-                                        <fontDescription key="fontDescription" name="KohinoorTelugu-Medium" family="Kohinoor Telugu" pointSize="17"/>
+                                        <fontDescription key="fontDescription" name="PingFangHK-Medium" family="PingFang HK" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -93,7 +93,7 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SC3-kT-NyK">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="SC3-kT-NyK">
                                         <rect key="frame" x="294" y="306" width="37" height="21"/>
                                         <fontDescription key="fontDescription" name="PingFangHK-Thin" family="PingFang HK" pointSize="15"/>
                                         <nil key="textColor"/>
@@ -154,7 +154,7 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8FE-Lh-xTb">
-                                <rect key="frame" x="16" y="405" width="343" height="242"/>
+                                <rect key="frame" x="16" y="421" width="343" height="226"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="43" translatesAutoresizingMaskIntoConstraints="NO" id="UPR-0R-NeW">
                                         <rect key="frame" x="20" y="20" width="303" height="40"/>
@@ -187,10 +187,10 @@
                                         </constraints>
                                     </stackView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="V8x-1F-4Ti">
-                                        <rect key="frame" x="20" y="166" width="303" height="60"/>
+                                        <rect key="frame" x="20" y="155" width="303" height="52"/>
                                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="60" id="IqH-g4-tgJ"/>
+                                            <constraint firstAttribute="height" constant="52" id="IqH-g4-tgJ"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" name="PingFangHK-Semibold" family="PingFang HK" pointSize="21"/>
                                         <state key="normal" title="Complete">
@@ -201,10 +201,10 @@
                                         </connections>
                                     </button>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="DA9-dd-QkU">
-                                        <rect key="frame" x="20" y="90" width="303" height="56"/>
+                                        <rect key="frame" x="20" y="85" width="303" height="50"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kPK-hF-5qN">
-                                                <rect key="frame" x="0.0" y="0.0" width="141.5" height="56"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="141.5" height="50"/>
                                                 <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <fontDescription key="fontDescription" name="PingFangHK-Semibold" family="PingFang HK" pointSize="17"/>
                                                 <state key="normal" title="Check ETA">
@@ -215,10 +215,10 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Xn-AG-Jgu">
-                                                <rect key="frame" x="161.5" y="0.0" width="141.5" height="56"/>
+                                                <rect key="frame" x="161.5" y="0.0" width="141.5" height="50"/>
                                                 <color key="backgroundColor" red="0.83921568627450982" green="0.6470588235294118" blue="0.55294117647058827" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="56" id="jEi-B6-RqU"/>
+                                                    <constraint firstAttribute="height" constant="50" id="jEi-B6-RqU"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" name="PingFangHK-Semibold" family="PingFang HK" pointSize="17"/>
                                                 <state key="normal" title="Cancel">
@@ -230,14 +230,14 @@
                                             </button>
                                         </subviews>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="56" id="LzM-i4-7kh"/>
+                                            <constraint firstAttribute="height" constant="50" id="LzM-i4-7kh"/>
                                         </constraints>
                                     </stackView>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="V8x-1F-4Ti" firstAttribute="leading" secondItem="8FE-Lh-xTb" secondAttribute="leading" constant="20" id="0QW-q5-8RI"/>
-                                    <constraint firstItem="DA9-dd-QkU" firstAttribute="top" secondItem="UPR-0R-NeW" secondAttribute="bottom" constant="30" id="85o-C3-Kqj"/>
+                                    <constraint firstItem="DA9-dd-QkU" firstAttribute="top" secondItem="UPR-0R-NeW" secondAttribute="bottom" constant="25" id="85o-C3-Kqj"/>
                                     <constraint firstItem="UPR-0R-NeW" firstAttribute="leading" secondItem="8FE-Lh-xTb" secondAttribute="leading" constant="20" id="F8M-eo-Snb"/>
                                     <constraint firstItem="UPR-0R-NeW" firstAttribute="centerX" secondItem="8FE-Lh-xTb" secondAttribute="centerX" id="HUN-mE-sXY"/>
                                     <constraint firstItem="DA9-dd-QkU" firstAttribute="leading" secondItem="8FE-Lh-xTb" secondAttribute="leading" constant="20" id="ON9-HM-etp"/>
@@ -256,7 +256,7 @@
                             <constraint firstItem="bBD-zt-xcC" firstAttribute="leading" secondItem="8FE-Lh-xTb" secondAttribute="leading" id="61a-Gx-cFh"/>
                             <constraint firstItem="bBD-zt-xcC" firstAttribute="centerX" secondItem="cXk-tg-dMZ" secondAttribute="centerX" id="CS1-Dr-hMY"/>
                             <constraint firstItem="NIs-pp-2id" firstAttribute="trailing" secondItem="4nL-l0-2kt" secondAttribute="trailing" id="SoV-UY-rCd"/>
-                            <constraint firstItem="8FE-Lh-xTb" firstAttribute="top" secondItem="bBD-zt-xcC" secondAttribute="bottom" id="UCD-pi-RI7"/>
+                            <constraint firstItem="8FE-Lh-xTb" firstAttribute="top" secondItem="bBD-zt-xcC" secondAttribute="bottom" constant="16" id="UCD-pi-RI7"/>
                             <constraint firstItem="NIs-pp-2id" firstAttribute="bottom" secondItem="4nL-l0-2kt" secondAttribute="bottom" id="akg-IW-m8N"/>
                             <constraint firstItem="NIs-pp-2id" firstAttribute="trailing" secondItem="8FE-Lh-xTb" secondAttribute="trailing" constant="16" id="b6U-xD-HsL"/>
                             <constraint firstItem="4nL-l0-2kt" firstAttribute="top" secondItem="NIs-pp-2id" secondAttribute="top" id="g5g-UB-9Li"/>
