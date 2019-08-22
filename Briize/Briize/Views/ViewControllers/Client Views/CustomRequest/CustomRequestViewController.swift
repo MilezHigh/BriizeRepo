@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 import RxSwift
 import RxCocoa
+import RxAnimated
 
 class CustomRequestViewController: UIViewController {
     
@@ -58,12 +59,16 @@ extension CustomRequestViewController {
         self.priceSlider.maximumValue = 1000
         self.priceSlider.value = 125
         self.priceSlider.rx.value
-            .asDriver()
-            .drive(
-                onNext: { [weak self] (value) in
-                    let roundedValue = round(value / 5) * 5
-                    self?.priceLabel.text = "$" + Int(roundedValue).description
+            .asObservable()
+            .observeOn(MainScheduler.instance)
+            .throttle(0.1, latest: true, scheduler: MainScheduler.instance)
+            .flatMap({ value -> Observable<Float> in
+                return .just(round(value / 5) * 5)
             })
+            .flatMap({ roundedValue -> Observable<String?> in
+                return .just("$" + Int(roundedValue).description)
+            })
+            .bind(animated: priceLabel.rx.text)
             .disposed(by: self.disposeBag)
     }
     
@@ -75,14 +80,20 @@ extension CustomRequestViewController {
 
 extension CustomRequestViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-// Local variable inserted by Swift 4.2 migrator.
-let info = convertFromUIImagePickerControllerInfoKeyDictionary(info)
+    func imagePickerController(
+        _ picker: UIImagePickerController,
+        didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]
+        ) {
+        let info = convertFromUIImagePickerControllerInfoKeyDictionary(info)
 
         picker.dismiss(animated: true)
         
-        guard let image = info[convertFromUIImagePickerControllerInfoKey(UIImagePickerController.InfoKey.originalImage)] as? UIImage else { return }
-        switch self.selectedButton {
+        guard let image = info[convertFromUIImagePickerControllerInfoKey(UIImagePickerController.InfoKey.originalImage)] as? UIImage
+            else {
+                return
+        }
+
+        switch selectedButton {
         case .left:
             self.leftImageView.image = image
             
@@ -126,12 +137,10 @@ let info = convertFromUIImagePickerControllerInfoKeyDictionary(info)
     
 }
 
-// Helper function inserted by Swift 4.2 migrator.
 fileprivate func convertFromUIImagePickerControllerInfoKeyDictionary(_ input: [UIImagePickerController.InfoKey: Any]) -> [String: Any] {
-	return Dictionary(uniqueKeysWithValues: input.map {key, value in (key.rawValue, value)})
+    return Dictionary(uniqueKeysWithValues: input.map {key, value in (key.rawValue, value)})
 }
 
-// Helper function inserted by Swift 4.2 migrator.
 fileprivate func convertFromUIImagePickerControllerInfoKey(_ input: UIImagePickerController.InfoKey) -> String {
-	return input.rawValue
+    return input.rawValue
 }

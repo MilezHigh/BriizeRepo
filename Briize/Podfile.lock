@@ -12,7 +12,6 @@ PODS:
   - GooglePlaces (3.1.0):
     - GoogleMaps/Base (= 3.1.0)
   - Hero (1.4.0)
-  - KMNavigationBarTransition (1.1.5)
   - NVActivityIndicatorView (4.7.0):
     - NVActivityIndicatorView/Presenter (= 4.7.0)
   - NVActivityIndicatorView/Presenter (4.7.0)
@@ -33,7 +32,6 @@ DEPENDENCIES:
   - GooglePlacePicker
   - GooglePlaces
   - Hero
-  - KMNavigationBarTransition
   - NVActivityIndicatorView
   - Parse
   - RxCocoa (~> 4.0)
@@ -48,7 +46,6 @@ SPEC REPOS:
     - GooglePlacePicker
     - GooglePlaces
     - Hero
-    - KMNavigationBarTransition
     - NVActivityIndicatorView
     - Parse
     - RxCocoa
@@ -62,13 +59,12 @@ SPEC CHECKSUMS:
   GooglePlacePicker: 1c60c2a26e9d1e73bcb0c6f89609db8d777d13c1
   GooglePlaces: e874db179f2675c4f3eeda0b686b540273a578b0
   Hero: bac92350d7201a1a940003e0767c7b52ce7c99a1
-  KMNavigationBarTransition: 7a52c9bc25b39b6e3343e980b453facee1591b82
   NVActivityIndicatorView: b19ddab2576f805cbe0fb2306cba3476e09a1dea
   Parse: 3b31a3dd1777b07ee7f0caee32fafbff544483a5
   RxCocoa: cbf70265dc65a981d4ac982e513c10cf23df24a0
   RxDataSources: a843bad90c29817f5923ec8163f4af2de084ceb3
   RxSwift: f172070dfd1a93d70a9ab97a5a01166206e1c575
 
-PODFILE CHECKSUM: 3174ec29281109b4bb948f78a7d05c4c7509c8c1
+PODFILE CHECKSUM: 76b722ad6c09a59bc897465b1edb88736ec79b3a
 
-COCOAPODS: 1.7.0.beta.3
+COCOAPODS: 1.7.5
