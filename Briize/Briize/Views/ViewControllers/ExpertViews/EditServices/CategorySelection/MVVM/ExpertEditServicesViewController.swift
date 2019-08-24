@@ -10,7 +10,6 @@ import Foundation
 import UIKit
 import RxSwift
 import RxCocoa
-import Hero
 
 class ExpertEditServicesViewController: UIViewController {
     
@@ -20,9 +19,7 @@ class ExpertEditServicesViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationController?.hero.isEnabled = true
-        self.navigationController?.hero.navigationAnimationType = .fade
-        
+
         self.bindServices()
         self.tableConfig()
     }
@@ -64,10 +61,7 @@ extension ExpertEditServicesViewController {
                     
                     kImageID = "\(arc4random_uniform(9999))"
                     kImageData = selectedImage.jpegData(compressionQuality: 1.0)
-                    
-                    let newID = kImageID
-                    cell.serviceImageView.hero.id = newID
-                    
+
                     vc.models = cell.serviceModels
                     
                     Timer.scheduledTimer(withTimeInterval: 0.3, repeats: false, block: { (_) in

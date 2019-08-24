@@ -11,7 +11,6 @@ import UIKit
 import RxSwift
 import RxCocoa
 import MessageUI
-import Hero
 
 public var kLogout: Bool = false
 
@@ -32,9 +31,6 @@ class  MyAccountViewController: UIViewController, MFMailComposeViewControllerDel
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        self.hero.isEnabled = true
-        
         let logo = #imageLiteral(resourceName: "singleB-1")
         let v = UIView(frame: CGRect(x: 0, y: 0, width: 30, height: 30))
         let imageView = UIImageView(frame: v.frame)
@@ -47,8 +43,6 @@ class  MyAccountViewController: UIViewController, MFMailComposeViewControllerDel
         self.profileImageView.layer.borderColor = UIColor.lightGray.cgColor
         self.profileImageView.layer.cornerRadius = self.profileImageView.frame.width/2
         self.profileImageView.image = self.profileImage
-        self.profileImageView.hero.id = "clientProfileImage"
-        self.profileImageView.hero.modifiers = [.fade]
         
         self.options
             .asObservable()

@@ -8,7 +8,6 @@
 
 import Foundation
 import UIKit
-import Hero
 import RxSwift
 import RxCocoa
 import AudioToolbox
@@ -42,7 +41,6 @@ class ServiceSelectionViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         self.sessionManager.adoptController(self)
-        self.navigationController?.hero.isEnabled = true
     }
     
     deinit {
@@ -75,15 +73,12 @@ class ServiceSelectionViewController: UIViewController {
 
 extension ServiceSelectionViewController {
     
-    private func setupVC() {
-        self.hero.isEnabled = true
-        
+    private func setupVC() {        
         self.selectedServicesTableview.delegate = self
         self.selectedServicesTableview.dataSource = self
         self.selectedServicesTableview.tableFooterView = UIView()
         
         self.categoryImageView.darkOverlay()
-        self.categoryImageView.hero.id = "\(kHeroImage)"
     }
     
     private func bindCategoryUI() {

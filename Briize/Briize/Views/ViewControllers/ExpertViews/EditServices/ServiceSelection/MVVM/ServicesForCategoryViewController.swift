@@ -10,7 +10,6 @@ import Foundation
 import UIKit
 import RxSwift
 import RxCocoa
-import Hero
 
 class ServicesForCategoryViewController: UIViewController, UIScrollViewDelegate, UITableViewDelegate {
     
@@ -52,9 +51,6 @@ class ServicesForCategoryViewController: UIViewController, UIScrollViewDelegate,
     }
     
     fileprivate func setup(){
-        self.hero.isEnabled = true
-        self.categoryImageView.hero.id = kImageID
-        
         guard let data = kImageData else {return}
         self.categoryImageView.image = UIImage(data: data)
     }

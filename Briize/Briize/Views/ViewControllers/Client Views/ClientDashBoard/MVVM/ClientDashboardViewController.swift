@@ -8,7 +8,6 @@
 
 import Foundation
 import UIKit
-import Hero
 import RxSwift
 import RxCocoa
 import RxDataSources
@@ -86,9 +85,7 @@ class ClientDashboardViewController: UIViewController {
 extension ClientDashboardViewController {
     
     private func setupHero() {
-        self.hero.isEnabled = true
-        self.navigationController?.hero.isEnabled = true
-        self.navigationController?.hero.navigationAnimationType = .selectBy(presenting: .fade, dismissing: .fade)
+ 
     }
     
     private func setupNavigationBar() {
@@ -110,7 +107,6 @@ extension ClientDashboardViewController {
             let gesture = UITapGestureRecognizer(target: self, action: #selector(userTappedMenuImage))
             let v = UIView(frame: CGRect(x: 0, y: 0, width: 30, height: 30))
             let imgV = UIImageView(frame: v.frame)
-            imgV.hero.id = "clientProfileImage"
             imgV.contentMode = .scaleAspectFill
             imgV.clipsToBounds = true
             imgV.downloadedFrom(link: self.viewModel.user.value!.urlString!.url!, setProfileImage: true)
@@ -208,7 +204,7 @@ extension ClientDashboardViewController: UIScrollViewDelegate {
         }
     }
     
-    internal func centerCollectionView() {
+    func centerCollectionView() {
         let centerPoint = self.view.convert(view.center, to: self.accountCollectionView)
         guard let centerIndex = self.accountCollectionView.indexPathForItem(at: centerPoint) else {return}
         self.accountCollectionView.scrollToItem(at: centerIndex, at: .centeredHorizontally, animated: true)

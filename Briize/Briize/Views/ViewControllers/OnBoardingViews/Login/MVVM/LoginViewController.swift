@@ -47,9 +47,6 @@ class LoginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationController?.hero.isEnabled = true
-        self.navigationController?.hero.modalAnimationType = .selectBy(presenting: .zoom, dismissing: .zoom)
-        
         self.setup()
         self.setupTextViews()
         self.setupBGVideo()
@@ -70,6 +67,10 @@ class LoginViewController: UIViewController {
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
+    }
+
+    deinit {
+        print("Deinit - \(self.description)")
     }
     
     @IBAction func goButtonPressed(_ sender: Any) {
@@ -192,7 +193,9 @@ extension LoginViewController {
                     default:
                         this.setLoaderMessage(message: "Complete!")
                         this.dismissLoader()
-                        this.performSegue(withIdentifier: signalName, sender: this)
+                        this.dismiss(animated: true, completion: {
+                            BriizeManager.shared.persistedAppState.accept((.authenticated, signalName))
+                        })
                     }
                 },
                 onError: { (error) in

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="H64-63-G4b">
-    <device id="retina4_7" orientation="portrait">
+    <device id="retina5_9" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -15,14 +15,14 @@
             <objects>
                 <viewController id="H64-63-G4b" customClass="RequestOrderViewController" customModule="Briize" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="cXk-tg-dMZ">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="border1" translatesAutoresizingMaskIntoConstraints="NO" id="4nL-l0-2kt">
-                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <rect key="frame" x="0.0" y="44" width="375" height="734"/>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bBD-zt-xcC">
-                                <rect key="frame" x="16" y="40" width="343" height="365"/>
+                                <rect key="frame" x="16" y="64" width="343" height="365"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cph-mq-fh6">
                                         <rect key="frame" x="8" y="203" width="327" height="24"/>
@@ -65,7 +65,7 @@
                                         </constraints>
                                     </view>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="briizeProfileImagePlaceHolderIcon" translatesAutoresizingMaskIntoConstraints="NO" id="6KQ-sL-Q8j">
-                                        <rect key="frame" x="121.5" y="83" width="100" height="100"/>
+                                        <rect key="frame" x="121.66666666666666" y="83" width="100" height="100"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="100" id="AhO-Hk-iq1"/>
                                             <constraint firstAttribute="height" constant="100" id="yGS-zX-IMU"/>
@@ -154,27 +154,27 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8FE-Lh-xTb">
-                                <rect key="frame" x="16" y="421" width="343" height="226"/>
+                                <rect key="frame" x="16" y="445" width="343" height="313"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="43" translatesAutoresizingMaskIntoConstraints="NO" id="UPR-0R-NeW">
                                         <rect key="frame" x="20" y="20" width="303" height="40"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yJ2-ZY-GwW">
-                                                <rect key="frame" x="0.0" y="0.0" width="72.5" height="40"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="72.333333333333329" height="40"/>
                                                 <state key="normal" image="briizeInstaIcon"/>
                                                 <connections>
                                                     <action selector="instagramPressed:" destination="H64-63-G4b" eventType="touchUpInside" id="lIV-Pw-Gt4"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fDd-sr-Snv">
-                                                <rect key="frame" x="115.5" y="0.0" width="72" height="40"/>
+                                                <rect key="frame" x="115.33333333333334" y="0.0" width="72.333333333333343" height="40"/>
                                                 <state key="normal" image="briizeMessageIcon"/>
                                                 <connections>
                                                     <action selector="messagesPressed:" destination="H64-63-G4b" eventType="touchUpInside" id="d5B-O0-9is"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4ca-4j-1Xr">
-                                                <rect key="frame" x="230.5" y="0.0" width="72.5" height="40"/>
+                                                <rect key="frame" x="230.66666666666671" y="0.0" width="72.333333333333343" height="40"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <state key="normal" image="briizeRequestIcon"/>
                                                 <connections>
@@ -204,7 +204,7 @@
                                         <rect key="frame" x="20" y="85" width="303" height="50"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kPK-hF-5qN">
-                                                <rect key="frame" x="0.0" y="0.0" width="141.5" height="50"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="141.66666666666666" height="50"/>
                                                 <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <fontDescription key="fontDescription" name="PingFangHK-Semibold" family="PingFang HK" pointSize="17"/>
                                                 <state key="normal" title="Check ETA">
@@ -215,7 +215,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Xn-AG-Jgu">
-                                                <rect key="frame" x="161.5" y="0.0" width="141.5" height="50"/>
+                                                <rect key="frame" x="161.66666666666663" y="0.0" width="141.33333333333337" height="50"/>
                                                 <color key="backgroundColor" red="0.83921568627450982" green="0.6470588235294118" blue="0.55294117647058827" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="50" id="jEi-B6-RqU"/>

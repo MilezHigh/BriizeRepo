@@ -21,6 +21,7 @@ class LoginViewModel {
             if let user = model {
                 DispatchQueue.main.async {
                     BriizeManager.shared.user.model.accept(user)
+
                     let currentUser = user
                     switch currentUser.isExpert {
                     case true:
@@ -30,8 +31,7 @@ class LoginViewModel {
                         self?.userSegueIdSignal.accept("showClientMainDashboard")
                     }
                 }
-            }
-            else {
+            } else {
                 BriizeManager.shared.dismissloader()
                 print("Error occured when fetching user")
             }

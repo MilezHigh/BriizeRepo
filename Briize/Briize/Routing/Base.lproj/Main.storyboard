@@ -37,7 +37,7 @@
                     <connections>
                         <segue destination="oVt-2T-GcM" kind="show" identifier="showClientMainDashboard" id="5oA-KM-Lnc"/>
                         <segue destination="NIe-hY-28p" kind="show" identifier="showExpertMainDashboard" id="6dA-zp-p2L"/>
-                        <segue destination="Zad-Do-WwP" kind="show" identifier="showLogin" id="zbI-hc-mBV"/>
+                        <segue destination="ihM-7X-ast" kind="presentation" identifier="showLogin" id="zbI-hc-mBV"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AMI-rE-Gc7" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -186,6 +186,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="sNj-jT-UPt"/>
                     </view>
+                    <navigationItem key="navigationItem" id="FSx-HT-TKV"/>
                     <connections>
                         <outlet property="createAccountButton" destination="2cF-iH-qXG" id="XLN-4P-Frv"/>
                         <outlet property="forgotPasswordButton" destination="wF0-4R-xxe" id="12O-pX-nf5"/>
@@ -198,7 +199,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="N9L-ZN-GUi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="114" y="-1425"/>
+            <point key="canvasLocation" x="1175.2" y="-1425.3694581280788"/>
         </scene>
         <!--ExpertFlow-->
         <scene sceneID="9oe-Fy-HBx">
@@ -207,6 +208,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aXp-zh-BEj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-296" y="-850"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="po5-on-IWw">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="ihM-7X-ast" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="xF8-GA-CRH">
+                        <rect key="frame" x="0.0" y="44" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="Zad-Do-WwP" kind="relationship" relationship="rootViewController" id="SHv-KE-7OA"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9tz-Gk-gre" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="232.80000000000001" y="-1425.3694581280788"/>
         </scene>
     </scenes>
     <resources>

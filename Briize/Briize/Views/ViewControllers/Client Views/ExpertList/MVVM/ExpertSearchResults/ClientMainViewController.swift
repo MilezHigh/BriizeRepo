@@ -10,7 +10,6 @@ import UIKit
 import RxDataSources
 import RxSwift
 import RxCocoa
-import Hero
 //import Mapbox
 import GooglePlaces
 
@@ -53,9 +52,7 @@ extension ClientMainViewController {
     
     //MARK: - UI Helper Methods
     
-    private func setupVC() {
-        self.navigationController?.hero.isEnabled = false
-        
+    private func setupVC() {        
         self.configureViews()
         self.bindErrorHandling()
         self.bindServicesToSearch()

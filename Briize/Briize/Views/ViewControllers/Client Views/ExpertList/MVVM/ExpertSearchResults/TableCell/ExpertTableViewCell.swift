@@ -8,7 +8,6 @@
 
 import Foundation
 import UIKit
-import Hero
 import Parse
 
 class ExpertTableViewCell: UITableViewCell {
@@ -54,7 +53,6 @@ class ExpertTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        self.hero.id = "expertHeroImage"
         self.expertProfileImageView.layer.cornerRadius = expertProfileImageView.bounds.width/2
         self.requestButtonOutlet.layer.cornerRadius = 25
         self.messageButtonOutlet.layer.cornerRadius = 25

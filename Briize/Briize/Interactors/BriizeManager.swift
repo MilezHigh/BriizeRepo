@@ -76,6 +76,7 @@ class BriizeManager {
     var requestType = BehaviorRelay<RequestOrderType>(value: .Live)
     var requestState = BehaviorRelay<RequestState>(value: .Idle)
     var persistedSegueId = BehaviorRelay<String>(value: "waiting")
+    var persistedAppState = BehaviorRelay<(BriizeApplicationState, String)>(value: (.loggedOut, "waiting"))
     
     private let disposeBag: DisposeBag = DisposeBag()
     
@@ -164,10 +165,16 @@ extension BriizeManager {
     }
     
     // Client Methods
+
+    /// - Note:
+    /// - Method below presents an action sheet, a constraint error shows up in the console,
+    /// - However this is a bug on apples part.Does not break anything otherwise. Issue noted below.
+    /// - https://github.com/lionheart/openradar-mirror/issues/21120
+
     public func obtainAndSetRequest(completion: @escaping (Bool) -> Void) {
         let alert = UIAlertController(
-            title         : "Select Your Request Type",
-            message       : "Live Request | For Immediete Service \n Custom Request | Experts come to you",
+            title         : nil,
+            message       : nil,
             preferredStyle: .actionSheet
         )
         let action = UIAlertAction(title: "Live Request", style: .default)

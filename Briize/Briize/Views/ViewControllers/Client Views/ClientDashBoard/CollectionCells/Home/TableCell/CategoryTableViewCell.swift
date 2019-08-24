@@ -8,7 +8,6 @@
 
 import Foundation
 import UIKit
-import Hero
 
 class CategoryTableViewCell: UITableViewCell {
 
@@ -31,7 +30,5 @@ class CategoryTableViewCell: UITableViewCell {
         self.clipsToBounds = true
         
         self.categoryImageView.darkOverlay()
-        self.categoryImageView.hero.isEnabled = true
-        self.categoryImageView.hero.id = "\(kHeroImage)"
     }
 }

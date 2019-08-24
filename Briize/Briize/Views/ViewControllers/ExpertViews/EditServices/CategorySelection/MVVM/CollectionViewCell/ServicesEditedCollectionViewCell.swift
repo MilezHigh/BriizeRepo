@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Hero
 
 public var kImageID: String = ""
 public var kImageData: Data? = nil
@@ -32,9 +31,7 @@ class ServicesEditedCollectionViewCell: UICollectionViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        
-        self.serviceImageView.hero.isEnabled = true
-        
+                
         self.layer.cornerRadius = 6
     }
 }

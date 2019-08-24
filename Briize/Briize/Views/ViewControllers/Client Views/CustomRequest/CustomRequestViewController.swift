@@ -10,12 +10,12 @@ import Foundation
 import UIKit
 import RxSwift
 import RxCocoa
-import RxAnimated
 
 class CustomRequestViewController: UIViewController {
     
     @IBOutlet weak var leftPhotoButton: UIButton!
     @IBOutlet weak var rightPhotoButton: UIButton!
+    @IBOutlet weak var submitButton: UIButton!
     @IBOutlet weak var priceSlider: UISlider!
     @IBOutlet weak var notesTextView: UITextView!
     @IBOutlet weak var leftImageView: UIImageView!
@@ -49,7 +49,10 @@ class CustomRequestViewController: UIViewController {
     @IBAction func rightButtonPressed(_ sender: Any) {
         self.chooseImageSourceAlertFrom(buttonSource: .right)
     }
-    
+
+    @IBAction func submitAction(_ sender: Any) {
+
+    }
 }
 
 extension CustomRequestViewController {
@@ -61,14 +64,14 @@ extension CustomRequestViewController {
         self.priceSlider.rx.value
             .asObservable()
             .observeOn(MainScheduler.instance)
-            .throttle(0.1, latest: true, scheduler: MainScheduler.instance)
+            .throttle(0.1, scheduler: MainScheduler.instance)
             .flatMap({ value -> Observable<Float> in
                 return .just(round(value / 5) * 5)
             })
             .flatMap({ roundedValue -> Observable<String?> in
                 return .just("$" + Int(roundedValue).description)
             })
-            .bind(animated: priceLabel.rx.text)
+            .bind(to: priceLabel.rx.text)
             .disposed(by: self.disposeBag)
     }
     
@@ -134,13 +137,13 @@ extension CustomRequestViewController: UIImagePickerControllerDelegate, UINaviga
         
         self.present(alert, animated: true, completion: nil)
     }
-    
-}
 
-fileprivate func convertFromUIImagePickerControllerInfoKeyDictionary(_ input: [UIImagePickerController.InfoKey: Any]) -> [String: Any] {
-    return Dictionary(uniqueKeysWithValues: input.map {key, value in (key.rawValue, value)})
-}
+    private func convertFromUIImagePickerControllerInfoKeyDictionary(_ input: [UIImagePickerController.InfoKey: Any]) -> [String: Any] {
+        return Dictionary(uniqueKeysWithValues: input.map {key, value in (key.rawValue, value)})
+    }
 
-fileprivate func convertFromUIImagePickerControllerInfoKey(_ input: UIImagePickerController.InfoKey) -> String {
-    return input.rawValue
+    private func convertFromUIImagePickerControllerInfoKey(_ input: UIImagePickerController.InfoKey) -> String {
+        return input.rawValue
+    }
+
 }

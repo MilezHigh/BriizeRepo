@@ -66,9 +66,7 @@ extension AccountHomeCollectionCell: UITableViewDelegate, UIScrollViewDelegate {
         BriizeManager.shared.obtainAndSetRequest { (complete) in
             guard complete else { return }
             
-            let cell = self.categoryTableView.cellForRow(at: indexPath) as! CategoryTableViewCell
-            cell.hero.id = "\(kHeroImage)"
-            
+            let cell = self.categoryTableView.cellForRow(at: indexPath) as! CategoryTableViewCell            
             let img = cell.categoryImageView.image ?? #imageLiteral(resourceName: "Briizelogo")
             let title = cell.categoryTitleLabel.text!
             let chosenCategory = CategoryModel(name: title, image: img)
