@@ -45,7 +45,10 @@ class ClientDashboardViewController: UIViewController {
         
         if kLogout == true {
             kLogout = false
-            self.dismiss(animated: true, completion: nil)
+
+            self.dismiss(animated: true, completion: {
+                BriizeManager.shared.persistedAppState.accept((.loggedOut, ""))
+            })
         }
     }
     

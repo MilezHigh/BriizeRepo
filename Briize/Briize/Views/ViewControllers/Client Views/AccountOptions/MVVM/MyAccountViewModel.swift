@@ -11,6 +11,9 @@ import RxSwift
 import RxCocoa
 
 class MyAccountViewModel {
-    
+
+    func logOut() {
+        
+    }
     
 }

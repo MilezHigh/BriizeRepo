@@ -2,7 +2,7 @@
 //  BaseViewController.swift
 //  Briize
 //
-//  Created by Admin on 5/21/18.
+//  Created by Miles Fishman on 5/21/18.
 //  Copyright © 2018 Miles Fishman. All rights reserved.
 //
 
@@ -17,34 +17,25 @@ enum BriizeApplicationState {
 }
 
 class BaseViewController: UIViewController {
-    
-    var myTimer:Timer?
-    
+
     private let viewModel = BaseViewModel()
     private let disposeBag = DisposeBag()
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        bind()
-    }
+
+    private var isInstantiated: Bool = false
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
-//        self.myTimer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: false) { [weak self] (_) in
-//            guard let strongSelf = self else {return}
-//            DispatchQueue.main.async {
-//                strongSelf.performSegue(withIdentifier: "showLogin", sender: strongSelf)
-//            }
-//        }
+
+        guard !isInstantiated else { return }
+        isInstantiated = true
+
+        bind()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        self.myTimer?.invalidate()
-        self.myTimer = nil
+        navigationController?.navigationBar.isHidden = true
     }
-    
 }
 
 extension BaseViewController {
@@ -52,24 +43,14 @@ extension BaseViewController {
     private func bind() {
         viewModel
             .appState
-            .throttle(0.5, scheduler: MainScheduler.instance)
+            .throttle(0.3, latest: true, scheduler: MainScheduler.instance)
             .asDriver(onErrorJustReturn: (.loggedOut, "waiting"))
-            .drive(onNext: { [weak self] (state) in
-                let segueId = state.0 == .loggedOut ? "showLogin" : state.1
-                self?.performSegue(withIdentifier: segueId, sender: self)
+            .drive(
+                onNext: { [weak self] in
+                    guard self?.isViewLoaded == true else { return }
+                    let segueId = $0.0 == .loggedOut ? "showLogin" : $0.1
+                    self?.performSegue(withIdentifier: segueId, sender: self)
             })
             .disposed(by: disposeBag)
     }
-
-
-    // Demo
-    
-    private func loadClientDemo() {
-        
-        
-        
-    }
-    
-    // private func loadExpertdemo(){}
-    
 }

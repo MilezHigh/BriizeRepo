@@ -66,9 +66,11 @@ class  MyAccountViewController: UIViewController, MFMailComposeViewControllerDel
                     switch cell.accountOptionLabel.text {
                     case "Support":
                         strongSelf.showMailComposer()
+
                     case "Logout":
                         kLogout = true
                         strongSelf.dismiss(animated: true, completion: nil)
+
                     default:
                         break
                     }

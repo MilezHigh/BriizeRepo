@@ -70,7 +70,7 @@
                 <viewControllerPlaceholder storyboardName="ClientFlow" id="oVt-2T-GcM" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ykf-n9-3CQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-296" y="-632"/>
+            <point key="canvasLocation" x="-1254" y="-850"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="TMS-a3-H3K">
@@ -193,8 +193,6 @@
                         <outlet property="goButton" destination="gSX-mj-rix" id="jFe-pK-D2e"/>
                         <outlet property="passwordTextfield" destination="O2h-9M-8We" id="oUZ-zq-jFa"/>
                         <outlet property="usernameTextfield" destination="yJ5-pm-b7s" id="ZwP-6h-hbu"/>
-                        <segue destination="oVt-2T-GcM" kind="show" identifier="showClientMainDashboard" id="8hH-YO-Nzf"/>
-                        <segue destination="NIe-hY-28p" kind="show" identifier="showExpertMainDashboard" id="Xrx-kP-RwX"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="N9L-ZN-GUi" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -231,8 +229,4 @@
     <resources>
         <image name="Briizelogo" width="1000" height="1000"/>
     </resources>
-    <inferredMetricsTieBreakers>
-        <segue reference="Xrx-kP-RwX"/>
-        <segue reference="8hH-YO-Nzf"/>
-    </inferredMetricsTieBreakers>
 </document>

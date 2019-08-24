@@ -23,13 +23,7 @@ class LoginViewModel {
                     BriizeManager.shared.user.model.accept(user)
 
                     let currentUser = user
-                    switch currentUser.isExpert {
-                    case true:
-                        self?.userSegueIdSignal.accept("showExpertMainDashboard")
-                        
-                    case false:
-                        self?.userSegueIdSignal.accept("showClientMainDashboard")
-                    }
+                    self?.userSegueIdSignal.accept( currentUser.isExpert ? "showExpertMainDashboard" : "showClientMainDashboard")
                 }
             } else {
                 BriizeManager.shared.dismissloader()
