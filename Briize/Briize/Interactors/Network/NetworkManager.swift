@@ -2,7 +2,7 @@
 //  NetworkManager.swift
 //  Briize
 //
-//  Created by Admin on 5/19/18.
+//  Created by Miles Fishman on 5/19/18.
 //  Copyright © 2018 Miles Fishman. All rights reserved.
 //
 
@@ -21,7 +21,7 @@ class NetworkManager {
 
 extension NetworkManager {
     
-    func login(username: String, password: String, completion: @escaping (UserModel?) -> ()) {
+    func login(username: String, password: String, completion: @escaping (UserModel?) -> Void) {
         PFUser.logInWithUsername(
             inBackground : username,
             password     : password
@@ -36,6 +36,32 @@ extension NetworkManager {
                 }
                 completion(userObject)
             }
+        }
+    }
+
+    func logout() -> Observable<Bool> {
+        return Observable<Bool>
+            .create { observer in
+                PFUser.logOutInBackground { (error) in
+                    guard error == nil
+                        else {
+                            if let err = error {
+                                print("Error on logout - \(err.localizedDescription)")
+
+                                observer.onError(err)
+                                observer.onCompleted()
+                            }
+                            return
+                    }
+                    print("User Logged Out")
+
+                    observer.onNext(true)
+                    observer.onCompleted()
+                }
+
+                return Disposables.create {
+                    PFUser.logOut()
+                }
         }
     }
     

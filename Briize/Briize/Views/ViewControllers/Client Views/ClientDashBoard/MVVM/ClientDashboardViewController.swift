@@ -29,26 +29,23 @@ class ClientDashboardViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.setupHero()
-        self.setupNavigationBar()
-        self.setupSegmentBar()
-        self.bindSegueSignal()
-        self.bindCategories()
-        self.registerCells()
+        setupNavigationBar()
+        setupSegmentBar()
+        bindSegueSignal()
+        bindCategories()
+        bindLogout()
+        registerCells()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        self.setupLeftBarButton()
-        
-        self.sessionManager.liveController.accept(self)
-        
+        setupLeftBarButton()
+
+        sessionManager.liveController.accept(self)
+
         if kLogout == true {
             kLogout = false
-
-            self.dismiss(animated: true, completion: {
-                BriizeManager.shared.persistedAppState.accept((.loggedOut, ""))
-            })
+            viewModel.logout()
         }
     }
     
@@ -86,10 +83,6 @@ class ClientDashboardViewController: UIViewController {
 }
 
 extension ClientDashboardViewController {
-    
-    private func setupHero() {
- 
-    }
     
     private func setupNavigationBar() {
         let logo = #imageLiteral(resourceName: "singleB-1")
@@ -147,13 +140,24 @@ extension ClientDashboardViewController {
     private func bindSegueSignal() {
         self.viewModel.segueSignal
             .asDriver()
-            .drive(
-                onNext:{  [weak self] (id) in
-                    guard id != "waiting" else { return }
-                    self?.performSegue(withIdentifier: id, sender: self)
-                },
-                onCompleted: nil, onDisposed: nil)
+            .drive(onNext:{  [weak self] (id) in
+                guard id != "waiting" else { return }
+                self?.performSegue(withIdentifier: id, sender: self)
+            })
             .disposed(by: self.disposeBag)
+    }
+
+    private func bindLogout() {
+        viewModel
+            .loggedOut
+            .asDriver()
+            .drive(onNext: { [weak self] in
+                $0 ? self?.dismiss(animated: true, completion: {
+                    BriizeManager.shared.persistedAppState.accept((.loggedOut, ""))
+                    BriizeManager.shared.dismissloader()
+                }) : ()
+            })
+            .disposed(by: disposeBag)
     }
     
     private func registerCells() {

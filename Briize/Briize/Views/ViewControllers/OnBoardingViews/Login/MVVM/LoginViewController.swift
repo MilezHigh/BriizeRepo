@@ -80,7 +80,7 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction func createAccountButtonPressed(_ sender: Any) {
-        
+        performSegue(withIdentifier: "SignUp", sender: self)
     }
     
     @IBAction func forgotPasswordButtonPressed(_ sender: Any) {

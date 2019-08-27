@@ -69,7 +69,7 @@ class  MyAccountViewController: UIViewController, MFMailComposeViewControllerDel
 
                     case "Logout":
                         kLogout = true
-                        strongSelf.dismiss(animated: true, completion: nil)
+                        strongSelf.dismiss(animated: true)
 
                     default:
                         break

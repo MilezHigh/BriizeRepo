@@ -21,7 +21,8 @@ class CustomRequestViewController: UIViewController {
     @IBOutlet weak var leftImageView: UIImageView!
     @IBOutlet weak var rightImageView: UIImageView!
     @IBOutlet weak var priceLabel: UILabel!
-    
+    @IBOutlet weak var dateTimeLabel: UILabel!
+
     private enum ButtonSource {
         case left
         case right
@@ -36,10 +37,12 @@ class CustomRequestViewController: UIViewController {
     private var selectedButton: ButtonSource = .left
     
     private let disposeBag = DisposeBag()
-    
+
+    // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.bindSlider()
+        bindSlider()
+        setup()
     }
     
     @IBAction func leftButtonPressed(_ sender: Any) {
@@ -52,9 +55,11 @@ class CustomRequestViewController: UIViewController {
 
     @IBAction func submitAction(_ sender: Any) {
 
+
     }
 }
 
+// MARK: - Helper Methods
 extension CustomRequestViewController {
     
     private func bindSlider() {
@@ -76,11 +81,12 @@ extension CustomRequestViewController {
     }
     
     private func setup() {
-        
+        submitButton.layer.cornerRadius = 25
     }
     
 }
 
+// MARK: - Picker Methods
 extension CustomRequestViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     func imagePickerController(

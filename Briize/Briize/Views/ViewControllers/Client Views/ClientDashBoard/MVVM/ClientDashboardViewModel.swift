@@ -15,6 +15,7 @@ class ClientDashboardViewModel {
     let segueSignal = BehaviorRelay<String>(value:"waiting")
     let options = BehaviorRelay<[AccountSectionModel]>(value: [])
     let user = BehaviorRelay<UserModel?>(value: nil)
+    let loggedOut = BehaviorRelay<Bool>(value: false)
     
     fileprivate let disposebag = DisposeBag()
     
@@ -24,18 +25,28 @@ class ClientDashboardViewModel {
             .user
             .model
             .asObservable()
-            .bind(to: self.user)
-            .disposed(by: self.disposebag)
+            .bind(to: user)
+            .disposed(by: disposebag)
         
         BriizeManager
             .shared
             .persistedSegueId
             .asObservable()
-            .bind(to: self.segueSignal)
-            .disposed(by: self.disposebag)
+            .bind(to: segueSignal)
+            .disposed(by: disposebag)
         
         let options = CategoryModel.createAccountOptions()
         self.options.accept(options)
+    }
+    
+    func logout() {
+        BriizeManager.shared.showLoader()
+        
+        let api = NetworkManager.instance
+        api.logout()
+            .asObservable()
+            .bind(to: loggedOut)
+            .disposed(by: disposebag)
     }
 }
 
@@ -57,6 +68,7 @@ extension CategoryModel {
 extension CategoryModel {
     
     func bindUser()  {
-       
+
     }
+
 }

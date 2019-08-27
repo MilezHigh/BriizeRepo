@@ -2,7 +2,7 @@
 //  MyAccountViewModel.swift
 //  Briize
 //
-//  Created by Admin on 8/12/18.
+//  Created by Miles Fishman on 8/12/18.
 //  Copyright © 2018 Miles Fishman. All rights reserved.
 //
 
@@ -12,8 +12,5 @@ import RxCocoa
 
 class MyAccountViewModel {
 
-    func logOut() {
-        
-    }
     
 }
