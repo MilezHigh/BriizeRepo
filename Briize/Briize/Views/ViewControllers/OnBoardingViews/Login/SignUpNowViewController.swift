@@ -21,7 +21,11 @@ class SignUpNowViewController: UIViewController {
     @IBOutlet weak var segmentController: UISegmentedControl!
     @IBOutlet weak var imageViewHeight: NSLayoutConstraint!
     
-    let imageViewHeightExpandedHeight = 150.0
+    let expandedHeight: CGFloat = 150.0
+
+    var isSigningUpAsExpert: Bool {
+        return segmentController.selectedSegmentIndex == 1
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,7 +55,7 @@ class SignUpNowViewController: UIViewController {
         ]
         _ = fields.map ({
             $0.borderStyle = UITextField.BorderStyle.none
-            self.addBottomBorderToTextField(myTextField: $0)
+            $0.addBottomBorderToTextField()
 
             var string: String = ""
             switch $0 {
@@ -80,19 +84,6 @@ class SignUpNowViewController: UIViewController {
             )
         })
     }
-
-    private func addBottomBorderToTextField(myTextField: UITextField) {
-        let bottomLine   = CALayer()
-        bottomLine.frame = CGRect(
-            x:0.0,y: myTextField.frame.height - 1,
-            width  : self.view.frame.width - 40,
-            height : 1.0
-        )
-        bottomLine.backgroundColor = UIColor.black.cgColor
-
-        myTextField.borderStyle = UITextField.BorderStyle.none
-        myTextField.layer.addSublayer(bottomLine)
-    }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
@@ -101,10 +92,12 @@ class SignUpNowViewController: UIViewController {
     
 
     @IBAction func segmentSelected(_ sender: Any) {
-        let height: CGFloat = segmentController.selectedSegmentIndex == 1 ? 150 : 0
+        let height: CGFloat = isSigningUpAsExpert ? expandedHeight : 0
+        let title: String = isSigningUpAsExpert ? "Next" : "Sign Up"
 
         UIView.animate(withDuration: 0.3) {
             self.imageViewHeight.constant = height
+            self.submitNextButton.setTitle(title, for: .normal)
             self.view.layoutIfNeeded()
         }
     }

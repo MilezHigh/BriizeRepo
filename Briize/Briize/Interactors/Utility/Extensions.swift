@@ -235,3 +235,20 @@ extension Array where Element == [Int] {
         
     }
 }
+
+extension UITextField {
+
+    public func addBottomBorderToTextField(color: UIColor = .black) {
+        let bottomLine = CALayer()
+        bottomLine.frame = CGRect(
+            x      : 0.0,
+            y      : frame.height - 1,
+            width  : UIScreen.main.bounds.width - 40,
+            height : 1.0
+        )
+        bottomLine.backgroundColor = color.cgColor
+
+        borderStyle = UITextField.BorderStyle.none
+        layer.addSublayer(bottomLine)
+    }
+}

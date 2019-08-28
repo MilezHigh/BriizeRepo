@@ -156,12 +156,15 @@ extension LoginViewController {
     fileprivate func setupTextViews() {
         self.usernameTextfield.borderStyle = UITextField.BorderStyle.none
         self.passwordTextfield.borderStyle = UITextField.BorderStyle.none
-        self.usernameTextfield.attributedPlaceholder = NSAttributedString(string: "Email",
-                                                                          attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
-        self.passwordTextfield.attributedPlaceholder = NSAttributedString(string: "Password",
-                                                                          attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
-        self.addBottomBorderToTextField(myTextField: self.usernameTextfield)
-        self.addBottomBorderToTextField(myTextField: self.passwordTextfield)
+        self.usernameTextfield.attributedPlaceholder = NSAttributedString(
+            string: "Email",
+            attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
+        self.passwordTextfield.attributedPlaceholder = NSAttributedString(
+            string: "Password",
+            attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
+
+        usernameTextfield.addBottomBorderToTextField(color: .white)
+        passwordTextfield.addBottomBorderToTextField(color: .white)
     }
     
     fileprivate func addBottomBorderToTextField(myTextField:UITextField) {
