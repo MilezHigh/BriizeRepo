@@ -7,6 +7,14 @@
 //
 
 import Foundation
+import UIKit
+
+struct ServiceModel {
+    var id       : Int = 0 // Miles.F - not needed potentially
+    var parent   : CategoryModel?
+    var name     : String = ""
+    var subTypes : [ServiceSubType] = []
+}
 
 enum ServiceSubType: String {
     
@@ -17,14 +25,17 @@ enum ServiceSubType: String {
     case french_Braiding    = "French Braiding"
     case strand_Braiding    = "Strand Braiding"
     case mermaid_Braiding   = "Mermaid Braiding"
+
     /// - Extensions
     case bonded_Extensions = "Bonded Extensions"
     case weft_Extensions   = "Weft Extensions"
     case weave_Extensions  = "Weave Extensions"
+
     /// - Updue
     case messyUpdue = "Messy Updue"
     case braidedUpdue = "Braided Updue"
     case chignonUpdue  = "Chignon Updue"
+
     /// - Blow Dry
     case oldFashionedWaves = "Old Fashioned Waves"
     case straightWithBody = "Straight w/ Body"
@@ -32,6 +43,7 @@ enum ServiceSubType: String {
     case beachCurls  = "Beach Curls"
     case volumeCurls  = "Volume Curls"
     case classicSmooth  = "Classic Smooth"
+
     /// - Cut
     case womens_haircut = "Women's Haircut"
     case girls_haircut = "Girls Haircut"
@@ -42,6 +54,7 @@ enum ServiceSubType: String {
     case eyebrows = "Eye-Brows"
     case upperLip = "Upper Lip"
     case fullFace = "Full Face"
+
     /// - Waxing
     case eyebrowsWax = "Eye-Brow "
     case upperLipWax = "Upper Lip "
@@ -234,13 +247,6 @@ enum ServiceSubType: String {
     }
 }
 
-public struct ServiceModel {
-    var id       : Int = 0 // Miles.F - not needed potentially
-    var parent   : CategoryModel?
-    var name     : String = ""
-    var subTypes : [ServiceSubType] = []
-}
-
 extension ServiceModel {
     
     static func addServicesToCategory(_ category: CategoryModel) -> [ServiceModel]  {
@@ -357,6 +363,45 @@ extension ServiceModel {
         default:
             return []
         }
+    }
+}
+
+typealias ServiceObject = (id: Int, name: String)
+
+struct ServiceDatasource {
+    var name: String
+    var services: [ServiceObject]
+
+    static func allServices() -> [ServiceDatasource] {
+        return [
+            CategoryModel(name: "Hair", image: UIImage(named: "hairImg") ?? UIImage()),
+            CategoryModel(name: "Make-Up", image: UIImage(named: "makeUpImg") ?? UIImage()),
+            CategoryModel(name: "Nails", image: UIImage(named: "nailsImg") ?? UIImage()),
+            CategoryModel(name: "Eyes & Brows", image: UIImage(named: "eyesBrowsImg") ?? UIImage()),
+            CategoryModel(name: "Men's", image: UIImage(named: "menImg") ?? UIImage())
+            ]
+            .compactMap ({ category -> ServiceDatasource in
+                return ServiceDatasource(
+                    name    : category.name,
+                    services: ServiceModel.addServicesToCategory(category)
+
+                        .compactMap ({ value -> [ServiceObject] in
+                            guard value.id != 0 else {
+                                return value.subTypes
+
+                                    .compactMap ({ type -> ServiceObject in
+                                        return ServiceObject(
+                                            id  : type.id,
+                                            name: ServiceSubType.serviceNameFor(id: type.id)
+                                        )
+                                    })
+                            }
+
+                            return [ServiceObject(id: value.id, name: value.name)]
+                        })
+                        .reduce([], +)
+                )
+            })
     }
 }
 

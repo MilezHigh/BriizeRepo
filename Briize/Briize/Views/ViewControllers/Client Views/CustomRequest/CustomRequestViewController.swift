@@ -11,6 +11,11 @@ import UIKit
 import RxSwift
 import RxCocoa
 
+enum ImageSource {
+    case camera
+    case photoLibrary
+}
+
 class CustomRequestViewController: UIViewController {
     
     @IBOutlet weak var leftPhotoButton: UIButton!
@@ -26,11 +31,6 @@ class CustomRequestViewController: UIViewController {
     private enum ButtonSource {
         case left
         case right
-    }
-    
-    private enum ImageSource {
-        case camera
-        case photoLibrary
     }
     
     private var imagePicker: UIImagePickerController!

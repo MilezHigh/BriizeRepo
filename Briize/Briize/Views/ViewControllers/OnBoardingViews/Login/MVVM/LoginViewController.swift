@@ -55,14 +55,12 @@ class LoginViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        self.setupVideoObserver()
-        
-        BriizeManager.shared.adoptController(nil)
+        scanState()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        self.cleanupVC()
+        cleanupVC()
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -74,9 +72,9 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction func goButtonPressed(_ sender: Any) {
-        self.player.pause()
-        self.showLoader()
-        self.viewModel.logIn(username: self.usernameTextfield.text!, password: self.passwordTextfield.text!)
+        player.pause()
+        showLoader()
+        viewModel.logIn(username: usernameTextfield.text!, password: passwordTextfield.text!)
     }
     
     @IBAction func createAccountButtonPressed(_ sender: Any) {
@@ -94,22 +92,36 @@ extension LoginViewController {
         self.view.endEditing(true)
     }
     
-    fileprivate func setup(){
-        
-        // - dev testing :
-        self.usernameTextfield.text = "miles.fishman@yahoo.com"
-        self.passwordTextfield.text = "devguy123"
-        //
-        
+    private func setup() {
         self.navigationController?.navigationBar.isHidden = true
-        
+
+        usernameTextfield.text = "miles.fishman@yahoo.com"
+        passwordTextfield.text = "devguy123"
+
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         self.view.addGestureRecognizer(tap)
 
-        self.goButton.layer.cornerRadius = 25
+        goButton.layer.cornerRadius = 25
     }
-    
-    // Background Video Methods
+
+    private func scanState() {
+        setupVideoObserver()
+
+        BriizeManager.shared.adoptController(nil)
+
+        guard
+            let username = UserDefaults.standard.value(forKey: "Username") as? String,
+            let password = UserDefaults.standard.value(forKey: "Password") as? String
+            else {
+                return
+        }
+        usernameTextfield.text = username
+        passwordTextfield.text = password
+
+        goButtonPressed(self as Any)
+    }
+
+    // MARK: - BG Video Methods
     fileprivate func setupVideoObserver() {
         player.play()
         
@@ -119,7 +131,7 @@ extension LoginViewController {
                 self,
                 selector: #selector(playerItemReachedEnd(notification:)),
                 name    : NSNotification.Name.AVPlayerItemDidPlayToEndTime,
-                object  : self.player.currentItem
+                object  : player.currentItem
         )
     }
     
@@ -128,56 +140,47 @@ extension LoginViewController {
         overlay.backgroundColor = .black
         overlay.alpha = 0.6
         
-        let url = Bundle.main.url(forResource : "briizeBGV", withExtension: "mp4")
-        self.player = AVPlayer.init(url: url!)
-        
-        self.playerLayer = AVPlayerLayer(player: self.player)
-        self.playerLayer.videoGravity = AVLayerVideoGravity.resizeAspectFill
-        self.playerLayer.frame = self.view.layer.frame
-        
-        self.player.actionAtItemEnd = .none
-        self.player.play()
+        guard let url = Bundle.main.url(forResource : "briizeBGV", withExtension: "mp4")
+            else {
+                return
+        }
+        player = AVPlayer.init(url: url)
+        playerLayer = AVPlayerLayer(player: player)
+        playerLayer.videoGravity = AVLayerVideoGravity.resizeAspectFill
+        playerLayer.frame = self.view.layer.frame
+        player.actionAtItemEnd = .none
+        player.play()
         
         self.view.layer.insertSublayer(self.playerLayer, at: 0)
         self.view.insertSubview(overlay, at: 1)
     }
     
     @objc func playerItemReachedEnd(notification: NSNotification) {
-        self.player.seek(to: CMTime.zero)
+        player.seek(to: CMTime.zero)
     }
     
     fileprivate func cleanupVC() {
         NotificationCenter.default.removeObserver(self)
-        
-        self.player.pause()
-        self.viewModel.userSegueIdSignal.accept("waiting")
+        player.pause()
+        viewModel.userSegueIdSignal.accept("waiting")
     }
     
     fileprivate func setupTextViews() {
-        self.usernameTextfield.borderStyle = UITextField.BorderStyle.none
-        self.passwordTextfield.borderStyle = UITextField.BorderStyle.none
-        self.usernameTextfield.attributedPlaceholder = NSAttributedString(
+        usernameTextfield.attributedPlaceholder = NSAttributedString(
             string: "Email",
-            attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
-        self.passwordTextfield.attributedPlaceholder = NSAttributedString(
+            attributes: [NSAttributedString.Key.foregroundColor: UIColor.white]
+        )
+
+        passwordTextfield.attributedPlaceholder = NSAttributedString(
             string: "Password",
-            attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
+            attributes: [NSAttributedString.Key.foregroundColor: UIColor.white]
+        )
+
+        usernameTextfield.borderStyle = UITextField.BorderStyle.none
+        passwordTextfield.borderStyle = UITextField.BorderStyle.none
 
         usernameTextfield.addBottomBorderToTextField(color: .white)
         passwordTextfield.addBottomBorderToTextField(color: .white)
-    }
-    
-    fileprivate func addBottomBorderToTextField(myTextField:UITextField) {
-        let bottomLine   = CALayer()
-        bottomLine.frame = CGRect(
-            x:0.0,y: myTextField.frame.height - 1,
-            width  : self.view.frame.width - 40,
-            height : 1.0
-        )
-        bottomLine.backgroundColor = UIColor.white.cgColor
-        
-        myTextField.borderStyle = UITextField.BorderStyle.none
-        myTextField.layer.addSublayer(bottomLine)
     }
     
     fileprivate func bindSegueSignal() {
@@ -187,16 +190,14 @@ extension LoginViewController {
             .observeOn(MainScheduler.instance)
             .subscribe(
                 onNext: { [weak self] (signalName) in
-                    guard let this = self else {return}
-                    
                     switch signalName {
                     case "waiting":
                         break
-                        
+
                     default:
-                        this.setLoaderMessage(message: "Complete!")
-                        this.dismissLoader()
-                        this.dismiss(animated: true, completion: {
+                        self?.setLoaderMessage(message: "Complete!")
+                        self?.dismissLoader()
+                        self?.dismiss(animated: true, completion: {
                             BriizeManager.shared.persistedAppState.accept((.authenticated, signalName))
                         })
                     }

@@ -83,7 +83,7 @@ class BriizeManager {
     static let shared: BriizeManager = BriizeManager() 
     
     private init() {
-        self.requestState
+        requestState
             .asObservable()
             .subscribe(
                 onNext: { [weak self] (state) in

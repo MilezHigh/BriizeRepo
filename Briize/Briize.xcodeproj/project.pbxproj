@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0BD33A7C2316840600F72203 /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BD33A7B2316840600F72203 /* SignUpViewModel.swift */; };
+		0BD33A7E231A9E6100F72203 /* ApplyForServicesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BD33A7D231A9E6100F72203 /* ApplyForServicesViewController.swift */; };
+		0BD33A80231AA08900F72203 /* ApplyForServicesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BD33A7F231AA08900F72203 /* ApplyForServicesViewModel.swift */; };
 		0BD3FE7F231552980040EEF8 /* SignUpNowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BD3FE7E231552980040EEF8 /* SignUpNowViewController.swift */; };
 		840028402195005B0005ADA9 /* AccountHomeCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8400283F2195005B0005ADA9 /* AccountHomeCollectionCell.swift */; };
 		840028442195F8260005ADA9 /* ClientAccountCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840028432195F8260005ADA9 /* ClientAccountCell.swift */; };
@@ -90,6 +93,9 @@
 
 /* Begin PBXFileReference section */
 		021419F10C21C44EBF3AA813 /* Pods_BriizeTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BriizeTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		0BD33A7B2316840600F72203 /* SignUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewModel.swift; sourceTree = "<group>"; };
+		0BD33A7D231A9E6100F72203 /* ApplyForServicesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplyForServicesViewController.swift; sourceTree = "<group>"; };
+		0BD33A7F231AA08900F72203 /* ApplyForServicesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplyForServicesViewModel.swift; sourceTree = "<group>"; };
 		0BD3FE7E231552980040EEF8 /* SignUpNowViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpNowViewController.swift; sourceTree = "<group>"; };
 		4AEE492058D7913369F961C3 /* Pods-Briize.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Briize.release.xcconfig"; path = "Pods/Target Support Files/Pods-Briize/Pods-Briize.release.xcconfig"; sourceTree = "<group>"; };
 		52E4DF070B24AFE868026FAF /* Pods-BriizeTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BriizeTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BriizeTests/Pods-BriizeTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -259,6 +265,9 @@
 			children = (
 				84069AD120E60F45002C910B /* MVVM */,
 				0BD3FE7E231552980040EEF8 /* SignUpNowViewController.swift */,
+				0BD33A7B2316840600F72203 /* SignUpViewModel.swift */,
+				0BD33A7D231A9E6100F72203 /* ApplyForServicesViewController.swift */,
+				0BD33A7F231AA08900F72203 /* ApplyForServicesViewModel.swift */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -943,6 +952,7 @@
 				848D876B2278712500F43C1E /* BriizeRouter.swift in Sources */,
 				84A85A9E215B4AEC0098E3F8 /* ServicesEditedCollectionViewCell.swift in Sources */,
 				84E10A4820B0132C00E287A0 /* AppDelegate.swift in Sources */,
+				0BD33A7E231A9E6100F72203 /* ApplyForServicesViewController.swift in Sources */,
 				84A85AA4215E31140098E3F8 /* ServicesForCategoryViewController.swift in Sources */,
 				84BEF8E62121496B00E27DC5 /* MyAccountViewModel.swift in Sources */,
 				84FF87B420B2C9A90054BA99 /* UserModel.swift in Sources */,
@@ -966,6 +976,7 @@
 				84361D1D20C3732F003B2C17 /* Extensions.swift in Sources */,
 				84361D2A20C38836003B2C17 /* CategoryModel.swift in Sources */,
 				848D876F22787E5300F43C1E /* RequestOrderViewModel.swift in Sources */,
+				0BD33A7C2316840600F72203 /* SignUpViewModel.swift in Sources */,
 				840028402195005B0005ADA9 /* AccountHomeCollectionCell.swift in Sources */,
 				84FF87B020B2B4B80054BA99 /* BaseViewController.swift in Sources */,
 				84E10A7320B036A100E287A0 /* ClientMainViewModel.swift in Sources */,
@@ -979,6 +990,7 @@
 				84361D2620C384FD003B2C17 /* ClientDashboardViewController.swift in Sources */,
 				84069ACE20E60E6C002C910B /* LoginViewController.swift in Sources */,
 				84361D2420C384D9003B2C17 /* CategoryTableViewCell.swift in Sources */,
+				0BD33A80231AA08900F72203 /* ApplyForServicesViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

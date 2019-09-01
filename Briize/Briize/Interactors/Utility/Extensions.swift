@@ -156,18 +156,18 @@ extension UISegmentedControl {
         self.setBackgroundImage(backgroundImage, for: .selected, barMetrics: .default)
         self.setBackgroundImage(backgroundImage, for: .highlighted, barMetrics: .default)
         
-        let deviderImage = UIImage.getColoredRectImageWith(
+        let dividerImage = UIImage.getColoredRectImageWith(
             color  : UIColor.white.cgColor,
             andSize: CGSize(width: 1.0, height: self.bounds.size.height)
         )
         self.setDividerImage(
-            deviderImage,
+            dividerImage,
             forLeftSegmentState: .selected,
             rightSegmentState  : .normal,
             barMetrics         : .default
         )
-        let font = UIFont.systemFont(ofSize: 17)
 
+        let font = UIFont.systemFont(ofSize: 17)
         self.setTitleTextAttributes(
             [
                 NSAttributedString.Key.foregroundColor: UIColor.lightGray,
@@ -175,7 +175,6 @@ extension UISegmentedControl {
             ],
             for: .normal
         )
-
         self.setTitleTextAttributes(
             [
                 NSAttributedString.Key.foregroundColor: UIColor(red: 214/255, green: 165/255, blue: 141/255, alpha: 1.0),
@@ -202,6 +201,7 @@ extension UISegmentedControl {
     func changeUnderlinePosition(){
         guard let underline = self.viewWithTag(1) else {return}
         let underlineFinalXPosition = (self.bounds.width / CGFloat(self.numberOfSegments)) * CGFloat(selectedSegmentIndex)
+
         UIView.animate(withDuration: 0.2, animations: {
             underline.frame.origin.x = underlineFinalXPosition
         })
@@ -212,12 +212,16 @@ extension UIImage {
     
     class func getColoredRectImageWith(color: CGColor, andSize size: CGSize) -> UIImage{
         UIGraphicsBeginImageContextWithOptions(size, false, 0.0)
+
         let graphicsContext = UIGraphicsGetCurrentContext()
         graphicsContext?.setFillColor(color)
+
         let rectangle = CGRect(x: 0.0, y: 0.0, width: size.width, height: size.height)
         graphicsContext?.fill(rectangle)
+
         let rectangleImage = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
+        
         return rectangleImage!
     }
 }
@@ -250,5 +254,13 @@ extension UITextField {
 
         borderStyle = UITextField.BorderStyle.none
         layer.addSublayer(bottomLine)
+    }
+}
+
+
+extension Data {
+
+    func pfFileObject() -> PFFileObject? {
+        return PFFileObject(data: self)
     }
 }

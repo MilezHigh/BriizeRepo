@@ -27,6 +27,7 @@ class RequestOrderViewController: UIViewController {
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var userImageView: UIImageView!
     @IBOutlet weak var masterView: UIView!
+    @IBOutlet weak var masterBottomView: UIView!
 
     //MARK:- Variables
     var viewModel: RequestOrderViewModel?
@@ -55,6 +56,7 @@ class RequestOrderViewController: UIViewController {
     
     private func setupUI() {
         masterView.layer.cornerRadius = 12
+        masterBottomView.layer.cornerRadius = 12
         userImageView.layer.cornerRadius = userImageView.bounds.width / 2
         cheackEtaButton.layer.cornerRadius = 26
         cancelButton.layer.cornerRadius = 26

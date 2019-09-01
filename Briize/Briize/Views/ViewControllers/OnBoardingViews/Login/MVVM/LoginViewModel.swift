@@ -22,8 +22,7 @@ class LoginViewModel {
                 DispatchQueue.main.async {
                     BriizeManager.shared.user.model.accept(user)
 
-                    let currentUser = user
-                    self?.userSegueIdSignal.accept( currentUser.isExpert ? "showExpertMainDashboard" : "showClientMainDashboard")
+                    self?.userSegueIdSignal.accept(user.isExpert ? "showExpertMainDashboard" : "showClientMainDashboard")
                 }
             } else {
                 BriizeManager.shared.dismissloader()

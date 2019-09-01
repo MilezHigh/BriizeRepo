@@ -54,13 +54,14 @@ class ClientDashboardViewController: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard let title = self.serviceTitle,
-            let img = self.serviceImage else { return }
+        guard let title = serviceTitle,
+            let img = serviceImage else { return }
         
         switch segue.destination {
         case is ServiceSelectionViewController:
             let chosenCategory = CategoryModel(name: title, image: img)
             let services = ServiceModel.addServicesToCategory(chosenCategory)
+
             guard let destination = segue.destination as? ServiceSelectionViewController else { return }
             destination.viewModel.services.accept(services)
             
@@ -74,8 +75,8 @@ class ClientDashboardViewController: UIViewController {
     }
     
     @IBAction func segmentValueChanged(_ sender: UISegmentedControl) {
-        self.menuSegmentBar.changeUnderlinePosition()
-        self.accountCollectionView.scrollToItem(
+        menuSegmentBar.changeUnderlinePosition()
+        accountCollectionView.scrollToItem(
             at: IndexPath(item: sender.selectedSegmentIndex, section: 0),
             at: .centeredHorizontally,
             animated: true)
@@ -95,7 +96,7 @@ extension ClientDashboardViewController {
     }
     
     private func setupSegmentBar() {
-        self.menuSegmentBar.addUnderlineForSelectedSegment()
+        menuSegmentBar.addUnderlineForSelectedSegment()
     }
     
     private func setupLeftBarButton(){
@@ -103,9 +104,12 @@ extension ClientDashboardViewController {
             let gesture = UITapGestureRecognizer(target: self, action: #selector(userTappedMenuImage))
             let v = UIView(frame: CGRect(x: 0, y: 0, width: 30, height: 30))
             let imgV = UIImageView(frame: v.frame)
+
+            if let url = viewModel.user.value?.urlString?.url {
+                imgV.downloadedFrom(link: url, setProfileImage: true)
+            }
             imgV.contentMode = .scaleAspectFill
             imgV.clipsToBounds = true
-            imgV.downloadedFrom(link: self.viewModel.user.value!.urlString!.url!, setProfileImage: true)
             imgV.isUserInteractionEnabled = true
             imgV.layer.cornerRadius = 15
             
@@ -114,31 +118,31 @@ extension ClientDashboardViewController {
             v.addGestureRecognizer(gesture)
             v.addSubview(imgV)
             
-            self.leftUserMenuProfilePicBarButton.image = nil
-            self.leftUserMenuProfilePicBarButton.customView = v
-            self.leftUserMenuProfilePicBarButton.customView?.isUserInteractionEnabled = true
+            leftUserMenuProfilePicBarButton.image = nil
+            leftUserMenuProfilePicBarButton.customView = v
+            leftUserMenuProfilePicBarButton.customView?.isUserInteractionEnabled = true
             
-            self.completedSetup = true
+            completedSetup = true
         }
     }
     
     private func bindCategories() {
-        self.accountCollectionView.layer.cornerRadius = 15
-        self.accountCollectionView.decelerationRate = UIScrollView.DecelerationRate(rawValue: 0.2)
+        accountCollectionView.layer.cornerRadius = 15
+        accountCollectionView.decelerationRate = UIScrollView.DecelerationRate(rawValue: 0.2)
         
         let datasource = ClientDashboardViewController.dataSource()
-        self.viewModel.options
+        viewModel.options
             .asObservable()
-            .bind(to: self.accountCollectionView.rx.items(dataSource: datasource))
-            .disposed(by: self.disposeBag)
+            .bind(to: accountCollectionView.rx.items(dataSource: datasource))
+            .disposed(by: disposeBag)
         
-        self.accountCollectionView.rx
+        accountCollectionView.rx
             .setDelegate(self)
-            .disposed(by: self.disposeBag)
+            .disposed(by: disposeBag)
     }
     
     private func bindSegueSignal() {
-        self.viewModel.segueSignal
+        viewModel.segueSignal
             .asDriver()
             .drive(onNext:{  [weak self] (id) in
                 guard id != "waiting" else { return }
@@ -148,8 +152,7 @@ extension ClientDashboardViewController {
     }
 
     private func bindLogout() {
-        viewModel
-            .loggedOut
+        viewModel.loggedOut
             .asDriver()
             .drive(onNext: { [weak self] in
                 $0 ? self?.dismiss(animated: true, completion: {
@@ -161,10 +164,10 @@ extension ClientDashboardViewController {
     }
     
     private func registerCells() {
-        self.accountCollectionView
+        accountCollectionView
             .register(UINib(nibName: "AccountPriorCollectionCell", bundle: nil),
                       forCellWithReuseIdentifier: "Account_Prior")
-        self.accountCollectionView
+        accountCollectionView
             .register(UINib(nibName: "AccountLiveRequestsCollectionCell", bundle: nil),
                       forCellWithReuseIdentifier: "Account_Live")
     }
@@ -191,32 +194,31 @@ extension ClientDashboardViewController: UICollectionViewDelegate, UICollectionV
         _ collectionView           : UICollectionView,
         layout collectionViewLayout: UICollectionViewLayout,
         sizeForItemAt indexPath    : IndexPath
-        )
-        -> CGSize {
-            let height = collectionView.bounds.height - 75
-            let width = collectionView.bounds.width
-            return CGSize(width: width, height: height)
+        ) -> CGSize {
+        let height = collectionView.bounds.height - 75
+        let width = collectionView.bounds.width
+        return CGSize(width: width, height: height)
     }
 }
 
 extension ClientDashboardViewController: UIScrollViewDelegate {
     
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-        self.centerCollectionView()
+        centerCollectionView()
     }
     
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
         if !decelerate {
-            self.centerCollectionView()
+            centerCollectionView()
         }
     }
     
     func centerCollectionView() {
-        let centerPoint = self.view.convert(view.center, to: self.accountCollectionView)
-        guard let centerIndex = self.accountCollectionView.indexPathForItem(at: centerPoint) else {return}
-        self.accountCollectionView.scrollToItem(at: centerIndex, at: .centeredHorizontally, animated: true)
-        self.menuSegmentBar.selectedSegmentIndex = centerIndex.row
-        self.menuSegmentBar.changeUnderlinePosition()
+        let centerPoint = self.view.convert(view.center, to: accountCollectionView)
+        guard let centerIndex = accountCollectionView.indexPathForItem(at: centerPoint) else {return}
+        accountCollectionView.scrollToItem(at: centerIndex, at: .centeredHorizontally, animated: true)
+        menuSegmentBar.selectedSegmentIndex = centerIndex.row
+        menuSegmentBar.changeUnderlinePosition()
     }
 }
 

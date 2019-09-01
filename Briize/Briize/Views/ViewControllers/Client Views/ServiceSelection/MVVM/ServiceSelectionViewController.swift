@@ -32,15 +32,16 @@ class ServiceSelectionViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.setupVC()
-        self.bindCategoryUI()
-        self.bindCategoryServices()
-        self.bindCollectionviewConfiguration()
+        setupVC()
+        bindCategoryUI()
+        bindCategoryServices()
+        bindCollectionviewConfiguration()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         self.sessionManager.adoptController(self)
+        self.sessionManager.persistedSegueId.accept("waiting")
     }
     
     deinit {
@@ -52,7 +53,7 @@ class ServiceSelectionViewController: UIViewController {
     }
     
     @IBAction func submitButtonPressed(_ sender: Any) {
-        if self.selectedServices.isEmpty {
+        if selectedServices.isEmpty {
             let alert = UIAlertController(title: "You must select at least one service", message: nil, preferredStyle: .alert)
             let action = UIAlertAction(title: "Okay", style: .cancel, handler: nil)
             alert.addAction(action)
@@ -60,7 +61,11 @@ class ServiceSelectionViewController: UIViewController {
         } else {
             switch self.sessionManager.requestType.value {
             case .Live:
-                self.sessionManager.user.searchExpertsWithTheseServices.accept(self.selectedServices.map({ return $0.id }))
+                self.sessionManager
+                    .user
+                    .searchExpertsWithTheseServices
+                    .accept(selectedServices.map({ return $0.id }))
+
                 self.performSegue(withIdentifier: "searchExpertsSegue", sender: self)
                 
             case .Custom:
@@ -74,53 +79,58 @@ class ServiceSelectionViewController: UIViewController {
 extension ServiceSelectionViewController {
     
     private func setupVC() {        
-        self.selectedServicesTableview.delegate = self
-        self.selectedServicesTableview.dataSource = self
-        self.selectedServicesTableview.tableFooterView = UIView()
-        
-        self.categoryImageView.darkOverlay()
+        selectedServicesTableview.delegate = self
+        selectedServicesTableview.dataSource = self
+        selectedServicesTableview.tableFooterView = UIView()
+        categoryImageView.darkOverlay()
     }
     
     private func bindCategoryUI() {
-        self.sessionManager.user.selectedCategoryName
-            .bind(to: self.navigationItem.rx.title)
-            .disposed(by: self.disposeBag)
+        self.sessionManager
+            .user
+            .selectedCategoryName
+            .bind(to: navigationItem.rx.title)
+            .disposed(by: disposeBag)
         
-        self.sessionManager.user.selectedCategoryImage
-            .bind(to: self.categoryImageView.rx.image)
-            .disposed(by: self.disposeBag)
+        self.sessionManager
+            .user
+            .selectedCategoryImage
+            .bind(to: categoryImageView.rx.image)
+            .disposed(by: disposeBag)
     }
     
     private func bindCategoryServices() {
         self.viewModel.services
             .asObservable()
             .observeOn(MainScheduler.instance)
-            .bind(
-                to: self.serviceCollectionView.rx.items(
-                    cellIdentifier : "serviceCell",
-                    cellType       : ServiceCollectionViewCell.self)
+            .bind(to: serviceCollectionView.rx
+                .items(
+                    cellIdentifier: "serviceCell",
+                    cellType: ServiceCollectionViewCell.self
                 )
-            { _, service, cell in
+            ) { _, service, cell in
                 cell.service = service
             }
-            .disposed(by: self.disposeBag)
+            .disposed(by: disposeBag)
         
         self.serviceCollectionView.rx
             .setDelegate(self)
-            .disposed(by: self.disposeBag)
+            .disposed(by: disposeBag)
     }
     
     private func bindCollectionviewConfiguration() {
-        self.serviceCollectionView.delegate = self
-        self.serviceCollectionView.rx
+        serviceCollectionView.delegate = self
+        serviceCollectionView.rx
             .itemSelected
-            .subscribe(
-                onNext: { [weak self] indexPath in
-                    guard let strongSelf = self else {return}
-                    strongSelf.serviceCollectionView.deselectItem(at: indexPath, animated: true)
-                    
-                    let cell = strongSelf.serviceCollectionView.cellForItem(at: indexPath) as! ServiceCollectionViewCell
-                    strongSelf.process(cell, with: indexPath)
+            .subscribe(onNext: { [weak self] indexPath in
+                guard let strongSelf = self else {return}
+                strongSelf.serviceCollectionView
+                    .deselectItem(at: indexPath, animated: true)
+
+                let cell = strongSelf.serviceCollectionView
+                    .cellForItem(at: indexPath) as! ServiceCollectionViewCell
+
+                strongSelf.process(cell, with: indexPath)
                 }
             )
             .disposed(by: self.disposeBag)
@@ -132,14 +142,14 @@ extension ServiceSelectionViewController {
         let hasSubTypes = !(cell.service?.subTypes.isEmpty)!
         
         if hasSubTypes && wasNotSelected {
-            let actionSheet = self.showSubTypeSelectionActionSheet(cell.service!.subTypes, indexPath: indexPath)
+            let actionSheet = showSubTypeSelectionActionSheet(cell.service!.subTypes, indexPath: indexPath)
             self.present(actionSheet, animated: true, completion: nil)
         }
         else if wasNotSelected {
-            self.processServiceSelection(id: cell.service!.id, title: name, subType: name, subTypeExists: false, with: indexPath)
+            processServiceSelection(id: cell.service!.id, title: name, subType: name, subTypeExists: false, with: indexPath)
         }
         else {
-            self.removeSelectedServices(cell)
+            removeSelectedServices(cell)
         }
     }
     
@@ -152,65 +162,89 @@ extension ServiceSelectionViewController {
             .map({ subType -> UIAlertAction in
                 return self.subTypeAction(with: subType, indexPath: indexPath)
             })
-        _ = actions.map({ sheet.addAction($0) })
-        
+        _ = actions
+            .map({ sheet.addAction($0) })
+
         return sheet
     }
     
     private func subTypeAction(with subType: ServiceSubType, indexPath: IndexPath) -> UIAlertAction {
         let action = UIAlertAction(
             title: subType.rawValue,
-            style: .default) { [weak self] (_) in
-                guard let strongSelf = self else { return }
-                let cell = strongSelf.serviceCollectionView.cellForItem(at: indexPath) as! ServiceCollectionViewCell
-                strongSelf.processServiceSelection(id: subType.id, title: cell.service!.name, subType: subType.rawValue, subTypeExists: true, with: indexPath)
+            style: .default
+        ) { [weak self] (_) in
+            guard let strongSelf = self else { return }
+
+            let cell = strongSelf.serviceCollectionView
+                .cellForItem(at: indexPath) as! ServiceCollectionViewCell
+
+            strongSelf.processServiceSelection(
+                id: subType.id,
+                title: cell.service!.name,
+                subType: subType.rawValue,
+                subTypeExists: true,
+                with: indexPath
+            )
         }
         return action
     }
     
     private func processServiceSelection(id: Int, title: String, subType: String, subTypeExists: Bool, with indexPath: IndexPath) {
-        let cell = self.serviceCollectionView.cellForItem(at: indexPath) as! ServiceCollectionViewCell
+        let cell = serviceCollectionView
+            .cellForItem(at: indexPath) as! ServiceCollectionViewCell
+
         let subType = subTypeExists ? subType : title
-        let selected = SelectedService(id: id, cell.service!.name, subType)
-        self.selectedServices.append(selected)
-        
-        DispatchQueue.main.async {
-            self.selectedServicesTableview.reloadData()
-            
-            UIView.animate(withDuration: 0.3, animations: {
+        let selected = SelectedService(id: id, type: title, subtype: subType)
+        selectedServices.append(selected)
+
+        UIView.animate(
+            withDuration: 0.3,
+            animations: {
                 cell.alpha = cell.alpha != 0.5 ? 0.5 : 1
-            })
-        }
+        },
+            completion: { _ in
+                self.selectedServicesTableview.reloadData()
+        })
     }
     
     private func removeSelectedServices(_ cell: ServiceCollectionViewCell) {
-        self.selectedServices.removeAll(where: { $0.type == cell.service!.name })
-        
-        DispatchQueue.main.async {
-            self.selectedServicesTableview.reloadData()
-            
-            UIView.animate(withDuration: 0.6, animations: {
+        selectedServices.removeAll(
+            where: {
+                $0.type == cell.service!.name
+        })
+
+        UIView.animate(
+            withDuration: 0.3,
+            animations: {
                 cell.alpha = 1.0
-            })
-        }
+        },
+            completion: { _ in
+                self.selectedServicesTableview.reloadData()
+        })
     }
 }
 
-extension ServiceSelectionViewController: UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, UIScrollViewDelegate {
+extension ServiceSelectionViewController:
+UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, UIScrollViewDelegate {
     
-    func collectionView(_ collectionView: UICollectionView,
-                        layout collectionViewLayout: UICollectionViewLayout,
-                        sizeForItemAt indexPath: IndexPath)
-        -> CGSize {
-            return CGSize(width: 100, height: 100.0)
+    func collectionView(
+        _ collectionView: UICollectionView,
+        layout collectionViewLayout: UICollectionViewLayout,
+        sizeForItemAt indexPath: IndexPath
+        ) -> CGSize {
+        return CGSize(width: 100, height: 100.0)
     }
 }
 
-extension ServiceSelectionViewController: UITableViewDelegate, UITableViewDataSource {
+extension ServiceSelectionViewController:
+UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "selectedService", for: indexPath)
-        cell.textLabel?.text = self.selectedServices[indexPath.row].subtype
+        let cell = tableView.dequeueReusableCell(
+            withIdentifier: "selectedService",
+            for: indexPath
+        )
+        cell.textLabel?.text = selectedServices[indexPath.row].subtype
         cell.textLabel?.textColor = .white
         return cell
     }
@@ -220,7 +254,7 @@ extension ServiceSelectionViewController: UITableViewDelegate, UITableViewDataSo
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.selectedServices.count
+        return selectedServices.count
     }
 }
 

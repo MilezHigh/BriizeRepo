@@ -45,6 +45,15 @@ class ClientDashboardViewModel {
         let api = NetworkManager.instance
         api.logout()
             .asObservable()
+            .flatMap({ value -> Observable<Bool> in
+                guard value else {
+                    return .just(false)
+                }
+                UserDefaults.standard.removeObject(forKey: "Username")
+                UserDefaults.standard.removeObject(forKey: "Password")
+
+                return .just(value)
+            })
             .bind(to: loggedOut)
             .disposed(by: disposebag)
     }

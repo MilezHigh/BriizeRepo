@@ -8,6 +8,8 @@
 
 import Foundation
 import UIKit
+import RxSwift
+import RxCocoa
 
 class SignUpNowViewController: UIViewController {
 
@@ -18,18 +20,82 @@ class SignUpNowViewController: UIViewController {
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var certificationImageView: UIImageView!
     @IBOutlet weak var submitNextButton: UIButton!
+    @IBOutlet weak var addCertButton: UIButton!
     @IBOutlet weak var segmentController: UISegmentedControl!
     @IBOutlet weak var imageViewHeight: NSLayoutConstraint!
-    
-    let expandedHeight: CGFloat = 150.0
 
-    var isSigningUpAsExpert: Bool {
+    var viewModel: SignUpViewModel = SignUpViewModel()
+
+    private var imagePicker: UIImagePickerController!
+    private var arrayOfServiceIds: [Int] = []
+
+    private let expandedHeight: CGFloat = 150.0
+    private let disposeBag = DisposeBag()
+
+    private var localImageData: Data? {
+        didSet {
+            guard let data = localImageData else { return }
+            certificationImageView.image = UIImage(data: data)
+            addCertButton.setTitle("", for: .normal)
+        }
+    }
+
+    private var isSigningUpAsExpert: Bool {
         return segmentController.selectedSegmentIndex == 1
     }
-    
+
+    // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        setup()
+        bind()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.navigationController?.navigationBar.isHidden = true
+    }
+    
+    @IBAction func segmentSelected(_ sender: Any) {
+        let height: CGFloat = isSigningUpAsExpert ? expandedHeight : 0
+        let title: String = isSigningUpAsExpert ? "Next" : "Sign Up"
+        UIView.animate(withDuration: 0.3) {
+            self.imageViewHeight.constant = height
+            self.addCertButton.isHidden = !self.isSigningUpAsExpert
+            self.submitNextButton.setTitle(title, for: .normal)
+            self.view.layoutIfNeeded()
+        }
+    }
 
+    @IBAction func addCertButtonPressed(_ sender: Any) {
+        chooseImageSourceAlertFrom()
+    }
+
+    @IBAction func submitButtonPressed(_ sender: Any) {
+        let user = UserPartialModel(
+            firstName: firstNameTextField.text ?? "",
+            lastName : lastNameTextField.text ?? "",
+            email    : emailTextField.text ?? "",
+            phone    : phoneTextField.text ?? "",
+            password : passwordTextField.text ?? "",
+            certImageData: localImageData,
+            servicesAppliedFor: []
+        )
+
+        switch isSigningUpAsExpert {
+        case true:
+            self.performSegue(withIdentifier: "applyForServiceSegue", sender: self)
+
+        case false:
+            viewModel.signUpUser(model: user)
+        }
+    }
+}
+
+// MARK: - Helpers
+extension SignUpNowViewController {
+
+    private func setup() {
         navigationController?.navigationBar.isHidden = false
         let logo = #imageLiteral(resourceName: "singleB-1")
         let v = UIView(frame: CGRect(x: 0, y: 0, width: 30, height: 30))
@@ -41,8 +107,41 @@ class SignUpNowViewController: UIViewController {
 
         submitNextButton.layer.cornerRadius = 25
 
-        segmentSelected(self)
         setupTextFields()
+        segmentSelected(self)
+    }
+
+    private func bind() {
+        viewModel.signUpSuccess
+            .asDriver()
+            .drive(onNext: { [weak self] in
+                guard $0.0 else { return }
+                self?.navigationController?.popViewController(animated: true)
+            })
+            .disposed(by: disposeBag)
+
+        Observable
+            .combineLatest(
+                [firstNameTextField.rx.text,
+                 lastNameTextField.rx.text,
+                 emailTextField.rx.text,
+                 phoneTextField.rx.text,
+                 passwordTextField.rx.text]
+            )
+            .asObservable()
+            .flatMap({ values -> Observable<Bool> in
+                guard values.filter({ $0 == "" || $0 == nil }).isEmpty
+                    else {
+                        return .just(false)
+                }
+                return .just(true)
+            })
+            .do(onNext: { [weak self] in
+                self?.addCertButton.alpha = $0 ? 1 : 0.5
+                self?.submitNextButton.alpha = $0 ? 1 : 0.5
+            })
+            .bind(to: submitNextButton.rx.isEnabled)
+            .disposed(by: disposeBag)
     }
 
     private func setupTextFields() {
@@ -53,8 +152,10 @@ class SignUpNowViewController: UIViewController {
             phoneTextField,
             passwordTextField
         ]
+
         _ = fields.map ({
-            $0.borderStyle = UITextField.BorderStyle.none
+            $0.delegate = self
+            $0.borderStyle = .none
             $0.addBottomBorderToTextField()
 
             var string: String = ""
@@ -80,29 +181,76 @@ class SignUpNowViewController: UIViewController {
 
             $0.attributedPlaceholder = NSAttributedString(
                 string    : string,
-                attributes: [NSAttributedString.Key.foregroundColor: UIColor.darkText]
+                attributes: [ .foregroundColor : UIColor.darkText ]
             )
         })
     }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        self.navigationController?.navigationBar.isHidden = true
+}
+
+// MARK: - TextField Delegate
+extension SignUpNowViewController: UITextFieldDelegate {
+
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
     }
-    
+}
 
-    @IBAction func segmentSelected(_ sender: Any) {
-        let height: CGFloat = isSigningUpAsExpert ? expandedHeight : 0
-        let title: String = isSigningUpAsExpert ? "Next" : "Sign Up"
+// MARK: - UIPicker Methods
+extension SignUpNowViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
-        UIView.animate(withDuration: 0.3) {
-            self.imageViewHeight.constant = height
-            self.submitNextButton.setTitle(title, for: .normal)
-            self.view.layoutIfNeeded()
+    func imagePickerController(
+        _ picker: UIImagePickerController,
+        didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]
+        ) {
+        let info = convertFromUIImagePickerControllerInfoKeyDictionary(info)
+
+        picker.dismiss(animated: true)
+
+        localImageData = (
+            info [
+                convertFromUIImagePickerControllerInfoKey(UIImagePickerController.InfoKey.originalImage)
+                ] as? UIImage
+            )?
+            .jpegData(compressionQuality: 0.7)
+    }
+
+    private func takePhoto(from imageSource: ImageSource) {
+        imagePicker = UIImagePickerController()
+        imagePicker.delegate = self
+
+        switch imageSource {
+        case .camera:
+            imagePicker.sourceType = .camera
+
+        case .photoLibrary:
+            imagePicker.sourceType = .photoLibrary
         }
+        self.present(imagePicker, animated: true, completion: nil)
     }
 
-    @IBAction func submitButtonPressed(_ sender: Any) {
+    private func chooseImageSourceAlertFrom() {
+        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        let cameraAction = UIAlertAction(title: "Camera", style: .default) { [weak self] (_) in
+            self?.takePhoto(from: .camera)
+        }
+        let photoLibraryAction = UIAlertAction(title: "Photo Library", style: .default) { [weak self] (_) in
+            self?.takePhoto(from: .photoLibrary)
+        }
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
 
+        alert.addAction(cameraAction)
+        alert.addAction(photoLibraryAction)
+        alert.addAction(cancelAction)
+        self.present(alert, animated: true, completion: nil)
     }
+
+    private func convertFromUIImagePickerControllerInfoKeyDictionary(_ input: [UIImagePickerController.InfoKey: Any]) -> [String: Any] {
+        return Dictionary(uniqueKeysWithValues: input.map {key, value in (key.rawValue, value)})
+    }
+
+    private func convertFromUIImagePickerControllerInfoKey(_ input: UIImagePickerController.InfoKey) -> String {
+        return input.rawValue
+    }
+
 }
