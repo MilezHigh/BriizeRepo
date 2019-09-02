@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import Parse
 import RxSwift
 import RxCocoa
 
@@ -18,55 +19,99 @@ enum ImageSource {
 
 class CustomRequestViewController: UIViewController {
     
+    @IBOutlet weak var datePicker: UIDatePicker!
+    @IBOutlet weak var doneButton: UIButton!
     @IBOutlet weak var leftPhotoButton: UIButton!
     @IBOutlet weak var rightPhotoButton: UIButton!
     @IBOutlet weak var submitButton: UIButton!
     @IBOutlet weak var priceSlider: UISlider!
     @IBOutlet weak var notesTextView: UITextView!
+    @IBOutlet weak var imageStackView: UIStackView!
     @IBOutlet weak var leftImageView: UIImageView!
     @IBOutlet weak var rightImageView: UIImageView!
     @IBOutlet weak var priceLabel: UILabel!
     @IBOutlet weak var dateTimeLabel: UILabel!
+    @IBOutlet weak var photosTitleLabel: UILabel!
 
     private enum ButtonSource {
         case left
         case right
     }
-    
+
     private var imagePicker: UIImagePickerController!
     private var selectedButton: ButtonSource = .left
-    
+
+    private let viewModel = CustomRequestViewModel()
     private let disposeBag = DisposeBag()
 
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        bindSlider()
+        bind()
         setup()
     }
-    
+
+    @IBAction func doneButtton(_ sender: Any) {
+        updateUIForDateSelection(hidePhotos: false)
+    }
+
     @IBAction func leftButtonPressed(_ sender: Any) {
-        self.chooseImageSourceAlertFrom(buttonSource: .left)
+        chooseImageSourceAlertFrom(buttonSource: .left)
     }
     
     @IBAction func rightButtonPressed(_ sender: Any) {
-        self.chooseImageSourceAlertFrom(buttonSource: .right)
+        chooseImageSourceAlertFrom(buttonSource: .right)
     }
 
     @IBAction func submitAction(_ sender: Any) {
+        let sanitizedText = priceLabel.text?.replacingOccurrences(of: "$", with: "") ?? "0"
+        let clientAskingPrice = Int(sanitizedText) ?? 0
+        let profit = (Int(sanitizedText) ?? 0) / 10
 
-
+        let model = RequestOrderModel(
+            id: "",
+            type: "Custom",
+            clientID: BriizeManager.shared.user.model.value?.id ?? "",
+            clientFullName: BriizeManager.shared.user.model.value?.name ?? "",
+            expertID: "",
+            expertFullname: "",
+            serviceType: BriizeManager.shared.user.selectedCategoryName.value,
+            notes: notesTextView.text ?? "",
+            serviceIds: BriizeManager.shared.user.searchExpertsWithTheseServices.value.filter({ $0 != 0 }),
+            bids: [],
+            address: "",
+            startTime: nil,
+            finishTime: nil,
+            scheduledDate: DateFormatter().date(from: dateTimeLabel.text ?? ""),
+            requestStatus: RequestState.ClientRequested.rawValue,
+            cost: 0,
+            payToExpert: 0,
+            profit: profit,
+            clientAskingPrice: clientAskingPrice,
+            beforeImage: leftImageView.image?.jpegData(compressionQuality: 0.7),
+            afterImage: rightImageView.image?.jpegData(compressionQuality: 0.7)
+        )
+        viewModel.uploadCustomer(request: model)
     }
 }
 
 // MARK: - Helper Methods
 extension CustomRequestViewController {
     
-    private func bindSlider() {
-        self.priceSlider.minimumValue = 0
-        self.priceSlider.maximumValue = 1000
-        self.priceSlider.value = 125
-        self.priceSlider.rx.value
+    private func bind() {
+        viewModel
+            .requestSubmitted
+            .asDriver()
+            .drive(onNext: { [weak self] in
+                guard $0 else { return }
+                self?.navigationController?.popToRootViewController(animated: true)
+            })
+            .disposed(by: disposeBag)
+
+        priceSlider.minimumValue = 0
+        priceSlider.maximumValue = 1000
+        priceSlider.value = 125
+        priceSlider.rx.value
             .asObservable()
             .observeOn(MainScheduler.instance)
             .throttle(0.1, scheduler: MainScheduler.instance)
@@ -77,13 +122,42 @@ extension CustomRequestViewController {
                 return .just("$" + Int(roundedValue).description)
             })
             .bind(to: priceLabel.rx.text)
-            .disposed(by: self.disposeBag)
+            .disposed(by: disposeBag)
     }
-    
+
+    private func updateUIForDateSelection(hidePhotos: Bool) {
+        UIView.animate(withDuration: 0.5) {
+            self.imageStackView.isHidden = hidePhotos
+            self.imageStackView.alpha = hidePhotos ? 0 : 1
+
+            self.photosTitleLabel.isHidden = hidePhotos
+            self.photosTitleLabel.alpha = hidePhotos ? 0 : 1
+
+            self.doneButton.isHidden = !hidePhotos
+            self.doneButton.alpha = !hidePhotos ? 0 : 1
+
+            self.datePicker.isHidden = !hidePhotos
+            self.datePicker.alpha = !hidePhotos ? 0 : 1
+
+            guard !hidePhotos else { return }
+            self.dateTimeLabel.text = self.datePicker.date.description(with: .some(.current))
+            self.dateTimeLabel.layoutIfNeeded()
+        }
+    }
+
+    @objc private func dateLabelTapped() {
+        updateUIForDateSelection(hidePhotos: true)
+    }
+
     private func setup() {
+        imageStackView.layer.cornerRadius = 12
+        notesTextView.layer.cornerRadius = 12
         submitButton.layer.cornerRadius = 25
+
+        let tap = UITapGestureRecognizer(target: self, action: #selector(dateLabelTapped))
+        dateTimeLabel.addGestureRecognizer(tap)
+        dateTimeLabel.isUserInteractionEnabled = true
     }
-    
 }
 
 // MARK: - Picker Methods

@@ -352,7 +352,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Ioj-19-lbF">
-                                <rect key="frame" x="0.0" y="88" width="375" height="690"/>
+                                <rect key="frame" x="0.0" y="88" width="375" height="620"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="applyForServiceTableCell" rowHeight="70" id="8rH-VR-jKT">
@@ -366,17 +366,35 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mbv-fl-TsP">
+                                <rect key="frame" x="20" y="728" width="335" height="50"/>
+                                <color key="backgroundColor" red="0.13" green="0.13" blue="0.13" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="62l-qo-EYK"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="PingFangHK-Semibold" family="PingFang HK" pointSize="15"/>
+                                <state key="normal" title="Done">
+                                    <color key="titleColor" red="0.83921568629999999" green="0.64705882349999999" blue="0.55294117649999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                </state>
+                                <connections>
+                                    <action selector="doneButtonPressed:" destination="Vjl-sQ-jwD" eventType="touchUpInside" id="WR2-yJ-2Am"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="Ioj-19-lbF" firstAttribute="leading" secondItem="VX5-UI-kyH" secondAttribute="leading" id="1cv-VE-WHp"/>
                             <constraint firstItem="Ioj-19-lbF" firstAttribute="trailing" secondItem="VX5-UI-kyH" secondAttribute="trailing" id="5V1-0h-6dv"/>
                             <constraint firstItem="Ioj-19-lbF" firstAttribute="top" secondItem="VX5-UI-kyH" secondAttribute="top" id="6sE-mk-qZ0"/>
-                            <constraint firstItem="Ioj-19-lbF" firstAttribute="bottom" secondItem="VX5-UI-kyH" secondAttribute="bottom" id="wie-Jr-kuf"/>
+                            <constraint firstItem="Mbv-fl-TsP" firstAttribute="top" secondItem="Ioj-19-lbF" secondAttribute="bottom" constant="20" id="dwd-mF-VbH"/>
+                            <constraint firstItem="Mbv-fl-TsP" firstAttribute="bottom" secondItem="VX5-UI-kyH" secondAttribute="bottom" id="j4I-nU-Ipf"/>
+                            <constraint firstItem="Mbv-fl-TsP" firstAttribute="leading" secondItem="VX5-UI-kyH" secondAttribute="leading" constant="20" id="oJ9-F9-PVk"/>
+                            <constraint firstItem="VX5-UI-kyH" firstAttribute="trailing" secondItem="Mbv-fl-TsP" secondAttribute="trailing" constant="20" id="oMC-Ud-d7K"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="VX5-UI-kyH"/>
                     </view>
                     <connections>
+                        <outlet property="doneButton" destination="Mbv-fl-TsP" id="4kE-Se-hJn"/>
                         <outlet property="servicesTableView" destination="Ioj-19-lbF" id="ccV-IT-c8w"/>
                     </connections>
                 </viewController>

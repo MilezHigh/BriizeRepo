@@ -14,15 +14,44 @@ import RxCocoa
 class ApplyForServicesViewController: UIViewController {
     
     @IBOutlet weak var servicesTableView: UITableView!
+    @IBOutlet weak var doneButton: UIButton!
+
+    var selectedServices: (([Int]) -> ())?
 
     let sections: [ServiceDatasource] = ServiceDatasource.allServices()
 
+    private let serviceIds = BehaviorRelay<[Int]>(value: [])
+    private let disposebag = DisposeBag()
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        servicesTableView.delegate = self
-        servicesTableView.dataSource = self
+        setup()
+        bind()
     }
 
+    private func setup() {
+        servicesTableView.delegate = self
+        servicesTableView.dataSource = self
+        doneButton.layer.cornerRadius = 25
+    }
+
+    private func bind() {
+        serviceIds
+            .asObservable()
+            .flatMap({ value -> Observable<Bool> in
+                return .just(!value.isEmpty)
+            })
+            .flatMap({ [weak self] isEnabled -> Observable<Bool> in
+                self?.doneButton.alpha = isEnabled ? 1 : 0.5
+                return .just(isEnabled)
+            })
+            .bind(to: doneButton.rx.isEnabled)
+            .disposed(by: disposebag)
+    }
+
+    @IBAction func doneButtonPressed(_ sender: Any) {
+        selectedServices?(serviceIds.value)
+    }
 }
 
 extension ApplyForServicesViewController: UITableViewDelegate, UITableViewDataSource {
@@ -38,6 +67,7 @@ extension ApplyForServicesViewController: UITableViewDelegate, UITableViewDataSo
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "applyForServiceTableCell", for: indexPath)
         cell.textLabel?.text = sections[indexPath.section].services[indexPath.row].name
+        cell.accessoryType = .none
         return cell
     }
 
@@ -50,9 +80,22 @@ extension ApplyForServicesViewController: UITableViewDelegate, UITableViewDataSo
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let cell = tableView.cellForRow(at: indexPath)
+        tableView.deselectRow(at: indexPath, animated: false)
 
+        let model = sections[indexPath.section].services[indexPath.row]
+        let cell = tableView.cellForRow(at: indexPath) ?? UITableViewCell()
+        let wasSelected = serviceIds.value.contains(model.id)
+        cell.accessoryType = wasSelected ? .none : .checkmark
 
+        var ids = serviceIds.value
+        guard wasSelected else {
+            ids.append(model.id)
+            serviceIds.accept(ids)
+            return
+        }
+        ids.removeAll(where: {
+            $0 == model.id
+        })
+        serviceIds.accept(ids)
     }
-
 }

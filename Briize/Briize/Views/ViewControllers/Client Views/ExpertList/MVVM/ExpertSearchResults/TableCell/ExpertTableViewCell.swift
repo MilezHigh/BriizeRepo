@@ -87,35 +87,48 @@ class ExpertTableViewCell: UITableViewCell {
             
             let requestOrder = RequestOrderModel(
                 id: nil,
+                type: "Standard",
                 clientID: BriizeManager.shared.user.model.value?.id ?? "",
                 clientFullName: BriizeManager.shared.user.model.value?.name ?? "",
                 expertID: self.model?.id ?? "",
                 expertFullname: self.model?.name ?? "",
                 serviceType: BriizeManager.shared.user.selectedCategoryName.value,
+                notes: "",
                 serviceIds: BriizeManager.shared.user.searchExpertsWithTheseServices.value.filter({ $0 != 0 }),
+                bids: [],
                 address: "",
                 startTime: nil,
                 finishTime: nil,
+                scheduledDate: nil,
                 requestStatus: RequestState.ClientRequested.rawValue,
                 cost: cost,
                 payToExpert: cost - profit,
-                profit: profit
+                profit: profit,
+                clientAskingPrice: 0,
+                beforeImage: nil,
+                afterImage: nil
             )
-            guard let requestOrderVC = BriizeRouter.RequestOrderVC else { return }
+            guard let requestOrderVC = BriizeRouter.RequestOrderVC,
+                let currentContext = BriizeManager.shared.liveController.value
+                else {
+                    return
+            }
             requestOrderVC.viewModel = RequestOrderViewModel(requestOrder, state: .ClientRequested)
             
-            BriizeManager.shared.liveController.value?.navigationController?
+            currentContext
+                .navigationController?
                 .present(UINavigationController(rootViewController: requestOrderVC), animated: true)
         }
+
         let action2 = UIAlertAction(title: "Schedule Request", style: .default) { (action) in
             self.showDatePickerVC(topController)
         }
+
         let action3 = UIAlertAction(title: "Cancel", style: .cancel)
         
         actionSheet.addAction(action1)
         actionSheet.addAction(action2)
         actionSheet.addAction(action3)
-        
         topController.present(actionSheet, animated: true)
     }
 }

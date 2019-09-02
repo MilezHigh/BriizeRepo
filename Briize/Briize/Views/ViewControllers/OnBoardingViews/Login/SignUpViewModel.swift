@@ -49,7 +49,6 @@ class SignUpViewModel {
                 UserDefaults.standard.set(model.email, forKey: "Username")
                 UserDefaults.standard.set(model.password, forKey: "Password")
             })
-            
             .bind(to: signUpSuccess)
             .disposed(by: disposebag)
     }

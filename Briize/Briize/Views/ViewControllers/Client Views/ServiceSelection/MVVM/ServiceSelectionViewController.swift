@@ -21,14 +21,14 @@ class ServiceSelectionViewController: UIViewController {
     @IBOutlet weak var submitButton: UIButton!
     
     typealias SelectedService = (id: Int, type: String, subtype: String)
-    
-    private let disposeBag = DisposeBag()
-    
-    let viewModel = ServiceSelectionViewModel()
-    
-    private var servicesChosen:[ServiceSubType] = []
-    
+
     var selectedServices: [SelectedService] = []
+
+    private var servicesChosen: [ServiceSubType] = []
+
+    let viewModel = ServiceSelectionViewModel()
+
+    private let disposeBag = DisposeBag()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -82,6 +82,7 @@ extension ServiceSelectionViewController {
         selectedServicesTableview.delegate = self
         selectedServicesTableview.dataSource = self
         selectedServicesTableview.tableFooterView = UIView()
+        submitButton.layer.cornerRadius = 25
         categoryImageView.darkOverlay()
     }
     
@@ -100,7 +101,7 @@ extension ServiceSelectionViewController {
     }
     
     private func bindCategoryServices() {
-        self.viewModel.services
+        viewModel.services
             .asObservable()
             .observeOn(MainScheduler.instance)
             .bind(to: serviceCollectionView.rx
@@ -113,7 +114,7 @@ extension ServiceSelectionViewController {
             }
             .disposed(by: disposeBag)
         
-        self.serviceCollectionView.rx
+        serviceCollectionView.rx
             .setDelegate(self)
             .disposed(by: disposeBag)
     }
@@ -122,15 +123,15 @@ extension ServiceSelectionViewController {
         serviceCollectionView.delegate = self
         serviceCollectionView.rx
             .itemSelected
-            .subscribe(onNext: { [weak self] indexPath in
+            .subscribe(onNext: { [weak self] in
                 guard let strongSelf = self else {return}
                 strongSelf.serviceCollectionView
-                    .deselectItem(at: indexPath, animated: true)
+                    .deselectItem(at: $0, animated: true)
 
-                let cell = strongSelf.serviceCollectionView
-                    .cellForItem(at: indexPath) as! ServiceCollectionViewCell
+                guard let cell = strongSelf.serviceCollectionView
+                    .cellForItem(at: $0) as? ServiceCollectionViewCell else { return }
 
-                strongSelf.process(cell, with: indexPath)
+                strongSelf.process(cell, with: $0)
                 }
             )
             .disposed(by: self.disposeBag)
@@ -190,9 +191,7 @@ extension ServiceSelectionViewController {
     }
     
     private func processServiceSelection(id: Int, title: String, subType: String, subTypeExists: Bool, with indexPath: IndexPath) {
-        let cell = serviceCollectionView
-            .cellForItem(at: indexPath) as! ServiceCollectionViewCell
-
+        let cell = serviceCollectionView.cellForItem(at: indexPath) as! ServiceCollectionViewCell
         let subType = subTypeExists ? subType : title
         let selected = SelectedService(id: id, type: title, subtype: subType)
         selectedServices.append(selected)

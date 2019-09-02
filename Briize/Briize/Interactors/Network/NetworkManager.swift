@@ -64,8 +64,7 @@ extension NetworkManager {
     func signUpUser(
         model             : UserPartialModel,
         certImageData     : Data?,
-        servicesAppliedFor: [String]
-        ) -> Observable<(Bool, UserPartialModel?, Error?)> {
+        servicesAppliedFor: [String]) -> Observable<(Bool, UserPartialModel?, Error?)> {
         let user = PFUser()
         user.username = model.email
         user.password = model.password
@@ -133,7 +132,6 @@ extension NetworkManager {
     func pullUser(_ id: String, completion: @escaping (UserModel?) -> ()) {
         let query = PFQuery(className: "_User")
         query.whereKey("objectId", equalTo: id)
-
         query.getFirstObjectInBackground { (object, error) in
             switch error != nil {
             case true:
@@ -149,39 +147,25 @@ extension NetworkManager {
     }
     
     func postRequest(_ model: RequestOrderModel, status: Int, completion: @escaping (Bool, String?, Error?) -> ()) {
-        let request = PFObject(className: "Requests")
-        request["expertFullName"] = model.expertFullname
-        request["expertName"] = model.expertID
-        request["clientFullName"] = model.clientFullName
-        request["clientName"] = model.clientID
-        request["address"] = model.address
-        request["requestStatus"] = status
-        request["serviceType"] = model.serviceType
-        request["serviceIds"] = model.serviceIds
-        request["cost"] = model.cost
-        request["payToExpert"] = model.payToExpert
-        request["profit"] = model.profit
-        
+        let request = model.createPFObject()
         request.saveInBackground { (success, error) in
-            guard error == nil
-                else {
-                    completion(false, nil, error)
-                    return
+            guard error == nil else {
+                completion(false, nil, error)
+                return
             }
 
             let predicate = NSPredicate(format: "clientName = '\(model.clientID)' AND requestStatus = \(status)")
             let query = PFQuery(className: "Requests", predicate: predicate)
             query.findObjectsInBackground(block: { (objects, error) in
-                guard error == nil
-                    else {
-                        completion(false, nil, error)
-                        return
+                guard error == nil else {
+                    completion(false, nil, error)
+                    return
                 }
-                guard let object = objects?.first
-                    else {
-                        completion(false, nil, nil) // <--- Place Error
-                        return
+                guard let object = objects?.first else {
+                    completion(false, nil, nil) // <--- Place Error
+                    return
                 }
+
                 completion(success, object.objectId, nil)
             })
         }
@@ -190,16 +174,14 @@ extension NetworkManager {
     func checkRequestState(from requestId: String, completion: @escaping (RequestState) -> ()) {
         let predicate = NSPredicate(format: "objectId = '\(requestId)'")
         let query = PFQuery(className: "Requests", predicate: predicate)
-
         query.findObjectsInBackground(block: { (objects, error) in
-            guard error == nil
-                else {
-                    return
+            guard error == nil else {
+                return
             }
-            guard let object = objects?.first
-                else {
-                    return
+            guard let object = objects?.first else {
+                return
             }
+
             completion(RequestState.create(from: (object["requestStatus"] as? Int) ?? 0))
         })
     }

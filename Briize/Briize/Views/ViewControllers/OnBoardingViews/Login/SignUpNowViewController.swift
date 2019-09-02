@@ -27,7 +27,6 @@ class SignUpNowViewController: UIViewController {
     var viewModel: SignUpViewModel = SignUpViewModel()
 
     private var imagePicker: UIImagePickerController!
-    private var arrayOfServiceIds: [Int] = []
 
     private let expandedHeight: CGFloat = 150.0
     private let disposeBag = DisposeBag()
@@ -39,7 +38,6 @@ class SignUpNowViewController: UIViewController {
             addCertButton.setTitle("", for: .normal)
         }
     }
-
     private var isSigningUpAsExpert: Bool {
         return segmentController.selectedSegmentIndex == 1
     }
@@ -50,15 +48,23 @@ class SignUpNowViewController: UIViewController {
         setup()
         bind()
     }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        self.navigationController?.navigationBar.isHidden = true
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.navigationBar.isHidden = false
+    }
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let destination = segue.destination as? ApplyForServicesViewController else { return }
+        destination.selectedServices = { [weak self] ids in
+            self?.submitUser(selectedServiceIds: ids)
+        }
     }
     
     @IBAction func segmentSelected(_ sender: Any) {
         let height: CGFloat = isSigningUpAsExpert ? expandedHeight : 0
         let title: String = isSigningUpAsExpert ? "Next" : "Sign Up"
+
         UIView.animate(withDuration: 0.3) {
             self.imageViewHeight.constant = height
             self.addCertButton.isHidden = !self.isSigningUpAsExpert
@@ -72,6 +78,10 @@ class SignUpNowViewController: UIViewController {
     }
 
     @IBAction func submitButtonPressed(_ sender: Any) {
+        submitUser()
+    }
+
+    func submitUser(selectedServiceIds: [Int] = []) {
         let user = UserPartialModel(
             firstName: firstNameTextField.text ?? "",
             lastName : lastNameTextField.text ?? "",
@@ -79,10 +89,10 @@ class SignUpNowViewController: UIViewController {
             phone    : phoneTextField.text ?? "",
             password : passwordTextField.text ?? "",
             certImageData: localImageData,
-            servicesAppliedFor: []
+            servicesAppliedFor: selectedServiceIds.compactMap({ $0.description })
         )
 
-        switch isSigningUpAsExpert {
+        switch isSigningUpAsExpert && selectedServiceIds.isEmpty {
         case true:
             self.performSegue(withIdentifier: "applyForServiceSegue", sender: self)
 
@@ -106,17 +116,20 @@ extension SignUpNowViewController {
         navigationItem.titleView = v
 
         submitNextButton.layer.cornerRadius = 25
+        certificationImageView.layer.cornerRadius = 12
 
         setupTextFields()
         segmentSelected(self)
     }
 
     private func bind() {
-        viewModel.signUpSuccess
+        viewModel
+            .signUpSuccess
             .asDriver()
-            .drive(onNext: { [weak self] in
+            .drive( onNext: { [weak self] in
                 guard $0.0 else { return }
-                self?.navigationController?.popViewController(animated: true)
+                self?.navigationController?.navigationBar.isHidden = true
+                self?.navigationController?.popToRootViewController(animated: true)
             })
             .disposed(by: disposeBag)
 
@@ -130,13 +143,11 @@ extension SignUpNowViewController {
             )
             .asObservable()
             .flatMap({ values -> Observable<Bool> in
-                guard values.filter({ $0 == "" || $0 == nil }).isEmpty
-                    else {
-                        return .just(false)
-                }
-                return .just(true)
+                return .just(values
+                    .filter({ $0 == "" || $0 == nil })
+                    .isEmpty ? true : false)
             })
-            .do(onNext: { [weak self] in
+            .do( onNext: { [weak self] in
                 self?.addCertButton.alpha = $0 ? 1 : 0.5
                 self?.submitNextButton.alpha = $0 ? 1 : 0.5
             })
@@ -208,9 +219,7 @@ extension SignUpNowViewController: UIImagePickerControllerDelegate, UINavigation
         picker.dismiss(animated: true)
 
         localImageData = (
-            info [
-                convertFromUIImagePickerControllerInfoKey(UIImagePickerController.InfoKey.originalImage)
-                ] as? UIImage
+            info [convertFromUIImagePickerControllerInfoKey(UIImagePickerController.InfoKey.originalImage)] as? UIImage
             )?
             .jpegData(compressionQuality: 0.7)
     }
@@ -252,5 +261,4 @@ extension SignUpNowViewController: UIImagePickerControllerDelegate, UINavigation
     private func convertFromUIImagePickerControllerInfoKey(_ input: UIImagePickerController.InfoKey) -> String {
         return input.rawValue
     }
-
 }

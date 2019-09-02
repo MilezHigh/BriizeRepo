@@ -2,7 +2,7 @@
 //  AppDelegate.swift
 //  Briize
 //
-//  Created by Admin on 5/19/18.
+//  Created by Miles Fishman on 5/19/18.
 //  Copyright © 2018 Miles Fishman. All rights reserved.
 //
 
