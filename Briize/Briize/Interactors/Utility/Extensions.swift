@@ -18,13 +18,11 @@ public var kHeroImage: Int = 0
 
 // MARK: - UIView
 extension UIView {
+
     class func fromNib<T: UIView>() -> T {
         return Bundle.main.loadNibNamed(String(describing: T.self), owner: nil, options: nil)![0] as! T
     }
-}
 
-extension UIView {
-    
     public func gradientOverlay() {
         let gradient = CAGradientLayer()
         gradient.frame = self.bounds.applying(CGAffineTransform(scaleX: 3, y: 3))
@@ -97,7 +95,6 @@ extension UIImageView {
                 else {
                     return DispatchQueue.main.async() {
                         self?.alpha = 0
-                        
                         UIView.animate(withDuration: 0.8, animations: {
                             act.removeFromSuperview()
                             self?.clipsToBounds = false
@@ -262,5 +259,15 @@ extension Data {
 
     func pfFileObject() -> PFFileObject? {
         return PFFileObject(data: self)
+    }
+}
+
+extension DateFormatter {
+
+    static func prettyDate(from string: String) {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "dd-MM-YYYY"
+
+
     }
 }

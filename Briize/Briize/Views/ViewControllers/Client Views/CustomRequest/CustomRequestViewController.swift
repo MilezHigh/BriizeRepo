@@ -32,6 +32,8 @@ class CustomRequestViewController: UIViewController {
     @IBOutlet weak var priceLabel: UILabel!
     @IBOutlet weak var dateTimeLabel: UILabel!
     @IBOutlet weak var photosTitleLabel: UILabel!
+    @IBOutlet weak var priceTitleLabel: UILabel!
+    @IBOutlet weak var notesTitleLabel: UILabel!
 
     private enum ButtonSource {
         case left
@@ -49,6 +51,11 @@ class CustomRequestViewController: UIViewController {
         super.viewDidLoad()
         bind()
         setup()
+        updateUIForDateSelection(hidePhotos: true)
+    }
+
+    deinit {
+        print("deinit success - \(self.description)")
     }
 
     @IBAction func doneButtton(_ sender: Any) {
@@ -77,7 +84,7 @@ class CustomRequestViewController: UIViewController {
             expertFullname: "",
             serviceType: BriizeManager.shared.user.selectedCategoryName.value,
             notes: notesTextView.text ?? "",
-            serviceIds: BriizeManager.shared.user.searchExpertsWithTheseServices.value.filter({ $0 != 0 }),
+            serviceIds: BriizeManager.shared.user.searchExpertsWithTheseServices.value,
             bids: [],
             address: "",
             startTime: nil,
@@ -127,21 +134,31 @@ extension CustomRequestViewController {
 
     private func updateUIForDateSelection(hidePhotos: Bool) {
         UIView.animate(withDuration: 0.5) {
-            self.imageStackView.isHidden = hidePhotos
-            self.imageStackView.alpha = hidePhotos ? 0 : 1
-
-            self.photosTitleLabel.isHidden = hidePhotos
             self.photosTitleLabel.alpha = hidePhotos ? 0 : 1
-
-            self.doneButton.isHidden = !hidePhotos
+            self.imageStackView.alpha = hidePhotos ? 0 : 1
+            self.priceTitleLabel.alpha = hidePhotos ? 0 : 1
+            self.priceLabel.alpha = hidePhotos ? 0 : 1
+            self.priceSlider.alpha = hidePhotos ? 0 : 1
+            self.notesTitleLabel.alpha = hidePhotos ? 0 : 1
+            self.notesTextView.alpha = hidePhotos ? 0 : 1
+            self.submitButton.alpha = hidePhotos ? 0 : 1
+            self.datePicker.alpha = !hidePhotos ? 0 : 1
             self.doneButton.alpha = !hidePhotos ? 0 : 1
 
-            self.datePicker.isHidden = !hidePhotos
-            self.datePicker.alpha = !hidePhotos ? 0 : 1
+            self.photosTitleLabel.isHidden = hidePhotos
+            self.imageStackView.isHidden = hidePhotos
+            self.priceTitleLabel.isHidden = hidePhotos
+            self.priceLabel.isHidden = hidePhotos
+            self.priceSlider.isHidden = hidePhotos
+            self.notesTitleLabel.isHidden = hidePhotos
+            self.notesTextView.isHidden = hidePhotos
+            self.submitButton.isHidden = hidePhotos
+            self.doneButton.isHidden = !hidePhotos
 
             guard !hidePhotos else { return }
-            self.dateTimeLabel.text = self.datePicker.date.description(with: .some(.current))
-            self.dateTimeLabel.layoutIfNeeded()
+            let formatter = DateFormatter()
+            formatter.dateFormat = "MMM d, YYYY, h:mm a"
+            self.dateTimeLabel.text = formatter.string(from: self.datePicker.date)
         }
     }
 
@@ -153,6 +170,7 @@ extension CustomRequestViewController {
         imageStackView.layer.cornerRadius = 12
         notesTextView.layer.cornerRadius = 12
         submitButton.layer.cornerRadius = 25
+        doneButton.layer.cornerRadius = 25
 
         let tap = UITapGestureRecognizer(target: self, action: #selector(dateLabelTapped))
         dateTimeLabel.addGestureRecognizer(tap)
@@ -178,10 +196,10 @@ extension CustomRequestViewController: UIImagePickerControllerDelegate, UINaviga
 
         switch selectedButton {
         case .left:
-            self.leftImageView.image = image
+            leftImageView.image = image
             
         case .right:
-            self.rightImageView.image = image
+            rightImageView.image = image
         }
     }
     
@@ -200,7 +218,7 @@ extension CustomRequestViewController: UIImagePickerControllerDelegate, UINaviga
     }
     
     private func chooseImageSourceAlertFrom(buttonSource: ButtonSource) {
-        self.selectedButton = buttonSource
+        selectedButton = buttonSource
         
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         let cameraAction = UIAlertAction(title: "Camera", style: .default) { [weak self] (_) in
@@ -214,7 +232,6 @@ extension CustomRequestViewController: UIImagePickerControllerDelegate, UINaviga
         alert.addAction(cameraAction)
         alert.addAction(photoLibraryAction)
         alert.addAction(cancelAction)
-        
         self.present(alert, animated: true, completion: nil)
     }
 

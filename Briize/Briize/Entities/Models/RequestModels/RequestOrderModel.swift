@@ -130,8 +130,8 @@ extension RequestOrderModel {
         scheduledDate == nil ? () : (request["scheduledDate"] = scheduledDate)
         startTime == nil ? () : (request["startTime"] = startTime)
         finishTime == nil ? () : (request["finishTime"] = startTime)
-        beforeImage == nil ? () : (request["beforeImage"] = beforeImage)
-        afterImage == nil ? () : (request["afterImage"] = afterImage)
+        beforeImage == nil ? () : (request["beforeImage"] = PFFileObject(data: beforeImage!))
+        afterImage == nil ? () : (request["afterImage"] = PFFileObject(data: afterImage!))
 
         return request
     }
