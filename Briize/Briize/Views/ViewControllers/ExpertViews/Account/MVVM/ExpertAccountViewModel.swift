@@ -22,7 +22,7 @@ class ExpertAccountViewModel {
         let support = ExpertAccountOption(name: "Support", icon: UIImage(named: "support-xxl"), segueID: "", description:"Send us an email describing your inquiry.")
         let logOut = ExpertAccountOption(name: "Log-Out", icon: UIImage(named: "account-logout-xxl"), segueID: "", description:"Log out of Briize. Your account will be offline once you log out.")
         
-        let options:[ExpertAccountOption] = [services, payment, portfolio, support, completedOrders, logOut]
+        let options: [ExpertAccountOption] = [services, payment, portfolio, support, completedOrders, logOut]
         
         return options
     }

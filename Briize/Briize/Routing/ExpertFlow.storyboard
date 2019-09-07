@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="RGK-gb-Z5i">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="RGK-gb-Z5i">
     <device id="retina5_9" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -27,6 +27,10 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </imageView>
+                            <view alpha="0.40000000000000002" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wPv-fG-l6e">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EE0-kJ-SVP">
                                 <rect key="frame" x="0.0" y="44" width="375" height="734"/>
                                 <subviews>
@@ -233,10 +237,14 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="wPv-fG-l6e" firstAttribute="leading" secondItem="avI-6F-tjG" secondAttribute="leading" id="4yf-RP-k0D"/>
                             <constraint firstItem="avI-6F-tjG" firstAttribute="top" secondItem="d0j-c2-vGT" secondAttribute="top" id="5Uy-kG-lfw"/>
+                            <constraint firstItem="wPv-fG-l6e" firstAttribute="height" secondItem="avI-6F-tjG" secondAttribute="height" id="C4W-lW-cwO"/>
+                            <constraint firstItem="wPv-fG-l6e" firstAttribute="top" secondItem="avI-6F-tjG" secondAttribute="top" id="HqE-9R-YBW"/>
                             <constraint firstItem="EE0-kJ-SVP" firstAttribute="bottom" secondItem="dDK-GQ-Pqa" secondAttribute="bottom" id="Ji4-lq-nmb"/>
                             <constraint firstItem="EE0-kJ-SVP" firstAttribute="top" secondItem="dDK-GQ-Pqa" secondAttribute="top" id="VRr-0m-YXp"/>
                             <constraint firstItem="avI-6F-tjG" firstAttribute="trailing" secondItem="dDK-GQ-Pqa" secondAttribute="trailing" id="WwY-VZ-wWI"/>
+                            <constraint firstItem="wPv-fG-l6e" firstAttribute="width" secondItem="avI-6F-tjG" secondAttribute="width" id="Wy5-Pe-lQv"/>
                             <constraint firstItem="avI-6F-tjG" firstAttribute="leading" secondItem="dDK-GQ-Pqa" secondAttribute="leading" id="fnE-nz-hSY"/>
                             <constraint firstAttribute="bottom" secondItem="avI-6F-tjG" secondAttribute="bottom" id="geU-09-DcC"/>
                             <constraint firstItem="dDK-GQ-Pqa" firstAttribute="trailing" secondItem="EE0-kJ-SVP" secondAttribute="trailing" id="jgN-V0-Gtm"/>
@@ -529,7 +537,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Briizelogo" width="320" height="320"/>
+        <image name="Briizelogo" width="1000" height="1000"/>
         <image name="border1" width="500" height="750"/>
     </resources>
 </document>

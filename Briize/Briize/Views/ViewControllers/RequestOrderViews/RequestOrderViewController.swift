@@ -21,11 +21,9 @@ class RequestOrderViewController: UIViewController {
     @IBOutlet weak var thirdOptionButton: UIButton! /// <---  Not Assigned
     @IBOutlet weak var priceLabel: UILabel!
     @IBOutlet weak var statusLabel: UILabel!
-    @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var servicesLabel: UILabel!
     @IBOutlet weak var etaLabel: UILabel!
     @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var userImageView: UIImageView!
     @IBOutlet weak var masterView: UIView!
     @IBOutlet weak var masterBottomView: UIView!
 
@@ -57,13 +55,9 @@ class RequestOrderViewController: UIViewController {
     private func setupUI() {
         masterView.layer.cornerRadius = 12
         masterBottomView.layer.cornerRadius = 12
-        userImageView.layer.cornerRadius = userImageView.bounds.width / 2
         cheackEtaButton.layer.cornerRadius = 26
         cancelButton.layer.cornerRadius = 26
         completeButton.layer.cornerRadius = 30
-        
-        guard let userId = viewModel?.requestOrder.value?.expertID else { return }
-        userImageView.downloadedFromAPI(with: userId)
         
         guard let state = viewModel?.requestState.value else { return }
         let isActive = state == .Active
@@ -102,18 +96,16 @@ class RequestOrderViewController: UIViewController {
         
         guard let userIsExpert = sessionManager.user.model.value?.isExpert else { return }
         nameLabel.text = userIsExpert ? requestOrder.clientFullName : requestOrder.expertFullname
-        
-        titleLabel.text = userIsExpert ? "Your Client:" : "Your Expert:"
-        
+
         guard let status = RequestState.init(rawValue: requestOrder.requestStatus) else { return }
         statusLabel.text = " " + status.userFriendlyMessage
         
-        var services: String = ""
-        _ = requestOrder.serviceIds.map {
-            print("Service ID - " + $0.description)
-            services += ServiceSubType.serviceNameFor(id: $0) + " | "
-        }
-        servicesLabel.text = " " + requestOrder.serviceType + " - " + services
+//        var services: String = ""
+//        _ = requestOrder.serviceIds.map {
+//            print("Service ID - " + $0.description)
+//            services += ServiceSubType.serviceNameFor(id: $0) + " | "
+//        }
+        servicesLabel.text = " " + requestOrder.serviceType
     }
     
     private func obtainExpertApproval() {

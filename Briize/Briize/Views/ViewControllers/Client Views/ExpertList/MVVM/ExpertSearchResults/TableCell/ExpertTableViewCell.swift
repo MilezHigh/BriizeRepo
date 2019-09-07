@@ -86,7 +86,7 @@ class ExpertTableViewCell: UITableViewCell {
             let profit = cost / 10 /// <--- 10% Commission
             
             let requestOrder = RequestOrderModel(
-                id: nil,
+                id: "",
                 type: "Standard",
                 clientID: BriizeManager.shared.user.model.value?.id ?? "",
                 clientFullName: BriizeManager.shared.user.model.value?.name ?? "",

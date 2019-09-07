@@ -39,7 +39,7 @@ public enum RequestState: Int {
         case .ClientRequested:
             return "Beauty Request Placed"
         case .ExpertAccepted:
-            return  "Request Accepted. Expert in Route."
+            return  "Request Accepted."
         default:
             return ""
         }
