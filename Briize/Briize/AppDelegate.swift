@@ -20,8 +20,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        GMSPlacesClient.provideAPIKey("AIzaSyDLLNHxLvO62wvtDExBpKMhdbXtVuniAjI")
-        GMSServices.provideAPIKey("AIzaSyDLLNHxLvO62wvtDExBpKMhdbXtVuniAjI")
+        GMSPlacesClient.provideAPIKey("AIzaSyCCJtDARFTw7PyX1mCNIbNeQlB3fj3guLU")
+        GMSServices.provideAPIKey("AIzaSyCCJtDARFTw7PyX1mCNIbNeQlB3fj3guLU")
         
         let configuration = ParseClientConfiguration {
             $0.applicationId = " bri009"
