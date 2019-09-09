@@ -191,8 +191,46 @@ extension NetworkManager {
     }
 }
 
-// Review Below
+// updates to db
 extension NetworkManager {
+
+    func updateUserAddress(
+        formatted: String,
+        state: String,
+        zipcode: String
+        ) -> Observable<(Bool, Error?)> {
+        return Observable<(Bool, Error?)>.create { observer in
+            PFUser.current()?.fetchInBackground(block: { (object, error) in
+                guard error == nil,
+                    let obj = object else {
+                        guard let err = error else {
+                            observer.onCompleted()
+                            return
+                        }
+                        print("Error on logout - \(err.localizedDescription)")
+
+                        DispatchQueue.main.async {
+                            observer.onError(err)
+                            observer.onCompleted()
+                        }
+                        return
+                }
+                obj["address"] = formatted
+                obj["state"] = state
+                obj["zipcode"] = zipcode
+                obj.saveInBackground()
+
+                DispatchQueue.main.async {
+                    observer.onNext((true, nil))
+                    observer.onCompleted()
+                }
+            })
+
+            return Disposables.create {
+                PFUser.logOut()
+            }
+        }
+    }
 
     //sync method below
     static func convertUrlStringToImageSync(_ urlString:String) -> UIImage? {

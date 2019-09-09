@@ -41,6 +41,8 @@ class ClientDashboardViewController: UIViewController {
         super.viewDidAppear(animated)
         setupLeftBarButton()
 
+        BriizeManager.shared.user.selectedCategoryServices.accept([])
+
         sessionManager.liveController.accept(self)
 
         if kLogout == true {
@@ -131,18 +133,21 @@ extension ClientDashboardViewController {
         accountCollectionView.decelerationRate = UIScrollView.DecelerationRate(rawValue: 0.2)
         
         let datasource = ClientDashboardViewController.dataSource()
-        viewModel.options
+        viewModel
+            .options
             .asObservable()
             .bind(to: accountCollectionView.rx.items(dataSource: datasource))
             .disposed(by: disposeBag)
         
-        accountCollectionView.rx
+        accountCollectionView
+            .rx
             .setDelegate(self)
             .disposed(by: disposeBag)
     }
     
     private func bindSegueSignal() {
-        viewModel.segueSignal
+        viewModel
+            .segueSignal
             .asDriver()
             .drive(onNext:{  [weak self] (id) in
                 guard id != "waiting" else { return }
@@ -152,7 +157,8 @@ extension ClientDashboardViewController {
     }
 
     private func bindLogout() {
-        viewModel.loggedOut
+        viewModel
+            .loggedOut
             .asDriver()
             .drive(onNext: { [weak self] in
                 $0 ? self?.dismiss(animated: true, completion: {

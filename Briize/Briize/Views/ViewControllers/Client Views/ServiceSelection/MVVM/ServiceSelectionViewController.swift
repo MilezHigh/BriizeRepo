@@ -59,13 +59,13 @@ class ServiceSelectionViewController: UIViewController {
             alert.addAction(action)
             self.present(alert, animated: true, completion: nil)
         } else {
+            self.sessionManager
+                .user
+                .searchExpertsWithTheseServices
+                .accept(selectedServices.map({ return $0.id }))
+
             switch self.sessionManager.requestType.value {
             case .Live:
-                self.sessionManager
-                    .user
-                    .searchExpertsWithTheseServices
-                    .accept(selectedServices.map({ return $0.id }))
-
                 self.performSegue(withIdentifier: "searchExpertsSegue", sender: self)
                 
             case .Custom:

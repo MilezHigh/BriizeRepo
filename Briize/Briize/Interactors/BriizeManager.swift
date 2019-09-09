@@ -168,7 +168,7 @@ extension BriizeManager {
 
     /// - Note:
     /// - Method below presents an action sheet, a constraint error shows up in the console,
-    /// - However this is a bug on apples part.Does not break anything otherwise. Issue noted below.
+    /// - However this is a bug on Apple's part. Does not break anything otherwise. Issue noted below.
     /// - https://github.com/lionheart/openradar-mirror/issues/21120
 
     public func obtainAndSetRequest(completion: @escaping (Bool) -> Void) {
@@ -206,5 +206,19 @@ extension BriizeManager {
         DispatchQueue.main.async {
             self.liveController.value?.present(alert, animated: true, completion: nil)
         }
+    }
+
+    public func changeAddressForCurrentUser(formatted: String, state: String, zipcode: String) {
+        let api = NetworkManager.instance
+        let result = api.updateUserAddress(formatted: formatted, state: state, zipcode: zipcode)
+        result
+            .asDriver(onErrorJustReturn: (false, nil))
+            .drive(onNext: { [weak self] (arg) in
+                let alert = UIAlertController(title: "Address Updated!", message: nil, preferredStyle: .alert)
+                let action = UIAlertAction(title: "Ok", style: .default, handler: nil)
+                alert.addAction(action)
+                self?.liveController.value?.present(alert, animated: true)
+            })
+            .disposed(by: disposeBag)
     }
 }

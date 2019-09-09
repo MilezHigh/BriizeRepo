@@ -167,7 +167,6 @@ extension CustomRequestViewController {
     }
 
     private func setup() {
-        imageStackView.layer.cornerRadius = 12
         notesTextView.layer.cornerRadius = 12
         submitButton.layer.cornerRadius = 25
         doneButton.layer.cornerRadius = 25

@@ -93,7 +93,7 @@ extension UIImageView {
                 error == nil,
                 let image = UIImage(data: data)
                 else {
-                    return DispatchQueue.main.async() {
+                    DispatchQueue.main.async() {
                         self?.alpha = 0
                         UIView.animate(withDuration: 0.8, animations: {
                             act.removeFromSuperview()
@@ -104,6 +104,7 @@ extension UIImageView {
                             self?.alpha = 1
                         })
                     }
+                    return
             }
             DispatchQueue.main.async() {
                 this.alpha = 0
