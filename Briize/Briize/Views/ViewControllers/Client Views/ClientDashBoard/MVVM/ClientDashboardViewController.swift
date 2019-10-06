@@ -155,15 +155,17 @@ extension ClientDashboardViewController {
             })
             .disposed(by: self.disposeBag)
     }
-
+    
     private func bindLogout() {
         viewModel
             .loggedOut
             .asDriver()
             .drive(onNext: { [weak self] in
-                $0 ? self?.dismiss(animated: true, completion: {
-                    BriizeManager.shared.persistedAppState.accept((.loggedOut, ""))
-                    BriizeManager.shared.dismissloader()
+                $0 ? self?.dismiss(
+                    animated  : true,
+                    completion: {
+                        BriizeManager.shared.persistedAppState.accept((.loggedOut, ""))
+                        BriizeManager.shared.dismissloader()
                 }) : ()
             })
             .disposed(by: disposeBag)
@@ -232,7 +234,10 @@ extension ClientDashboardViewController {
     
     @objc func userTappedMenuImage(){
         let storyboard = UIStoryboard(name: "ClientFlow", bundle: nil)
-        let controller = storyboard.instantiateViewController(withIdentifier: "myAccount") as? MyAccountViewController
-        self.present(controller!, animated: true)
+        guard let controller = storyboard
+            .instantiateViewController(withIdentifier: "myAccount") as? MyAccountViewController
+            else { return }
+        
+        self.present(controller, animated: true)
     }
 }
