@@ -15,16 +15,18 @@ class AccountHomeCollectionCell: UICollectionViewCell {
     
     @IBOutlet weak var categoryTableView: UITableView!
     
-    var id: String = "Account_Home"
-    
     let categories = BehaviorRelay<[CategoryModel]>(value: [])
     
     let disposeBag = DisposeBag()
+    
+    var id: String = "Account_Home"
     
     var model: ClientAccountCellModel? {
         didSet{
             guard let cell = model else {return}
             self.id = cell.id_name
+            
+            bindTable()
             
             let categories = AccountHomeCollectionCell.createFixedCategories()
             self.categories.accept(categories)
@@ -34,27 +36,29 @@ class AccountHomeCollectionCell: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         self.clipsToBounds = true
-        
-        self.categoryTableView.layer.cornerRadius = 15
-        self.categoryTableView.tableFooterView = UIView()
-        self.categoryTableView.rowHeight = (self.categoryTableView.frame.size.height/4) - 16
-        
-        self.categories
-            .asDriver()
-            .drive(
-                self.categoryTableView.rx
-                    .items(
-                        cellIdentifier : "categoryCell",
-                        cellType       : CategoryTableViewCell.self
+    }
+    
+    private func bindTable() {
+        categoryTableView.layer.cornerRadius = 15
+        categoryTableView.tableFooterView = UIView()
+        categoryTableView.rowHeight = (categoryTableView.bounds.size.height / 4) - 16
+        categories
+            .asObservable()
+            .observeOn(MainScheduler.instance)
+            .bind(
+                to: categoryTableView.rx.items(
+                    cellIdentifier : "categoryCell",
+                    cellType       : CategoryTableViewCell.self
                 )
-            ) { row, category, cell in
+            ) ({ _, category, cell in
                 cell.category = category
-            }
-            .disposed(by: self.disposeBag)
+            })
+            .disposed(by: disposeBag)
         
-        self.categoryTableView.rx
+        categoryTableView
+            .rx
             .setDelegate(self)
-            .disposed(by: self.disposeBag)
+            .disposed(by: disposeBag)
     }
 }
 
@@ -63,7 +67,7 @@ extension AccountHomeCollectionCell: UITableViewDelegate, UIScrollViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
-        BriizeManager.shared.obtainAndSetRequest { (complete) in
+        sessionManager.obtainAndSetRequest { (complete) in
             guard complete else { return }
             
             let cell = self.categoryTableView.cellForRow(at: indexPath) as! CategoryTableViewCell            

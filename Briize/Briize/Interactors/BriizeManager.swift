@@ -85,8 +85,7 @@ class BriizeManager {
     private init() {
         requestState
             .asObservable()
-            .subscribe(
-                onNext: { [weak self] (state) in
+            .subscribe(onNext: { [weak self] (state) in
                     self?.process(state)
             })
             .disposed(by: self.disposeBag)

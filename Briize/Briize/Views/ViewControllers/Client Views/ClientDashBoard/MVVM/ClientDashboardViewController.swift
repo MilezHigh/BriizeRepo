@@ -22,9 +22,9 @@ class ClientDashboardViewController: UIViewController {
     let disposeBag = DisposeBag()
     let viewModel = ClientDashboardViewModel()
     
-    var serviceImage: UIImage?
-    var profileImage: UIImage?
-    var serviceTitle: String?
+    var serviceImage  : UIImage?
+    var profileImage  : UIImage?
+    var serviceTitle  : String?
     var completedSetup: Bool = false
     
     override func viewDidLoad() {
@@ -41,8 +41,7 @@ class ClientDashboardViewController: UIViewController {
         super.viewDidAppear(animated)
         setupLeftBarButton()
 
-        BriizeManager.shared.user.selectedCategoryServices.accept([])
-
+        sessionManager.user.selectedCategoryServices.accept([])
         sessionManager.liveController.accept(self)
 
         if kLogout == true {

@@ -93,7 +93,7 @@ extension UIImageView {
                 error == nil,
                 let image = UIImage(data: data)
                 else {
-                    DispatchQueue.main.async() {
+                    DispatchQueue.main.async {
                         self?.alpha = 0
                         UIView.animate(withDuration: 0.8, animations: {
                             act.removeFromSuperview()
@@ -106,7 +106,7 @@ extension UIImageView {
                     }
                     return
             }
-            DispatchQueue.main.async() {
+            DispatchQueue.main.async {
                 this.alpha = 0
                 
                 if setProfileImage {
@@ -224,17 +224,15 @@ extension UIImage {
     }
 }
 
-extension UIViewController {
-    
+extension UICollectionViewCell {
     var sessionManager: BriizeManager {
         return BriizeManager.shared
     }
 }
 
-extension Array where Element == [Int] {
-    
-    func briizeServiceNamesFromIds(ids: [Int]) {
-        
+extension UIViewController {
+    var sessionManager: BriizeManager {
+        return BriizeManager.shared
     }
 }
 
