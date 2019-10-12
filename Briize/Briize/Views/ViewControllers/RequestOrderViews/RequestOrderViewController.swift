@@ -26,7 +26,7 @@ class RequestOrderViewController: UIViewController {
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var masterView: UIView!
     @IBOutlet weak var masterBottomView: UIView!
-
+    
     //MARK:- Variables
     var viewModel: RequestOrderViewModel?
     
@@ -36,6 +36,7 @@ class RequestOrderViewController: UIViewController {
     // MARK:- Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         setupNavigationBar()
         setupUI()
         setupUIDrivers()
@@ -43,6 +44,11 @@ class RequestOrderViewController: UIViewController {
     
     // MARK:- Helpers
     private func setupNavigationBar() {
+        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        navigationController?.navigationBar.shadowImage = UIImage()
+        navigationController?.navigationBar.isTranslucent = true
+        navigationController?.view.backgroundColor = .clear
+        
         let logo = #imageLiteral(resourceName: "singleB-1")
         let v = UIView(frame: CGRect(x: 0, y: 0, width: 30, height: 30))
         let imageView = UIImageView(frame: v.frame)
@@ -57,7 +63,7 @@ class RequestOrderViewController: UIViewController {
         masterBottomView.layer.cornerRadius = 12
         cheackEtaButton.layer.cornerRadius = 26
         cancelButton.layer.cornerRadius = 26
-        completeButton.layer.cornerRadius = 30
+        completeButton.layer.cornerRadius = 25
         
         guard let state = viewModel?.requestState.value else { return }
         let isActive = state == .Active
@@ -69,53 +75,45 @@ class RequestOrderViewController: UIViewController {
         viewModel?
             .requestOrder
             .asDriver()
-            .drive(onNext: { [weak self] in
-                $0 != nil ? self?.updateUI(from: $0!) : ()
-            })
+            .drive(onNext: { [weak self] in $0 != nil ? self?.updateUI(from: $0!) : () })
             .disposed(by: disposeBag)
         
         viewModel?
             .shouldDismiss
             .asDriver()
-            .drive(onNext: { [weak self] in
-                $0 ? self?.dismiss(animated: true) : ()
-            })
+            .drive(onNext: { [weak self] in $0 ? self?.dismiss(animated: true) : () })
             .disposed(by: disposeBag)
         
         viewModel?
             .needForExpertApproval
             .asDriver()
-            .drive(onNext: { [weak self] in
-                $0 ? self?.obtainExpertApproval() : ()
-            })
+            .drive(onNext: { [weak self] in $0 ? self?.obtainExpertApproval() : () })
             .disposed(by: disposeBag)
     }
     
     private func updateUI(from requestOrder: RequestOrderModel) {
-        priceLabel.text = " " + " $\(requestOrder.cost.description)"
+        servicesLabel.text = " " + requestOrder.serviceType
+        priceLabel.text = " " + " $\(requestOrder.cost.description).00"
         
         guard let userIsExpert = sessionManager.user.model.value?.isExpert else { return }
         nameLabel.text = userIsExpert ? requestOrder.clientFullName : requestOrder.expertFullname
-
+        
         guard let status = RequestState.init(rawValue: requestOrder.requestStatus) else { return }
         statusLabel.text = " " + status.userFriendlyMessage
-        
-//        var services: String = ""
-//        _ = requestOrder.serviceIds.map {
-//            print("Service ID - " + $0.description)
-//            services += ServiceSubType.serviceNameFor(id: $0) + " | "
-//        }
-        servicesLabel.text = " " + requestOrder.serviceType
     }
     
     private func obtainExpertApproval() {
-        let alert = UIAlertController(title: "Would you like to accept this client's request?", message: nil, preferredStyle: .actionSheet)
         let accept = UIAlertAction(title: "Accept", style: .default) { [weak self] (action) in
             self?.processExpertApproval(didApprove: true)
         }
         let deny = UIAlertAction(title: "Deny", style: .destructive) { [weak self] (action) in
             self?.processExpertApproval(didApprove: false)
         }
+        let alert = UIAlertController(
+            title         : "Would you like to accept this client's request?",
+            message       : nil,
+            preferredStyle: .actionSheet
+        )
         alert.addAction(accept)
         alert.addAction(deny)
         present(alert, animated: true)

@@ -20,15 +20,15 @@ class CategoryTableViewCell: UITableViewCell {
     var category: CategoryModel? {
         didSet{
             guard let model = category else {return}
-            self.categoryImageView.image = model.image
-            self.categoryTitleLabel.text = model.name
+            categoryImageView.image = model.image
+            categoryTitleLabel.text = model.name
         }
     }
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        self.clipsToBounds = true
+        clipsToBounds = true
         
-        self.categoryImageView.darkOverlay()
+        categoryImageView.darkOverlay()
     }
 }

@@ -27,41 +27,38 @@ extension ClientMainViewModel {
         
         let query = PFQuery(className: "_User")
         query.findObjectsInBackground { (objects, error) in
+            
             if error == nil && objects != nil {
                 exps = objects!
             } else if error != nil {
                 print(error!.localizedDescription)
             }
+            
             let results = exps
-                .filter ({
-                    ($0["isOnline"] as? Bool) == true
-                })
-                .filter ({
+                .filter({ ($0["isOnline"] as? Bool) == true })
+                .filter({
                     guard let services = $0["servicesOffered"] as? NSDictionary,
                         let arr = services["data"] as? NSArray else { return false }
                     let newArr = arr
-                        .map ({ (service) -> Int in
+                        .map({ (service) -> Int in
                             guard let obj = service as? NSDictionary,
                                 let id = obj["serviceId"] as? Int else { return 0 }
                             return id
                         })
-                        .filter ({
-                            $0 != 0
-                        })
+                        .filter({ $0 != 0 })
                         .sorted()
                     
                     let sortedServices = selectedServices.sorted()
                     return newArr == sortedServices
                 })
                 .filter ({
-                    
                     //Calculate Distance
-                    
                     print($0)
                     return true
                 })
                 .compactMap ({ [weak self] exp -> SectionItem? in
-                    guard let expertMultiSectionModel = self?.convertPFObjectToMultipleSectionModel(exp) else { return nil }
+                    guard let expertMultiSectionModel = self?.convertPFObjectToMultipleSectionModel(exp)
+                        else { return nil }
                     return expertMultiSectionModel
                 })
             
@@ -87,9 +84,7 @@ extension ClientMainViewModel {
             let rating = object["rating"] as? Double,
             let servicesOffered = object["servicesOffered"] as? NSDictionary,
             let data = servicesOffered["data"] as? [NSDictionary]
-            
             // Complete expert model for expert result page
-            
             else { return nil }
         
         let price: Int = data
@@ -98,6 +93,8 @@ extension ClientMainViewModel {
                 return price
             })
             .reduce(0, +)
+        
+        let location: PFGeoPoint? = object["currentLocation"] as? PFGeoPoint
         
         let userModel = UserModel.init(
             name: name,
@@ -110,7 +107,7 @@ extension ClientMainViewModel {
             distance: "",
             isExpert: true,
             urlString: imageFile,
-            currentLocation: nil
+            currentLocation: location
         )
         
         return SectionItem.IndividualExpertItem(model: userModel)
@@ -120,19 +117,16 @@ extension ClientMainViewModel {
 extension ClientMainViewModel {
     func dataSource() -> RxTableViewSectionedReloadDataSource<MultipleSectionModel> {
         return RxTableViewSectionedReloadDataSource<MultipleSectionModel>(
+            
             configureCell: { (dataSource, table, idxPath, _) in
                 switch dataSource[idxPath] {
                 case let .IndividualExpertItem(model):
-                    let cell: ExpertTableViewCell = table
-                        .dequeueReusableCell(
-                            withIdentifier: "expertCell",
-                            for           : idxPath
-                        ) as! ExpertTableViewCell
-                    cell.model = model
-                    return cell
+                    let cell: ExpertTableViewCell? = table
+                        .dequeueReusableCell(withIdentifier: "expertCell", for: idxPath) as? ExpertTableViewCell
+                    cell?.model = model
+                    return cell ?? UITableViewCell()
                 }
-        }
-        )
+        })
     }
 }
 
@@ -144,6 +138,13 @@ enum MultipleSectionModel {
 
 enum SectionItem {
     case IndividualExpertItem(model: UserModel)
+    
+    var model: UserModel? {
+        switch self {
+        case .IndividualExpertItem(let m):
+            return m
+        }
+    }
 }
 
 extension MultipleSectionModel: SectionModelType {

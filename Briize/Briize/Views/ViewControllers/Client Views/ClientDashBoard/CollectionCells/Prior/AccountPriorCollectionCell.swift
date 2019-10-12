@@ -57,13 +57,22 @@ extension AccountPriorCollectionCell: UITableViewDelegate, UITableViewDataSource
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        if self.priorRequests.count > 0 {
-            cell.textLabel?.text = self.priorRequests[indexPath.row].expertFullname
-            cell.detailTextLabel?.text = self.priorRequests[indexPath.row].serviceType + " | " + self.priorRequests[indexPath.row].address
+        if priorRequests.count > 0 {
             cell.selectionStyle = .none
-            cell.imageView?.image = UIImage(named: "upArrow")
+            cell.textLabel?.text = priorRequests[indexPath.row].expertFullname
+            cell.detailTextLabel?.text = priorRequests[indexPath.row].serviceType
+                + " | "
+                + priorRequests[indexPath.row].address
+            
+            let image = UIImage(named:"briizeRequestIcon")
+            cell.imageView?.image = image
             cell.imageView?.layer.masksToBounds = true
-            cell.imageView?.downloadedFromAPI(with: self.priorRequests[indexPath.row].expertID, isClient: false)
+            cell.imageView?.clipsToBounds = true
+            cell.imageView?.layer.cornerRadius = cell.imageView?.frame.width ?? 0 / 2
+            cell.imageView?.downloadedFromAPI(
+                with    : priorRequests[indexPath.row].expertID,
+                isClient: false
+            )
         }
     }
 }

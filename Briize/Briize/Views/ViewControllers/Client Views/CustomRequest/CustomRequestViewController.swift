@@ -90,7 +90,7 @@ class CustomRequestViewController: UIViewController {
             startTime: nil,
             finishTime: nil,
             scheduledDate: DateFormatter().date(from: dateTimeLabel.text ?? ""),
-            requestStatus: RequestState.ClientRequested.rawValue,
+            requestStatus: RequestState.NewClientRequest.hashValue,
             cost: 0,
             payToExpert: 0,
             profit: profit,

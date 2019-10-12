@@ -83,11 +83,12 @@ extension UIImageView {
         act.type = .ballGridPulse
         act.color = .black
         self.addSubview(act)
-        act.startAnimating()
         act.center = self.center
+        act.startAnimating()
         
         URLSession.shared.dataTask(with: url) { [weak self] data, response, error in
-            guard let httpURLResponse = response as? HTTPURLResponse, httpURLResponse.statusCode == 200,
+            guard let httpURLResponse = response as? HTTPURLResponse,
+                httpURLResponse.statusCode == 200,
                 let this = self,
                 let data = data,
                 error == nil,
@@ -100,7 +101,7 @@ extension UIImageView {
                             self?.clipsToBounds = false
                             self?.layer.borderWidth = 1.0
                             self?.layer.borderColor = UIColor.lightGray.cgColor
-                            self?.image = #imageLiteral(resourceName: "briizeProfileImagePlaceHolderIcon")
+                            self?.image = nil
                             self?.alpha = 1
                         })
                     }
@@ -112,15 +113,15 @@ extension UIImageView {
                 if setProfileImage {
                     BriizeManager.shared.user.userProfileImage = image
                 }
-                UIView.animate(withDuration: 0.8, animations: {
+                UIView.animate(withDuration: 0.33, animations: {
                     act.removeFromSuperview()
-                    
                     this.image = image
                     this.layer.cornerRadius = this.frame.size.width / 2
                     this.alpha = 1
                 })
             }
-            }.resume()
+        }
+        .resume()
     }
     
     func downloadedFrom(link: String, contentMode mode: UIView.ContentMode = .scaleAspectFill, setProfileImage: Bool) {
@@ -138,7 +139,8 @@ extension UIImageView {
                 
             case false:
                 if let object = object {
-                    guard let file = object["profilePhoto"] as? PFFileObject, let url = file.url else {return}
+                    guard let file = object["profilePhoto"] as? PFFileObject,
+                        let url = file.url else {return}
                     self?.downloadedFrom(link: url, setProfileImage: isClient)
                 }
             }

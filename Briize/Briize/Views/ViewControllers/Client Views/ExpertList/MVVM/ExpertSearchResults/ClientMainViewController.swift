@@ -14,156 +14,154 @@ import RxCocoa
 import GooglePlaces
 
 class ClientMainViewController: UIViewController {
-    @IBOutlet weak var closeExpertTableButtonOutlet: UIButton!
     @IBOutlet weak var expertTableView: UITableView!
-    @IBOutlet weak var mapContainerView: UIView!
-    @IBOutlet weak var tableHeightConstraint: NSLayoutConstraint!
     
-    //var map: MGLMapView?
     var overlay: UIView?
     
-    private var kExpertTableViewHeight: CGFloat = 189.0
-    private var kExpertTableCellHeight: CGFloat = 188.0
-    private var numberOfExpertsPulled: Int = 0
+    private var segmentControl = UISegmentedControl(items: ["List", "Map"])
     
     private let viewModel = ClientMainViewModel()
     private let disposeBag = DisposeBag()
     private let myError = BehaviorRelay<Error?>(value:nil)
     
     //MARK: - Lifecycle
-    
     override func viewDidLoad() {
-        self.setupVC()
+        super.viewDidLoad()
         
-        BriizeManager.shared.user
+        configureViews()
+        bindErrorHandling()
+        bindServicesToSearch()
+        
+        sessionManager
+            .user
             .openSelectaDateForRequest
             .asDriver()
             .drive(onNext: { [weak self] in
                 $0 == true ? self?.performSegue(withIdentifier: "showSelectADate", sender: self) : ()
             })
-            .disposed(by: self.disposeBag)
+            .disposed(by: disposeBag)
     }
     
-    //MARK: - Button Actions
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        segmentControl.selectedSegmentIndex = 0
+    }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard segue.identifier == "ExpertMapListViewController",
+            let dest = segue.destination as? ExpertMapListViewController
+            else { return }
+        
+        let users = (viewModel.experts.value
+            .first?.items
+            .map({ $0 }) ?? [])
+            .map({ $0.model })
+            .compactMap({ $0 })
+        
+        let viewModel = ExpertMapListViewModel(experts: users)
+        dest.viewModel = viewModel
+    }
 }
 
+//MARK: - UI Helper Methods
 extension ClientMainViewController {
-    
-    //MARK: - UI Helper Methods
-    
-    private func setupVC() {        
-        self.configureViews()
-        self.bindErrorHandling()
-        self.bindServicesToSearch()
-    }
 
-    
     private func configureViews() {
-        let segmentControl = UISegmentedControl(items: ["List", "Map"])
-        segmentControl.frame = CGRect(x: 0, y: 0, width: 30.0, height: 20.0)
-        segmentControl.contentMode = .scaleAspectFill
-        segmentControl.tintColor = .black
-        self.navigationItem.titleView = segmentControl
+        let button = UIBarButtonItem(
+            barButtonSystemItem: .action,
+            target:self,
+            action: #selector(openChangePickupLocation)
+        )
+        let button2 = UIBarButtonItem(
+            barButtonSystemItem: .search,
+            target:self,
+            action: #selector(choseMapView)
+        )
+        navigationItem.rightBarButtonItems = [button2, button]
+        navigationController?.view.backgroundColor = .white
         
-        let button = UIBarButtonItem(barButtonSystemItem: .action, target:self, action: #selector(openChangePickupLocation))
-        self.navigationItem.rightBarButtonItem = button
-        
-        self.expertTableView.tableFooterView = UIView()
-        self.expertTableView.backgroundColor = UIColor.white
+        expertTableView.backgroundColor = .white
+        expertTableView.tableFooterView = UIView()
+    }
+    
+    @objc func choseMapView() {
+        performSegue(withIdentifier: "ExpertMapListViewController", sender: self)
     }
     
     @objc func openChangePickupLocation() {
         //        let autocompleteController = GMSAutocompleteViewController()
         //        autocompleteController.delegate = self
         //        present(autocompleteController, animated: true, completion: nil)
-        self.performSegue(withIdentifier: "showChangeLocationVC", sender: self)
+        performSegue(withIdentifier: "showChangeLocationVC", sender: self)
     }
     
     private func showLoader() {
-        BriizeManager.shared.showLoader("Finding Experts...")
+        sessionManager.showLoader("Finding Experts...")
     }
     
     private func hideLoader() {
-        BriizeManager.shared.dismissloader()
+        sessionManager.dismissloader()
     }
 }
 
+// MARK: - ViewModel Binding Methods
 extension ClientMainViewController {
     
-    // MARK: - ViewModel Binding Methods
-    
     private func bindErrorHandling() {
-        self.myError
+        myError
             .asDriver()
-            .drive(
-                onNext: { (error) in
-                    print(error ?? "No errors")
-            })
+            .drive(onNext: { (error) in print(error ?? "No errors") })
             .disposed(by: self.disposeBag)
     }
     
     private func bindServicesToSearch() {
-        BriizeManager.shared.user
+        sessionManager
+            .user
             .searchExpertsWithTheseServices
             .asObservable()
             .observeOn(MainScheduler.instance)
-            .subscribe(
-                onNext: { [weak self] (services) in
-                    switch services.isEmpty {
-                    case true:
-                        print("No Services to search")
-                        self?.showLoader()
-                        self?.bindExperts(withServices: services)
-                        
-                    case false:
-                        self?.showLoader()
-                        self?.bindExperts(withServices: services)
-                    }
+            .subscribe(onNext: { [weak self] (services) in
+                services.isEmpty ? print("No Services to search") : ()
+                
+                self?.showLoader()
+                self?.bindExperts(withServices: services)
             })
             .disposed(by: self.disposeBag)
     }
     
     private func bindExperts(withServices: [Int]) {
-        let datasource = self.viewModel.dataSource()
+        expertTableView.dataSource = nil
+        expertTableView.delegate   = nil
         
-        self.expertTableView.dataSource = nil
-        self.expertTableView.delegate   = nil
+        viewModel.demoFindObjects(with: withServices)
         
-        self.viewModel.demoFindObjects(with: withServices)
-        self.viewModel.experts
+        let datasource = viewModel.dataSource()
+        viewModel
+            .experts
             .asDriver()
-            .do(
-                onNext: { [weak self] (models) in
-                    if !models.isEmpty {
-                        self?.hideLoader()
-                    }
-            })
+            .do(onNext: { [weak self] (models) in !models.isEmpty ? self?.hideLoader() : () })
             .drive( self.expertTableView.rx.items(dataSource: datasource))
             .disposed(by: self.disposeBag)
         
-        self.expertTableView.rx
+        expertTableView.rx
             .setDelegate(self)
             .disposed(by: self.disposeBag)
     }
 }
 
+//MARK: - Tableview Delegate
 extension ClientMainViewController: UITableViewDelegate, UIScrollViewDelegate {
     
-    //MARK: - Tableview Delegate
-    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 150
+        return 175
     }
 }
 
+//MARK: - Google Places Delegate
 extension ClientMainViewController: GMSAutocompleteViewControllerDelegate {
     
-    // Handle the user's selection.
     func viewController(_ viewController: GMSAutocompleteViewController, didAutocompleteWith place: GMSPlace) {
-        print("Place name: \(place.name)")
-        print("Place address: \(place.formattedAddress ?? "N/A")")
-        //print("Place attributions: \(place.attributions)")
         dismiss(animated: true, completion: nil)
     }
     
@@ -172,12 +170,10 @@ extension ClientMainViewController: GMSAutocompleteViewControllerDelegate {
         print("Error: ", error.localizedDescription)
     }
     
-    // User canceled the operation.
     func wasCancelled(_ viewController: GMSAutocompleteViewController) {
         dismiss(animated: true, completion: nil)
     }
     
-    // Turn the network activity indicator on and off again.
     func didRequestAutocompletePredictions(_ viewController: GMSAutocompleteViewController) {
         UIApplication.shared.isNetworkActivityIndicatorVisible = true
     }
@@ -185,5 +181,5 @@ extension ClientMainViewController: GMSAutocompleteViewControllerDelegate {
     func didUpdateAutocompletePredictions(_ viewController: GMSAutocompleteViewController) {
         UIApplication.shared.isNetworkActivityIndicatorVisible = false
     }
-    
+
 }

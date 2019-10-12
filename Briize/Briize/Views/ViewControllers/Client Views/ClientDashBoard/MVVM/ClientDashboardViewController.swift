@@ -40,10 +40,10 @@ class ClientDashboardViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         setupLeftBarButton()
-
+        
         sessionManager.user.selectedCategoryServices.accept([])
         sessionManager.liveController.accept(self)
-
+        
         if kLogout == true {
             kLogout = false
             viewModel.logout()
@@ -62,8 +62,9 @@ class ClientDashboardViewController: UIViewController {
         case is ServiceSelectionViewController:
             let chosenCategory = CategoryModel(name: title, image: img)
             let services = ServiceModel.addServicesToCategory(chosenCategory)
-
-            guard let destination = segue.destination as? ServiceSelectionViewController else { return }
+            
+            guard let destination = segue
+                .destination as? ServiceSelectionViewController else { return }
             destination.viewModel.services.accept(services)
             
         default:
@@ -80,7 +81,8 @@ class ClientDashboardViewController: UIViewController {
         accountCollectionView.scrollToItem(
             at: IndexPath(item: sender.selectedSegmentIndex, section: 0),
             at: .centeredHorizontally,
-            animated: true)
+            animated: true
+        )
     }
 }
 
@@ -93,7 +95,10 @@ extension ClientDashboardViewController {
         imageView.image = logo
         imageView.contentMode = .scaleAspectFit
         v.addSubview(imageView)
-        self.navigationItem.titleView = v
+        navigationItem.titleView = v
+        
+        navigationController?.navigationBar.setBackgroundImage(UIImage(named: ""), for: UIBarMetrics.default)
+        navigationController?.navigationBar.shadowImage = UIImage(named: "")
     }
     
     private func setupSegmentBar() {
@@ -105,7 +110,7 @@ extension ClientDashboardViewController {
             let gesture = UITapGestureRecognizer(target: self, action: #selector(userTappedMenuImage))
             let v = UIView(frame: CGRect(x: 0, y: 0, width: 30, height: 30))
             let imgV = UIImageView(frame: v.frame)
-
+            
             if let url = viewModel.user.value?.urlString?.url {
                 imgV.downloadedFrom(link: url, setProfileImage: true)
             }
@@ -201,8 +206,8 @@ extension ClientDashboardViewController: UICollectionViewDelegate, UICollectionV
         _ collectionView           : UICollectionView,
         layout collectionViewLayout: UICollectionViewLayout,
         sizeForItemAt indexPath    : IndexPath
-        ) -> CGSize {
-        let height = collectionView.bounds.height - 75
+    ) -> CGSize {
+        let height = collectionView.bounds.height - 20
         let width = collectionView.bounds.width
         return CGSize(width: width, height: height)
     }

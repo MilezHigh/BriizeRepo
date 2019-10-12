@@ -23,10 +23,10 @@ class ServiceSelectionViewController: UIViewController {
     typealias SelectedService = (id: Int, type: String, subtype: String)
 
     var selectedServices: [SelectedService] = []
+    
+    let viewModel = ServiceSelectionViewModel()
 
     private var servicesChosen: [ServiceSubType] = []
-
-    let viewModel = ServiceSelectionViewModel()
 
     private let disposeBag = DisposeBag()
     
@@ -78,11 +78,14 @@ class ServiceSelectionViewController: UIViewController {
 
 extension ServiceSelectionViewController {
     
-    private func setupVC() {        
+    private func setupVC() {
         selectedServicesTableview.delegate = self
         selectedServicesTableview.dataSource = self
         selectedServicesTableview.tableFooterView = UIView()
+        
         submitButton.layer.cornerRadius = 25
+        categoryImageView.layer.cornerRadius = 20
+        categoryImageView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
         categoryImageView.darkOverlay()
     }
     
@@ -195,7 +198,7 @@ extension ServiceSelectionViewController {
         let subType = subTypeExists ? subType : title
         let selected = SelectedService(id: id, type: title, subtype: subType)
         selectedServices.append(selected)
-
+        
         UIView.animate(
             withDuration: 0.3,
             animations: {
@@ -207,11 +210,10 @@ extension ServiceSelectionViewController {
     }
     
     private func removeSelectedServices(_ cell: ServiceCollectionViewCell) {
-        selectedServices.removeAll(
-            where: {
-                $0.type == cell.service!.name
+        selectedServices.removeAll(where: {
+            $0.type == cell.service!.name
         })
-
+        
         UIView.animate(
             withDuration: 0.3,
             animations: {

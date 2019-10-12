@@ -22,21 +22,22 @@ public enum RequestOrderType {
     case Custom
 }
 
-public enum RequestState: Int {
+enum RequestState: Int {
     case Idle = 0
-    case ClientRequested = 1
-    case ExpertAccepted = 2
-    case Active = 3
-    case Complete = 4
-    case Cancelled = 5
-    case ExpertReceivedRequest = 6
-    case ConfirmClientPayment = 7
+    case NewClientRequest = 1
+    case RequestPending = 2
+    case ExpertAccepted = 3
+    case Active = 4
+    case Complete = 5
+    case Cancelled = 6
+    case ExpertReceivedRequest = 7
+    case ConfirmClientPayment = 8
     
     var userFriendlyMessage: String {
         switch self {
         case .Idle:
             return "Idle"
-        case .ClientRequested:
+        case .NewClientRequest:
             return "Beauty Request Placed"
         case .ExpertAccepted:
             return  "Request Accepted."
@@ -48,7 +49,7 @@ public enum RequestState: Int {
     static func create(from id: Int) -> RequestState {
         switch id {
         case 1:
-            return .ClientRequested
+            return .NewClientRequest
         case 2:
             return .ExpertAccepted
         case 3:
@@ -99,7 +100,7 @@ extension BriizeManager {
         case .Idle:
             break
             
-        case .ClientRequested:
+        case .NewClientRequest:
             break
             /// send request or re-ignite timer
             /// show request view with state
@@ -108,6 +109,9 @@ extension BriizeManager {
             break
             /// send request or re-ignite timer
             /// show request view with state
+            
+        case .RequestPending:
+            break
             
         case .Active:
             break

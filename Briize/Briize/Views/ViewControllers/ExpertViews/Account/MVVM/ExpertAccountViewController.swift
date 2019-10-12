@@ -56,128 +56,138 @@ extension ExpertAccountViewController {
         imageView.image = logo
         imageView.contentMode = .scaleAspectFit
         v.addSubview(imageView)
-        self.navigationItem.titleView = v
+        navigationItem.titleView = v
     }
     
     func setup(){
-        guard let user = BriizeManager.shared.user.model.value, let urlString = user.urlString?.url else {return}
-               
-        self.expertProfileImageView.layer.borderWidth = 3
-        self.expertProfileImageView.layer.borderColor = UIColor.white.cgColor
-        self.expertProfileImageView.layer.cornerRadius = self.expertProfileImageView.bounds.width/2
+        guard let user = sessionManager.user.model.value,
+            let urlString = user.urlString?.url else { return }
         
-        self.statsView.layer.borderWidth = 1.0
-        self.statsView.layer.borderColor = UIColor.white.cgColor
-        self.statsView.layer.cornerRadius = 6
+        expertProfileImageView.layer.borderWidth = 3
+        expertProfileImageView.layer.borderColor = UIColor.white.cgColor
+        expertProfileImageView.layer.cornerRadius = expertProfileImageView.bounds.width / 2
+        expertProfileImageView.downloadedFrom(link: urlString, setProfileImage: true)
         
-        self.expertNameLabel.text = user.name
-        self.ratingAmountLabel.text = user.rating?.description ?? "5/5"
+        statsView.layer.borderWidth = 1.0
+        statsView.layer.borderColor = UIColor.white.cgColor
+        statsView.layer.cornerRadius = 6
         
-        self.expertProfileImageView.downloadedFrom(link: urlString, setProfileImage: true)
+        expertNameLabel.text = user.name
+        ratingAmountLabel.text = user.rating?.description ?? "5/5"
         
-        let leftBarButton = UIBarButtonItem(barButtonSystemItem: .bookmarks, target: self, action: #selector(self.viewHistory))
+        let leftBarButton = UIBarButtonItem(
+            barButtonSystemItem: .bookmarks,
+            target             : self,
+            action             : #selector(viewHistory)
+        )
         leftBarButton.tintColor = .black
-        self.navigationItem.leftBarButtonItems = [leftBarButton]
+        navigationItem.leftBarButtonItems = [leftBarButton]
     }
     
     func bind(){
-        Observable.just(self.viewModel.accountOptions.value)
+        accountOptionsCollectionView
+            .rx
+            .setDelegate(self)
+            .disposed(by: disposeBag)
+        
+        Observable
+            .just(viewModel.accountOptions.value)
             .observeOn(MainScheduler.instance)
             .bind(
-                to: self.accountOptionsCollectionView.rx
-                    .items(cellIdentifier: "expertOption",
-                           cellType: ExpertAccountOptionsCollectionCell.self)
-            ) { index, option, cell in
+                to: accountOptionsCollectionView.rx.items(
+                    cellIdentifier: "expertOption",
+                    cellType      : ExpertAccountOptionsCollectionCell.self
+                )
+            ) ({ _, option, cell in
                 cell.model = option
-            }
-            .disposed(by: self.disposeBag)
-        
-        self.accountOptionsCollectionView.rx
-            .setDelegate(self)
-            .disposed(by: self.disposeBag)
+            })
+            .disposed(by: disposeBag)
     }
     
     func bindTableConfig(){
-        self.accountOptionsCollectionView.rx
+        accountOptionsCollectionView
+            .rx
             .itemSelected
             .subscribe(
                 onNext: { [weak self] (index) in
-                    guard let cell = self?.accountOptionsCollectionView.cellForItem(at: index) as? ExpertAccountOptionsCollectionCell,
-                        let strongSelf = self
-                        else {return}
+                    guard let strongSelf = self,
+                        let cell = strongSelf.accountOptionsCollectionView
+                            .cellForItem(at: index) as? ExpertAccountOptionsCollectionCell
+                        else { return }
                     
                     strongSelf.accountOptionsCollectionView.deselectItem(at: index, animated: false)
                     strongSelf.handleItemSelected(cell)
-                },
-                onError: nil, onCompleted: nil, onDisposed: nil)
-            .disposed(by: self.disposeBag)
+            })
+            .disposed(by: disposeBag)
     }
 }
 
 extension ExpertAccountViewController {
     
     func handleItemSelected(_ cell: ExpertAccountOptionsCollectionCell) {
-        UIView.animate(withDuration: 0.1, animations: {
-            cell.alpha = 0.5
-        }
-            ,completion: { (_) in
-                UIView.animate(withDuration: 0.1, animations: {
-                    cell.alpha = 1.0
-                }
-                    ,completion: { (_) in
-                        switch cell.optionTitle.text! {
-                        case "Support":
-                            self.handleSupport()
-                            
-                        case "Log-Out":
-                            self.handleLogout()
-                            
-                        default:
-                            self.performSegue(withIdentifier: cell.segueID, sender: self)
+        UIView.animate(
+            withDuration: 0.1,
+            animations  : { cell.alpha = 0.5 },
+            completion  : { _ in
+                UIView.animate(
+                    withDuration: 0.1,
+                    animations  : { cell.alpha = 1.0 },
+                    completion  : { _ in
+                        switch cell.optionTitle.text ?? "" {
+                        case "Support": self.handleSupport()
+                        case "Log-Out": self.handleLogout()
+                        default       : self.performSegue(withIdentifier: cell.segueID, sender: self)
                         }
                 })
         })
     }
     
     func handleSupport(){
-        if MFMailComposeViewController.canSendMail() {
-            let mail = MFMailComposeViewController()
-            mail.mailComposeDelegate = self
-            mail.setToRecipients(["Briizebeauty@gmail.com"])
-            mail.setMessageBody("<p>You're so awesome!</p>", isHTML: true)
-
-            present(mail, animated: true)
-        } else {
-            // show failure alert
+        guard MFMailComposeViewController.canSendMail() else {
+            print("Can't Display Email Screen")
+            return
         }
+        let mail = MFMailComposeViewController()
+        mail.mailComposeDelegate = self
+        mail.setToRecipients(["Briizebeauty@gmail.com"])
+        mail.setMessageBody("<p>How may we assist?</p>", isHTML: true)
+        present(mail, animated: true)
     }
     
     func handleLogout(){
-        self.navigationController?.popToRootViewController(animated: true)
+        navigationController?.popToRootViewController(animated: true)
     }
     
-    @objc func viewHistory() {
-        
-    }
+    @objc func viewHistory() { }
 }
 
 extension ExpertAccountViewController: UICollectionViewDelegateFlowLayout {
-    func collectionView(_ collectionView: UICollectionView,
-                        layout collectionViewLayout: UICollectionViewLayout,
-                        sizeForItemAt indexPath: IndexPath)
-        -> CGSize {
-            switch self.view.frame.height < 812 {
-            case true:
-                return CGSize(width: collectionView.frame.width - 80, height: collectionView.frame.height - 80)
-                
-            case false:
-                return CGSize(width: collectionView.frame.width - 130, height: collectionView.frame.height - 130)
-            }
+    
+    func collectionView(
+        _ collectionView           : UICollectionView,
+        layout collectionViewLayout: UICollectionViewLayout,
+        sizeForItemAt indexPath    : IndexPath
+    ) -> CGSize {
+        let isBelow = view.frame.height <= 812
+        let padding: CGFloat = isBelow ? 80 : 130
+        return CGSize(
+            width: collectionView.frame.width - padding,
+            height: collectionView.frame.height - padding
+        )
     }
 }
 
 extension ExpertAccountViewController: MFMailComposeViewControllerDelegate {
-    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+    
+    func mailComposeController(
+        _ controller        : MFMailComposeViewController,
+        didFinishWith result: MFMailComposeResult,
+        error               : Error?
+    ) {
+        print(
+            error?.localizedDescription ??
+            "** ERROR:\n Mail Compose Delegate Method -> 'didFinishWith result'\n**"
+        )
         controller.dismiss(animated: true)
     }
 }

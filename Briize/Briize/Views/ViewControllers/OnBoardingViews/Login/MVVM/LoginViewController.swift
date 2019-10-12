@@ -95,8 +95,8 @@ extension LoginViewController {
     private func setup() {
         self.navigationController?.navigationBar.isHidden = true
 
-        usernameTextfield.text = "miles.fishman@yahoo.com"
-        passwordTextfield.text = "devguy123"
+        usernameTextfield.text = "briizebeauty@gmail.com"//"miles.fishman@yahoo.com"
+        passwordTextfield.text = "theboss123"//"devguy123"
 
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         self.view.addGestureRecognizer(tap)
@@ -105,9 +105,9 @@ extension LoginViewController {
     }
 
     private func scanState() {
-        setupVideoObserver()
-
         BriizeManager.shared.adoptController(nil)
+        
+        setupVideoObserver()
 
         guard
             let username = UserDefaults.standard.value(forKey: "Username") as? String,
@@ -118,7 +118,7 @@ extension LoginViewController {
         usernameTextfield.text = username
         passwordTextfield.text = password
 
-        goButtonPressed(self as Any)
+        goButtonPressed(())
     }
 
     // MARK: - BG Video Methods
@@ -140,10 +140,7 @@ extension LoginViewController {
         overlay.backgroundColor = .black
         overlay.alpha = 0.6
         
-        guard let url = Bundle.main.url(forResource : "briizeBGV", withExtension: "mp4")
-            else {
-                return
-        }
+        guard let url = Bundle.main.url(forResource : "briizeBGV", withExtension: "mp4") else { return }
         player = AVPlayer.init(url: url)
         playerLayer = AVPlayerLayer(player: player)
         playerLayer.videoGravity = AVLayerVideoGravity.resizeAspectFill

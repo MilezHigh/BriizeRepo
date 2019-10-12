@@ -26,10 +26,12 @@ class AccountHomeCollectionCell: UICollectionViewCell {
             guard let cell = model else {return}
             self.id = cell.id_name
             
-            bindTable()
-            
-            let categories = AccountHomeCollectionCell.createFixedCategories()
-            self.categories.accept(categories)
+            DispatchQueue.main.async {
+                self.bindTable()
+                
+                let categories = AccountHomeCollectionCell.createFixedCategories()
+                self.categories.accept(categories)
+            }
         }
     }
     
@@ -39,9 +41,10 @@ class AccountHomeCollectionCell: UICollectionViewCell {
     }
     
     private func bindTable() {
-        categoryTableView.layer.cornerRadius = 15
+        categoryTableView.layer.cornerRadius = 20
+        categoryTableView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
         categoryTableView.tableFooterView = UIView()
-        categoryTableView.rowHeight = (categoryTableView.bounds.size.height / 4) - 16
+        categoryTableView.rowHeight = (categoryTableView.bounds.height / 4) - 16
         categories
             .asObservable()
             .observeOn(MainScheduler.instance)

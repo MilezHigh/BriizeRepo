@@ -16,14 +16,13 @@ class RequestOrderViewModel {
     let shouldDismiss = BehaviorRelay<Bool>(value: false)
     let expertDidApprove = BehaviorRelay<Bool>(value: false)
     let needForExpertApproval = BehaviorRelay<Bool>(value: false)
-    
     let requestOrder = BehaviorRelay<RequestOrderModel?>(value: nil)
-    let requestState = BehaviorRelay<RequestState>(value: .ClientRequested)
-    
-    private let disposeBag = DisposeBag()
+    let requestState = BehaviorRelay<RequestState>(value: .NewClientRequest)
     
     private var requestedPosted: Bool = false
     private var timerDidLap: Bool = false
+    
+    private let disposeBag = DisposeBag()
     
     init(_ requestOrder: RequestOrderModel, state: RequestState) {
         self.requestOrder.accept(requestOrder)
@@ -39,8 +38,16 @@ extension RequestOrderViewModel {
             .asObservable()
             .subscribe(onNext: { [weak self] (state) in
                 switch state {
-                case .ClientRequested:
+                case .NewClientRequest:
                     self?.observeClientRequest()
+                    
+                case .RequestPending:
+                    var model = self?.requestOrder.value
+                    model?.requestStatus = state.rawValue
+                    
+                    DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(150)) {
+                        self?.checkRequestStatus(model?.id, restartTimer: false)
+                    }
                     
                 case .ExpertReceivedRequest:
                     self?.obtainExpertApproval()
@@ -67,11 +74,8 @@ extension RequestOrderViewModel {
     func observeClientRequest() {
         requestOrder
             .asObservable()
-            .filter({
-                $0 != nil
-            })
             .subscribe(onNext: { [weak self] (order) in
-                guard let strongSelf = self else { return }
+                guard let strongSelf = self, order != nil else { return }
                 switch strongSelf.requestedPosted {
                 case true:
                     strongSelf.startTimer()
@@ -86,31 +90,34 @@ extension RequestOrderViewModel {
     
     private func startTimer() {
         let interval = Date().timeIntervalSince1970
-        UserDefaultsManager.saveRequestTimer(interval: interval)
+        UserDefaultsManager.saveRequestTimer(interval: interval) // deprc.
         
         Timer.scheduledTimer(withTimeInterval: 150.0, repeats: false) { [weak self] (_) in
             guard let strongSelf = self else { return }
             guard !strongSelf.timerDidLap else {
-                strongSelf.checkRequestStatus(strongSelf.requestOrder.value, restartTimer: strongSelf.timerDidLap)
+                strongSelf.checkRequestStatus(
+                    strongSelf.requestOrder.value?.id,
+                    restartTimer: strongSelf.timerDidLap
+                )
                 return
             }
             strongSelf.timerDidLap = true
-            strongSelf.checkRequestStatus(strongSelf.requestOrder.value, restartTimer: true)
+            strongSelf.checkRequestStatus(strongSelf.requestOrder.value?.id, restartTimer: true)
         }
     }
     
-    private func checkRequestStatus(_ model: RequestOrderModel?, restartTimer: Bool) {
-        guard let requestId = model?.id else { return }
+    private func checkRequestStatus(_ id: String?, restartTimer: Bool) {
+        guard let requestId = id else { return }
         let api = NetworkManager.instance
-        api.checkRequestState(from: requestId) { [weak self] (state) in
+        api.checkRequestState(from: requestId) { [weak self] in
             guard let strongSelf = self else { return }
             
-            switch state {
-            case .ClientRequested:
+            switch $0 {
+            case .NewClientRequest:
                 restartTimer ? strongSelf.startTimer() : ()
-                
+
             default:
-                strongSelf.requestState.accept(state)
+                strongSelf.requestState.accept($0)
             }
         }
     }
@@ -118,27 +125,28 @@ extension RequestOrderViewModel {
     private func postRequestToDB(_ model: RequestOrderModel) {
         let api = NetworkManager.instance
         api.postRequest(model, status: model.requestStatus) { [weak self] (success, objectId, error) in
-            guard let strongSelf = self, error == nil, success == true, objectId != nil else {
-                print("Error Happened On Post Request")
-                return
+            guard let strongSelf = self, error == nil, success == true, objectId != nil
+                else {
+                    print("Error Happened On Post Request")
+                    return
             }
             strongSelf.requestedPosted = true
             
             guard var req = strongSelf.requestOrder.value else { return }
-            req.id = objectId
-            req.requestStatus = RequestState.ExpertAccepted.rawValue
+            req.id = objectId ?? ""
+            req.requestStatus = RequestState.RequestPending.rawValue
             strongSelf.requestOrder.accept(req)
         }
     }
     
     private func obtainExpertApproval() {
         expertDidApprove
-            .asObservable()
+            .share()
             .bind(to: shouldDismiss)
             .disposed(by: disposeBag)
         
         expertDidApprove
-            .asObservable()
+            .map { $0 }
             .subscribe(onNext: { [weak self] (didApprove) in
                 guard didApprove == true else { return }
                 self?.requestState.accept(.ExpertAccepted)

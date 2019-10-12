@@ -28,12 +28,6 @@ class ExpertTableViewCell: UITableViewCell {
     @IBOutlet weak var ratingImageView4: UIImageView!
     @IBOutlet weak var ratingImageView5: UIImageView!
     
-    let datePicker = UIDatePicker()
-    
-    var textField = UITextField(frame: CGRect(x: 0, y: 0, width: 150.0, height: 80))
-    
-    var expertImage: UIImage?
-    
     var model: UserModel? {
         didSet {
             guard let model = model, let url = model.urlString?.url else {return}
@@ -48,6 +42,10 @@ class ExpertTableViewCell: UITableViewCell {
             self.expertProfileImageView.image = expertImage
         }
     }
+    var textField = UITextField(frame: CGRect(x: 0, y: 0, width: 150.0, height: 80))
+    var expertImage: UIImage?
+    
+    let datePicker = UIDatePicker()
     
     // MARK: Lifestyle
     
@@ -78,13 +76,12 @@ class ExpertTableViewCell: UITableViewCell {
         while let presentedViewController = topController.presentedViewController {
             topController = presentedViewController
         }
-        let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         
         let action1 = UIAlertAction(title: "Request Now", style: .default) { (action) in
             let sanitizedNumberText = self.model?.price.filter({ $0 != "$" })
             guard let cost = Int(sanitizedNumberText ?? "0") else { return }
             let profit = cost / 10 /// <--- 10% Commission
-            
+            let requestState = RequestState.NewClientRequest
             let requestOrder = RequestOrderModel(
                 id: "",
                 type: "Standard",
@@ -100,7 +97,7 @@ class ExpertTableViewCell: UITableViewCell {
                 startTime: nil,
                 finishTime: nil,
                 scheduledDate: nil,
-                requestStatus: RequestState.ClientRequested.rawValue,
+                requestStatus: requestState.rawValue,
                 cost: cost,
                 payToExpert: cost - profit,
                 profit: profit,
@@ -110,22 +107,18 @@ class ExpertTableViewCell: UITableViewCell {
             )
             guard let requestOrderVC = BriizeRouter.RequestOrderVC,
                 let currentContext = BriizeManager.shared.liveController.value
-                else {
-                    return
-            }
-            requestOrderVC.viewModel = RequestOrderViewModel(requestOrder, state: .ClientRequested)
+                else { return }
             
+            requestOrderVC.viewModel = RequestOrderViewModel(requestOrder, state: requestState)
             currentContext
                 .navigationController?
                 .present(UINavigationController(rootViewController: requestOrderVC), animated: true)
         }
-
         let action2 = UIAlertAction(title: "Schedule Request", style: .default) { (action) in
             self.showDatePickerVC(topController)
         }
-
         let action3 = UIAlertAction(title: "Cancel", style: .cancel)
-        
+        let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         actionSheet.addAction(action1)
         actionSheet.addAction(action2)
         actionSheet.addAction(action3)
