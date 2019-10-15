@@ -64,7 +64,8 @@ extension NetworkManager {
     func signUpUser(
         model             : UserPartialModel,
         certImageData     : Data?,
-        servicesAppliedFor: [String]) -> Observable<(Bool, UserPartialModel?, Error?)> {
+        servicesAppliedFor: [String]
+    ) -> Observable<(Bool, UserPartialModel?, Error?)> {
         let user = PFUser()
         user.username = model.email
         user.password = model.password
@@ -82,31 +83,39 @@ extension NetworkManager {
 
         let hasCertification = certImageData != nil
         hasCertification ? user["certPhoto"] = certImageData?.pfFileObject() : ()
-
+        
         return Observable<(Bool, UserPartialModel?, Error?)>.create { observer in
             user.signUpInBackground { (succeeded, error) in
-                guard error == nil, succeeded
-                    else {
-                        if let err = error {
-                            print("Error on User Sign Up - \(err.localizedDescription)")
-                            observer.onNext((false, nil , error))
-                            observer.onCompleted()
-                        }
-                        return
+                guard error == nil, succeeded else {
+                    if let err = error {
+                        print("Error - \(err.localizedDescription)")
+                        observer.onNext((false, nil , error))
+                        observer.onCompleted()
+                    }
+                    return
                 }
                 print("User Signed Up")
                 observer.onNext((succeeded, model, nil))
                 observer.onCompleted()
             }
-
+            
             return Disposables.create { }
         }
     }
     
-    func pullPriorRequests(for clientID: String, completion: @escaping ([RequestOrderModel?]) -> ()) {
-        let predicate = NSPredicate(format: "clientName = '\(clientID)' AND requestStatus = \(4)")
+    func pullRequests(
+        for id: String,
+        isExpert: Bool = false,
+        status: Int = 4,
+        isExactStatus: Bool = true,
+        completion: @escaping ([RequestOrderModel?]) -> ()
+    ) {
+        let userIdKey = isExpert ? "expertName" : "clientName"
+        let requestStatus = " AND requestStatus = \(status)"
+        let incompleteRequestStatus = " AND requestStatus <= \(status)"
+        let predicateString = userIdKey + " = '\(id)'" + (isExactStatus ? requestStatus : incompleteRequestStatus)
+        let predicate = NSPredicate(format: predicateString)
         let query = PFQuery(className: "Requests", predicate: predicate)
-
         query.findObjectsInBackground { (objects, error) in
             switch error != nil {
             case true:
@@ -114,17 +123,8 @@ extension NetworkManager {
                 completion([])
                 
             case false:
-                guard let objects = objects else { return }
-                print(objects)
-                completion(
-                    objects.map({ obj -> RequestOrderModel? in
-                        guard let request = RequestOrderModel.create(from: obj)
-                            else {
-                                return nil
-                        }
-                        return request
-                    })
-                )
+                guard let objects = objects else { return } ; print(objects)
+                completion(objects.map({ RequestOrderModel.create(from: $0) }))
             }
         }
     }
@@ -135,7 +135,7 @@ extension NetworkManager {
         query.getFirstObjectInBackground { (object, error) in
             switch error != nil {
             case true:
-                print("Error on pulling user from API - \(error!.localizedDescription)")
+                print("Error on pulling user from API - \(error?.localizedDescription ?? "")")
                 completion(nil)
                 
             case false:
@@ -153,7 +153,7 @@ extension NetworkManager {
                 completion(false, nil, error)
                 return
             }
-
+            
             let predicate = NSPredicate(format: "clientName = '\(model.clientID)' AND requestStatus = \(status)")
             let query = PFQuery(className: "Requests", predicate: predicate)
             query.findObjectsInBackground(block: { (objects, error) in
@@ -165,7 +165,6 @@ extension NetworkManager {
                     completion(false, nil, nil) // <--- Place Error
                     return
                 }
-
                 completion(success, object.objectId, nil)
             })
         }
@@ -174,15 +173,10 @@ extension NetworkManager {
     func checkRequestState(from requestId: String, completion: @escaping (RequestState) -> ()) {
         let predicate = NSPredicate(format: "objectId = '\(requestId)'")
         let query = PFQuery(className: "Requests", predicate: predicate)
-        query.findObjectsInBackground(block: { (objects, error) in
-            guard error == nil else {
-                return
-            }
-            guard let object = objects?.first else {
-                return
-            }
-
-            completion(RequestState.create(from: (object["requestStatus"] as? Int) ?? 0))
+        query.findObjectsInBackground(
+            block: { (objects, error) in
+                guard error == nil, let object = objects?.first else { return }
+                completion(RequestState.create(from: (object["requestStatus"] as? Int) ?? 0))
         })
     }
     
@@ -193,12 +187,12 @@ extension NetworkManager {
 
 // updates to db
 extension NetworkManager {
-
+    
     func updateUserAddress(
         formatted: String,
-        state: String,
-        zipcode: String
-        ) -> Observable<(Bool, Error?)> {
+        state    : String,
+        zipcode  : String
+    ) -> Observable<(Bool, Error?)> {
         return Observable<(Bool, Error?)>.create { observer in
             PFUser.current()?.fetchInBackground(block: { (object, error) in
                 guard error == nil,
@@ -207,8 +201,8 @@ extension NetworkManager {
                             observer.onCompleted()
                             return
                         }
-                        print("Error on logout - \(err.localizedDescription)")
-
+                        print("Error - \(err.localizedDescription)")
+                        
                         DispatchQueue.main.async {
                             observer.onError(err)
                             observer.onCompleted()
@@ -219,13 +213,13 @@ extension NetworkManager {
                 obj["state"] = state
                 obj["zipcode"] = zipcode
                 obj.saveInBackground()
-
+                
                 DispatchQueue.main.async {
                     observer.onNext((true, nil))
                     observer.onCompleted()
                 }
             })
-
+            
             return Disposables.create {
                 PFUser.logOut()
             }

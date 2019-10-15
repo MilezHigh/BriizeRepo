@@ -233,8 +233,13 @@ extension UICollectionViewCell {
 }
 
 extension UIViewController {
+    
     var sessionManager: BriizeManager {
         return BriizeManager.shared
+    }
+    
+    var sessionUserIsExpert: Bool {
+        return sessionManager.user.model.value?.isExpert == true
     }
 }
 

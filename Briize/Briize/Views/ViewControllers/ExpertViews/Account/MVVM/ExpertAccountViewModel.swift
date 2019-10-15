@@ -9,10 +9,33 @@
 import Foundation
 import RxSwift
 import RxCocoa
+import Parse
 
 class ExpertAccountViewModel {
     
     let accountOptions = BehaviorRelay<[ExpertAccountOption]>(value:[])
+    
+    init() {
+        accountOptions.accept(layoutAccountOptions())
+    }
+}
+
+extension ExpertAccountViewModel {
+    
+    func checkForExistingRequests() -> Observable<[RequestOrderModel]> {
+        guard let id = PFUser.current()?.objectId else { return .just([]) }
+        let network = NetworkManager.instance
+        
+        return Observable<[RequestOrderModel]>.create { (observer) in
+            network.pullRequests(for: id, isExpert: true, isExactStatus: false) { (requests) in
+                observer.onNext(requests.compactMap({ $0 }))
+                observer.onCompleted()
+            }
+            
+            return Disposables.create { }
+        }
+    }
+    
     
     func layoutAccountOptions() -> [ExpertAccountOption] {
         let services = ExpertAccountOption(name: "Services", icon: UIImage(named: "services-xxl"), segueID: "showExpertServices", description:"Add, Remove, & Price the Services that you offer")
@@ -29,9 +52,5 @@ class ExpertAccountViewModel {
         
         let options: [ExpertAccountOption] = [services, payment, portfolio, support, completedOrders, logOut]
         return options
-    }
-    
-    init() {
-        self.accountOptions.accept(self.layoutAccountOptions())
     }
 }

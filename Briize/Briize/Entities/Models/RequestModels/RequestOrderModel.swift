@@ -36,7 +36,7 @@ struct RequestOrderModel {
 }
 
 extension RequestOrderModel {
-
+    
     static func create(from object: PFObject) -> RequestOrderModel? {
         guard
             let id: String = object.objectId,
@@ -56,7 +56,7 @@ extension RequestOrderModel {
             let serviceIds: [Int] = object["serviceIds"] as? [Int],
             let bids: [Int] = object["bids"] as? [Int]
             else {
-                return  nil
+                return nil
         }
 
         let startTime: Date? = object["startTime"] as? Date
@@ -68,7 +68,6 @@ extension RequestOrderModel {
 
         var beforeData: Data?
         var afterData: Data?
-
         if beforeImage != nil && afterImage != nil {
             guard
                 let before = try? beforeImage?.getData(),

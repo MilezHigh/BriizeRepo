@@ -26,12 +26,15 @@ enum RequestState: Int {
     case Idle = 0
     case NewClientRequest = 1
     case RequestPending = 2
-    case ExpertAccepted = 3
+    case InRoute = 3
     case Active = 4
     case Complete = 5
     case Cancelled = 6
+    /// - Note: ( ** 7 / 8 / 9 - Not Used ** )
     case ExpertReceivedRequest = 7
     case ConfirmClientPayment = 8
+    case ExpertAccepted = 9
+    ///
     
     var userFriendlyMessage: String {
         switch self {
@@ -40,7 +43,7 @@ enum RequestState: Int {
         case .NewClientRequest:
             return "Beauty Request Placed"
         case .ExpertAccepted:
-            return  "Request Accepted."
+            return "Request Accepted."
         default:
             return ""
         }
@@ -48,29 +51,23 @@ enum RequestState: Int {
     
     static func create(from id: Int) -> RequestState {
         switch id {
-        case 1:
-            return .NewClientRequest
-        case 2:
-            return .ExpertAccepted
-        case 3:
-            return .Active
-        case 4:
-            return .Complete
-        case 5:
-            return .Cancelled
-        case 6:
-            return .ExpertReceivedRequest
-        case 7:
-            return .ConfirmClientPayment
-        default:
-            return .Idle
+        case 1 : return .NewClientRequest
+        case 2 : return .RequestPending
+        case 3 : return .ExpertAccepted
+        case 4 : return .Active
+        case 5 : return .Complete
+        case 6 : return .Cancelled
+        // 7 / 8 / 9 - Not used
+        case 7 : return .ExpertReceivedRequest
+        case 8 : return .ConfirmClientPayment
+        case 9 : return .InRoute
+        //
+        default: return .Idle
         }
     }
 }
 
 class BriizeManager {
-    let api = NetworkManager.instance
-    let user = User()
     
     var userType: UserType = .Client
     var liveController = BehaviorRelay<UIViewController?>(value: nil)
@@ -79,17 +76,18 @@ class BriizeManager {
     var persistedSegueId = BehaviorRelay<String>(value: "waiting")
     var persistedAppState = BehaviorRelay<(BriizeApplicationState, String)>(value: (.loggedOut, "waiting"))
     
+    let api = NetworkManager.instance
+    let user = User()
+    
     private let disposeBag: DisposeBag = DisposeBag()
     
-    static let shared: BriizeManager = BriizeManager() 
+    static let shared: BriizeManager = BriizeManager()
     
     private init() {
         requestState
             .asObservable()
-            .subscribe(onNext: { [weak self] (state) in
-                    self?.process(state)
-            })
-            .disposed(by: self.disposeBag)
+            .subscribe(onNext: { [weak self] in self?.process($0) })
+            .disposed(by: disposeBag)
     }
 }
 
@@ -129,6 +127,8 @@ extension BriizeManager {
         case .ConfirmClientPayment:
             break
             
+        case .InRoute:
+            break
         }
     }
 }
@@ -183,7 +183,6 @@ extension BriizeManager {
         let action = UIAlertAction(title: "Live Request", style: .default)
         { [weak self] (_) in
             self?.requestType.accept(.Live)
-            kHeroImage = Int(arc4random_uniform(1000))
             DispatchQueue.main.async {
                 completion(true)
             }
@@ -191,7 +190,6 @@ extension BriizeManager {
         let actionTwo = UIAlertAction(title: "Custom Request", style: .default)
         { [weak self] (_) in
             self?.requestType.accept(.Custom)
-            kHeroImage = Int(arc4random_uniform(1000))
             DispatchQueue.main.async {
                 completion(true)
             }
@@ -217,6 +215,7 @@ extension BriizeManager {
         result
             .asDriver(onErrorJustReturn: (false, nil))
             .drive(onNext: { [weak self] (arg) in
+                guard arg.0 else { return }
                 let alert = UIAlertController(title: "Address Updated!", message: nil, preferredStyle: .alert)
                 let action = UIAlertAction(title: "Ok", style: .default, handler: nil)
                 alert.addAction(action)

@@ -42,6 +42,12 @@ class RequestOrderViewController: UIViewController {
         setupUIDrivers()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        sessionManager.adoptController(self)
+    }
+    
     // MARK:- Helpers
     private func setupNavigationBar() {
         navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
@@ -103,17 +109,32 @@ class RequestOrderViewController: UIViewController {
     }
     
     private func obtainExpertApproval() {
+        let order: RequestOrderModel? = viewModel?.requestOrder.value
+        let todoList: String = ((
+            "- Tasks:\n" + (order?.serviceIds
+                .map({ id -> String in
+                    return "\(ServiceSubType.serviceNameFor(id: id))\n"
+                })
+                .reduce("", +) ?? ""))
+        )
+        let message: String = (
+            ("\n- Client:\n\(order?.clientFullName ?? "")\n\n")
+                + ("- Service:\n\(order?.serviceType ?? "")\n\n")
+                + "\(todoList)\n"
+                + ("- Cost:\n$\(order?.cost ?? 0).00\n\n")
+                + ("- You Make:\n$\(order?.payToExpert ?? 0).00\n")
+        )
+        let alert = UIAlertController(
+            title         : "Would you like to accept this client's request?",
+            message       : message,
+            preferredStyle: .alert
+        )
         let accept = UIAlertAction(title: "Accept", style: .default) { [weak self] (action) in
             self?.processExpertApproval(didApprove: true)
         }
         let deny = UIAlertAction(title: "Deny", style: .destructive) { [weak self] (action) in
             self?.processExpertApproval(didApprove: false)
         }
-        let alert = UIAlertController(
-            title         : "Would you like to accept this client's request?",
-            message       : nil,
-            preferredStyle: .actionSheet
-        )
         alert.addAction(accept)
         alert.addAction(deny)
         present(alert, animated: true)

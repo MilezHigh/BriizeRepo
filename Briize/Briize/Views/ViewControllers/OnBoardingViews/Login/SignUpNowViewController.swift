@@ -94,7 +94,7 @@ class SignUpNowViewController: UIViewController {
 
         switch isSigningUpAsExpert && selectedServiceIds.isEmpty {
         case true:
-            self.performSegue(withIdentifier: "applyForServiceSegue", sender: self)
+            performSegue(withIdentifier: "applyForServiceSegue", sender: self)
 
         case false:
             viewModel.signUpUser(model: user)
@@ -140,12 +140,14 @@ extension SignUpNowViewController {
                  emailTextField.rx.text,
                  phoneTextField.rx.text,
                  passwordTextField.rx.text]
-            )
+        )
             .asObservable()
             .flatMap({ values -> Observable<Bool> in
-                return .just(values
-                    .filter({ $0 == "" || $0 == nil })
-                    .isEmpty ? true : false)
+                return .just(
+                    values
+                        .filter({ $0 == "" || $0 == nil })
+                        .isEmpty
+                )
             })
             .do( onNext: { [weak self] in
                 self?.addCertButton.alpha = $0 ? 1 : 0.5
@@ -209,21 +211,21 @@ extension SignUpNowViewController: UITextFieldDelegate {
 
 // MARK: - UIPicker Methods
 extension SignUpNowViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-
+    
     func imagePickerController(
         _ picker: UIImagePickerController,
         didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]
-        ) {
+    ) {
         let info = convertFromUIImagePickerControllerInfoKeyDictionary(info)
-
+        
         picker.dismiss(animated: true)
-
+        
         localImageData = (
-            info [convertFromUIImagePickerControllerInfoKey(UIImagePickerController.InfoKey.originalImage)] as? UIImage
-            )?
-            .jpegData(compressionQuality: 0.7)
+            info [convertFromUIImagePickerControllerInfoKey(UIImagePickerController.InfoKey.originalImage)]
+                as? UIImage
+            )?.jpegData(compressionQuality: 0.7)
     }
-
+    
     private func takePhoto(from imageSource: ImageSource) {
         imagePicker = UIImagePickerController()
         imagePicker.delegate = self
@@ -235,7 +237,7 @@ extension SignUpNowViewController: UIImagePickerControllerDelegate, UINavigation
         case .photoLibrary:
             imagePicker.sourceType = .photoLibrary
         }
-        self.present(imagePicker, animated: true, completion: nil)
+        present(imagePicker, animated: true, completion: nil)
     }
 
     private func chooseImageSourceAlertFrom() {
@@ -247,18 +249,24 @@ extension SignUpNowViewController: UIImagePickerControllerDelegate, UINavigation
             self?.takePhoto(from: .photoLibrary)
         }
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
-
+        
         alert.addAction(cameraAction)
         alert.addAction(photoLibraryAction)
         alert.addAction(cancelAction)
-        self.present(alert, animated: true, completion: nil)
+        present(alert, animated: true, completion: nil)
     }
-
-    private func convertFromUIImagePickerControllerInfoKeyDictionary(_ input: [UIImagePickerController.InfoKey: Any]) -> [String: Any] {
-        return Dictionary(uniqueKeysWithValues: input.map {key, value in (key.rawValue, value)})
+    
+    private func convertFromUIImagePickerControllerInfoKeyDictionary(
+        _ input: [UIImagePickerController.InfoKey: Any]
+    ) -> [String: Any] {
+        return Dictionary(
+            uniqueKeysWithValues: input.map { key, value in (key.rawValue, value) }
+        )
     }
-
-    private func convertFromUIImagePickerControllerInfoKey(_ input: UIImagePickerController.InfoKey) -> String {
+    
+    private func convertFromUIImagePickerControllerInfoKey(
+        _ input: UIImagePickerController.InfoKey
+    ) -> String {
         return input.rawValue
     }
 }

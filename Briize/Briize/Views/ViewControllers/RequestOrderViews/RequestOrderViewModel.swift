@@ -42,18 +42,13 @@ extension RequestOrderViewModel {
                     self?.observeClientRequest()
                     
                 case .RequestPending:
-                    var model = self?.requestOrder.value
-                    model?.requestStatus = state.rawValue
+                    self?.handlePendingRequest(
+                        state   : state,
+                        isExpert: BriizeManager.shared.user.model.value?.isExpert == true
+                    )
                     
-                    DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(150)) {
-                        self?.checkRequestStatus(model?.id, restartTimer: false)
-                    }
-                    
-                case .ExpertReceivedRequest:
-                    self?.obtainExpertApproval()
-                    
-                case .ExpertAccepted:
-                    break // MILES YOUR HERE
+                case .InRoute:
+                    break
                     
                 case .Active:
                     break
@@ -86,6 +81,21 @@ extension RequestOrderViewModel {
                 }
             })
             .disposed(by: disposeBag)
+    }
+    
+    func handlePendingRequest(state: RequestState, isExpert: Bool) {
+        switch isExpert {
+        case true:
+            obtainExpertApproval()
+            
+        case false:
+            var model = requestOrder.value
+            model?.requestStatus = state.rawValue
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + 150.0) {
+                self.checkRequestStatus(model?.id, restartTimer: false)
+            }
+        }
     }
     
     private func startTimer() {
@@ -149,7 +159,7 @@ extension RequestOrderViewModel {
             .map { $0 }
             .subscribe(onNext: { [weak self] (didApprove) in
                 guard didApprove == true else { return }
-                self?.requestState.accept(.ExpertAccepted)
+                self?.requestState.accept(.InRoute)
             })
             .disposed(by: disposeBag)
         
