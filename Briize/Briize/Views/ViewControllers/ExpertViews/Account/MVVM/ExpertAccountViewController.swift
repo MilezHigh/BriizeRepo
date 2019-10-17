@@ -24,6 +24,7 @@ class ExpertAccountViewController: UIViewController, UIScrollViewDelegate {
     @IBOutlet weak var ratingAmountLabel: UILabel!
     @IBOutlet weak var accountOptionsCollectionView: UICollectionView!
     @IBOutlet weak var offlineLabel: UILabel!
+    @IBOutlet weak var browseCustomResultsButton: UIButton!
     
     let rosePink = UIColor(red: 223.0/255.0, green: 163.0/255.0, blue: 137.0/255.0, alpha: 1.0)
     
@@ -68,12 +69,12 @@ class ExpertAccountViewController: UIViewController, UIScrollViewDelegate {
 
 extension ExpertAccountViewController {
     
-    func setupNavigationBar(){
-        self.navigationController?.navigationBar.isHidden = false
-        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
-        self.navigationController?.navigationBar.shadowImage = UIImage()
-        self.navigationController?.navigationBar.isTranslucent = true
-        self.navigationController?.navigationBar.backgroundColor = .clear
+    func setupNavigationBar() {
+        navigationController?.navigationBar.isHidden = false
+        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        navigationController?.navigationBar.shadowImage = UIImage()
+        navigationController?.navigationBar.isTranslucent = true
+        navigationController?.navigationBar.backgroundColor = .clear
         
         let logo = #imageLiteral(resourceName: "singleB-1")
         let v = UIView(frame: CGRect(x: 0, y: 0, width: 30, height: 30))
@@ -87,6 +88,8 @@ extension ExpertAccountViewController {
     func setup(){
         guard let user = sessionManager.user.model.value,
             let urlString = user.urlString?.url else { return }
+        
+        browseCustomResultsButton.layer.cornerRadius = browseCustomResultsButton.bounds.height / 2
         
         expertProfileImageView.layer.borderWidth = 1
         expertProfileImageView.layer.borderColor = UIColor.white.cgColor
@@ -190,11 +193,11 @@ extension ExpertAccountViewController {
     }
     
     @objc func viewHistory() {
-        print("Expert History")
+        performSegue(withIdentifier: "showExpertsCompletedOrders", sender: self)
     }
     
     @objc func searchCustomRequests() {
-        print("Search Through Custom Requests")
+        performSegue(withIdentifier: "", sender: self)
     }
 }
 

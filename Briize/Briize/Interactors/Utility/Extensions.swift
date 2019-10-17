@@ -16,7 +16,13 @@ public var kExpertTableCellHeight: CGFloat = 188.0
 
 public var kHeroImage: Int = 0
 
-// MARK: - UIView
+// MARK: - Protocols
+protocol BriizeObject: AnyObject {
+    var sessionManager: BriizeManager { get }
+}
+
+// MARK: - Extensions
+// MARK: * UIView
 extension UIView {
 
     class func fromNib<T: UIView>() -> T {
@@ -61,7 +67,7 @@ extension UIView {
     }
 }
 
-// MARK: - UIImage
+// MARK: * UIImage
 extension UIImageView {
     
     func darkOverlay(){
@@ -104,8 +110,7 @@ extension UIImageView {
                             self?.image = nil
                             self?.alpha = 1
                         })
-                    }
-                    return
+                    } ; return
             }
             DispatchQueue.main.async {
                 this.alpha = 0
@@ -186,7 +191,6 @@ extension UISegmentedControl {
     
     func addUnderlineForSelectedSegment() {
         removeBorder()
-
         let underlineWidth: CGFloat = self.bounds.size.width / CGFloat(self.numberOfSegments)
         let underlineHeight: CGFloat = 2.0
         let underlineXPosition = CGFloat(selectedSegmentIndex * Int(underlineWidth))
@@ -198,13 +202,10 @@ extension UISegmentedControl {
         self.addSubview(underline)
     }
     
-    func changeUnderlinePosition(){
+    func changeUnderlinePosition() {
         guard let underline = self.viewWithTag(1) else {return}
         let underlineFinalXPosition = (self.bounds.width / CGFloat(self.numberOfSegments)) * CGFloat(selectedSegmentIndex)
-
-        UIView.animate(withDuration: 0.2, animations: {
-            underline.frame.origin.x = underlineFinalXPosition
-        })
+        UIView.animate(withDuration: 0.2, animations: { underline.frame.origin.x = underlineFinalXPosition })
     }
 }
 
@@ -226,16 +227,17 @@ extension UIImage {
     }
 }
 
-extension UICollectionViewCell {
+extension UICollectionViewCell: BriizeObject {
+    
     var sessionManager: BriizeManager {
-        return BriizeManager.shared
+        get { return BriizeManager.shared }
     }
 }
 
-extension UIViewController {
+extension UIViewController: BriizeObject {
     
     var sessionManager: BriizeManager {
-        return BriizeManager.shared
+        get { return BriizeManager.shared }
     }
     
     var sessionUserIsExpert: Bool {
@@ -273,7 +275,5 @@ extension DateFormatter {
     static func prettyDate(from string: String) {
         let formatter = DateFormatter()
         formatter.dateFormat = "dd-MM-YYYY"
-
-
     }
 }

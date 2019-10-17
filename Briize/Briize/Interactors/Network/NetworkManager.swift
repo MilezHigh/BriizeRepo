@@ -106,7 +106,7 @@ extension NetworkManager {
     func pullRequests(
         for id: String,
         isExpert: Bool = false,
-        status: Int = 4,
+        status: Int = 5,
         isExactStatus: Bool = true,
         completion: @escaping ([RequestOrderModel?]) -> ()
     ) {

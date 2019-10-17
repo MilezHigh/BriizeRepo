@@ -32,7 +32,7 @@ class AccountPriorCollectionCell: UICollectionViewCell {
         super.awakeFromNib()
         
         guard let userID = PFUser.current()?.objectId else {return}
-        self.pullPriorRequests(for: userID)
+        pullPriorRequests(for: userID)
     }
 }
 

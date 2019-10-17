@@ -73,7 +73,7 @@ class RequestOrderViewController: UIViewController {
         
         guard let state = viewModel?.requestState.value else { return }
         let isActive = state == .Active
-        completeButton.backgroundColor = isActive ? .green : .lightGray
+        completeButton.backgroundColor = isActive ? .black : .lightGray
         completeButton.isEnabled = isActive
     }
     
@@ -125,15 +125,15 @@ class RequestOrderViewController: UIViewController {
                 + ("- You Make:\n$\(order?.payToExpert ?? 0).00\n")
         )
         let alert = UIAlertController(
-            title         : "Would you like to accept this client's request?",
+            title         : "Would you like to accept this beauty request?",
             message       : message,
             preferredStyle: .alert
         )
-        let accept = UIAlertAction(title: "Accept", style: .default) { [weak self] (action) in
-            self?.processExpertApproval(didApprove: true)
-        }
-        let deny = UIAlertAction(title: "Deny", style: .destructive) { [weak self] (action) in
+        let deny = UIAlertAction(title: "I Can't Right Now", style: .cancel) { [weak self] (action) in
             self?.processExpertApproval(didApprove: false)
+        }
+        let accept = UIAlertAction(title: "Accept Request", style: .default) { [weak self] (action) in
+            self?.processExpertApproval(didApprove: true)
         }
         alert.addAction(accept)
         alert.addAction(deny)

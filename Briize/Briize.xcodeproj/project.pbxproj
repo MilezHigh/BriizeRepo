@@ -79,6 +79,7 @@
 		84FF87B420B2C9A90054BA99 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FF87B320B2C9A90054BA99 /* UserModel.swift */; };
 		84FF87B720B3E1630054BA99 /* BaseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FF87B620B3E1630054BA99 /* BaseViewModel.swift */; };
 		9967234B7CB381778DB7D906 /* Pods_BriizeTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 021419F10C21C44EBF3AA813 /* Pods_BriizeTests.framework */; };
+		9A3C686F2355FF6100C570AA /* ExpertCompletedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A3C686E2355FF6100C570AA /* ExpertCompletedViewModel.swift */; };
 		9A4F3C48235211B600866704 /* ExpertCompletedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A4F3C47235211B600866704 /* ExpertCompletedViewController.swift */; };
 		9A5076A5234E055A003D577A /* ExpertMapListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A5076A4234E055A003D577A /* ExpertMapListViewController.swift */; };
 		9A5076A7234E0921003D577A /* ExpertMapListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A5076A6234E0921003D577A /* ExpertMapListViewModel.swift */; };
@@ -175,6 +176,7 @@
 		84FF87B120B2BC340054BA99 /* ClientPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientPresenter.swift; sourceTree = "<group>"; };
 		84FF87B320B2C9A90054BA99 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		84FF87B620B3E1630054BA99 /* BaseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewModel.swift; sourceTree = "<group>"; };
+		9A3C686E2355FF6100C570AA /* ExpertCompletedViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpertCompletedViewModel.swift; sourceTree = "<group>"; };
 		9A4F3C47235211B600866704 /* ExpertCompletedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpertCompletedViewController.swift; sourceTree = "<group>"; };
 		9A5076A4234E055A003D577A /* ExpertMapListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpertMapListViewController.swift; sourceTree = "<group>"; };
 		9A5076A6234E0921003D577A /* ExpertMapListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpertMapListViewModel.swift; sourceTree = "<group>"; };
@@ -326,7 +328,7 @@
 			children = (
 				840A45B72147AF3B003EC054 /* ExpertAccountViewController.swift */,
 				84A85A7A2154AF120098E3F8 /* ExpertAccountViewModel.swift */,
-				84A85A702150EE820098E3F8 /* ExpertAccountOptionsCollectionCell.swift */,
+				9A3C686D2355FAF400C570AA /* CollectionCell */,
 			);
 			path = MVVM;
 			sourceTree = "<group>";
@@ -711,10 +713,19 @@
 			path = Base;
 			sourceTree = "<group>";
 		};
+		9A3C686D2355FAF400C570AA /* CollectionCell */ = {
+			isa = PBXGroup;
+			children = (
+				84A85A702150EE820098E3F8 /* ExpertAccountOptionsCollectionCell.swift */,
+			);
+			path = CollectionCell;
+			sourceTree = "<group>";
+		};
 		9A4F3C462352118800866704 /* ExpertsCompletedOrders */ = {
 			isa = PBXGroup;
 			children = (
 				9A4F3C47235211B600866704 /* ExpertCompletedViewController.swift */,
+				9A3C686E2355FF6100C570AA /* ExpertCompletedViewModel.swift */,
 			);
 			path = ExpertsCompletedOrders;
 			sourceTree = "<group>";
@@ -803,7 +814,7 @@
 					84E10A4320B0132C00E287A0 = {
 						CreatedOnToolsVersion = 9.2;
 						LastSwiftMigration = 1010;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
 						SystemCapabilities = {
 							com.apple.Push = {
 								enabled = 0;
@@ -998,6 +1009,7 @@
 				84A85A7B2154AF120098E3F8 /* ExpertAccountViewModel.swift in Sources */,
 				84E10A7120B033FD00E287A0 /* NetworkManager.swift in Sources */,
 				84361D8220C77DE7003B2C17 /* ServiceModel.swift in Sources */,
+				9A3C686F2355FF6100C570AA /* ExpertCompletedViewModel.swift in Sources */,
 				84361D2820C385FC003B2C17 /* ClientDashboardViewModel.swift in Sources */,
 				841AC389227852B400E65578 /* RequestOrderViewController.swift in Sources */,
 				84E10A7720B046C600E287A0 /* ClientDashBoardView.swift in Sources */,
@@ -1180,15 +1192,16 @@
 			baseConfigurationReference = CF59CC435C8F58C800E5B4D6 /* Pods-Briize.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 6;
+				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 7;
 				DEVELOPMENT_TEAM = WMVNZYDS86;
 				INFOPLIST_FILE = Briize/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.milesFishman.Briize;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = briizeDev2019;
 				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -1197,15 +1210,16 @@
 			baseConfigurationReference = 4AEE492058D7913369F961C3 /* Pods-Briize.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 6;
+				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 7;
 				DEVELOPMENT_TEAM = WMVNZYDS86;
 				INFOPLIST_FILE = Briize/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.milesFishman.Briize;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = briizeDev2019;
 				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

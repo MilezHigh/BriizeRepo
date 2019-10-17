@@ -28,7 +28,11 @@ extension ExpertAccountViewModel {
         
         return Observable<[RequestOrderModel]>.create { (observer) in
             network.pullRequests(for: id, isExpert: true, isExactStatus: false) { (requests) in
-                observer.onNext(requests.compactMap({ $0 }))
+                observer.onNext(
+                    requests
+                        .filter({ $0?.requestStatus != 5 })
+                        .compactMap({ $0 })
+                )
                 observer.onCompleted()
             }
             
@@ -38,17 +42,29 @@ extension ExpertAccountViewModel {
     
     
     func layoutAccountOptions() -> [ExpertAccountOption] {
-        let services = ExpertAccountOption(name: "Services", icon: UIImage(named: "services-xxl"), segueID: "showExpertServices", description:"Add, Remove, & Price the Services that you offer")
+        let services = ExpertAccountOption(
+            name: "Services",
+            icon: UIImage(named: "services-xxl"), segueID: "showExpertServices", description:"Add, Remove, & Price the Services that you offer")
         
-        let completedOrders = ExpertAccountOption(name: "Completed", icon: UIImage(named: "star-8-xxl"), segueID: "showExpertsCompletedOrders", description:"See the completed orders you have finished and have been paid for.")
+        let completedOrders = ExpertAccountOption(
+            name: "Completed",
+            icon: UIImage(named: "star-8-xxl"), segueID: "showExpertsCompletedOrders", description:"See the completed orders you have finished and have been paid for.")
         
-        let payment = ExpertAccountOption(name: "Payment", icon: UIImage(named: "banknotes-xxl"), segueID: "showPayments", description:"View the history of all recieved payments.")
+        let payment = ExpertAccountOption(
+            name: "Payment",
+            icon: UIImage(named: "banknotes-xxl"), segueID: "showPayments", description:"View the history of all recieved payments.")
         
-        let portfolio = ExpertAccountOption(name: "Portfolio", icon: UIImage(named: "portfolio"), segueID: "showPortfolio", description:"Link your Instagram or add photos that show off your work.")
+        let portfolio = ExpertAccountOption(
+            name: "Portfolio",
+            icon: UIImage(named: "portfolio"), segueID: "showPortfolio", description:"Link your Instagram or add photos that show off your work.")
         
-        let support = ExpertAccountOption(name: "Support", icon: UIImage(named: "support-xxl"), segueID: "", description:"Send us an email describing your inquiry.")
+        let support = ExpertAccountOption(
+            name: "Support",
+            icon: UIImage(named: "support-xxl"), segueID: "", description:"Send us an email describing your inquiry.")
         
-        let logOut = ExpertAccountOption(name: "Log-Out", icon: UIImage(named: "account-logout-xxl"), segueID: "", description:"Log out of Briize. Your account will be offline once you log out.")
+        let logOut = ExpertAccountOption(
+            name: "Log-Out",
+            icon: UIImage(named: "account-logout-xxl"), segueID: "", description:"Log out of Briize. Your account will be offline once you log out.")
         
         let options: [ExpertAccountOption] = [services, payment, portfolio, support, completedOrders, logOut]
         return options
