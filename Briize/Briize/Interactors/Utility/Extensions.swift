@@ -24,11 +24,11 @@ protocol BriizeObject: AnyObject {
 // MARK: - Extensions
 // MARK: * UIView
 extension UIView {
-
+    
     class func fromNib<T: UIView>() -> T {
         return Bundle.main.loadNibNamed(String(describing: T.self), owner: nil, options: nil)![0] as! T
     }
-
+    
     public func gradientOverlay() {
         let gradient = CAGradientLayer()
         gradient.frame = self.bounds.applying(CGAffineTransform(scaleX: 3, y: 3))
@@ -67,7 +67,7 @@ extension UIView {
     }
 }
 
-// MARK: * UIImage
+// MARK: * UIImageView
 extension UIImageView {
     
     func darkOverlay(){
@@ -145,7 +145,7 @@ extension UIImageView {
             case false:
                 if let object = object {
                     guard let file = object["profilePhoto"] as? PFFileObject,
-                        let url = file.url else {return}
+                        let url = file.url else { return }
                     self?.downloadedFrom(link: url, setProfileImage: isClient)
                 }
             }
@@ -156,7 +156,8 @@ extension UIImageView {
 extension UISegmentedControl {
     
     func removeBorder(){
-        let backgroundImage = UIImage.getColoredRectImageWith(color: UIColor.white.cgColor, andSize: self.bounds.size)
+        let backgroundImage = UIImage
+            .getColoredRectImageWith(color: UIColor.white.cgColor, andSize: self.bounds.size)
         self.setBackgroundImage(backgroundImage, for: .normal, barMetrics: .default)
         self.setBackgroundImage(backgroundImage, for: .selected, barMetrics: .default)
         self.setBackgroundImage(backgroundImage, for: .highlighted, barMetrics: .default)
@@ -171,7 +172,7 @@ extension UISegmentedControl {
             rightSegmentState  : .normal,
             barMetrics         : .default
         )
-
+        
         let font = UIFont.systemFont(ofSize: 17)
         self.setTitleTextAttributes(
             [
@@ -182,7 +183,12 @@ extension UISegmentedControl {
         )
         self.setTitleTextAttributes(
             [
-                NSAttributedString.Key.foregroundColor: UIColor(red: 214/255, green: 165/255, blue: 141/255, alpha: 1.0),
+                NSAttributedString.Key.foregroundColor: UIColor(
+                    red  : 214/255,
+                    green: 165/255,
+                    blue : 141/255,
+                    alpha: 1.0
+                ),
                 NSAttributedString.Key.font: font
             ],
             for: .selected
@@ -195,7 +201,12 @@ extension UISegmentedControl {
         let underlineHeight: CGFloat = 2.0
         let underlineXPosition = CGFloat(selectedSegmentIndex * Int(underlineWidth))
         let underLineYPosition = self.bounds.size.height
-        let underlineFrame = CGRect(x: underlineXPosition, y: underLineYPosition, width: underlineWidth, height: underlineHeight)
+        let underlineFrame = CGRect(
+            x     : underlineXPosition,
+            y     : underLineYPosition,
+            width : underlineWidth,
+            height: underlineHeight
+        )
         let underline = UIView(frame: underlineFrame)
         underline.backgroundColor = UIColor(red: 214/255, green: 165/255, blue: 141/255, alpha: 1.0)
         underline.tag = 1
@@ -213,13 +224,18 @@ extension UIImage {
     
     class func getColoredRectImageWith(color: CGColor, andSize size: CGSize) -> UIImage{
         UIGraphicsBeginImageContextWithOptions(size, false, 0.0)
-
+        
         let graphicsContext = UIGraphicsGetCurrentContext()
         graphicsContext?.setFillColor(color)
-
-        let rectangle = CGRect(x: 0.0, y: 0.0, width: size.width, height: size.height)
+        
+        let rectangle = CGRect(
+            x     : 0.0,
+            y     : 0.0,
+            width : size.width,
+            height: size.height
+        )
         graphicsContext?.fill(rectangle)
-
+        
         let rectangleImage = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
         
@@ -246,7 +262,7 @@ extension UIViewController: BriizeObject {
 }
 
 extension UITextField {
-
+    
     public func addBottomBorderToTextField(color: UIColor = .black) {
         let bottomLine = CALayer()
         bottomLine.frame = CGRect(
@@ -256,7 +272,7 @@ extension UITextField {
             height : 1.0
         )
         bottomLine.backgroundColor = color.cgColor
-
+        
         borderStyle = UITextField.BorderStyle.none
         layer.addSublayer(bottomLine)
     }
@@ -264,14 +280,14 @@ extension UITextField {
 
 
 extension Data {
-
+    
     func pfFileObject() -> PFFileObject? {
         return PFFileObject(data: self)
     }
 }
 
 extension DateFormatter {
-
+    
     static func prettyDate(from string: String) {
         let formatter = DateFormatter()
         formatter.dateFormat = "dd-MM-YYYY"
