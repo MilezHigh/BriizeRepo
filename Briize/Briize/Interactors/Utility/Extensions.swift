@@ -84,6 +84,7 @@ extension UIImageView {
         self.image = nil
         self.clipsToBounds = true
         self.contentMode = mode
+        self.alpha = 0
         
         let act = NVActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: 20, height: 20))
         act.type = .ballGridPulse
@@ -113,8 +114,6 @@ extension UIImageView {
                     } ; return
             }
             DispatchQueue.main.async {
-                this.alpha = 0
-                
                 if setProfileImage {
                     BriizeManager.shared.user.userProfileImage = image
                 }
@@ -174,24 +173,22 @@ extension UISegmentedControl {
         )
         
         let font = UIFont.systemFont(ofSize: 17)
-        self.setTitleTextAttributes(
-            [
-                NSAttributedString.Key.foregroundColor: UIColor.lightGray,
-                NSAttributedString.Key.font: font
+        self.setTitleTextAttributes([
+            NSAttributedString.Key.foregroundColor: UIColor.lightGray,
+            NSAttributedString.Key.font: font
             ],
-            for: .normal
+                                    for: .normal
         )
-        self.setTitleTextAttributes(
-            [
-                NSAttributedString.Key.foregroundColor: UIColor(
-                    red  : 214/255,
-                    green: 165/255,
-                    blue : 141/255,
-                    alpha: 1.0
-                ),
-                NSAttributedString.Key.font: font
+        self.setTitleTextAttributes([
+            NSAttributedString.Key.foregroundColor: UIColor(
+                red  : 214/255,
+                green: 165/255,
+                blue : 141/255,
+                alpha: 1.0
+            ),
+            NSAttributedString.Key.font: font
             ],
-            for: .selected
+                                    for: .selected
         )
     }
     
@@ -221,13 +218,10 @@ extension UISegmentedControl {
 }
 
 extension UIImage {
-    
     class func getColoredRectImageWith(color: CGColor, andSize size: CGSize) -> UIImage{
         UIGraphicsBeginImageContextWithOptions(size, false, 0.0)
-        
         let graphicsContext = UIGraphicsGetCurrentContext()
         graphicsContext?.setFillColor(color)
-        
         let rectangle = CGRect(
             x     : 0.0,
             y     : 0.0,
@@ -235,23 +229,19 @@ extension UIImage {
             height: size.height
         )
         graphicsContext?.fill(rectangle)
-        
         let rectangleImage = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
-        
         return rectangleImage!
     }
 }
 
 extension UICollectionViewCell: BriizeObject {
-    
     var sessionManager: BriizeManager {
         get { return BriizeManager.shared }
     }
 }
 
 extension UIViewController: BriizeObject {
-    
     var sessionManager: BriizeManager {
         get { return BriizeManager.shared }
     }
@@ -261,8 +251,14 @@ extension UIViewController: BriizeObject {
     }
 }
 
-extension UITextField {
+extension UIColor {
     
+    static var briizePink: UIColor {
+        return UIColor(red: 223.0/255.0, green: 163.0/255.0, blue: 137.0/255.0, alpha: 1.0)
+    }
+}
+
+extension UITextField {
     public func addBottomBorderToTextField(color: UIColor = .black) {
         let bottomLine = CALayer()
         bottomLine.frame = CGRect(
@@ -272,7 +268,6 @@ extension UITextField {
             height : 1.0
         )
         bottomLine.backgroundColor = color.cgColor
-        
         borderStyle = UITextField.BorderStyle.none
         layer.addSublayer(bottomLine)
     }
@@ -280,14 +275,12 @@ extension UITextField {
 
 
 extension Data {
-    
     func pfFileObject() -> PFFileObject? {
         return PFFileObject(data: self)
     }
 }
 
 extension DateFormatter {
-    
     static func prettyDate(from string: String) {
         let formatter = DateFormatter()
         formatter.dateFormat = "dd-MM-YYYY"

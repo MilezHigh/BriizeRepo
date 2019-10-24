@@ -259,9 +259,7 @@ extension ServiceModel {
                         ServiceSubType.girls_haircut
                     ]),
                 ServiceModel(
-                    id: 3, parent: category, name: "Color", subTypes: [
-                        
-                    ]),
+                    id: 3, parent: category, name: "Color", subTypes: []),
                 ServiceModel(
                     id: 0, parent: category, name: "Updue", subTypes: [
                         ServiceSubType.messyUpdue,
@@ -366,7 +364,7 @@ extension ServiceModel {
     }
 }
 
-typealias ServiceObject = (id: Int, name: String)
+typealias ServiceObject = (id: Int, name: String, price: Int)
 
 struct ServiceDatasource {
     var name: String
@@ -392,12 +390,12 @@ struct ServiceDatasource {
                                     .compactMap ({ type -> ServiceObject in
                                         return ServiceObject(
                                             id  : type.id,
-                                            name: ServiceSubType.serviceNameFor(id: type.id)
+                                            name: ServiceSubType.serviceNameFor(id: type.id),
+                                            price: 0
                                         )
                                     })
                             }
-
-                            return [ServiceObject(id: value.id, name: value.name)]
+                            return [ServiceObject(id: value.id, name: value.name, price: 0)]
                         })
                         .reduce([], +)
                 )

@@ -53,6 +53,12 @@ class LoginViewController: UIViewController {
         self.bindSegueSignal()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.navigationBar.barStyle = .black
+        self.setNeedsStatusBarAppearanceUpdate()
+    }
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         scanState()
@@ -195,7 +201,8 @@ extension LoginViewController {
                         self?.setLoaderMessage(message: "Complete!")
                         self?.dismissLoader()
                         self?.dismiss(animated: true, completion: {
-                            BriizeManager.shared.persistedAppState.accept((.authenticated, signalName))
+                            BriizeManager.shared.persistedAppState
+                                .accept((.authenticated, signalName))
                         })
                     }
                 },

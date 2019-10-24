@@ -22,7 +22,7 @@ public enum RequestOrderType {
     case Custom
 }
 
-enum RequestState: Int {
+enum RequestStatus: Int {
     case Idle = 0
     case NewClientRequest = 1
     case RequestPending = 2
@@ -30,7 +30,8 @@ enum RequestState: Int {
     case Active = 4
     case Complete = 5
     case Cancelled = 6
-    /// - Note: ( ** 7 / 8 / 9 - Not Used ** )
+    
+    /// - Note: ( ** 7, 8, 9 - Not Used ** )
     case ExpertReceivedRequest = 7
     case ConfirmClientPayment = 8
     case ExpertAccepted = 9
@@ -38,18 +39,14 @@ enum RequestState: Int {
     
     var userFriendlyMessage: String {
         switch self {
-        case .Idle:
-            return "Idle"
-        case .NewClientRequest:
-            return "Beauty Request Placed"
-        case .ExpertAccepted:
-            return "Request Accepted."
-        default:
-            return ""
+        case .Idle            : return "Idle"
+        case .NewClientRequest: return "Beauty Request Placed"
+        case .ExpertAccepted  : return "Request Accepted."
+        default               : return ""
         }
     }
     
-    static func create(from id: Int) -> RequestState {
+    static func create(from id: Int) -> RequestStatus {
         switch id {
         case 1 : return .NewClientRequest
         case 2 : return .RequestPending
@@ -57,11 +54,13 @@ enum RequestState: Int {
         case 4 : return .Active
         case 5 : return .Complete
         case 6 : return .Cancelled
-        // 7 / 8 / 9 - Not used
+        
+        // 7, 8, 9 - Not used
         case 7 : return .ExpertReceivedRequest
         case 8 : return .ConfirmClientPayment
         case 9 : return .InRoute
         //
+            
         default: return .Idle
         }
     }
@@ -72,9 +71,10 @@ class BriizeManager {
     var userType: UserType = .Client
     var liveController = BehaviorRelay<UIViewController?>(value: nil)
     var requestType = BehaviorRelay<RequestOrderType>(value: .Live)
-    var requestState = BehaviorRelay<RequestState>(value: .Idle)
+    var requestState = BehaviorRelay<RequestStatus>(value: .Idle)
     var persistedSegueId = BehaviorRelay<String>(value: "waiting")
-    var persistedAppState = BehaviorRelay<(BriizeApplicationState, String)>(value: (.loggedOut, "waiting"))
+    var persistedAppState = BehaviorRelay
+        <(BriizeApplicationState, String)>(value: (.loggedOut, "waiting"))
     
     let api = NetworkManager.instance
     let user = User()
@@ -93,7 +93,7 @@ class BriizeManager {
 
 extension BriizeManager {
     
-    private func process(_ state: RequestState) {
+    private func process(_ state: RequestStatus) {
         switch state {
         case .Idle:
             break

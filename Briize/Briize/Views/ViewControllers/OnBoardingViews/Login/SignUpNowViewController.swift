@@ -114,14 +114,14 @@ extension SignUpNowViewController {
         imageView.contentMode = .scaleAspectFit
         v.addSubview(imageView)
         navigationItem.titleView = v
-
+        
         submitNextButton.layer.cornerRadius = 25
         certificationImageView.layer.cornerRadius = 12
-
+        
         setupTextFields()
         segmentSelected(self)
     }
-
+    
     private func bind() {
         viewModel
             .signUpSuccess
@@ -132,15 +132,13 @@ extension SignUpNowViewController {
                 self?.navigationController?.popToRootViewController(animated: true)
             })
             .disposed(by: disposeBag)
-
+        
         Observable
-            .combineLatest(
-                [firstNameTextField.rx.text,
-                 lastNameTextField.rx.text,
-                 emailTextField.rx.text,
-                 phoneTextField.rx.text,
-                 passwordTextField.rx.text]
-        )
+            .combineLatest([ firstNameTextField.rx.text,
+                             lastNameTextField.rx.text,
+                             emailTextField.rx.text,
+                             phoneTextField.rx.text,
+                             passwordTextField.rx.text ])
             .asObservable()
             .flatMap({ values -> Observable<Bool> in
                 return .just(
@@ -156,7 +154,7 @@ extension SignUpNowViewController {
             .bind(to: submitNextButton.rx.isEnabled)
             .disposed(by: disposeBag)
     }
-
+    
     private func setupTextFields() {
         let fields: [UITextField] = [
             firstNameTextField,

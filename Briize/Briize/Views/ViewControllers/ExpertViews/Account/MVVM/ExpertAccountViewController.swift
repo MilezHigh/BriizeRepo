@@ -33,7 +33,6 @@ class ExpertAccountViewController: UIViewController, UIScrollViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         self.setupNavigationBar()
         self.setup()
         self.bind()
@@ -42,7 +41,6 @@ class ExpertAccountViewController: UIViewController, UIScrollViewDelegate {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
         let leftBarButton = UIBarButtonItem(
             barButtonSystemItem: .bookmarks,
             target             : self,
@@ -60,6 +58,9 @@ class ExpertAccountViewController: UIViewController, UIScrollViewDelegate {
         rightBarButton.tintColor = rosePink
         rightBarButton.isEnabled = true
         navigationItem.rightBarButtonItems = [rightBarButton]
+        
+        navigationController?.navigationBar.barStyle = .black
+        setNeedsStatusBarAppearanceUpdate()
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -89,6 +90,8 @@ extension ExpertAccountViewController {
         guard let user = sessionManager.user.model.value,
             let urlString = user.urlString?.url else { return }
         
+        browseCustomResultsButton.layer.borderWidth = 1
+        browseCustomResultsButton.layer.borderColor = rosePink.cgColor
         browseCustomResultsButton.layer.cornerRadius = browseCustomResultsButton.bounds.height / 2
         
         expertProfileImageView.layer.borderWidth = 1
@@ -131,7 +134,7 @@ extension ExpertAccountViewController {
                     let strongSelf = self
                     else { return }
                 
-                let requestStatus = RequestState.create(from: requestOrder.requestStatus)
+                let requestStatus = RequestStatus.create(from: requestOrder.requestStatus)
                 requestOrderVC.viewModel = RequestOrderViewModel(requestOrder, state: requestStatus)
                 strongSelf
                     .navigationController?
@@ -145,11 +148,15 @@ extension ExpertAccountViewController {
             .rx
             .itemSelected
             .subscribe(onNext: { [weak self] (index) in
-                guard let strongSelf = self,
-                    let cell = strongSelf.accountOptionsCollectionView.cellForItem(at: index)
-                        as? ExpertAccountOptionsCollectionCell else { return }
+                self?.accountOptionsCollectionView
+                    .deselectItem(at: index, animated: false)
                 
-                strongSelf.accountOptionsCollectionView.deselectItem(at: index, animated: false)
+                guard
+                    let strongSelf = self,
+                    let cell = strongSelf.accountOptionsCollectionView
+                        .cellForItem(at: index) as? ExpertAccountOptionsCollectionCell
+                    else { return }
+                
                 strongSelf.handleItemSelected(cell)
             })
             .disposed(by: disposeBag)
@@ -202,32 +209,27 @@ extension ExpertAccountViewController {
 }
 
 extension ExpertAccountViewController: UICollectionViewDelegateFlowLayout {
-    
     func collectionView(
         _ collectionView           : UICollectionView,
         layout collectionViewLayout: UICollectionViewLayout,
-        sizeForItemAt indexPath    : IndexPath
-    ) -> CGSize {
-        //let isBelow = view.frame.height <= 812
-        let padding: CGFloat = 80
-        return CGSize(
-            width: collectionView.frame.width - padding,
-            height: collectionView.frame.height - padding
-        )
+        sizeForItemAt indexPath    : IndexPath)
+        -> CGSize {
+            let padding: CGFloat = 80
+            return CGSize(
+                width: collectionView.frame.width - padding,
+                height: collectionView.frame.height - padding
+            )
     }
 }
 
 extension ExpertAccountViewController: MFMailComposeViewControllerDelegate {
-    
     func mailComposeController(
         _ controller        : MFMailComposeViewController,
         didFinishWith result: MFMailComposeResult,
-        error               : Error?
-    ) {
-        print(
-            error?.localizedDescription ??
-            "** ERROR:\n Mail Compose Delegate Method -> 'didFinishWith result'\n**"
-        )
+        error               : Error?) {
+        print(error?.localizedDescription ??
+            "** ERROR:\n Mail Compose Delegate Method -> 'didFinishWith result'**")
+        
         controller.dismiss(animated: true)
     }
 }

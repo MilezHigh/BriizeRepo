@@ -37,6 +37,11 @@ class ClientDashboardViewController: UIViewController {
         registerCells()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+    }
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         setupLeftBarButton()
@@ -62,7 +67,6 @@ class ClientDashboardViewController: UIViewController {
         case is ServiceSelectionViewController:
             let chosenCategory = CategoryModel(name: title, image: img)
             let services = ServiceModel.addServicesToCategory(chosenCategory)
-            
             guard let destination = segue
                 .destination as? ServiceSelectionViewController else { return }
             destination.viewModel.services.accept(services)
@@ -165,11 +169,9 @@ extension ClientDashboardViewController {
             .loggedOut
             .asDriver()
             .drive(onNext: { [weak self] in
-                $0 ? self?.dismiss(
-                    animated  : true,
-                    completion: {
-                        BriizeManager.shared.persistedAppState.accept((.loggedOut, ""))
-                        BriizeManager.shared.dismissloader()
+                $0 ? self?.dismiss(animated: true, completion: {
+                    BriizeManager.shared.persistedAppState.accept((.loggedOut, ""))
+                    BriizeManager.shared.dismissloader()
                 }) : ()
             })
             .disposed(by: disposeBag)
@@ -207,7 +209,7 @@ extension ClientDashboardViewController: UICollectionViewDelegate, UICollectionV
         layout collectionViewLayout: UICollectionViewLayout,
         sizeForItemAt indexPath    : IndexPath
     ) -> CGSize {
-        let height = collectionView.bounds.height - 20
+        let height = collectionView.bounds.height
         let width = collectionView.bounds.width
         return CGSize(width: width, height: height)
     }

@@ -19,7 +19,7 @@ class CustomRequestViewModel {
         BriizeManager.shared.showLoader()
 
         let network = NetworkManager.instance
-        network.postRequest(request, status: RequestState.NewClientRequest.rawValue) { [weak self] (complete, requestId, error) in
+        network.postRequest(request, status: RequestStatus.NewClientRequest.rawValue) { [weak self] (complete, requestId, error) in
             DispatchQueue.main.async {
                 BriizeManager.shared.dismissloader()
 

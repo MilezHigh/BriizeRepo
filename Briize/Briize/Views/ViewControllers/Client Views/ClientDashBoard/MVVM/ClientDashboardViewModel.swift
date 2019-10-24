@@ -42,16 +42,14 @@ class ClientDashboardViewModel {
     func logout() {
         BriizeManager.shared.showLoader()
         
-        let api = NetworkManager.instance
-        api.logout()
+        let api = NetworkManager.instance ; api
+            .logout()
             .asObservable()
             .flatMap({ value -> Observable<Bool> in
-                guard value else {
-                    return .just(false)
-                }
+                guard value else { return .just(false) }
                 UserDefaults.standard.removeObject(forKey: "Username")
                 UserDefaults.standard.removeObject(forKey: "Password")
-
+                
                 return .just(value)
             })
             .bind(to: loggedOut)
@@ -64,11 +62,9 @@ extension CategoryModel {
     static func createAccountOptions() -> [AccountSectionModel] {
         let home = ClientAccountCellModel.init(.Home)
         let prior = ClientAccountCellModel.init(.Prior)
-        
         let homeItem = AccountSectionItem.home(model: home)
         let priorItem = AccountSectionItem.prior(model: prior)
         let sectionModel = AccountSectionModel.accountOptions(title: "", items: [homeItem, priorItem])
-        
         return  [sectionModel]
     }
     

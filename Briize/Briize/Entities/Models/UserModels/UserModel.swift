@@ -20,6 +20,8 @@ struct UserModel {
     var id:String = ""
     var distance:String = ""
     var isExpert: Bool = false
+    var servicesOffered: [NSMutableDictionary] = []
+    var servicesApprovedFor: [Int] = []
     var urlString: PFFileObject?
     var currentLocation: PFGeoPoint?
     
@@ -36,6 +38,9 @@ struct UserModel {
         }
         let profilePic = user["profilePhoto"] as? PFFileObject ?? nil
         let rating = user["rating"] as? Double ?? nil
+        let servicesOffered = user["servicesOffered"] as? NSMutableDictionary ?? [:]
+        let services = servicesOffered["data"] as? [NSMutableDictionary] ?? []
+        let servicesApprovedFor = user["servicesApprovedFor"] as? [Int] ?? []
         
         return UserModel(name             : name,
                           price           : "",
@@ -43,14 +48,17 @@ struct UserModel {
                           phone           : phone,
                           rating          : rating,
                           email           : email,
-                          id              : id, distance: "",
+                          id              : id,
+                          distance        : "",
                           isExpert        : isExpert,
+                          servicesOffered : services,
+                          servicesApprovedFor: servicesApprovedFor,
                           urlString       : profilePic,
                           currentLocation : nil)
     }
     
     static func create(from user: PFObject?) -> UserModel? {
-        guard let user = user,
+       guard let user = user,
             let isExpert = user["isExpert"] as? Bool,
             let name = user["fullName"] as? String,
             let state = user["state"] as? String,
@@ -62,15 +70,21 @@ struct UserModel {
         }
         let profilePic = user["profilePhoto"] as? PFFileObject ?? nil
         let rating = user["rating"] as? Double ?? nil
+        let servicesOffered = user["servicesOffered"] as? NSMutableDictionary ?? [:]
+        let services = servicesOffered["data"] as? [NSMutableDictionary] ?? []
+        let servicesApprovedFor = user["servicesApprovedFor"] as? [Int] ?? []
         
-        return UserModel(name             : name,
+        return UserModel(name            : name,
                          price           : "",
                          state           : state,
                          phone           : phone,
                          rating          : rating,
                          email           : email,
-                         id              : id, distance: "",
+                         id              : id,
+                         distance        : "",
                          isExpert        : isExpert,
+                         servicesOffered : services,
+                         servicesApprovedFor: servicesApprovedFor,
                          urlString       : profilePic,
                          currentLocation : nil)
     }

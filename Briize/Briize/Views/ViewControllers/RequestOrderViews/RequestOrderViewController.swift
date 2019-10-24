@@ -104,7 +104,7 @@ class RequestOrderViewController: UIViewController {
         guard let userIsExpert = sessionManager.user.model.value?.isExpert else { return }
         nameLabel.text = userIsExpert ? requestOrder.clientFullName : requestOrder.expertFullname
         
-        guard let status = RequestState.init(rawValue: requestOrder.requestStatus) else { return }
+        guard let status = RequestStatus.init(rawValue: requestOrder.requestStatus) else { return }
         statusLabel.text = " " + status.userFriendlyMessage
     }
     

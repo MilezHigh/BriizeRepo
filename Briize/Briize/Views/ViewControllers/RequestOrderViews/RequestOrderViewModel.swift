@@ -17,14 +17,14 @@ class RequestOrderViewModel {
     let expertDidApprove = BehaviorRelay<Bool>(value: false)
     let needForExpertApproval = BehaviorRelay<Bool>(value: false)
     let requestOrder = BehaviorRelay<RequestOrderModel?>(value: nil)
-    let requestState = BehaviorRelay<RequestState>(value: .NewClientRequest)
+    let requestState = BehaviorRelay<RequestStatus>(value: .NewClientRequest)
     
     private var requestedPosted: Bool = false
     private var timerDidLap: Bool = false
     
     private let disposeBag = DisposeBag()
     
-    init(_ requestOrder: RequestOrderModel, state: RequestState) {
+    init(_ requestOrder: RequestOrderModel, state: RequestStatus) {
         self.requestOrder.accept(requestOrder)
         self.requestState.accept(state)
         self.observeState()
@@ -83,7 +83,7 @@ extension RequestOrderViewModel {
             .disposed(by: disposeBag)
     }
     
-    func handlePendingRequest(state: RequestState, isExpert: Bool) {
+    func handlePendingRequest(state: RequestStatus, isExpert: Bool) {
         switch isExpert {
         case true:
             obtainExpertApproval()
@@ -144,7 +144,7 @@ extension RequestOrderViewModel {
             
             guard var req = strongSelf.requestOrder.value else { return }
             req.id = objectId ?? ""
-            req.requestStatus = RequestState.RequestPending.rawValue
+            req.requestStatus = RequestStatus.RequestPending.rawValue
             strongSelf.requestOrder.accept(req)
         }
     }

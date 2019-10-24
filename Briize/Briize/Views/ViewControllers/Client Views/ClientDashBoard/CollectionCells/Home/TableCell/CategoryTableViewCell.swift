@@ -14,7 +14,6 @@ class CategoryTableViewCell: UITableViewCell {
     @IBOutlet weak var mainView: UIView!
     @IBOutlet weak var overlayView: UIView!
     @IBOutlet weak var categoryImageView: UIImageView!
-    
     @IBOutlet weak var categoryTitleLabel: UILabel!
 
     var category: CategoryModel? {
@@ -28,7 +27,6 @@ class CategoryTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         clipsToBounds = true
-        
         categoryImageView.darkOverlay()
     }
 }

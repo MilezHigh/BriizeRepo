@@ -16,7 +16,7 @@ import UserNotifications
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
-
+    
     var window: UIWindow?
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
@@ -34,33 +34,33 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         return true
     }
-
+    
     func applicationWillResignActive(_ application: UIApplication) {
     }
-
+    
     func applicationDidEnterBackground(_ application: UIApplication) {
     }
-
+    
     func applicationWillEnterForeground(_ application: UIApplication) {
     }
-
+    
     func applicationDidBecomeActive(_ application: UIApplication) {
     }
-
+    
     func applicationWillTerminate(_ application: UIApplication) {
         self.saveContext()
     }
-
-     // MARK: - Push Notifications
     
-    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+    func application(_ application: UIApplication,
+                     didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
         let installation = PFInstallation.current()
         installation?.setDeviceTokenFrom(deviceToken as Data)
         installation?.setValue("YltHC8PaSs", forKey: "userId")
         installation?.saveInBackground()
     }
     
-    func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
+    func application(_ application: UIApplication,
+                     didFailToRegisterForRemoteNotificationsWithError error: Error) {
         if error._code == 3010 {
             print("Push notifications are not supported in the iOS Simulator.")
         } else {
@@ -68,25 +68,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
     }
     
-    private func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {
+    private func application(application: UIApplication,
+                             didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {
         PFPush.handle(userInfo)
     }
-
-    // MARK: - Core Data stack
-
+    
+    // MARK: - Core Data Stack
+    
     lazy var persistentContainer: NSPersistentContainer = {
         /*
          The persistent container for the application. This implementation
          creates and returns a container, having loaded the store for the
          application to it. This property is optional since there are legitimate
          error conditions that could cause the creation of the store to fail.
-        */
+         */
         let container = NSPersistentContainer(name: "Briize")
         container.loadPersistentStores(completionHandler: { (storeDescription, error) in
             if let error = error as NSError? {
                 // Replace this implementation with code to handle the error appropriately.
                 // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-                 
+                
                 /*
                  Typical reasons for an error here include:
                  * The parent directory does not exist, cannot be created, or disallows writing.
@@ -100,9 +101,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         })
         return container
     }()
-
-    // MARK: - Core Data Saving support
-
+    
     func saveContext () {
         let context = persistentContainer.viewContext
         if context.hasChanges {
@@ -116,23 +115,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         }
     }
-
-    // Private Methods
+    
+    // MARK: - Push Notifications
     
     func getNotificationSettings() {
-        UNUserNotificationCenter.current().getNotificationSettings { settings in
-            print("Notification settings: \(settings)")
-            guard settings.authorizationStatus == .authorized else { return }
-            DispatchQueue.main.async {
-                UIApplication.shared.registerForRemoteNotifications()
-            }
+        UNUserNotificationCenter
+            .current()
+            .getNotificationSettings { settings in
+                print("Notification settings: \(settings)")
+                guard settings.authorizationStatus == .authorized else { return }
+                DispatchQueue.main.async {
+                    UIApplication.shared.registerForRemoteNotifications()
+                }
         }
     }
     
     func registerForPushNotifications() {
-        UNUserNotificationCenter.current()
+        UNUserNotificationCenter
+            .current()
             .requestAuthorization(options: [.alert, .sound, .badge]) { [weak self] granted, error in
-                
                 print("Permission granted: \(granted)")
                 guard granted else { return }
                 self?.getNotificationSettings()

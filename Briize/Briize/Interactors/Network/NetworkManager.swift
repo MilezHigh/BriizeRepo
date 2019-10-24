@@ -170,13 +170,13 @@ extension NetworkManager {
         }
     }
     
-    func checkRequestState(from requestId: String, completion: @escaping (RequestState) -> ()) {
+    func checkRequestState(from requestId: String, completion: @escaping (RequestStatus) -> ()) {
         let predicate = NSPredicate(format: "objectId = '\(requestId)'")
         let query = PFQuery(className: "Requests", predicate: predicate)
         query.findObjectsInBackground(
             block: { (objects, error) in
                 guard error == nil, let object = objects?.first else { return }
-                completion(RequestState.create(from: (object["requestStatus"] as? Int) ?? 0))
+                completion(RequestStatus.create(from: (object["requestStatus"] as? Int) ?? 0))
         })
     }
     

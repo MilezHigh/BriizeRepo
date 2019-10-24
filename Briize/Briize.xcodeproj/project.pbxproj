@@ -50,10 +50,10 @@
 		84A85A73215109E90098E3F8 /* ExpertAccountOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A85A72215109E90098E3F8 /* ExpertAccountOption.swift */; };
 		84A85A7B2154AF120098E3F8 /* ExpertAccountViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A85A7A2154AF120098E3F8 /* ExpertAccountViewModel.swift */; };
 		84A85A7D2159DD9D0098E3F8 /* ExpertEditServicesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A85A7C2159DD9D0098E3F8 /* ExpertEditServicesViewController.swift */; };
-		84A85A9E215B4AEC0098E3F8 /* ServicesEditedCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A85A9D215B4AEC0098E3F8 /* ServicesEditedCollectionViewCell.swift */; };
+		84A85A9E215B4AEC0098E3F8 /* ServicesEditedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A85A9D215B4AEC0098E3F8 /* ServicesEditedTableViewCell.swift */; };
 		84A85AA0215DB8180098E3F8 /* ExpertEditServicesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A85A9F215DB8180098E3F8 /* ExpertEditServicesViewModel.swift */; };
-		84A85AA2215E11830098E3F8 /* ServiceForCategoryCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A85AA1215E11830098E3F8 /* ServiceForCategoryCollectionCell.swift */; };
-		84A85AA4215E31140098E3F8 /* ServicesForCategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A85AA3215E31140098E3F8 /* ServicesForCategoryViewController.swift */; };
+		84A85AA2215E11830098E3F8 /* PriceSelectorCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A85AA1215E11830098E3F8 /* PriceSelectorCollectionCell.swift */; };
+		84A85AA4215E31140098E3F8 /* PriceSelectorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A85AA3215E31140098E3F8 /* PriceSelectorViewController.swift */; };
 		84BEF8E4212148AA00E27DC5 /* MyAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84BEF8E3212148AA00E27DC5 /* MyAccountViewController.swift */; };
 		84BEF8E62121496B00E27DC5 /* MyAccountViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84BEF8E52121496B00E27DC5 /* MyAccountViewModel.swift */; };
 		84BEF8E921218F7A00E27DC5 /* MyAccountCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84BEF8E821218F7A00E27DC5 /* MyAccountCollectionViewCell.swift */; };
@@ -144,10 +144,10 @@
 		84A85A72215109E90098E3F8 /* ExpertAccountOption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpertAccountOption.swift; sourceTree = "<group>"; };
 		84A85A7A2154AF120098E3F8 /* ExpertAccountViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpertAccountViewModel.swift; sourceTree = "<group>"; };
 		84A85A7C2159DD9D0098E3F8 /* ExpertEditServicesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpertEditServicesViewController.swift; sourceTree = "<group>"; };
-		84A85A9D215B4AEC0098E3F8 /* ServicesEditedCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServicesEditedCollectionViewCell.swift; sourceTree = "<group>"; };
+		84A85A9D215B4AEC0098E3F8 /* ServicesEditedTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServicesEditedTableViewCell.swift; sourceTree = "<group>"; };
 		84A85A9F215DB8180098E3F8 /* ExpertEditServicesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpertEditServicesViewModel.swift; sourceTree = "<group>"; };
-		84A85AA1215E11830098E3F8 /* ServiceForCategoryCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceForCategoryCollectionCell.swift; sourceTree = "<group>"; };
-		84A85AA3215E31140098E3F8 /* ServicesForCategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServicesForCategoryViewController.swift; sourceTree = "<group>"; };
+		84A85AA1215E11830098E3F8 /* PriceSelectorCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceSelectorCollectionCell.swift; sourceTree = "<group>"; };
+		84A85AA3215E31140098E3F8 /* PriceSelectorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceSelectorViewController.swift; sourceTree = "<group>"; };
 		84BEF8E3212148AA00E27DC5 /* MyAccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyAccountViewController.swift; sourceTree = "<group>"; };
 		84BEF8E52121496B00E27DC5 /* MyAccountViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyAccountViewModel.swift; sourceTree = "<group>"; };
 		84BEF8E821218F7A00E27DC5 /* MyAccountCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyAccountCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -565,7 +565,7 @@
 		846D5A56216076CF009DB94A /* CollectionViewCell */ = {
 			isa = PBXGroup;
 			children = (
-				84A85A9D215B4AEC0098E3F8 /* ServicesEditedCollectionViewCell.swift */,
+				84A85A9D215B4AEC0098E3F8 /* ServicesEditedTableViewCell.swift */,
 			);
 			path = CollectionViewCell;
 			sourceTree = "<group>";
@@ -573,7 +573,7 @@
 		846D5A57216076DB009DB94A /* CollectionViewCell */ = {
 			isa = PBXGroup;
 			children = (
-				84A85AA1215E11830098E3F8 /* ServiceForCategoryCollectionCell.swift */,
+				84A85AA1215E11830098E3F8 /* PriceSelectorCollectionCell.swift */,
 			);
 			path = CollectionViewCell;
 			sourceTree = "<group>";
@@ -598,7 +598,7 @@
 		846D5A5A2160773A009DB94A /* MVVM */ = {
 			isa = PBXGroup;
 			children = (
-				84A85AA3215E31140098E3F8 /* ServicesForCategoryViewController.swift */,
+				84A85AA3215E31140098E3F8 /* PriceSelectorViewController.swift */,
 			);
 			path = MVVM;
 			sourceTree = "<group>";
@@ -991,10 +991,10 @@
 				84069AD420E65B9C002C910B /* RequestDatePickerViewController.swift in Sources */,
 				9A5076A5234E055A003D577A /* ExpertMapListViewController.swift in Sources */,
 				848D876B2278712500F43C1E /* BriizeRouter.swift in Sources */,
-				84A85A9E215B4AEC0098E3F8 /* ServicesEditedCollectionViewCell.swift in Sources */,
+				84A85A9E215B4AEC0098E3F8 /* ServicesEditedTableViewCell.swift in Sources */,
 				84E10A4820B0132C00E287A0 /* AppDelegate.swift in Sources */,
 				0BD33A7E231A9E6100F72203 /* ApplyForServicesViewController.swift in Sources */,
-				84A85AA4215E31140098E3F8 /* ServicesForCategoryViewController.swift in Sources */,
+				84A85AA4215E31140098E3F8 /* PriceSelectorViewController.swift in Sources */,
 				84BEF8E62121496B00E27DC5 /* MyAccountViewModel.swift in Sources */,
 				84FF87B420B2C9A90054BA99 /* UserModel.swift in Sources */,
 				84361D1A20C37221003B2C17 /* Expert.swift in Sources */,
@@ -1002,7 +1002,7 @@
 				84069AD020E60EAB002C910B /* LoginViewModel.swift in Sources */,
 				84361D3320C39720003B2C17 /* ServiceSelectionViewModel.swift in Sources */,
 				84FF87B720B3E1630054BA99 /* BaseViewModel.swift in Sources */,
-				84A85AA2215E11830098E3F8 /* ServiceForCategoryCollectionCell.swift in Sources */,
+				84A85AA2215E11830098E3F8 /* PriceSelectorCollectionCell.swift in Sources */,
 				84361D1820C37206003B2C17 /* Client.swift in Sources */,
 				84D662C720CE748700CCC91C /* ServiceCollectionViewCell.swift in Sources */,
 				84069ADF20FCA91F002C910B /* ChangeServiceLocationViewController.swift in Sources */,

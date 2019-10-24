@@ -29,7 +29,7 @@ class AccountHomeCollectionCell: UICollectionViewCell {
             DispatchQueue.main.async {
                 self.bindTable()
                 
-                let categories = AccountHomeCollectionCell.createFixedCategories()
+                let categories = CategoryModel.createFixedCategories()
                 self.categories.accept(categories)
             }
         }
@@ -48,10 +48,9 @@ class AccountHomeCollectionCell: UICollectionViewCell {
         categories
             .asObservable()
             .observeOn(MainScheduler.instance)
-            .bind(
-                to: categoryTableView.rx.items(
-                    cellIdentifier : "categoryCell",
-                    cellType       : CategoryTableViewCell.self
+            .bind(to: categoryTableView.rx.items(
+                cellIdentifier: "categoryCell",
+                cellType      : CategoryTableViewCell.self
                 )
             ) ({ _, category, cell in
                 cell.category = category
@@ -91,17 +90,3 @@ extension AccountHomeCollectionCell: UITableViewDelegate, UIScrollViewDelegate {
     }
 }
 
-extension AccountHomeCollectionCell {
-    
-    static func createFixedCategories() -> [CategoryModel] {
-        let hair = CategoryModel(name: "Hair", image: #imageLiteral(resourceName: "hairImg"))
-        let makeUp = CategoryModel(name: "Make-Up", image: #imageLiteral(resourceName: "makeUpImg"))
-        let eyesbrows = CategoryModel(name: "Eyes & Brows", image: #imageLiteral(resourceName: "eyesBrowsImg"))
-        let nails = CategoryModel(name: "Nails", image: #imageLiteral(resourceName: "nailsImg"))
-        let mens = CategoryModel(name: "Men's", image: #imageLiteral(resourceName: "menImg"))
-        let categories = [
-            hair, makeUp, eyesbrows, nails, mens
-        ]
-        return  categories
-    }
-}
