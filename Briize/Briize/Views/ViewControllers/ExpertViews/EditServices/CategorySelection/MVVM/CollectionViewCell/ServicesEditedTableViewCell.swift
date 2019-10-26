@@ -16,8 +16,11 @@ class ServicesEditedTableViewCell: UITableViewCell {
     
     var model: ServiceObject? {
         didSet{
-            textLabel?.text = model?.name
-            detailTextLabel?.text = "$\(model?.price ?? 0)"
+            guard let model = model else { return }
+            DispatchQueue.main.async {
+                self.textLabel?.text = model.name
+                self.detailTextLabel?.text = "$" + model.price.description
+            }
         }
     }
 }

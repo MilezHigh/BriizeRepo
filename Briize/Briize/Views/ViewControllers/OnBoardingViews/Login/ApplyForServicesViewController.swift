@@ -18,7 +18,7 @@ class ApplyForServicesViewController: UIViewController {
 
     var selectedServices: (([Int]) -> ())?
 
-    let sections: [ServiceDatasource] = ServiceDatasource.allServices()
+    let sections: [ServiceDatasource] = ServiceDatasource.servicesOfferedByExpert()
 
     private let serviceIds = BehaviorRelay<[Int]>(value: [])
     private let disposebag = DisposeBag()

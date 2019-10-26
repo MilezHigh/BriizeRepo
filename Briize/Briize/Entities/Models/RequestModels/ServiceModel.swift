@@ -25,6 +25,8 @@ enum ServiceSubType: String {
     case french_Braiding    = "French Braiding"
     case strand_Braiding    = "Strand Braiding"
     case mermaid_Braiding   = "Mermaid Braiding"
+    case color              = "Color"
+    case womensHaircut      = "Womens Haircut"
 
     /// - Extensions
     case bonded_Extensions = "Bonded Extensions"
@@ -120,6 +122,10 @@ enum ServiceSubType: String {
             return 34
         case .upperLipWax :
             return 35
+        case .color:
+            return 3
+        case .womensHaircut:
+            return 1
         }
     }
     
@@ -370,7 +376,7 @@ struct ServiceDatasource {
     var name: String
     var services: [ServiceObject]
 
-    static func allServices() -> [ServiceDatasource] {
+    static func servicesOfferedByExpert() -> [ServiceDatasource] {
         return [
             CategoryModel(name: "Hair", image: UIImage(named: "hairImg") ?? UIImage()),
             CategoryModel(name: "Make-Up", image: UIImage(named: "makeUpImg") ?? UIImage()),

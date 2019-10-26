@@ -38,6 +38,7 @@ extension ClientMainViewModel {
                 .filter({ ($0["isOnline"] as? Bool) == true })
                 .filter({
                     guard let services = $0["servicesOffered"] as? NSDictionary,
+                        
                         let arr = services["data"] as? NSArray else { return false }
                     let newArr = arr
                         .map({ (service) -> Int in
