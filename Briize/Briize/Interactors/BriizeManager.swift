@@ -55,11 +55,11 @@ enum RequestStatus: Int {
         case 5 : return .Complete
         case 6 : return .Cancelled
         
-        // 7, 8, 9 - Not used
+        /// - Note: 7, 8, 9 - Not used
         case 7 : return .ExpertReceivedRequest
         case 8 : return .ConfirmClientPayment
         case 9 : return .InRoute
-        //
+        ///
             
         default: return .Idle
         }
@@ -73,8 +73,7 @@ class BriizeManager {
     var requestType = BehaviorRelay<RequestOrderType>(value: .Live)
     var requestState = BehaviorRelay<RequestStatus>(value: .Idle)
     var persistedSegueId = BehaviorRelay<String>(value: "waiting")
-    var persistedAppState = BehaviorRelay
-        <(BriizeApplicationState, String)>(value: (.loggedOut, "waiting"))
+    var persistedAppState = BehaviorRelay<(BriizeApplicationState, String)>(value: (.loggedOut, "waiting"))
     
     let api = NetworkManager.instance
     let user = User()

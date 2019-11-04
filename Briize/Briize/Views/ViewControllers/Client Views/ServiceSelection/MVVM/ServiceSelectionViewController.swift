@@ -234,7 +234,9 @@ UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, UIScrollViewDelega
         layout collectionViewLayout: UICollectionViewLayout,
         sizeForItemAt indexPath: IndexPath
         ) -> CGSize {
-        return CGSize(width: 100, height: 100.0)
+        let size = UIScreen.main.bounds.width <= 375 ?
+            CGSize(width: 90, height: 90) : CGSize(width: 100, height: 100.0)
+        return size
     }
 }
 

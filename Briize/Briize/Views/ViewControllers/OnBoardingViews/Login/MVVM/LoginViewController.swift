@@ -5,15 +5,6 @@
 //  Created by Miles Fishman on 6/28/18.
 //  Copyright © 2018 Miles Fishman. All rights reserved.
 //
-// - 6/1/20129
-// 1. change icon colors to black on expert account page/ round request white View
-// 2. change any remainding font into PK Thin.
-// 3. requests check status if user left application.
-// 4. expert select service and add price fix.
-// 5. create account flow, one by one.
-// 6. change rating stars to new orange/pink color
-// 7. on client requestList/ change request icon button to bidding icon / hand holding checkmark
-// 8. Custom Request Submission screen add new BG image
 
 // - Major changes:
 // Apple Pay / Stripe - Integrate
@@ -118,9 +109,8 @@ extension LoginViewController {
         guard
             let username = UserDefaults.standard.value(forKey: "Username") as? String,
             let password = UserDefaults.standard.value(forKey: "Password") as? String
-            else {
-                return
-        }
+            else { return }
+        
         usernameTextfield.text = username
         passwordTextfield.text = password
 
