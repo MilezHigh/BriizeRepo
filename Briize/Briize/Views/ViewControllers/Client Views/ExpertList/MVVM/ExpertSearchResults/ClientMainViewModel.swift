@@ -22,6 +22,7 @@ class ClientMainViewModel {
 
 extension ClientMainViewModel {
     
+    // make dry
     func demoFindObjects(with selectedServices: [Int]) {
         var exps:[PFObject] = []
         
@@ -31,7 +32,7 @@ extension ClientMainViewModel {
             if error == nil && objects != nil {
                 exps = objects!
             } else if error != nil {
-                print(error!.localizedDescription)
+                print(error?.localizedDescription ?? "Can't find users")
             }
             
             let results = exps
@@ -57,14 +58,14 @@ extension ClientMainViewModel {
                     print($0)
                     return true
                 })
-                .compactMap ({ [weak self] exp -> SectionItem? in
-                    guard let expertMultiSectionModel = self?.convertPFObjectToMultipleSectionModel(exp)
+                .compactMap ({ exp -> SectionItem? in
+                    guard let expertMultiSectionModel = BriizeUtility.convertPFObjectToMultipleSectionModel(exp)
                         else { return nil }
                     return expertMultiSectionModel
                 })
             
-            DispatchQueue.main.async {
-                self.experts.accept([
+            DispatchQueue.main.async { [weak self] in
+                self?.experts.accept([
                     MultipleSectionModel.IndividualExpertSection(
                         title: "",
                         items: results
@@ -118,14 +119,18 @@ extension ClientMainViewModel {
 extension ClientMainViewModel {
     func dataSource() -> RxTableViewSectionedReloadDataSource<MultipleSectionModel> {
         return RxTableViewSectionedReloadDataSource<MultipleSectionModel>(
-            
             configureCell: { (dataSource, table, idxPath, _) in
                 switch dataSource[idxPath] {
                 case let .IndividualExpertItem(model):
                     let cell: ExpertTableViewCell? = table
-                        .dequeueReusableCell(withIdentifier: "expertCell", for: idxPath) as? ExpertTableViewCell
+                        .dequeueReusableCell(withIdentifier: "expertCell", for: idxPath)
+                        as? ExpertTableViewCell
+                    
                     cell?.model = model
                     return cell ?? UITableViewCell()
+                    
+                case .ClientCustomOrder:
+                    return UITableViewCell()
                 }
         })
     }
@@ -139,10 +144,14 @@ enum MultipleSectionModel {
 
 enum SectionItem {
     case IndividualExpertItem(model: UserModel)
+    case ClientCustomOrder(model: UserModel)
     
     var model: UserModel? {
         switch self {
         case .IndividualExpertItem(let m):
+            return m
+        
+        case .ClientCustomOrder(let m):
             return m
         }
     }

@@ -39,6 +39,9 @@ class ExpertCompletedViewController: UIViewController {
         imageView.contentMode = .scaleAspectFit
         v.addSubview(imageView)
         navigationItem.titleView = v
+        
+        let closeButton = UIBarButtonItem(title: "Close", style: .done, target: self, action: #selector(dismissController))
+        navigationItem.leftBarButtonItems = [closeButton]
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -53,6 +56,10 @@ class ExpertCompletedViewController: UIViewController {
 }
     
 extension ExpertCompletedViewController {
+    
+    @objc func dismissController() {
+        dismiss(animated: true, completion: nil)
+    }
     
     private func bind() {
         guard ordersTable.delegate == nil else { return }

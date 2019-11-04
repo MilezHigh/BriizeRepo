@@ -59,12 +59,12 @@ class ServiceSelectionViewController: UIViewController {
             alert.addAction(action)
             self.present(alert, animated: true, completion: nil)
         } else {
-            self.sessionManager
+            sessionManager
                 .user
                 .searchExpertsWithTheseServices
                 .accept(selectedServices.map({ return $0.id }))
-
-            switch self.sessionManager.requestType.value {
+            
+            switch sessionManager.requestType.value {
             case .Live:
                 self.performSegue(withIdentifier: "searchExpertsSegue", sender: self)
                 
@@ -104,39 +104,40 @@ extension ServiceSelectionViewController {
     }
     
     private func bindCategoryServices() {
-        viewModel.services
+        viewModel
+            .services
             .asObservable()
             .observeOn(MainScheduler.instance)
-            .bind(to: serviceCollectionView.rx
-                .items(
-                    cellIdentifier: "serviceCell",
-                    cellType: ServiceCollectionViewCell.self
+            .bind(to: serviceCollectionView.rx.items(
+                cellIdentifier: "serviceCell",
+                cellType: ServiceCollectionViewCell.self
                 )
-            ) { _, service, cell in
+            ) ({ _, service, cell in
                 cell.service = service
-            }
+            })
             .disposed(by: disposeBag)
         
-        serviceCollectionView.rx
+        serviceCollectionView
+            .rx
             .setDelegate(self)
             .disposed(by: disposeBag)
     }
     
     private func bindCollectionviewConfiguration() {
-        serviceCollectionView.delegate = self
-        serviceCollectionView.rx
+        //serviceCollectionView.delegate = self
+        serviceCollectionView
+            .rx
             .itemSelected
             .subscribe(onNext: { [weak self] in
                 guard let strongSelf = self else {return}
                 strongSelf.serviceCollectionView
                     .deselectItem(at: $0, animated: true)
-
+                
                 guard let cell = strongSelf.serviceCollectionView
                     .cellForItem(at: $0) as? ServiceCollectionViewCell else { return }
-
+                
                 strongSelf.process(cell, with: $0)
-                }
-            )
+            })
             .disposed(by: self.disposeBag)
     }
     

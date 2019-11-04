@@ -81,6 +81,7 @@ class ExpertTableViewCell: UITableViewCell {
             let sanitizedNumberText = self.model?.price.filter({ $0 != "$" })
             guard let cost = Int(sanitizedNumberText ?? "0") else { return }
             let profit = cost / 10 /// <--- 10% Commission
+            
             let requestState = RequestStatus.NewClientRequest
             let requestOrder = RequestOrderModel(
                 id: "",

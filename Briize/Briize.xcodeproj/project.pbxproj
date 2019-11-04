@@ -79,10 +79,15 @@
 		84FF87B420B2C9A90054BA99 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FF87B320B2C9A90054BA99 /* UserModel.swift */; };
 		84FF87B720B3E1630054BA99 /* BaseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FF87B620B3E1630054BA99 /* BaseViewModel.swift */; };
 		9967234B7CB381778DB7D906 /* Pods_BriizeTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 021419F10C21C44EBF3AA813 /* Pods_BriizeTests.framework */; };
+		9A1B0FCE2369E05700F7B264 /* CustomRequestTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A1B0FCD2369E05700F7B264 /* CustomRequestTableViewCell.swift */; };
 		9A3C686F2355FF6100C570AA /* ExpertCompletedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A3C686E2355FF6100C570AA /* ExpertCompletedViewModel.swift */; };
 		9A4F3C48235211B600866704 /* ExpertCompletedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A4F3C47235211B600866704 /* ExpertCompletedViewController.swift */; };
 		9A5076A5234E055A003D577A /* ExpertMapListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A5076A4234E055A003D577A /* ExpertMapListViewController.swift */; };
 		9A5076A7234E0921003D577A /* ExpertMapListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A5076A6234E0921003D577A /* ExpertMapListViewModel.swift */; };
+		9ACB6D89236852970096C23A /* CustomRequest.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9ACB6D88236852970096C23A /* CustomRequest.storyboard */; };
+		9ACB6D8D236853A00096C23A /* CustomOrdersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ACB6D8C236853A00096C23A /* CustomOrdersViewController.swift */; };
+		9ACB6D8F236853BA0096C23A /* CustomOrdersViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ACB6D8E236853BA0096C23A /* CustomOrdersViewModel.swift */; };
+		9ACB6D91236867590096C23A /* PriceSelection.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9ACB6D90236867590096C23A /* PriceSelection.storyboard */; };
 		D527449B4C9155709D9659E7 /* Pods_Briize.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E044479F154C53D9DE1B1DA8 /* Pods_Briize.framework */; };
 /* End PBXBuildFile section */
 
@@ -176,10 +181,15 @@
 		84FF87B120B2BC340054BA99 /* ClientPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientPresenter.swift; sourceTree = "<group>"; };
 		84FF87B320B2C9A90054BA99 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		84FF87B620B3E1630054BA99 /* BaseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewModel.swift; sourceTree = "<group>"; };
+		9A1B0FCD2369E05700F7B264 /* CustomRequestTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomRequestTableViewCell.swift; sourceTree = "<group>"; };
 		9A3C686E2355FF6100C570AA /* ExpertCompletedViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpertCompletedViewModel.swift; sourceTree = "<group>"; };
 		9A4F3C47235211B600866704 /* ExpertCompletedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpertCompletedViewController.swift; sourceTree = "<group>"; };
 		9A5076A4234E055A003D577A /* ExpertMapListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpertMapListViewController.swift; sourceTree = "<group>"; };
 		9A5076A6234E0921003D577A /* ExpertMapListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpertMapListViewModel.swift; sourceTree = "<group>"; };
+		9ACB6D88236852970096C23A /* CustomRequest.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CustomRequest.storyboard; sourceTree = "<group>"; };
+		9ACB6D8C236853A00096C23A /* CustomOrdersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomOrdersViewController.swift; sourceTree = "<group>"; };
+		9ACB6D8E236853BA0096C23A /* CustomOrdersViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomOrdersViewModel.swift; sourceTree = "<group>"; };
+		9ACB6D90236867590096C23A /* PriceSelection.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = PriceSelection.storyboard; sourceTree = "<group>"; };
 		CF59CC435C8F58C800E5B4D6 /* Pods-Briize.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Briize.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Briize/Pods-Briize.debug.xcconfig"; sourceTree = "<group>"; };
 		E044479F154C53D9DE1B1DA8 /* Pods_Briize.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Briize.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -336,8 +346,8 @@
 		841AC3872278529000E65578 /* RequestOrderViews */ = {
 			isa = PBXGroup;
 			children = (
-				841AC388227852B400E65578 /* RequestOrderViewController.swift */,
-				848D876E22787E5300F43C1E /* RequestOrderViewModel.swift */,
+				9ACB6D8A236853160096C23A /* Request */,
+				9A1B0FCA2369E01300F7B264 /* CustomRequest */,
 			);
 			path = RequestOrderViews;
 			sourceTree = "<group>";
@@ -556,7 +566,9 @@
 				84E10A4B20B0132C00E287A0 /* Main.storyboard */,
 				84361D3020C39585003B2C17 /* ClientFlow.storyboard */,
 				84FA740F210AA30100E261E4 /* ExpertFlow.storyboard */,
+				9ACB6D90236867590096C23A /* PriceSelection.storyboard */,
 				841AC385227850CC00E65578 /* RequestOrder.storyboard */,
+				9ACB6D88236852970096C23A /* CustomRequest.storyboard */,
 				848D876A2278712500F43C1E /* BriizeRouter.swift */,
 			);
 			path = Routing;
@@ -713,6 +725,32 @@
 			path = Base;
 			sourceTree = "<group>";
 		};
+		9A1B0FCA2369E01300F7B264 /* CustomRequest */ = {
+			isa = PBXGroup;
+			children = (
+				9A1B0FCB2369E02400F7B264 /* MVVM */,
+			);
+			path = CustomRequest;
+			sourceTree = "<group>";
+		};
+		9A1B0FCB2369E02400F7B264 /* MVVM */ = {
+			isa = PBXGroup;
+			children = (
+				9ACB6D8C236853A00096C23A /* CustomOrdersViewController.swift */,
+				9ACB6D8E236853BA0096C23A /* CustomOrdersViewModel.swift */,
+				9A1B0FCC2369E02F00F7B264 /* TableCell */,
+			);
+			path = MVVM;
+			sourceTree = "<group>";
+		};
+		9A1B0FCC2369E02F00F7B264 /* TableCell */ = {
+			isa = PBXGroup;
+			children = (
+				9A1B0FCD2369E05700F7B264 /* CustomRequestTableViewCell.swift */,
+			);
+			path = TableCell;
+			sourceTree = "<group>";
+		};
 		9A3C686D2355FAF400C570AA /* CollectionCell */ = {
 			isa = PBXGroup;
 			children = (
@@ -737,6 +775,23 @@
 				9A5076A6234E0921003D577A /* ExpertMapListViewModel.swift */,
 			);
 			path = ExpertMapListView;
+			sourceTree = "<group>";
+		};
+		9ACB6D8A236853160096C23A /* Request */ = {
+			isa = PBXGroup;
+			children = (
+				9ACB6D8B236853310096C23A /* MVVM */,
+			);
+			path = Request;
+			sourceTree = "<group>";
+		};
+		9ACB6D8B236853310096C23A /* MVVM */ = {
+			isa = PBXGroup;
+			children = (
+				841AC388227852B400E65578 /* RequestOrderViewController.swift */,
+				848D876E22787E5300F43C1E /* RequestOrderViewModel.swift */,
+			);
+			path = MVVM;
 			sourceTree = "<group>";
 		};
 		A34065407223F6D4ECDAC887 /* Pods */ = {
@@ -858,6 +913,7 @@
 				84E10A5520B0132C00E287A0 /* LaunchScreen.storyboard in Resources */,
 				841AC386227850CC00E65578 /* RequestOrder.storyboard in Resources */,
 				84069AD620EF4FCD002C910B /* Lobster-Regular.ttf in Resources */,
+				9ACB6D91236867590096C23A /* PriceSelection.storyboard in Resources */,
 				84002858219BF7A60005ADA9 /* AccountLiveRequestsCollectionCell.xib in Resources */,
 				84E10A5220B0132C00E287A0 /* Assets.xcassets in Resources */,
 				84002856219BF77C0005ADA9 /* AccountSubmitRequestCollectionCell.xib in Resources */,
@@ -865,6 +921,7 @@
 				84361D3120C39585003B2C17 /* ClientFlow.storyboard in Resources */,
 				84E10A7520B041E000E287A0 /* ClientDashBoardView.xib in Resources */,
 				84E10A4D20B0132C00E287A0 /* Main.storyboard in Resources */,
+				9ACB6D89236852970096C23A /* CustomRequest.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -978,6 +1035,7 @@
 				8400284C219B7BCF0005ADA9 /* AccountSubmitRequestCollectionCell.swift in Sources */,
 				848D876D2278796700F43C1E /* UserDefaultsManager.swift in Sources */,
 				84E10A4A20B0132C00E287A0 /* ClientMainViewController.swift in Sources */,
+				9A1B0FCE2369E05700F7B264 /* CustomRequestTableViewCell.swift in Sources */,
 				84BEF8E921218F7A00E27DC5 /* MyAccountCollectionViewCell.swift in Sources */,
 				8400284A219B7BB40005ADA9 /* AccountPriorCollectionCell.swift in Sources */,
 				840028442195F8260005ADA9 /* ClientAccountCell.swift in Sources */,
@@ -997,6 +1055,7 @@
 				84A85AA4215E31140098E3F8 /* PriceSelectorViewController.swift in Sources */,
 				84BEF8E62121496B00E27DC5 /* MyAccountViewModel.swift in Sources */,
 				84FF87B420B2C9A90054BA99 /* UserModel.swift in Sources */,
+				9ACB6D8F236853BA0096C23A /* CustomOrdersViewModel.swift in Sources */,
 				84361D1A20C37221003B2C17 /* Expert.swift in Sources */,
 				84A85A712150EE820098E3F8 /* ExpertAccountOptionsCollectionCell.swift in Sources */,
 				84069AD020E60EAB002C910B /* LoginViewModel.swift in Sources */,
@@ -1014,6 +1073,7 @@
 				841AC389227852B400E65578 /* RequestOrderViewController.swift in Sources */,
 				84E10A7720B046C600E287A0 /* ClientDashBoardView.swift in Sources */,
 				84002848219940280005ADA9 /* ClientDashboard+RxCollectionViewDataSource.swift in Sources */,
+				9ACB6D8D236853A00096C23A /* CustomOrdersViewController.swift in Sources */,
 				840A45B82147AF3B003EC054 /* ExpertAccountViewController.swift in Sources */,
 				84361D1D20C3732F003B2C17 /* Extensions.swift in Sources */,
 				84361D2A20C38836003B2C17 /* CategoryModel.swift in Sources */,
@@ -1193,7 +1253,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 7;
+				CURRENT_PROJECT_VERSION = 9;
 				DEVELOPMENT_TEAM = WMVNZYDS86;
 				INFOPLIST_FILE = Briize/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
@@ -1212,7 +1272,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 7;
+				CURRENT_PROJECT_VERSION = 9;
 				DEVELOPMENT_TEAM = WMVNZYDS86;
 				INFOPLIST_FILE = Briize/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;

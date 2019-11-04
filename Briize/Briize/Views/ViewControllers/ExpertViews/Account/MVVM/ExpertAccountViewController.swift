@@ -26,8 +26,6 @@ class ExpertAccountViewController: UIViewController, UIScrollViewDelegate {
     @IBOutlet weak var offlineLabel: UILabel!
     @IBOutlet weak var browseCustomResultsButton: UIButton!
     
-    let rosePink = UIColor(red: 223.0/255.0, green: 163.0/255.0, blue: 137.0/255.0, alpha: 1.0)
-    
     fileprivate let disposeBag = DisposeBag()
     fileprivate let viewModel = ExpertAccountViewModel()
     
@@ -46,18 +44,18 @@ class ExpertAccountViewController: UIViewController, UIScrollViewDelegate {
             target             : self,
             action             : #selector(self.viewHistory)
         )
-        leftBarButton.tintColor = rosePink
+        leftBarButton.tintColor = UIColor.briizePink
         leftBarButton.isEnabled = true
         navigationItem.leftBarButtonItems = [leftBarButton]
         
-        let rightBarButton = UIBarButtonItem(
-            barButtonSystemItem: .search,
-            target             : self,
-            action             : #selector(self.searchCustomRequests)
-        )
-        rightBarButton.tintColor = rosePink
-        rightBarButton.isEnabled = true
-        navigationItem.rightBarButtonItems = [rightBarButton]
+//        let rightBarButton = UIBarButtonItem(
+//            barButtonSystemItem: .search,
+//            target             : self,
+//            action             : #selector(self.searchCustomRequests)
+//        )
+//        rightBarButton.tintColor = UIColor.briizePink
+//        rightBarButton.isEnabled = true
+//        navigationItem.rightBarButtonItems = [rightBarButton]
         
         navigationController?.navigationBar.barStyle = .black
         setNeedsStatusBarAppearanceUpdate()
@@ -66,6 +64,17 @@ class ExpertAccountViewController: UIViewController, UIScrollViewDelegate {
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
+    
+    @IBAction func pressedBrowseCustomRequests(_ sender: Any) {
+        let id = BriizeManager.shared.user.model.value?.id ?? ""
+        let viewModel = CustomOrdersViewModel(userId: id)
+        let storyboard = UIStoryboard(name: "CustomRequest", bundle: nil)
+        guard let vc = storyboard.instantiateInitialViewController() as? CustomOrdersViewController else { return }
+        vc.viewModel = viewModel
+        
+        navigationController?.pushViewController(vc, animated: true)
+    }
+    
 }
 
 extension ExpertAccountViewController {
@@ -91,20 +100,16 @@ extension ExpertAccountViewController {
             let urlString = user.urlString?.url else { return }
         
         browseCustomResultsButton.layer.borderWidth = 1
-        browseCustomResultsButton.layer.borderColor = rosePink.cgColor
+        browseCustomResultsButton.layer.borderColor = UIColor.briizePink.cgColor
         browseCustomResultsButton.layer.cornerRadius = browseCustomResultsButton.bounds.height / 2
         
         expertProfileImageView.layer.borderWidth = 1
-        expertProfileImageView.layer.borderColor = UIColor.white.cgColor
+        expertProfileImageView.layer.borderColor = UIColor.briizePink.cgColor
         expertProfileImageView.layer.cornerRadius = expertProfileImageView.bounds.width / 2
         expertProfileImageView.downloadedFrom(link: urlString, setProfileImage: true)
         
-        statsView.layer.borderWidth = 1.0
-        statsView.layer.borderColor = UIColor.white.cgColor
-        statsView.layer.cornerRadius = 6
-        
         expertNameLabel.text = user.name
-        ratingAmountLabel.text = user.rating?.description ?? "5/5"
+        ratingAmountLabel.text = user.rating?.description ?? "n/a"
     }
     
     func bind(){
@@ -123,6 +128,20 @@ extension ExpertAccountViewController {
             ) ({ _, option, cell in
                 cell.model = option
             })
+            .disposed(by: disposeBag)
+        
+        viewModel
+            .amountMade
+            .asObservable()
+            .map({ "$ \($0.description)" })
+            .bind(to: paidAmountLabel.rx.text)
+            .disposed(by: disposeBag)
+        
+        viewModel
+            .clientCount
+            .asObservable()
+            .map({ $0.description })
+            .bind(to: clientAmountLabel.rx.text)
             .disposed(by: disposeBag)
         
         viewModel
@@ -147,12 +166,12 @@ extension ExpertAccountViewController {
         accountOptionsCollectionView
             .rx
             .itemSelected
+            .asObservable()
             .subscribe(onNext: { [weak self] (index) in
                 self?.accountOptionsCollectionView
                     .deselectItem(at: index, animated: false)
                 
-                guard
-                    let strongSelf = self,
+                guard let strongSelf = self,
                     let cell = strongSelf.accountOptionsCollectionView
                         .cellForItem(at: index) as? ExpertAccountOptionsCollectionCell
                     else { return }
@@ -164,7 +183,6 @@ extension ExpertAccountViewController {
 }
 
 extension ExpertAccountViewController {
-    
     func handleItemSelected(_ cell: ExpertAccountOptionsCollectionCell) {
         UIView.animate(
             withDuration: 0.1,
@@ -175,9 +193,9 @@ extension ExpertAccountViewController {
                     animations  : { cell.alpha = 1.0 },
                     completion  : { _ in
                         switch cell.optionTitle.text ?? "" {
-                        case "Support"  : self.handleSupport()
-                        case "Log-Out"  : self.handleLogout()
-                        default         : self.performSegue(withIdentifier: cell.segueID, sender: self)
+                        case "Support": self.handleSupport()
+                        case "Log-Out": self.handleLogout()
+                        default       : self.performSegue(withIdentifier: cell.segueID, sender: self)
                         }
                 })
         })
@@ -214,7 +232,7 @@ extension ExpertAccountViewController: UICollectionViewDelegateFlowLayout {
         layout collectionViewLayout: UICollectionViewLayout,
         sizeForItemAt indexPath    : IndexPath)
         -> CGSize {
-            let padding: CGFloat = 80
+            let padding: CGFloat = 60
             return CGSize(
                 width: collectionView.frame.width - padding,
                 height: collectionView.frame.height - padding

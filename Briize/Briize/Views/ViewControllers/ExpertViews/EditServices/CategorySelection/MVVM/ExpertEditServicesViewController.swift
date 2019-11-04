@@ -28,7 +28,7 @@ class ExpertEditServicesViewController: UIViewController, PricingDelegate {
     private var sections: [ServiceDatasource] {
         let offerd = offered ?? []
         
-        /// 1. Find relevant categories
+        /// 1. Find all relevant  beauty categories
         let _mutable = ServiceDatasource.servicesOfferedByExpert()
         let mutable = _mutable.filter ({
             let services = $0.services
@@ -53,11 +53,14 @@ class ExpertEditServicesViewController: UIViewController, PricingDelegate {
             }).compactMap({ $0 })
         }).compactMap({ $0 })
         
-        /// 3. Join & Display
+        /// 3. Compare & Display
         var count = 0
         let sources = mutable.map ({ value -> ServiceDatasource in
             var objs = value
             objs.services = userServices[count]
+                .sorted(by: { (left, right) -> Bool in
+                    left.id < right.id
+                })
             count += 1
             return objs
         })
@@ -67,9 +70,16 @@ class ExpertEditServicesViewController: UIViewController, PricingDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        let closeButton = UIBarButtonItem(title: "Close", style: .done, target: self, action: #selector(dismissController))
+        navigationItem.leftBarButtonItems = [closeButton]
+        
         configureProtocol()
         bindServices()
         checkExpertApprovedServices()
+    }
+    
+    deinit {
+        print("deinit success")
     }
     
     /// Pricing Protocol
@@ -77,6 +87,10 @@ class ExpertEditServicesViewController: UIViewController, PricingDelegate {
 }
 
 extension ExpertEditServicesViewController {
+    
+    @objc func dismissController() {
+        dismiss(animated: true, completion: nil)
+    }
     
     private func configureProtocol() {
         add = { [weak self] price, index, name in
@@ -89,8 +103,11 @@ extension ExpertEditServicesViewController {
                 strongSelf.editServiceTableView.insertRows(at: [index], with: .fade)
                 strongSelf.editServiceTableView.endUpdates()
                 
-                guard let cell = strongSelf.editServiceTableView.cellForRow(at: index) as? ServicesEditedTableViewCell else { return }
-                cell.model = ServiceObject(id: strongSelf.selectedId, name: name, price: price)
+                guard let cell = strongSelf.editServiceTableView
+                    .cellForRow(at: index) as? ServicesEditedTableViewCell else { return }
+                
+                let model = ServiceObject(id: strongSelf.selectedId, name: name, price: price)
+                cell.model = model
             }
         }
     }
@@ -108,31 +125,31 @@ extension ExpertEditServicesViewController {
                 (self?.showPriceSelection(from: index) ?? .just(UIViewController()))
             })
             .subscribe(onNext: { [weak self] (vc) in
+                (vc as? PriceSelectorViewController)?.delegate = self
                 self?.navigationController?.pushViewController(vc, animated: true)
             })
             .disposed(by: disposeBag)
     }
     
     private func showPriceSelection(from index: IndexPath) -> Observable<UIViewController> {
-        self.editServiceTableView.deselectRow(at: index, animated: true)
+        editServiceTableView.deselectRow(at: index, animated: true)
         
-        guard let cell = self.editServiceTableView.cellForRow(at: index) as? ServicesEditedTableViewCell,
+        guard
+            let cell = self.editServiceTableView
+                .cellForRow(at: index) as? ServicesEditedTableViewCell,
             
-            let vc = UIStoryboard(name: "ExpertFlow", bundle: nil)
-                .instantiateViewController(withIdentifier: "PriceSelectorViewController")
-                as? PriceSelectorViewController
+            let vc = UIStoryboard(name: "PriceSelection", bundle: nil)
+                .instantiateInitialViewController() as? PriceSelectorViewController
             
-            else { fatalError("Missing UI: ExpertFlow Storyboard") }
+            else { fatalError("Missing - PriceSelection Storyboard") }
         
-        self.selectedId = cell.model?.id ?? 0
+        selectedId = cell.model?.id ?? 0
         let serviceName = cell.textLabel?.text ?? ""
         
         vc.delegate = self
         vc.indexPath = index
         vc.nameOfService = serviceName
-                        
-        let viewController = vc
-        return .just(viewController)
+        return .just(vc)
     }
     
     private func checkExpertApprovedServices() {

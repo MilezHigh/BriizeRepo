@@ -286,3 +286,43 @@ extension DateFormatter {
         formatter.dateFormat = "dd-MM-YYYY"
     }
 }
+
+class BriizeUtility {
+    
+    static func convertPFObjectToMultipleSectionModel(_ object: PFObject) -> SectionItem? {
+        guard
+            let objId = object.objectId,
+            let name = object["fullName"] as? String,
+            let imageFile = object["profilePhoto"] as? PFFileObject,
+            let rating = object["rating"] as? Double,
+            let servicesOffered = object["servicesOffered"] as? NSDictionary,
+            let data = servicesOffered["data"] as? [NSDictionary]
+            // Complete expert model for expert result page
+            else { return nil }
+        
+        let price: Int = data
+            .map ({ (dic) -> Int in
+                guard let price = dic["cost"] as? Int else { return 0 }
+                return price
+            })
+            .reduce(0, +)
+        
+        let location: PFGeoPoint? = object["currentLocation"] as? PFGeoPoint
+        
+        let userModel = UserModel.init(
+            name: name,
+            price: "$\(price.description)",
+            state: "",
+            phone: "",
+            rating: rating,
+            email: "",
+            id: objId,
+            distance: "",
+            isExpert: true,
+            urlString: imageFile,
+            currentLocation: location
+        )
+        
+        return SectionItem.IndividualExpertItem(model: userModel)
+    }
+}

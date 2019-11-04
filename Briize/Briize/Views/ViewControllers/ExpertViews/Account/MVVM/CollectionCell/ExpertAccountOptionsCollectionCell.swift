@@ -29,8 +29,8 @@ class ExpertAccountOptionsCollectionCell: UICollectionViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        self.layer.cornerRadius = 6
+        self.layer.cornerRadius = 10
         self.layer.borderWidth = 1.0
-        self.layer.borderColor = UIColor.white.cgColor
+        self.layer.borderColor = UIColor.briizePink.cgColor
     }
 }

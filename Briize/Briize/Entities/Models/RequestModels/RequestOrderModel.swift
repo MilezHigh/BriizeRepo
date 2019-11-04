@@ -21,7 +21,7 @@ struct RequestOrderModel {
     var serviceType: String
     var notes: String
     var serviceIds: [Int]
-    var bids: [Int]
+    var bids: [NSDictionary]
     var address: String
     var startTime: Date?
     var finishTime: Date?
@@ -54,7 +54,7 @@ extension RequestOrderModel {
             let profit: Int = object["profit"] as? Int,
             let clientAskingPrice: Int = object["clientAskingPrice"] as? Int,
             let serviceIds: [Int] = object["serviceIds"] as? [Int],
-            let bids: [Int] = object["bids"] as? [Int]
+            let bids: [NSDictionary] = object["bids"] as? [NSDictionary]
             else {
                 return nil
         }
@@ -109,7 +109,7 @@ extension RequestOrderModel {
 
     public func createPFObject() -> PFObject {
         let request = PFObject(className: "Requests")
-        request["id"] = id
+        request["objId"] = id
         request["expertFullName"] = expertFullname
         request["expertFullName"] = expertFullname
         request["expertName"] = expertID
