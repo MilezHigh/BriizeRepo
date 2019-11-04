@@ -183,22 +183,17 @@ extension CustomRequestViewController: UIImagePickerControllerDelegate, UINaviga
     func imagePickerController(
         _ picker: UIImagePickerController,
         didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]
-        ) {
+    ) {
         let info = convertFromUIImagePickerControllerInfoKeyDictionary(info)
-
+        
         picker.dismiss(animated: true)
         
-        guard let image = info[convertFromUIImagePickerControllerInfoKey(UIImagePickerController.InfoKey.originalImage)] as? UIImage
-            else {
-                return
-        }
-
+        guard let image = info[convertFromUIImagePickerControllerInfoKey(UIImagePickerController.InfoKey.originalImage)]
+            as? UIImage else { return }
+        
         switch selectedButton {
-        case .left:
-            leftImageView.image = image
-            
-        case .right:
-            rightImageView.image = image
+        case .left : leftImageView.image = image
+        case .right: rightImageView.image = image
         }
     }
     
@@ -207,11 +202,8 @@ extension CustomRequestViewController: UIImagePickerControllerDelegate, UINaviga
         self.imagePicker.delegate = self
         
         switch imageSource {
-        case .camera:
-            imagePicker.sourceType = .camera
-            
-        case .photoLibrary:
-            imagePicker.sourceType = .photoLibrary
+        case .camera      : imagePicker.sourceType = .camera
+        case .photoLibrary: imagePicker.sourceType = .photoLibrary
         }
         self.present(imagePicker, animated: true, completion: nil)
     }
