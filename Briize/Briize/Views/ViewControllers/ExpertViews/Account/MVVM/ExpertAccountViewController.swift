@@ -99,9 +99,11 @@ extension ExpertAccountViewController {
         guard let user = sessionManager.user.model.value,
             let urlString = user.urlString?.url else { return }
         
-        browseCustomResultsButton.layer.borderWidth = 1
+        browseCustomResultsButton.layer.borderWidth = 2
+        browseCustomResultsButton.layer.backgroundColor = UIColor.white.cgColor
         browseCustomResultsButton.layer.borderColor = UIColor.briizePink.cgColor
-        browseCustomResultsButton.layer.cornerRadius = browseCustomResultsButton.bounds.height / 2
+        browseCustomResultsButton.layer.cornerRadius = 10
+        browseCustomResultsButton.setTitleColor(UIColor.briizePink, for: .normal)
         
         expertProfileImageView.layer.borderWidth = 1
         expertProfileImageView.layer.borderColor = UIColor.briizePink.cgColor

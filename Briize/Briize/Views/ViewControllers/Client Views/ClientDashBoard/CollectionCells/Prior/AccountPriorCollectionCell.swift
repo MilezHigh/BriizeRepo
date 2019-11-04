@@ -81,9 +81,6 @@ extension AccountPriorCollectionCell {
                 DispatchQueue.main.asyncAfter(
                     deadline: .now() + 0.2,
                     execute : { [weak self] in
-                        //                        let nonNilModels = models.compactMap({ $0 })
-                        //                        print(nonNilModels)
-                        
                         self?.priorRequests = models.compactMap({ $0 })
                         self?.priorRequestsTableView.reloadData()
                 })

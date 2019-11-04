@@ -83,7 +83,11 @@ extension ServiceSelectionViewController {
         selectedServicesTableview.dataSource = self
         selectedServicesTableview.tableFooterView = UIView()
         
-        submitButton.layer.cornerRadius = 25
+        submitButton.backgroundColor = .white
+        submitButton.layer.borderWidth = 2
+        submitButton.layer.borderColor = UIColor.briizePink.cgColor
+        submitButton.layer.cornerRadius = 10
+        
         categoryImageView.layer.cornerRadius = 20
         categoryImageView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
         categoryImageView.darkOverlay()

@@ -2,7 +2,7 @@
 //  ExpertAccountOptionsCollectionCell.swift
 //  Briize
 //
-//  Created by Admin on 9/18/18.
+//  Created by Miles Fishman on 9/18/18.
 //  Copyright © 2018 Miles Fishman. All rights reserved.
 //
 
@@ -30,7 +30,7 @@ class ExpertAccountOptionsCollectionCell: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         self.layer.cornerRadius = 10
-        self.layer.borderWidth = 1.0
+        self.layer.borderWidth = 2
         self.layer.borderColor = UIColor.briizePink.cgColor
     }
 }

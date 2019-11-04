@@ -82,10 +82,16 @@ extension ExpertCompletedViewController {
                 cell.selectionStyle = .none
                 cell.textLabel?.text = model.clientFullName
                 cell.detailTextLabel?.numberOfLines = 0
-                cell.detailTextLabel?.text =
-                    "- Service: \(model.serviceType)\n\n"
-                    + "- Cost: $\(model.cost).00\n\n"
-                    + "- You Made: $\(model.payToExpert).00\n"
+                
+                let s = NSAttributedString(string: "Service", attributes: [NSAttributedString.Key.strokeWidth : 2])
+                let c = NSAttributedString(string: "Cost", attributes: [NSAttributedString.Key.strokeWidth : 2])
+                let p = NSAttributedString(string: "Profit", attributes: [NSAttributedString.Key.strokeWidth : 2])
+                let result = NSAttributedString(
+                    string: s.string + ": \(model.serviceType)\n"
+                        + c.string + ": $\(model.cost).00\n"
+                        + p.string + ": $\(model.payToExpert).00"
+                )
+                cell.detailTextLabel?.attributedText = result
             })
             .disposed(by: disposeBag)
         

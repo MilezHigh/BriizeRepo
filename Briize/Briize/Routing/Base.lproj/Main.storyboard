@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="6zs-wm-gjB">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="6zs-wm-gjB">
     <device id="retina5_9" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -105,10 +105,10 @@
                                 </connections>
                             </button>
                             <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gSX-mj-rix">
-                                <rect key="frame" x="20" y="609" width="335" height="50"/>
+                                <rect key="frame" x="40" y="609" width="295" height="40"/>
                                 <color key="backgroundColor" red="0.13" green="0.13" blue="0.13" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="SIz-oG-BFc"/>
+                                    <constraint firstAttribute="height" constant="40" id="SIz-oG-BFc"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="PingFangHK-Semibold" family="PingFang HK" pointSize="15"/>
                                 <state key="normal" title="Login">
@@ -174,11 +174,11 @@
                             <constraint firstItem="sNj-jT-UPt" firstAttribute="trailing" secondItem="yJ5-pm-b7s" secondAttribute="trailing" constant="20" id="gGJ-05-guW"/>
                             <constraint firstItem="yJ5-pm-b7s" firstAttribute="leading" secondItem="sNj-jT-UPt" secondAttribute="leading" constant="20" id="gyZ-br-LzY"/>
                             <constraint firstItem="sNj-jT-UPt" firstAttribute="trailing" secondItem="JDZ-sg-7z6" secondAttribute="trailing" constant="16" id="ltA-2b-siA"/>
-                            <constraint firstItem="sNj-jT-UPt" firstAttribute="trailing" secondItem="gSX-mj-rix" secondAttribute="trailing" constant="20" id="nAa-Yn-ctp"/>
+                            <constraint firstItem="sNj-jT-UPt" firstAttribute="trailing" secondItem="gSX-mj-rix" secondAttribute="trailing" constant="40" id="nAa-Yn-ctp"/>
                             <constraint firstItem="wF0-4R-xxe" firstAttribute="top" secondItem="O2h-9M-8We" secondAttribute="bottom" constant="41" id="pb5-Ug-D7p"/>
                             <constraint firstItem="JDZ-sg-7z6" firstAttribute="leading" secondItem="sNj-jT-UPt" secondAttribute="leading" constant="20" id="qSy-fH-ZFK"/>
                             <constraint firstItem="gSX-mj-rix" firstAttribute="centerX" secondItem="8rV-fP-uY6" secondAttribute="centerX" id="rIU-pc-9GZ"/>
-                            <constraint firstItem="gSX-mj-rix" firstAttribute="leading" secondItem="sNj-jT-UPt" secondAttribute="leading" constant="20" id="tuZ-p5-KQO"/>
+                            <constraint firstItem="gSX-mj-rix" firstAttribute="leading" secondItem="sNj-jT-UPt" secondAttribute="leading" constant="40" id="tuZ-p5-KQO"/>
                             <constraint firstItem="O2h-9M-8We" firstAttribute="leading" secondItem="sNj-jT-UPt" secondAttribute="leading" constant="20" id="vcw-zh-4Bb"/>
                             <constraint firstItem="yJ5-pm-b7s" firstAttribute="centerY" secondItem="8rV-fP-uY6" secondAttribute="centerY" id="xJ1-pr-WkR"/>
                         </constraints>

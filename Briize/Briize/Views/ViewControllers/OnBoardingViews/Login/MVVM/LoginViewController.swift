@@ -92,13 +92,16 @@ extension LoginViewController {
     private func setup() {
         self.navigationController?.navigationBar.isHidden = true
 
-        usernameTextfield.text = "briizebeauty@gmail.com"//"miles.fishman@yahoo.com"
-        passwordTextfield.text = "theboss123"//"devguy123"
+        usernameTextfield.text = "miles.fishman@yahoo.com"//"briizebeauty@gmail.com"
+        passwordTextfield.text = "devguy123"//"theboss123"
 
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         self.view.addGestureRecognizer(tap)
 
-        goButton.layer.cornerRadius = 25
+        goButton.layer.cornerRadius = 10
+        goButton.layer.borderColor = UIColor.briizePink.cgColor
+        goButton.layer.borderWidth = 1
+        goButton.backgroundColor = .white
     }
 
     private func scanState() {

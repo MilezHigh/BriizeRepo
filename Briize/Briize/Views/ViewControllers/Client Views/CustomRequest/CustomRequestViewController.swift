@@ -167,9 +167,18 @@ extension CustomRequestViewController {
     }
 
     private func setup() {
+        doneButton.backgroundColor = .white
+        doneButton.layer.borderWidth = 2
+        doneButton.layer.borderColor = UIColor.briizePink.cgColor
+        doneButton.layer.cornerRadius = 10
+        doneButton.layer.cornerRadius = 10
+        
+        submitButton.backgroundColor = .white
+        submitButton.layer.borderWidth = 2
+        submitButton.layer.borderColor = UIColor.briizePink.cgColor
+        submitButton.layer.cornerRadius = 10
+        
         notesTextView.layer.cornerRadius = 12
-        submitButton.layer.cornerRadius = 25
-        doneButton.layer.cornerRadius = 25
 
         let tap = UITapGestureRecognizer(target: self, action: #selector(dateLabelTapped))
         dateTimeLabel.addGestureRecognizer(tap)
