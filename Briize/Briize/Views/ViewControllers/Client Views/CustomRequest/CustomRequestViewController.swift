@@ -91,12 +91,13 @@ class CustomRequestViewController: UIViewController {
             finishTime: nil,
             scheduledDate: DateFormatter().date(from: dateTimeLabel.text ?? ""),
             requestStatus: RequestStatus.NewClientRequest.rawValue,
-            cost: 0,
-            payToExpert: 0,
+            cost: clientAskingPrice,
+            payToExpert: clientAskingPrice - profit,
             profit: profit,
             clientAskingPrice: clientAskingPrice,
             beforeImage: leftImageView.image?.jpegData(compressionQuality: 0.7),
-            afterImage: rightImageView.image?.jpegData(compressionQuality: 0.7)
+            afterImage: rightImageView.image?.jpegData(compressionQuality: 0.7),
+            location: BriizeManager.shared.user.model.value?.currentLocation
         )
         viewModel.uploadCustomer(request: model)
     }

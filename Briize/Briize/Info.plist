@@ -58,5 +58,13 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<true/>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>Briize needs to know your location to provide accurate arrival estimates.</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Briize needs to know your location to provide accurate arrival estimates.</string>
+	<key>NSLocationUsageDescription</key>
+	<string>Briize needs to know your location to provide accurate arrival estimates.</string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>Briize needs to know your location to provide accurate arrival estimates.</string>
 </dict>
 </plist>

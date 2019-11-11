@@ -22,7 +22,7 @@ class BaseViewModel {
 
         BriizeManager
             .shared
-            .persistedAppState
+            .persistedRequestState
             .asObservable()
             .bind(to: appState)
             .disposed(by: disposeBag)

@@ -9,6 +9,7 @@
 import Foundation
 import RxSwift
 import RxCocoa
+import CoreLocation
 
 class CustomOrdersViewModel {
     
@@ -26,7 +27,25 @@ extension CustomOrdersViewModel {
     private func fetchRequests(for id: String) {
         let api = NetworkManager.instance
         api.pullRequests(type: "Custom") { [weak self] (models) in
-            self?.requests.accept(models.compactMap({ $0 }))
+            DispatchQueue.global(qos: .userInitiated).async {
+                let results = models
+                    .compactMap({ $0 })
+                    .filter({
+                        let req = $0
+                        let location = CLLocation(
+                            latitude : req.location?.latitude ?? 0,
+                            longitude: req.location?.longitude ?? 0
+                        )
+                        
+                        let manager = BriizeManager.shared
+                        return manager.userIsWithinFifteenMilesOf(location)
+                    })
+                    .compactMap({ $0 })
+                
+                DispatchQueue.main.async {
+                    self?.requests.accept(results)
+                }
+            }
         }
     }
     

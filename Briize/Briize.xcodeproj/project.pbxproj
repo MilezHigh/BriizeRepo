@@ -79,6 +79,7 @@
 		84FF87B420B2C9A90054BA99 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FF87B320B2C9A90054BA99 /* UserModel.swift */; };
 		84FF87B720B3E1630054BA99 /* BaseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FF87B620B3E1630054BA99 /* BaseViewModel.swift */; };
 		9967234B7CB381778DB7D906 /* Pods_BriizeTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 021419F10C21C44EBF3AA813 /* Pods_BriizeTests.framework */; };
+		9A0825362379853D00BF5D60 /* AuctionDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A0825352379853D00BF5D60 /* AuctionDetailsViewController.swift */; };
 		9A1B0FCE2369E05700F7B264 /* CustomRequestTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A1B0FCD2369E05700F7B264 /* CustomRequestTableViewCell.swift */; };
 		9A3C686F2355FF6100C570AA /* ExpertCompletedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A3C686E2355FF6100C570AA /* ExpertCompletedViewModel.swift */; };
 		9A4F3C48235211B600866704 /* ExpertCompletedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A4F3C47235211B600866704 /* ExpertCompletedViewController.swift */; };
@@ -181,6 +182,7 @@
 		84FF87B120B2BC340054BA99 /* ClientPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientPresenter.swift; sourceTree = "<group>"; };
 		84FF87B320B2C9A90054BA99 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		84FF87B620B3E1630054BA99 /* BaseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewModel.swift; sourceTree = "<group>"; };
+		9A0825352379853D00BF5D60 /* AuctionDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuctionDetailsViewController.swift; sourceTree = "<group>"; };
 		9A1B0FCD2369E05700F7B264 /* CustomRequestTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomRequestTableViewCell.swift; sourceTree = "<group>"; };
 		9A3C686E2355FF6100C570AA /* ExpertCompletedViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpertCompletedViewModel.swift; sourceTree = "<group>"; };
 		9A4F3C47235211B600866704 /* ExpertCompletedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpertCompletedViewController.swift; sourceTree = "<group>"; };
@@ -346,6 +348,7 @@
 		841AC3872278529000E65578 /* RequestOrderViews */ = {
 			isa = PBXGroup;
 			children = (
+				9A0825332379851100BF5D60 /* AuctionDetails */,
 				9ACB6D8A236853160096C23A /* Request */,
 				9A1B0FCA2369E01300F7B264 /* CustomRequest */,
 			);
@@ -382,8 +385,8 @@
 		84361D2220C38020003B2C17 /* ClientDashBoard */ = {
 			isa = PBXGroup;
 			children = (
-				84069ADD20FCA8E0002C910B /* ChangeServiceLocation */,
 				84361D2C20C393DB003B2C17 /* MVVM */,
+				84069ADD20FCA8E0002C910B /* ChangeServiceLocation */,
 				8400284121957C510005ADA9 /* CollectionCells */,
 			);
 			path = ClientDashBoard;
@@ -725,6 +728,22 @@
 			path = Base;
 			sourceTree = "<group>";
 		};
+		9A0825332379851100BF5D60 /* AuctionDetails */ = {
+			isa = PBXGroup;
+			children = (
+				9A0825342379852400BF5D60 /* MVC */,
+			);
+			path = AuctionDetails;
+			sourceTree = "<group>";
+		};
+		9A0825342379852400BF5D60 /* MVC */ = {
+			isa = PBXGroup;
+			children = (
+				9A0825352379853D00BF5D60 /* AuctionDetailsViewController.swift */,
+			);
+			path = MVC;
+			sourceTree = "<group>";
+		};
 		9A1B0FCA2369E01300F7B264 /* CustomRequest */ = {
 			isa = PBXGroup;
 			children = (
@@ -1039,6 +1058,7 @@
 				84BEF8E921218F7A00E27DC5 /* MyAccountCollectionViewCell.swift in Sources */,
 				8400284A219B7BB40005ADA9 /* AccountPriorCollectionCell.swift in Sources */,
 				840028442195F8260005ADA9 /* ClientAccountCell.swift in Sources */,
+				9A0825362379853D00BF5D60 /* AuctionDetailsViewController.swift in Sources */,
 				0BD33A82231C32EE00F72203 /* CustomRequestViewModel.swift in Sources */,
 				84BEF8E4212148AA00E27DC5 /* MyAccountViewController.swift in Sources */,
 				84FF87B220B2BC340054BA99 /* ClientPresenter.swift in Sources */,
@@ -1255,7 +1275,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 9;
-				DEVELOPMENT_TEAM = CNUA8JREHJ;
+				DEVELOPMENT_TEAM = WMVNZYDS86;
 				INFOPLIST_FILE = Briize/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1275,7 +1295,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 9;
-				DEVELOPMENT_TEAM = CNUA8JREHJ;
+				DEVELOPMENT_TEAM = WMVNZYDS86;
 				INFOPLIST_FILE = Briize/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

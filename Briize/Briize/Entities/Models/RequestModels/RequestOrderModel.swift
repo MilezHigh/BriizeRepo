@@ -25,6 +25,7 @@ struct RequestOrderModel {
     var address: String
     var startTime: Date?
     var finishTime: Date?
+    var createdAt: Date?
     var scheduledDate: Date?
     var requestStatus:Int
     var cost: Int
@@ -33,6 +34,7 @@ struct RequestOrderModel {
     var clientAskingPrice: Int
     var beforeImage: Data?
     var afterImage: Data?
+    var location: PFGeoPoint?
 }
 
 extension RequestOrderModel {
@@ -43,8 +45,6 @@ extension RequestOrderModel {
             let type: String  = object["type"] as? String,
             let clientID: String = object["clientName"] as? String,
             let clientFullname: String = object["clientFullName"] as? String,
-            let expertID: String = object["expertName"] as? String,
-            let expertFullName: String = object["expertFullName"] as? String,
             let serviceType: String = object["serviceType"] as? String,
             let address: String = object["address"] as? String,
             let notes: String = object["notes"] as? String,
@@ -53,18 +53,25 @@ extension RequestOrderModel {
             let payToExpert: Int = object["payToExpert"] as? Int,
             let profit: Int = object["profit"] as? Int,
             let clientAskingPrice: Int = object["clientAskingPrice"] as? Int,
-            let serviceIds: [Int] = object["serviceIds"] as? [Int],
-            let bids: [NSDictionary] = object["bids"] as? [NSDictionary]
+            let serviceIds: [Int] = object["serviceIds"] as? [Int]
             else {
                 return nil
         }
 
+        let expertFullName: String = object["expertFullName"] as? String ?? "n/a"
+        let expertID: String = object["expertName"] as? String ?? "n/a"
+        
+        let bids: [NSDictionary] = object["bids"] as? [NSDictionary] ?? []
+        
+        let createdAt: Date? = (object["startTime"] as? NSDate) as Date?
         let startTime: Date? = object["startTime"] as? Date
         let finishTime: Date? = object["finishTime"] as? Date
         let scheduledTime: Date? = object["scheduledDate"] as? Date
 
         let beforeImage: PFFileObject? = object["beforeImage"] as? PFFileObject
         let afterImage: PFFileObject? = object["afterImage"] as? PFFileObject
+        
+        let location: PFGeoPoint = object["location"] as? PFGeoPoint ?? PFGeoPoint()
 
         var beforeData: Data?
         var afterData: Data?
@@ -93,6 +100,7 @@ extension RequestOrderModel {
             address: address,
             startTime: startTime,
             finishTime: finishTime,
+            createdAt: createdAt,
             scheduledDate: scheduledTime,
             requestStatus: requestStatus,
             cost: cost,
@@ -100,7 +108,8 @@ extension RequestOrderModel {
             profit: profit,
             clientAskingPrice: clientAskingPrice,
             beforeImage: beforeData,
-            afterImage: afterData
+            afterImage: afterData,
+            location: location
         )
     }
 }
@@ -125,12 +134,13 @@ extension RequestOrderModel {
         request["type"] = type
         request["bids"] = bids
         request["clientAskingPrice"] = clientAskingPrice
+        request["location"] = location ?? PFGeoPoint()
 
         scheduledDate == nil ? () : (request["scheduledDate"] = scheduledDate)
         startTime == nil ? () : (request["startTime"] = startTime)
         finishTime == nil ? () : (request["finishTime"] = startTime)
-        beforeImage == nil ? () : (request["beforeImage"] = PFFileObject(data: beforeImage!))
-        afterImage == nil ? () : (request["afterImage"] = PFFileObject(data: afterImage!))
+        beforeImage == nil ? () : (request["beforeImage"] = PFFileObject(data: beforeImage!, contentType: "image/jpeg"))
+        afterImage == nil ? () : (request["afterImage"] = PFFileObject(data: afterImage!, contentType: "image/jpeg"))
 
         return request
     }

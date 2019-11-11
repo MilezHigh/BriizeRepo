@@ -63,10 +63,9 @@ class MyAccountViewController: UIViewController, MFMailComposeViewControllerDele
         
         options
             .asObservable()
-            .bind(
-                to: clientSettingsCollectionView.rx.items(
-                    cellIdentifier: "clientOption",
-                    cellType      : MyAccountCollectionViewCell.self
+            .bind(to: clientSettingsCollectionView.rx.items(
+                cellIdentifier: "clientOption",
+                cellType      : MyAccountCollectionViewCell.self
                 )
             ) ({ row, model, cell in
                 cell.model = [model.key: model.value]
@@ -160,24 +159,22 @@ class MyAccountViewController: UIViewController, MFMailComposeViewControllerDele
 extension MyAccountViewController: GMSAutocompleteViewControllerDelegate {
     
     func viewController(_ viewController: GMSAutocompleteViewController, didAutocompleteWith place: GMSPlace) {
-        dismiss(animated: true, completion: {
+        dismiss(animated  : true, completion: {
             BriizeManager.shared.changeAddressForCurrentUser(
                 formatted: place.formattedAddress ?? "",
-                state    : place.addressComponents?
-                    .first(where: {
+                state    : place.addressComponents?.first(
+                    where: {
                         $0.types
                             .filter({ t in t == "administrative_area_level_1" })
                             .first != nil
-                    })?
-                    .name ?? "",
+                })?.name ?? "",
                 
-                zipcode  : place.addressComponents?
-                    .first(where: {
+                zipcode  : place.addressComponents?.first(
+                    where: {
                         $0.types
                             .filter({ t in t == "postal_code" })
                             .first != nil
-                    })?
-                    .name ?? ""
+                })?.name ?? ""
             )
         })
     }

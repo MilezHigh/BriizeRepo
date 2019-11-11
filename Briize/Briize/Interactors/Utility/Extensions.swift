@@ -287,6 +287,15 @@ extension DateFormatter {
     }
 }
 
+extension Double {
+    
+    static var fifteenMilesInMeters: Double {
+        get {
+            return 1609.344 * 15
+        }
+    }
+}
+
 class BriizeUtility {
     
     static func convertPFObjectToMultipleSectionModel(_ object: PFObject) -> SectionItem? {

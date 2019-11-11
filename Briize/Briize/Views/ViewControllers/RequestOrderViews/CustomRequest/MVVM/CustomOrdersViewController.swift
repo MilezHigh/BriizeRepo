@@ -35,10 +35,9 @@ class CustomOrdersViewController: UIViewController, PricingDelegate {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        if !didLoad {
-            didLoad = true
-            bind()
-        }
+        sessionManager.liveController.accept(self)
+        
+        if !didLoad { didLoad = true ; bind() }
     }
     
     func setupNavigationBar() {
@@ -102,7 +101,6 @@ extension CustomOrdersViewController: UITableViewDelegate {
             guard let vc = self?.showPriceSelection(from: index) as? PriceSelectorViewController else { return }
             self?.navigationController?.pushViewController(vc, animated: true)
         }
-        
         bidAction.backgroundColor = UIColor.briizePink
         return [bidAction]
     }
@@ -138,13 +136,15 @@ extension CustomOrdersViewController: UITableViewDelegate {
                 guard var model = self?.editingCell?.model else { return }
                 let id = BriizeManager.shared.user.model.value?.id ?? ""
                 model.bids += [[ "\(id)" : "\(price)" ]]
-                NetworkManager.instance.postRequest(model, status: model.requestStatus) { (done, id, err) in
-                    DispatchQueue.main.async {
-                        BriizeManager.shared.dismissloader()
-                        
-                        guard err == nil else { return }
-                        self?.viewModel?.fetchRequests()
-                    }
+                
+                NetworkManager.instance
+                    .postRequest(model, status: model.requestStatus) { (done, id, err) in
+                        DispatchQueue.main.async {
+                            BriizeManager.shared.dismissloader()
+                            
+                            guard err == nil else { return }
+                            self?.viewModel?.fetchRequests()
+                        }
                 }
             }
         }

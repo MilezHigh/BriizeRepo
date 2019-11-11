@@ -11,6 +11,7 @@ import UIKit
 import NVActivityIndicatorView
 import RxSwift
 import RxCocoa
+import CoreLocation
 
 public enum UserType {
     case Client
@@ -54,12 +55,12 @@ enum RequestStatus: Int {
         case 4 : return .Active
         case 5 : return .Complete
         case 6 : return .Cancelled
-        
+            
         /// - Note: 7, 8, 9 - Not used
         case 7 : return .ExpertReceivedRequest
         case 8 : return .ConfirmClientPayment
         case 9 : return .InRoute
-        ///
+            ///
             
         default: return .Idle
         }
@@ -68,12 +69,13 @@ enum RequestStatus: Int {
 
 class BriizeManager {
     
-    var userType: UserType = .Client
     var liveController = BehaviorRelay<UIViewController?>(value: nil)
+    
     var requestType = BehaviorRelay<RequestOrderType>(value: .Live)
     var requestState = BehaviorRelay<RequestStatus>(value: .Idle)
+    
     var persistedSegueId = BehaviorRelay<String>(value: "waiting")
-    var persistedAppState = BehaviorRelay<(BriizeApplicationState, String)>(value: (.loggedOut, "waiting"))
+    var persistedRequestState = BehaviorRelay<(BriizeApplicationState, String)>(value: (.loggedOut, "waiting"))
     
     let api = NetworkManager.instance
     let user = User()
@@ -82,10 +84,27 @@ class BriizeManager {
     
     static let shared: BriizeManager = BriizeManager()
     
+    static var userType: UserType {
+        get {
+            BriizeManager.shared.user.model.value?.isExpert == true ? .Expert : .Client
+        }
+    }
+    
     private init() {
         requestState
             .asObservable()
             .subscribe(onNext: { [weak self] in self?.process($0) })
+            .disposed(by: disposeBag)
+        
+        user
+            .model
+            .asObservable()
+            .observeOn(MainScheduler.asyncInstance)
+            .distinctUntilChanged()
+            .subscribe(onNext: { [weak self] in
+                guard let user = $0 else { return }
+                self?.saveUser(model: user)
+            })
             .disposed(by: disposeBag)
     }
 }
@@ -130,6 +149,23 @@ extension BriizeManager {
             break
         }
     }
+    
+    private func saveUser(model: UserModel?) {
+        guard let user = model else { return }
+        let api = NetworkManager.instance
+        api
+            .updateCurrentLocation(for: user)
+            .asObservable()
+            .subscribe(
+                onNext: { (arg) in
+                    guard arg.0 else { return}
+                    print("SUCCESS ON SAVING USER")
+            },
+                onError: { (error) in
+                    print("ERROR ON SAVING USER - " + error.localizedDescription)
+            })
+            .disposed(by: disposeBag)
+    }
 }
 
 extension BriizeManager {
@@ -149,13 +185,13 @@ extension BriizeManager {
     }
     
     public func showLoader(_ message: String = "") {
-        let color = UIColor(red: 214/255, green: 165/255, blue: 141/255, alpha: 1.0)
+        let color: UIColor = .briizePink
         let data = ActivityData(
             size: CGSize(width: 80, height: 80),
             message: message,
             messageFont: UIFont.init(name: "Lobster", size: 22.0),
             messageSpacing: 4.0,
-            type: NVActivityIndicatorType.ballGridPulse,
+            type: NVActivityIndicatorType.ballSpinFadeLoader,
             color: color,
             padding: 0,
             displayTimeThreshold: nil,
@@ -166,34 +202,53 @@ extension BriizeManager {
         NVActivityIndicatorPresenter.sharedInstance.startAnimating(data, nil)
     }
     
-    // Client Methods
-
+    // MARK: - Client Methods
+    
+    public func changeAddressForCurrentUser(formatted: String, state: String, zipcode: String) {
+        let api = NetworkManager.instance
+        let result = api.updateUserAddress(formatted: formatted, state: state, zipcode: zipcode)
+        result
+            .asObservable()
+            .observeOn(MainScheduler.instance)
+            .subscribe(onNext: { [weak self] (arg) in
+                guard arg.0 else { return }
+                let alert = UIAlertController(title: "Address Updated!", message: nil, preferredStyle: .alert)
+                let action = UIAlertAction(title: "Ok", style: .default, handler: nil)
+                alert.addAction(action)
+                self?.liveController.value?.present(alert, animated: true)
+            })
+            .disposed(by: disposeBag)
+    }
+    
     /// - Note:
     /// - Method below presents an action sheet, a constraint error shows up in the console,
     /// - However this is a bug on Apple's part. Does not break anything otherwise. Issue noted below.
     /// - https://github.com/lionheart/openradar-mirror/issues/21120
-
+    
     public func obtainAndSetRequest(completion: @escaping (Bool) -> Void) {
         let alert = UIAlertController(
             title         : nil,
             message       : nil,
             preferredStyle: .actionSheet
         )
-        let action = UIAlertAction(title: "Live Request", style: .default)
+        let action = UIAlertAction(title: "Live Request",
+                                   style: .default)
         { [weak self] (_) in
             self?.requestType.accept(.Live)
             DispatchQueue.main.async {
                 completion(true)
             }
         }
-        let actionTwo = UIAlertAction(title: "Custom Request", style: .default)
+        let actionTwo = UIAlertAction(title: "Custom Request",
+                                      style: .default)
         { [weak self] (_) in
             self?.requestType.accept(.Custom)
             DispatchQueue.main.async {
                 completion(true)
             }
         }
-        let actionThree = UIAlertAction(title: "Cancel", style: .cancel)
+        let actionThree = UIAlertAction(title: "Cancel",
+                                        style: .cancel)
         { _ in
             DispatchQueue.main.async {
                 completion(false)
@@ -203,23 +258,22 @@ extension BriizeManager {
         alert.addAction(actionTwo)
         alert.addAction(actionThree)
         
-        DispatchQueue.main.async {
-            self.liveController.value?.present(alert, animated: true, completion: nil)
+        DispatchQueue.main.async { [weak self] in
+            self?.liveController.value?.present(alert, animated: true)
         }
     }
+}
 
-    public func changeAddressForCurrentUser(formatted: String, state: String, zipcode: String) {
-        let api = NetworkManager.instance
-        let result = api.updateUserAddress(formatted: formatted, state: state, zipcode: zipcode)
-        result
-            .asDriver(onErrorJustReturn: (false, nil))
-            .drive(onNext: { [weak self] (arg) in
-                guard arg.0 else { return }
-                let alert = UIAlertController(title: "Address Updated!", message: nil, preferredStyle: .alert)
-                let action = UIAlertAction(title: "Ok", style: .default, handler: nil)
-                alert.addAction(action)
-                self?.liveController.value?.present(alert, animated: true)
-            })
-            .disposed(by: disposeBag)
-    }
+extension BriizeManager {
+    
+        public var currentUserLocation: CLLocation {
+            let lat = user.model.value?.currentLocation?.latitude ?? 0
+            let lon = user.model.value?.currentLocation?.longitude ?? 0
+            return CLLocation(latitude: lat, longitude: lon)
+        }
+        
+        public func userIsWithinFifteenMilesOf(_ requestLocation: CLLocation) -> Bool {
+            let distance = currentUserLocation.distance(from: requestLocation)
+            return distance.magnitude <= Double.fifteenMilesInMeters
+        }
 }

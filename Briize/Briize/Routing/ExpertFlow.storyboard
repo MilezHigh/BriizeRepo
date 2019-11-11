@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="pg4-uX-S2W">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="pg4-uX-S2W">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -20,7 +20,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </imageView>
-                            <view alpha="0.69999999999999996" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wPv-fG-l6e">
+                            <view alpha="0.80000000000000004" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wPv-fG-l6e">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
@@ -35,8 +35,8 @@
                                         </constraints>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Expert Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UlN-62-heI">
-                                        <rect key="frame" x="137.5" y="140" width="139" height="32.5"/>
-                                        <fontDescription key="fontDescription" name="PingFangHK-Regular" family="PingFang HK" pointSize="23"/>
+                                        <rect key="frame" x="136" y="140" width="142" height="32.5"/>
+                                        <fontDescription key="fontDescription" name="PingFangHK-Semibold" family="PingFang HK" pointSize="23"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -52,55 +52,55 @@
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <blurEffect style="dark"/>
                                             </visualEffectView>
-                                            <stackView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" distribution="fillEqually" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="6cr-ZS-Mcz">
+                                            <stackView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" distribution="fillEqually" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="6cr-ZS-Mcz">
                                                 <rect key="frame" x="0.0" y="0.0" width="374" height="80"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="Lid-YE-DhU">
-                                                        <rect key="frame" x="0.0" y="0.0" width="121.5" height="80"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="124" height="80"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="72f-vr-IWp">
-                                                                <rect key="frame" x="0.0" y="0.0" width="121.5" height="40"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="124" height="40"/>
                                                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Job Count" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rYz-qw-7w4">
-                                                                <rect key="frame" x="0.0" y="40" width="121.5" height="40"/>
-                                                                <fontDescription key="fontDescription" name="PingFangHK-Regular" family="PingFang HK" pointSize="12"/>
+                                                                <rect key="frame" x="0.0" y="40" width="124" height="40"/>
+                                                                <fontDescription key="fontDescription" name="PingFangHK-Semibold" family="PingFang HK" pointSize="12"/>
                                                                 <color key="textColor" red="0.83921568629999999" green="0.64705882349999999" blue="0.55294117649999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                         </subviews>
                                                     </stackView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="Yju-08-wYt">
-                                                        <rect key="frame" x="126.5" y="0.0" width="121" height="80"/>
+                                                        <rect key="frame" x="125" y="0.0" width="124" height="80"/>
                                                         <subviews>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$ 0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="0ES-sm-ntt">
-                                                                <rect key="frame" x="0.0" y="0.0" width="121" height="40"/>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="0ES-sm-ntt">
+                                                                <rect key="frame" x="0.0" y="0.0" width="124" height="40"/>
                                                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Earned" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rbe-nX-9cY">
-                                                                <rect key="frame" x="0.0" y="40" width="121" height="40"/>
-                                                                <fontDescription key="fontDescription" name="PingFangHK-Regular" family="PingFang HK" pointSize="12"/>
+                                                                <rect key="frame" x="0.0" y="40" width="124" height="40"/>
+                                                                <fontDescription key="fontDescription" name="PingFangHK-Semibold" family="PingFang HK" pointSize="12"/>
                                                                 <color key="textColor" red="0.83921568629999999" green="0.64705882349999999" blue="0.55294117649999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                         </subviews>
                                                     </stackView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="sFy-zX-WCK">
-                                                        <rect key="frame" x="252.5" y="0.0" width="121.5" height="80"/>
+                                                        <rect key="frame" x="250" y="0.0" width="124" height="80"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0.0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vlq-MO-HSZ">
-                                                                <rect key="frame" x="0.0" y="0.0" width="121.5" height="40"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="124" height="40"/>
                                                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rating" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="77a-yf-Gkj">
-                                                                <rect key="frame" x="0.0" y="40" width="121.5" height="40"/>
-                                                                <fontDescription key="fontDescription" name="PingFangHK-Regular" family="PingFang HK" pointSize="12"/>
+                                                                <rect key="frame" x="0.0" y="40" width="124" height="40"/>
+                                                                <fontDescription key="fontDescription" name="PingFangHK-Semibold" family="PingFang HK" pointSize="12"/>
                                                                 <color key="textColor" red="0.83921568629999999" green="0.64705882349999999" blue="0.55294117649999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
@@ -147,26 +147,27 @@
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" placeholderIntrinsicWidth="80" placeholderIntrinsicHeight="60" image="Briizelogo" translatesAutoresizingMaskIntoConstraints="NO" id="1x5-qZ-tKN">
-                                                            <rect key="frame" x="127.5" y="30" width="80" height="39.5"/>
+                                                            <rect key="frame" x="142.5" y="30" width="50" height="39.5"/>
+                                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <constraints>
-                                                                <constraint firstAttribute="width" constant="80" id="1mz-i3-bvT"/>
+                                                                <constraint firstAttribute="width" constant="50" id="1mz-i3-bvT"/>
                                                             </constraints>
                                                         </imageView>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Account Option" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="zgS-br-KLr">
                                                             <rect key="frame" x="20" y="89.5" width="295" height="28"/>
-                                                            <fontDescription key="fontDescription" name="PingFangHK-Regular" family="PingFang HK" pointSize="20"/>
-                                                            <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <fontDescription key="fontDescription" name="PingFangHK-Semibold" family="PingFang HK" pointSize="20"/>
+                                                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Details about this specific account option describing what you can do." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="8" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s4N-FL-Ugu">
                                                             <rect key="frame" x="20" y="117.5" width="295" height="101.5"/>
-                                                            <fontDescription key="fontDescription" name="PingFangHK-Thin" family="PingFang HK" pointSize="15"/>
-                                                            <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <fontDescription key="fontDescription" name="PingFangHK-Thin" family="PingFang HK" pointSize="17"/>
+                                                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                     </subviews>
                                                 </view>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="trailingMargin" secondItem="zgS-br-KLr" secondAttribute="trailing" constant="12" id="0aW-4Q-Q7f"/>
                                                     <constraint firstItem="1x5-qZ-tKN" firstAttribute="top" secondItem="ei7-W2-3Ee" secondAttribute="top" constant="30" id="8UH-Dk-4pM"/>
@@ -190,7 +191,7 @@
                                         </cells>
                                     </collectionView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ufS-dk-VdT">
-                                        <rect key="frame" x="40" y="704" width="334" height="50"/>
+                                        <rect key="frame" x="50" y="704" width="314" height="50"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="v5z-12-161"/>
@@ -204,7 +205,7 @@
                                         </connections>
                                     </button>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VMV-1D-j9b">
-                                        <rect key="frame" x="20" y="306.5" width="374" height="0.5"/>
+                                        <rect key="frame" x="40" y="306.5" width="334" height="0.5"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="0.5" id="VwR-sW-2uC"/>
@@ -213,17 +214,17 @@
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="ufS-dk-VdT" secondAttribute="trailing" constant="40" id="0Hh-wA-YZy"/>
+                                    <constraint firstAttribute="trailing" secondItem="ufS-dk-VdT" secondAttribute="trailing" constant="50" id="0Hh-wA-YZy"/>
                                     <constraint firstItem="VMV-1D-j9b" firstAttribute="centerX" secondItem="EE0-kJ-SVP" secondAttribute="centerX" id="1py-cO-6w8"/>
                                     <constraint firstItem="lAa-aT-jha" firstAttribute="leading" secondItem="EE0-kJ-SVP" secondAttribute="leading" id="658-q7-bbk"/>
-                                    <constraint firstAttribute="trailing" secondItem="VMV-1D-j9b" secondAttribute="trailing" constant="20" id="6aY-jZ-FjD"/>
-                                    <constraint firstItem="VMV-1D-j9b" firstAttribute="leading" secondItem="EE0-kJ-SVP" secondAttribute="leading" constant="20" id="KmI-Ah-val"/>
+                                    <constraint firstAttribute="trailing" secondItem="VMV-1D-j9b" secondAttribute="trailing" constant="40" id="6aY-jZ-FjD"/>
+                                    <constraint firstItem="VMV-1D-j9b" firstAttribute="leading" secondItem="EE0-kJ-SVP" secondAttribute="leading" constant="40" id="KmI-Ah-val"/>
                                     <constraint firstItem="oZ4-JW-2go" firstAttribute="centerX" secondItem="EE0-kJ-SVP" secondAttribute="centerX" id="Lhu-Ja-wHX"/>
                                     <constraint firstItem="Xtf-3T-B0E" firstAttribute="top" secondItem="oZ4-JW-2go" secondAttribute="bottom" constant="20" id="N7z-w1-OBS"/>
                                     <constraint firstItem="UlN-62-heI" firstAttribute="top" secondItem="UTr-bN-ksX" secondAttribute="bottom" constant="20" id="Rud-XM-pbF"/>
                                     <constraint firstAttribute="bottom" secondItem="ufS-dk-VdT" secondAttribute="bottom" constant="20" id="TBK-wk-NDL"/>
                                     <constraint firstItem="ufS-dk-VdT" firstAttribute="centerX" secondItem="EE0-kJ-SVP" secondAttribute="centerX" id="Tom-6z-3Xh"/>
-                                    <constraint firstItem="ufS-dk-VdT" firstAttribute="leading" secondItem="EE0-kJ-SVP" secondAttribute="leading" constant="40" id="bC5-5O-Bq5"/>
+                                    <constraint firstItem="ufS-dk-VdT" firstAttribute="leading" secondItem="EE0-kJ-SVP" secondAttribute="leading" constant="50" id="bC5-5O-Bq5"/>
                                     <constraint firstItem="UTr-bN-ksX" firstAttribute="centerX" secondItem="EE0-kJ-SVP" secondAttribute="centerX" id="cuI-zI-brp"/>
                                     <constraint firstAttribute="trailing" secondItem="Xtf-3T-B0E" secondAttribute="trailing" constant="20" id="cvY-uf-BAr"/>
                                     <constraint firstItem="UlN-62-heI" firstAttribute="centerX" secondItem="EE0-kJ-SVP" secondAttribute="centerX" id="fqe-UY-GVn"/>

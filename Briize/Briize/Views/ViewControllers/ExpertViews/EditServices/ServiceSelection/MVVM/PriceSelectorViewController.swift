@@ -20,6 +20,8 @@ class PriceSelectorViewController: UIViewController {
     public var indexPath: IndexPath?
     public var nameOfService: String = ""
     
+    private var toolbar: UIToolbar!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Add a Price for \(nameOfService)"
@@ -27,19 +29,17 @@ class PriceSelectorViewController: UIViewController {
         priceTextField.delegate = self
         
         //ToolBar
-        let toolbar = UIToolbar();
+        toolbar = UIToolbar()
         toolbar.sizeToFit()
         
-        //done button & cancel button
         let doneButton = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(selectedPrice))
         let spaceButton = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
-        toolbar.setItems([doneButton, spaceButton], animated: false)
-        
-        self.priceTextField.inputAccessoryView = toolbar
+        toolbar.setItems([spaceButton, doneButton], animated: false)
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        priceTextField.inputAccessoryView = toolbar
         priceTextField.becomeFirstResponder()
     }
     

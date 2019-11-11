@@ -27,8 +27,7 @@ extension NetworkManager {
                 print(error?.localizedDescription ?? "Error on Login")
                 completion(nil)
             } else {
-                guard let user = user, let userObject = UserModel
-                    .create(from: user) else { return }
+                guard let user = user, let userObject = UserModel.create(from: user) else { return }
                 completion(userObject)
             }
         }
@@ -178,10 +177,17 @@ extension NetworkManager {
     
     func pullRequests(
         type: String,
+        userId: String? = nil,
         completion: @escaping ([RequestOrderModel?]) -> ()
     ) {
         let query = PFQuery(className: "Requests")
         query.whereKey("type", equalTo: type)
+        
+        if let id = userId {
+            let manager = BriizeManager.shared
+            let key = manager.user.model.value?.isExpert == false ? "clientName" : "expertName"
+            query.whereKey(key, equalTo: id)
+        }
         query.findObjectsInBackground { (objects, error) in
             switch error != nil {
             case true:
@@ -283,9 +289,35 @@ extension NetworkManager {
                 }
             })
             
-            return Disposables.create {
-                PFUser.logOut()
-            }
+            return Disposables.create { }
+        }
+    }
+    
+    func updateCurrentLocation(for user: UserModel) -> Observable<(Bool, Error?)> {
+        return Observable<(Bool, Error?)>.create { observer in
+            PFUser.current()?.fetchInBackground(block: { (object, error) in
+                guard error == nil, let obj = object else {
+                    guard let err = error else {
+                        observer.onCompleted()
+                        return
+                    }; print("Error - \(err.localizedDescription)")
+                    
+                    DispatchQueue.main.async {
+                        observer.onError(err)
+                        observer.onCompleted()
+                    }
+                    return
+                }
+                obj["currentLocation"] = user.currentLocation
+                obj.saveInBackground()
+                
+                DispatchQueue.main.async {
+                    observer.onNext((true, nil))
+                    observer.onCompleted()
+                }
+            })
+            
+            return Disposables.create { }
         }
     }
     

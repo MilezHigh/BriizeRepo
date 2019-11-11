@@ -22,8 +22,8 @@ class MyAccountCollectionViewCell: UICollectionViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        self.accountOptionLabel.layer.borderColor = UIColor.black.cgColor
-        self.accountOptionLabel.layer.borderWidth = 1.0
-        self.accountOptionLabel.layer.cornerRadius = 8
+        self.accountOptionLabel.layer.borderColor = UIColor.briizePink.cgColor
+        self.accountOptionLabel.layer.borderWidth = 1
+        self.accountOptionLabel.layer.cornerRadius = 10
     }
 }

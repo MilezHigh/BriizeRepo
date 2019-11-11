@@ -8,6 +8,8 @@
 
 import Foundation
 import UIKit
+import CoreLocation
+import Parse
 import RxSwift
 import RxCocoa
 import RxDataSources
@@ -27,23 +29,22 @@ class ClientDashboardViewController: UIViewController {
     var serviceTitle  : String?
     var completedSetup: Bool = false
     
+    var locationManager: CLLocationManager?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupNavigationBar()
         setupSegmentBar()
+        
         bindSegueSignal()
         bindCategories()
         bindLogout()
         registerCells()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-    }
-    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        
         setupLeftBarButton()
         
         sessionManager.user.selectedCategoryServices.accept([])
@@ -53,6 +54,11 @@ class ClientDashboardViewController: UIViewController {
             kLogout = false
             viewModel.logout()
         }
+        
+        locationManager = CLLocationManager()
+        locationManager?.delegate = self
+        locationManager?.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager?.requestAlwaysAuthorization()
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -63,16 +69,11 @@ class ClientDashboardViewController: UIViewController {
         guard let title = serviceTitle,
             let img = serviceImage else { return }
         
-        switch segue.destination {
-        case is ServiceSelectionViewController:
+        if segue.destination is ServiceSelectionViewController {
             let chosenCategory = CategoryModel(name: title, image: img)
             let services = ServiceModel.addServicesToCategory(chosenCategory)
-            guard let destination = segue
-                .destination as? ServiceSelectionViewController else { return }
+            guard let destination = segue.destination as? ServiceSelectionViewController else { return }
             destination.viewModel.services.accept(services)
-            
-        default:
-            break
         }
     }
     
@@ -110,7 +111,7 @@ extension ClientDashboardViewController {
     }
     
     private func setupLeftBarButton(){
-        if self.completedSetup == false {
+        if !completedSetup {
             let gesture = UITapGestureRecognizer(target: self, action: #selector(userTappedMenuImage))
             let v = UIView(frame: CGRect(x: 0, y: 0, width: 30, height: 30))
             let imgV = UIImageView(frame: v.frame)
@@ -170,7 +171,7 @@ extension ClientDashboardViewController {
             .asDriver()
             .drive(onNext: { [weak self] in
                 $0 ? self?.dismiss(animated: true, completion: {
-                    BriizeManager.shared.persistedAppState.accept((.loggedOut, ""))
+                    BriizeManager.shared.persistedRequestState.accept((.loggedOut, ""))
                     BriizeManager.shared.dismissloader()
                 }) : ()
             })
@@ -179,10 +180,13 @@ extension ClientDashboardViewController {
     
     private func registerCells() {
         accountCollectionView
-            .register(UINib(nibName: "AccountPriorCollectionCell", bundle: nil),
+            .register(UINib(nibName: "AccountPriorCollectionCell",
+                            bundle : nil),
                       forCellWithReuseIdentifier: "Account_Prior")
+        
         accountCollectionView
-            .register(UINib(nibName: "AccountLiveRequestsCollectionCell", bundle: nil),
+            .register(UINib(nibName: "AccountLiveRequestsCollectionCell",
+                            bundle : nil),
                       forCellWithReuseIdentifier: "Account_Live")
     }
 }
@@ -200,15 +204,14 @@ extension ClientDashboardViewController: NVActivityIndicatorViewable {
 
 extension ClientDashboardViewController: UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    func collectionView(_ collectionView         : UICollectionView,
+                        didSelectItemAt indexPath: IndexPath) {
         collectionView.deselectItem(at: indexPath, animated: true)
     }
     
-    func collectionView(
-        _ collectionView           : UICollectionView,
-        layout collectionViewLayout: UICollectionViewLayout,
-        sizeForItemAt indexPath    : IndexPath
-    ) -> CGSize {
+    func collectionView(_ collectionView           : UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        sizeForItemAt indexPath    : IndexPath) -> CGSize {
         let height = collectionView.bounds.height
         let width = collectionView.bounds.width
         return CGSize(width: width, height: height)
@@ -228,9 +231,13 @@ extension ClientDashboardViewController: UIScrollViewDelegate {
     }
     
     func centerCollectionView() {
-        let centerPoint = self.view.convert(view.center, to: accountCollectionView)
+        let centerPoint = view.convert(view.center, to: accountCollectionView)
         guard let centerIndex = accountCollectionView.indexPathForItem(at: centerPoint) else {return}
-        accountCollectionView.scrollToItem(at: centerIndex, at: .centeredHorizontally, animated: true)
+        accountCollectionView.scrollToItem(
+            at: centerIndex,
+            at: .centeredHorizontally,
+            animated: true
+        )
         menuSegmentBar.selectedSegmentIndex = centerIndex.row
         menuSegmentBar.changeUnderlinePosition()
     }
@@ -241,9 +248,42 @@ extension ClientDashboardViewController {
     @objc func userTappedMenuImage(){
         let storyboard = UIStoryboard(name: "ClientFlow", bundle: nil)
         guard let controller = storyboard
-            .instantiateViewController(withIdentifier: "myAccount") as? MyAccountViewController
+            .instantiateViewController(withIdentifier: "myAccount")
+            as? MyAccountViewController
             else { return }
         
-        self.present(controller, animated: true)
+        present(controller, animated: true)
+    }
+}
+
+extension ClientDashboardViewController: CLLocationManagerDelegate {
+    
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        switch status {
+        case .authorizedAlways, .authorizedWhenInUse:
+            if CLLocationManager.locationServicesEnabled() {
+                manager.startUpdatingLocation()
+            }
+            
+        default:
+            break
+        }
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        let userLocation: CLLocation = locations[0] as CLLocation
+        
+        manager.stopUpdatingLocation()
+        
+        print("user latitude = \(userLocation.coordinate.latitude)")
+        print("user longitude = \(userLocation.coordinate.longitude)")
+        
+        var user = sessionManager.user.model.value
+        user?.currentLocation = PFGeoPoint(location: userLocation)
+        BriizeManager.shared.user.model.accept(user)
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        print(error.localizedDescription)
     }
 }

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -17,15 +17,15 @@
                 <rect key="frame" x="0.0" y="0.0" width="487" height="669"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="60" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="zNI-L4-urV">
-                        <rect key="frame" x="0.0" y="0.0" width="487" height="669"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="grouped" separatorStyle="default" rowHeight="60" estimatedRowHeight="-1" sectionHeaderHeight="-1" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="zNI-L4-urV">
+                        <rect key="frame" x="0.0" y="20" width="487" height="649"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                     </tableView>
                 </subviews>
             </view>
             <constraints>
                 <constraint firstItem="zNI-L4-urV" firstAttribute="leading" secondItem="0wc-9G-8Z6" secondAttribute="leading" id="OIO-t7-ufd"/>
-                <constraint firstItem="zNI-L4-urV" firstAttribute="top" secondItem="0wc-9G-8Z6" secondAttribute="top" id="Wt7-Hn-bLK"/>
+                <constraint firstItem="zNI-L4-urV" firstAttribute="top" secondItem="0wc-9G-8Z6" secondAttribute="top" constant="20" id="Wt7-Hn-bLK"/>
                 <constraint firstAttribute="trailing" secondItem="zNI-L4-urV" secondAttribute="trailing" id="XsM-A5-JVs"/>
                 <constraint firstAttribute="bottom" secondItem="zNI-L4-urV" secondAttribute="bottom" id="wdf-xA-rrB"/>
             </constraints>

@@ -22,8 +22,7 @@ class LoginViewModel {
             
             if let user = model {
                 DispatchQueue.main.async { [weak self] in
-                    BriizeManager.shared.user.model
-                        .accept(user)
+                    BriizeManager.shared.user.model.accept(user)
                     
                     self?.userSegueIdSignal
                         .accept(user.isExpert ? "showExpertMainDashboard" : "showClientMainDashboard")

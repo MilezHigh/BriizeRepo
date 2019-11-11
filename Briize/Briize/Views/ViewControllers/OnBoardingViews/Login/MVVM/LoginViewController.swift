@@ -92,8 +92,8 @@ extension LoginViewController {
     private func setup() {
         self.navigationController?.navigationBar.isHidden = true
 
-        usernameTextfield.text = "miles.fishman@yahoo.com"//"briizebeauty@gmail.com"
-        passwordTextfield.text = "devguy123"//"theboss123"
+        usernameTextfield.text = "briizebeauty@gmail.com"//"miles.fishman@yahoo.com"//"briizebeauty@gmail.com"
+        passwordTextfield.text = "theboss123"//"devguy123"//"theboss123"
 
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         self.view.addGestureRecognizer(tap)
@@ -194,7 +194,7 @@ extension LoginViewController {
                         self?.setLoaderMessage(message: "Complete!")
                         self?.dismissLoader()
                         self?.dismiss(animated: true, completion: {
-                            BriizeManager.shared.persistedAppState
+                            BriizeManager.shared.persistedRequestState
                                 .accept((.authenticated, signalName))
                         })
                     }

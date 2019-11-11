@@ -100,10 +100,10 @@ extension ExpertAccountViewController {
             let urlString = user.urlString?.url else { return }
         
         browseCustomResultsButton.layer.borderWidth = 2
-        browseCustomResultsButton.layer.backgroundColor = UIColor.white.cgColor
-        browseCustomResultsButton.layer.borderColor = UIColor.briizePink.cgColor
+        browseCustomResultsButton.layer.backgroundColor = UIColor.clear.cgColor
+        browseCustomResultsButton.layer.borderColor = UIColor.white.cgColor
         browseCustomResultsButton.layer.cornerRadius = 10
-        browseCustomResultsButton.setTitleColor(UIColor.briizePink, for: .normal)
+        browseCustomResultsButton.setTitleColor(UIColor.white, for: .normal)
         
         expertProfileImageView.layer.borderWidth = 1
         expertProfileImageView.layer.borderColor = UIColor.briizePink.cgColor
@@ -135,7 +135,7 @@ extension ExpertAccountViewController {
         viewModel
             .amountMade
             .asObservable()
-            .map({ "$ \($0.description)" })
+            .map({ "$\($0.description)" })
             .bind(to: paidAmountLabel.rx.text)
             .disposed(by: disposeBag)
         
@@ -236,7 +236,7 @@ extension ExpertAccountViewController: UICollectionViewDelegateFlowLayout {
         -> CGSize {
             let padding: CGFloat = 60
             return CGSize(
-                width: collectionView.frame.width - padding,
+                width: collectionView.frame.width - 40,
                 height: collectionView.frame.height - padding
             )
     }
