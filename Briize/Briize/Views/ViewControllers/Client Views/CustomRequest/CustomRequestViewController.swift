@@ -95,8 +95,14 @@ class CustomRequestViewController: UIViewController {
             payToExpert: clientAskingPrice - profit,
             profit: profit,
             clientAskingPrice: clientAskingPrice,
-            beforeImage: leftImageView.image?.jpegData(compressionQuality: 0.7),
-            afterImage: rightImageView.image?.jpegData(compressionQuality: 0.7),
+            beforeImage: PFFileObject(
+                data: leftImageView.image?.jpegData(compressionQuality: 0.7) ?? Data(),
+                                      contentType: "content/jpeg"),
+            
+            afterImage: PFFileObject(
+                data: rightImageView.image?.jpegData(compressionQuality: 0.7) ?? Data(),
+                contentType: "content/jpeg"),
+            
             location: BriizeManager.shared.user.model.value?.currentLocation
         )
         viewModel.uploadCustomer(request: model)

@@ -88,22 +88,21 @@ extension UIImageView {
         
         let act = NVActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: 20, height: 20))
         act.type = .ballGridPulse
-        act.color = .black
+        act.color = .briizePink
         self.addSubview(act)
         act.center = self.center
         act.startAnimating()
         
         URLSession.shared.dataTask(with: url) { [weak self] data, response, error in
-            guard let httpURLResponse = response as? HTTPURLResponse,
-                httpURLResponse.statusCode == 200,
+            guard
+                let httpURLResponse = response as? HTTPURLResponse, httpURLResponse.statusCode == 200,
                 let this = self,
                 let data = data,
                 error == nil,
-                let image = UIImage(data: data)
-                else {
+                let image = UIImage(data: data) else {
                     DispatchQueue.main.async {
                         self?.alpha = 0
-                        UIView.animate(withDuration: 0.8, animations: {
+                        UIView.animate(withDuration: 0.25, animations: {
                             act.removeFromSuperview()
                             self?.clipsToBounds = false
                             self?.layer.borderWidth = 1.0
@@ -114,10 +113,7 @@ extension UIImageView {
                     } ; return
             }
             DispatchQueue.main.async {
-                if setProfileImage {
-                    BriizeManager.shared.user.userProfileImage = image
-                }
-                UIView.animate(withDuration: 0.33, animations: {
+                UIView.animate(withDuration: 0.25, animations: {
                     act.removeFromSuperview()
                     this.image = image
                     this.layer.cornerRadius = this.frame.size.width / 2
@@ -125,7 +121,7 @@ extension UIImageView {
                 })
             }
         }
-        .resume()
+        .resume() ; return
     }
     
     func downloadedFrom(link: String, contentMode mode: UIView.ContentMode = .scaleAspectFill, setProfileImage: Bool) {
@@ -242,12 +238,29 @@ extension UICollectionViewCell: BriizeObject {
 }
 
 extension UIViewController: BriizeObject {
+    
+    /// Briize Manager Methods
+    
     var sessionManager: BriizeManager {
         get { return BriizeManager.shared }
     }
     
     var sessionUserIsExpert: Bool {
         return sessionManager.user.model.value?.isExpert == true
+    }
+    
+    /// Navigation Bar Methods
+    
+    @objc private func dismissController() {
+        dismiss(animated: true)
+    }
+    
+    public func addDismissButton() {
+        let closeButton = UIBarButtonItem(
+            barButtonSystemItem: .cancel, target: self, action: #selector(dismissController)
+        )
+        closeButton.tintColor = .briizePink
+        navigationItem.leftBarButtonItems = [closeButton]
     }
 }
 

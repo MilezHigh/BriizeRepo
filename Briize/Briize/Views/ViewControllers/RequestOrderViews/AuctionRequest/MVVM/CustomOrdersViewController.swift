@@ -66,6 +66,7 @@ class CustomOrdersViewController: UIViewController, PricingDelegate {
         viewModel?
             .requests
             .asObservable()
+            .observeOn(MainScheduler.instance)
             .bind(to: requestTableView.rx.items(
                 cellIdentifier: "CustomRequestTableViewCell",
                 cellType      : CustomRequestTableViewCell.self

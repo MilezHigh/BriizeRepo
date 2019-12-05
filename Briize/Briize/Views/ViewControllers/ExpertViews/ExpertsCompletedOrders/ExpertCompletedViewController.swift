@@ -25,7 +25,6 @@ class ExpertCompletedViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         navigationController?.navigationBar.isHidden = false
         navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
         navigationController?.navigationBar.shadowImage = UIImage()
@@ -40,13 +39,11 @@ class ExpertCompletedViewController: UIViewController {
         v.addSubview(imageView)
         navigationItem.titleView = v
         
-        let closeButton = UIBarButtonItem(title: "Close", style: .done, target: self, action: #selector(dismissController))
-        navigationItem.leftBarButtonItems = [closeButton]
+        addDismissButton()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
         viewModel = ExpertCompletedViewModel()
     }
     
@@ -54,16 +51,12 @@ class ExpertCompletedViewController: UIViewController {
         print("Deinit - \(self.description)")
     }
 }
-    
+
 extension ExpertCompletedViewController {
-    
-    @objc func dismissController() {
-        dismiss(animated: true, completion: nil)
-    }
     
     private func bind() {
         guard ordersTable.delegate == nil else { return }
-            
+        
         viewModel?
             .requests
             .asObservable()
@@ -83,14 +76,25 @@ extension ExpertCompletedViewController {
                 cell.textLabel?.text = model.clientFullName
                 cell.detailTextLabel?.numberOfLines = 0
                 
-                let s = NSAttributedString(string: "Service", attributes: [NSAttributedString.Key.strokeWidth : 2])
-                let c = NSAttributedString(string: "Cost", attributes: [NSAttributedString.Key.strokeWidth : 2])
-                let p = NSAttributedString(string: "Profit", attributes: [NSAttributedString.Key.strokeWidth : 2])
-                let result = NSAttributedString(
-                    string: s.string + ": \(model.serviceType)\n"
-                        + c.string + ": $\(model.cost).00\n"
-                        + p.string + ": $\(model.payToExpert).00"
+                let s = NSMutableAttributedString(
+                    string    : "Service",
+                    attributes: [NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 12.0)]
                 )
+                let c = NSMutableAttributedString(
+                    string    : "Cost",
+                    attributes: [NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 12.0)]
+                )
+                let p = NSMutableAttributedString(
+                    string    : "Profit",
+                    attributes: [NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 12.0)]
+                )
+                let result = NSMutableAttributedString()
+                result.append(s)
+                result.append(NSAttributedString(string: " - \(model.serviceType)\n"))
+                result.append(c)
+                result.append(NSAttributedString(string: " - $\(model.cost).00\n"))
+                result.append(p)
+                result.append(NSAttributedString(string: " - $\(model.payToExpert).00"))
                 cell.detailTextLabel?.attributedText = result
             })
             .disposed(by: disposeBag)

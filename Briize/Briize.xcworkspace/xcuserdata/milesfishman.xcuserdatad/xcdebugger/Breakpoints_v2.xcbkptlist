@@ -5,131 +5,31 @@
    version = "2.0">
    <Breakpoints>
       <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         BreakpointExtensionID = "Xcode.Breakpoint.SymbolicBreakpoint">
          <BreakpointContent
-            uuid = "E5E536AA-2CF4-4C17-930E-B6758D0FCA59"
+            uuid = "A0033A4E-C73E-48A2-B6DE-80B23110068D"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Briize/Interactors/Network/NetworkManager.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "223"
-            endingLineNumber = "223"
-            landmarkName = "postRequest(_:status:completion:)"
-            landmarkType = "7">
+            symbolName = "warnBlockingOperationOnMainThread"
+            moduleName = "">
             <Locations>
                <Location
-                  uuid = "E5E536AA-2CF4-4C17-930E-B6758D0FCA59 - 42118df9c97f1e7"
+                  uuid = "A0033A4E-C73E-48A2-B6DE-80B23110068D - db7d96702894efa2"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "Briize.NetworkManager.postRequest(_: Briize.RequestOrderModel, status: Swift.Int, completion: (Swift.Bool, Swift.Optional&lt;Swift.String&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; ()) -&gt; ()"
-                  moduleName = "Briize"
+                  symbolName = "warnBlockingOperationOnMainThread"
+                  moduleName = "Bolts"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/milesfishman/Desktop/BriizeRepo/Briize/Briize/Interactors/Network/NetworkManager.swift"
+                  urlString = "file:///Users/milesfishman/Desktop/BriizeRepo/Briize/Pods/Bolts/Bolts/Common/BFTask.m"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "223"
-                  endingLineNumber = "223"
-                  offsetFromSymbolStart = "356">
-               </Location>
-               <Location
-                  uuid = "E5E536AA-2CF4-4C17-930E-B6758D0FCA59 - 2696cc361eef9285"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.Bool, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in Briize.NetworkManager.postRequest(_: Briize.RequestOrderModel, status: Swift.Int, completion: (Swift.Bool, Swift.Optional&lt;Swift.String&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; ()) -&gt; ()"
-                  moduleName = "Briize"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/milesfishman/Desktop/BriizeRepo/Briize/Briize/Interactors/Network/NetworkManager.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "221"
-                  endingLineNumber = "221"
-                  offsetFromSymbolStart = "252">
+                  startingLineNumber = "20"
+                  endingLineNumber = "20"
+                  offsetFromSymbolStart = "11">
                </Location>
             </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "865A9C05-B7E2-465E-92C9-362D6A5ACE99"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Briize/Interactors/Network/NetworkManager.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "231"
-            endingLineNumber = "231"
-            landmarkName = "postRequest(_:status:completion:)"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "865A9C05-B7E2-465E-92C9-362D6A5ACE99 - 2696cc361eef9285"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.Bool, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in Briize.NetworkManager.postRequest(_: Briize.RequestOrderModel, status: Swift.Int, completion: (Swift.Bool, Swift.Optional&lt;Swift.String&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; ()) -&gt; ()"
-                  moduleName = "Briize"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/milesfishman/Desktop/BriizeRepo/Briize/Briize/Interactors/Network/NetworkManager.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "231"
-                  endingLineNumber = "231"
-                  offsetFromSymbolStart = "1080">
-               </Location>
-               <Location
-                  uuid = "865A9C05-B7E2-465E-92C9-362D6A5ACE99 - 5077ae0a9151fa97"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.Optional&lt;Swift.Array&lt;__C.PFObject&gt;&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in closure #1 (Swift.Bool, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in Briize.NetworkManager.postRequest(_: Briize.RequestOrderModel, status: Swift.Int, completion: (Swift.Bool, Swift.Optional&lt;Swift.String&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; ()) -&gt; ()"
-                  moduleName = "Briize"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/milesfishman/Desktop/BriizeRepo/Briize/Briize/Interactors/Network/NetworkManager.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "232"
-                  endingLineNumber = "232"
-                  offsetFromSymbolStart = "216">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "B802F4D4-D1BF-4D66-8254-C9B76726413A"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Briize/Views/ViewControllers/RequestOrderViews/CustomRequest/MVVM/CustomOrdersViewModel.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "49"
-            endingLineNumber = "49"
-            landmarkName = "fetchRequests(for:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "57207608-A9F9-4A63-A9AB-6BA43E6FAF59"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Briize/Entities/Models/RequestModels/RequestOrderModel.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "43"
-            endingLineNumber = "43"
-            landmarkName = "create(from:)"
-            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

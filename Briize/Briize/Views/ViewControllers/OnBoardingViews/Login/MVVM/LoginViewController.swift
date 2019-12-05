@@ -99,13 +99,13 @@ extension LoginViewController {
         self.view.addGestureRecognizer(tap)
 
         goButton.layer.cornerRadius = 10
-        goButton.layer.borderColor = UIColor.briizePink.cgColor
+        goButton.layer.borderColor = UIColor.white.cgColor
         goButton.layer.borderWidth = 1
-        goButton.backgroundColor = .white
+        goButton.backgroundColor = .clear 
     }
 
     private func scanState() {
-        BriizeManager.shared.adoptController(nil)
+        sessionManager.adoptController(nil)
         
         setupVideoObserver()
 
@@ -113,6 +113,9 @@ extension LoginViewController {
             let username = UserDefaults.standard.value(forKey: "Username") as? String,
             let password = UserDefaults.standard.value(forKey: "Password") as? String
             else { return }
+        
+        print(username)
+        print(password)
         
         usernameTextfield.text = username
         passwordTextfield.text = password
@@ -166,7 +169,6 @@ extension LoginViewController {
             string: "Email",
             attributes: [NSAttributedString.Key.foregroundColor: UIColor.white]
         )
-
         passwordTextfield.attributedPlaceholder = NSAttributedString(
             string: "Password",
             attributes: [NSAttributedString.Key.foregroundColor: UIColor.white]

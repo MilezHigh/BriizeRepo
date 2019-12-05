@@ -32,8 +32,8 @@ struct RequestOrderModel {
     var payToExpert: Int
     var profit: Int
     var clientAskingPrice: Int
-    var beforeImage: Data?
-    var afterImage: Data?
+    var beforeImage: PFFileObject?
+    var afterImage: PFFileObject?
     var location: PFGeoPoint?
 }
 
@@ -60,25 +60,21 @@ extension RequestOrderModel {
 
         let expertFullName: String = object["expertFullName"] as? String ?? "n/a"
         let expertID: String = object["expertName"] as? String ?? "n/a"
-        
         let bids: [NSDictionary] = object["bids"] as? [NSDictionary] ?? []
-        
         let createdAt: Date? = (object["startTime"] as? NSDate) as Date?
         let startTime: Date? = object["startTime"] as? Date
         let finishTime: Date? = object["finishTime"] as? Date
         let scheduledTime: Date? = object["scheduledDate"] as? Date
-
         let beforeImage: PFFileObject? = object["beforeImage"] as? PFFileObject
         let afterImage: PFFileObject? = object["afterImage"] as? PFFileObject
-        
         let location: PFGeoPoint = object["location"] as? PFGeoPoint ?? PFGeoPoint()
 
-        var beforeData: Data?
-        var afterData: Data?
+        var beforeData: PFFileObject?
+        var afterData: PFFileObject?
         if beforeImage != nil && afterImage != nil {
             guard
-                let before = try? beforeImage?.getData(),
-                let after = try? afterImage?.getData()
+                let before = beforeImage,
+                let after = afterImage
                 else {
                     fatalError("Parse Method 'getData' - RequestOrderModel")
             }
@@ -139,9 +135,9 @@ extension RequestOrderModel {
         scheduledDate == nil ? () : (request["scheduledDate"] = scheduledDate)
         startTime == nil ? () : (request["startTime"] = startTime)
         finishTime == nil ? () : (request["finishTime"] = startTime)
-        beforeImage == nil ? () : (request["beforeImage"] = PFFileObject(data: beforeImage!, contentType: "image/jpeg"))
-        afterImage == nil ? () : (request["afterImage"] = PFFileObject(data: afterImage!, contentType: "image/jpeg"))
-
+        beforeImage == nil ? () : (request["beforeImage"] = beforeImage)
+        afterImage == nil ? () : (request["afterImage"] = afterImage)
+        
         return request
     }
 }

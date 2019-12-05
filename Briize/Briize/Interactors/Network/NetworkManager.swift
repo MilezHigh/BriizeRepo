@@ -14,6 +14,8 @@ import Parse
 
 class NetworkManager {
     
+    let imageCache = URLCache.shared
+    
     static let instance = NetworkManager()
     
     private init(){}

@@ -75,7 +75,6 @@
 		84FA741B21154DD500E261E4 /* briizeBGV.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 84FA741A21154DD400E261E4 /* briizeBGV.mp4 */; };
 		84FA741C21154DD500E261E4 /* briizeBGV.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 84FA741A21154DD400E261E4 /* briizeBGV.mp4 */; };
 		84FF87B020B2B4B80054BA99 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FF87AF20B2B4B80054BA99 /* BaseViewController.swift */; };
-		84FF87B220B2BC340054BA99 /* ClientPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FF87B120B2BC340054BA99 /* ClientPresenter.swift */; };
 		84FF87B420B2C9A90054BA99 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FF87B320B2C9A90054BA99 /* UserModel.swift */; };
 		84FF87B720B3E1630054BA99 /* BaseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FF87B620B3E1630054BA99 /* BaseViewModel.swift */; };
 		9967234B7CB381778DB7D906 /* Pods_BriizeTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 021419F10C21C44EBF3AA813 /* Pods_BriizeTests.framework */; };
@@ -179,7 +178,6 @@
 		84FA740F210AA30100E261E4 /* ExpertFlow.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ExpertFlow.storyboard; sourceTree = "<group>"; };
 		84FA741A21154DD400E261E4 /* briizeBGV.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = briizeBGV.mp4; sourceTree = "<group>"; };
 		84FF87AF20B2B4B80054BA99 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
-		84FF87B120B2BC340054BA99 /* ClientPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientPresenter.swift; sourceTree = "<group>"; };
 		84FF87B320B2C9A90054BA99 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		84FF87B620B3E1630054BA99 /* BaseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewModel.swift; sourceTree = "<group>"; };
 		9A0825352379853D00BF5D60 /* AuctionDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuctionDetailsViewController.swift; sourceTree = "<group>"; };
@@ -348,9 +346,9 @@
 		841AC3872278529000E65578 /* RequestOrderViews */ = {
 			isa = PBXGroup;
 			children = (
-				9A0825332379851100BF5D60 /* AuctionDetails */,
 				9ACB6D8A236853160096C23A /* Request */,
-				9A1B0FCA2369E01300F7B264 /* CustomRequest */,
+				9A1B0FCA2369E01300F7B264 /* AuctionRequest */,
+				9A0825332379851100BF5D60 /* AuctionDetails */,
 			);
 			path = RequestOrderViews;
 			sourceTree = "<group>";
@@ -511,19 +509,11 @@
 		8448740B20B232E600BEE5C4 /* ExpertViews */ = {
 			isa = PBXGroup;
 			children = (
-				9A4F3C462352118800866704 /* ExpertsCompletedOrders */,
 				840A45B52147AEF4003EC054 /* Account */,
 				84A85A9B215B4A760098E3F8 /* EditServices */,
+				9A4F3C462352118800866704 /* ExpertsCompletedOrders */,
 			);
 			path = ExpertViews;
-			sourceTree = "<group>";
-		};
-		8448740D20B2332A00BEE5C4 /* Presenters */ = {
-			isa = PBXGroup;
-			children = (
-				84FF87B120B2BC340054BA99 /* ClientPresenter.swift */,
-			);
-			path = Presenters;
 			sourceTree = "<group>";
 		};
 		8448740E20B2334200BEE5C4 /* Entities */ = {
@@ -700,7 +690,6 @@
 				84FA741A21154DD400E261E4 /* briizeBGV.mp4 */,
 				8448740A20B232C500BEE5C4 /* Views */,
 				8448740620B2310600BEE5C4 /* Interactors */,
-				8448740D20B2332A00BEE5C4 /* Presenters */,
 				8448740E20B2334200BEE5C4 /* Entities */,
 				8448741220B2339900BEE5C4 /* Routing */,
 				84E10A4720B0132C00E287A0 /* AppDelegate.swift */,
@@ -744,12 +733,12 @@
 			path = MVC;
 			sourceTree = "<group>";
 		};
-		9A1B0FCA2369E01300F7B264 /* CustomRequest */ = {
+		9A1B0FCA2369E01300F7B264 /* AuctionRequest */ = {
 			isa = PBXGroup;
 			children = (
 				9A1B0FCB2369E02400F7B264 /* MVVM */,
 			);
-			path = CustomRequest;
+			path = AuctionRequest;
 			sourceTree = "<group>";
 		};
 		9A1B0FCB2369E02400F7B264 /* MVVM */ = {
@@ -1061,7 +1050,6 @@
 				9A0825362379853D00BF5D60 /* AuctionDetailsViewController.swift in Sources */,
 				0BD33A82231C32EE00F72203 /* CustomRequestViewModel.swift in Sources */,
 				84BEF8E4212148AA00E27DC5 /* MyAccountViewController.swift in Sources */,
-				84FF87B220B2BC340054BA99 /* ClientPresenter.swift in Sources */,
 				84A85A73215109E90098E3F8 /* ExpertAccountOption.swift in Sources */,
 				84A85A7D2159DD9D0098E3F8 /* ExpertEditServicesViewController.swift in Sources */,
 				8400284E219B7BEC0005ADA9 /* AccountLiveRequestsCollectionCell.swift in Sources */,
